@@ -1,0 +1,77 @@
+{
+  "updated": "2026-02-19T22:41:51.162793",
+  "trades": [
+    {
+      "id": 3,
+      "timestamp": "2026-02-19 14:35:12",
+      "market_id": "1369917",
+      "market_question": "Will the price of Bitcoin be above $66,000 on February 19?",
+      "side": "YES",
+      "size_usd": 1.0,
+      "entry_price": 0.53,
+      "exit_price": null,
+      "pnl_usd": null,
+      "pnl_percent": null,
+      "status": "OPEN",
+      "strategy": "High confidence YES - BTC above $66K",
+      "reasoning": "BTC trading at ~$66,943, above $66K threshold. Market undervalued at 53%.",
+      "confidence": 8,
+      "tx_hash": "46364c2b63ed9f51e86c22412b3dd1df0c2ce0f8b48bf2d1fccb48a86be37187",
+      "reflection": null,
+      "lesson_learned": null,
+      "github_synced": 0
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-02-19 12:18:27",
+      "market_id": "1320793",
+      "market_question": "US strikes Iran by February 20, 2026?",
+      "side": "NO",
+      "size_usd": 1.0,
+      "entry_price": 0.93,
+      "exit_price": null,
+      "pnl_usd": null,
+      "pnl_percent": null,
+      "status": "OPEN",
+      "strategy": "Short-term high confidence NO",
+      "reasoning": "93% probability against. Resolves tomorrow (Feb 20). High confidence bet on no strike.",
+      "confidence": 8,
+      "tx_hash": "077b29241c9236cb313111303d85dd213a4df0650ddfa761fedd22bbd7fb4f34",
+      "reflection": null,
+      "lesson_learned": null,
+      "github_synced": 0
+    },
+    {
+      "id": 1,
+      "timestamp": "2026-02-19 10:04:41",
+      "market_id": "703258",
+      "market_question": "Will Jesus Christ return before 2027?",
+      "side": "NO",
+      "size_usd": 2.0,
+      "entry_price": 0.97,
+      "exit_price": null,
+      "pnl_usd": null,
+      "pnl_percent": null,
+      "status": "OPEN",
+      "strategy": "Conservative NO on low-probability event",
+      "reasoning": "No historical precedent. 10 months remaining. High volume market ($9.2M). YES price at $0.03 implies 97% probability against.",
+      "confidence": 9,
+      "tx_hash": "7f55f8a140da6033fc46d86aca0bfdff7a7326bc9401151baf0ecc78e7b41a2c",
+      "reflection": null,
+      "lesson_learned": null,
+      "github_synced": 0
+    }
+  ],
+  "stats": {
+    "total_trades": 3,
+    "open_positions": 3,
+    "winning_trades": 0,
+    "total_pnl": 0,
+    "total_invested": 4.0
+  },
+  "wallet": {
+    "usdc": 11.26,
+    "pol": 8.56,
+    "total_value": 19.82
+  }
+}
