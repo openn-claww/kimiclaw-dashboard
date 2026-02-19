@@ -1,0 +1,8 @@
+{
+  "trades": [
+    {"id": 1, "market": "Jesus return 2027", "side": "NO", "size": 2.0, "pnl": -0.07, "status": "OPEN"},
+    {"id": 2, "market": "Iran strike Feb 20", "side": "NO", "size": 1.0, "pnl": 0, "status": "OPEN"},
+    {"id": 3, "market": "BTC above $66K Feb 19", "side": "YES", "size": 1.0, "pnl": 0, "status": "OPEN", "tx": "46364c2b63ed9f51e86c22412b3dd1df0c2ce0f8b48bf2d1fccb48a86be37187"}
+  ],
+  "updated": "2026-02-19T22:34:00"
+}
