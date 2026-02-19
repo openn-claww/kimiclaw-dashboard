@@ -1,0 +1,7 @@
+node_modules/
+build/
+.env
+.github.env
+.discord.env
+*.log
+.DS_Store
