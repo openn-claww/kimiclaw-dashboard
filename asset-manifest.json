@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/polytrader-dashboard/static/css/main.b799164b.css",
+    "main.js": "/polytrader-dashboard/static/js/main.0f1e7883.js",
+    "index.html": "/polytrader-dashboard/index.html",
+    "main.b799164b.css.map": "/polytrader-dashboard/static/css/main.b799164b.css.map",
+    "main.0f1e7883.js.map": "/polytrader-dashboard/static/js/main.0f1e7883.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b799164b.css",
+    "static/js/main.0f1e7883.js"
+  ]
+}
