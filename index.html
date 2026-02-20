@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket Trading Dashboard</title>
+    <meta http-equiv="refresh" content="30">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        pm: { bg: '#0a0a0f', card: '#151520', border: '#252535', accent: '#00d4ff', success: '#00ff88', danger: '#ff4757', warning: '#ffc107' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: white; }
+        .gradient-text { background: linear-gradient(135deg, #00d4ff, #7b2cbf); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card { background: #151520; border: 1px solid #252535; border-radius: 16px; }
+        .pulse-dot { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-pm-bg/95 backdrop-blur border-b border-pm-border">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-pm-accent to-purple-600 rounded-xl flex items-center justify-center text-2xl">🦞</div>
+                    <div>
+                        <h1 class="text-2xl font-bold gradient-text">Polymarket Dashboard</h1>
+                        <p class="text-gray-400 text-sm">Live Trading Tracker</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2 text-sm">
+                        <span class="w-2 h-2 bg-pm-success rounded-full pulse-dot"></span>
+                        <span class="text-pm-success">Live</span>
+                        <span class="text-gray-500">| Auto-refresh: 30s</span>
+                    </div>
+                    <button onclick="location.reload()" class="px-4 py-2 bg-pm-card border border-pm-border rounded-lg hover:border-pm-accent transition">
+                        <i class="fas fa-sync-alt mr-2"></i>Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+        <!-- Wallet Overview -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="card p-6">
+                <div class="text-gray-400 text-sm mb-2">USDC.e Balance</div>
+                <div class="text-3xl font-bold text-pm-warning">$8.13</div>
+                <div class="text-sm text-gray-500 mt-1">Available to trade</div>
+            </div>
+            <div class="card p-6">
+                <div class="text-gray-400 text-sm mb-2">POL Balance</div>
+                <div class="text-3xl font-bold">2.46</div>
+                <div class="text-sm text-gray-500 mt-1">For gas fees</div>
+            </div>
+            <div class="card p-6">
+                <div class="text-gray-400 text-sm mb-2">Total Invested</div>
+                <div class="text-3xl font-bold text-pm-accent">$13.50</div>
+                <div class="text-sm text-gray-500 mt-1">Across 13 bets</div>
+            </div>
+            <div class="card p-6">
+                <div class="text-gray-400 text-sm mb-2">Realized P&L</div>
+                <div class="text-3xl font-bold text-pm-success">+$2.46</div>
+                <div class="text-sm text-gray-500 mt-1">From BTC wins</div>
+            </div>
+        </section>
+
+        <!-- Money Flow Diagram -->
+        <section class="card p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-exchange-alt text-pm-accent"></i>
+                Money Flow
+            </h2>
+            <div class="flex flex-wrap items-center justify-between gap-4 text-center">
+                <div class="flex-1 min-w-[140px]">
+                    <div class="text-gray-400 text-sm mb-2">Your Wallet</div>
+                    <div class="text-2xl font-bold text-pm-warning">$0.13</div>
+                    <div class="text-xs text-gray-500">Before</div>
+                </div>
+                <div class="text-pm-accent text-2xl"><i class="fas fa-arrow-right"></i></div>
+                <div class="flex-1 min-w-[140px]">
+                    <div class="text-gray-400 text-sm mb-2">Invested</div>
+                    <div class="text-2xl font-bold text-pm-accent">$13.50</div>
+                    <div class="text-xs text-gray-500">13 bets</div>
+                </div>
+                <div class="text-pm-accent text-2xl"><i class="fas fa-arrow-right"></i></div>
+                <div class="flex-1 min-w-[140px]">
+                    <div class="text-gray-400 text-sm mb-2">Winnings</div>
+                    <div class="text-2xl font-bold text-pm-success">$8.00</div>
+                    <div class="text-xs text-gray-500">Redeemed</div>
+                </div>
+                <div class="text-pm-accent text-2xl"><i class="fas fa-arrow-right"></i></div>
+                <div class="flex-1 min-w-[140px]">
+                    <div class="text-gray-400 text-sm mb-2">Current</div>
+                    <div class="text-2xl font-bold text-pm-success">$8.13</div>
+                    <div class="text-xs text-gray-500">+$2.46 profit</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Bets Table -->
+        <section class="card overflow-hidden">
+            <div class="p-6 border-b border-pm-border flex items-center justify-between">
+                <h2 class="text-xl font-semibold flex items-center gap-2">
+                    <i class="fas fa-list text-pm-accent"></i>
+                    All Bets (13 Total)
+                </h2>
+                <div class="flex gap-2">
+                    <button class="px-3 py-1 bg-pm-accent/20 text-pm-accent rounded-full text-sm">All</button>
+                    <button class="px-3 py-1 bg-pm-card text-gray-400 rounded-full text-sm hover:text-white">Open</button>
+                    <button class="px-3 py-1 bg-pm-card text-gray-400 rounded-full text-sm hover:text-white">Closed</button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-pm-card/50 text-gray-400">
+                        <tr>
+                            <th class="px-4 py-3 text-left">ID</th>
+                            <th class="px-4 py-3 text-left">Market</th>
+                            <th class="px-4 py-3 text-center">Side</th>
+                            <th class="px-4 py-3 text-right">Amount</th>
+                            <th class="px-4 py-3 text-right">Entry</th>
+                            <th class="px-4 py-3 text-right">Current</th>
+                            <th class="px-4 py-3 text-right">P&L</th>
+                            <th class="px-4 py-3 text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-pm-border">
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#11</td>
+                            <td class="px-4 py-3">BTC &gt;$66K Feb 19</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">YES</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.92</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.08</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">✅ REDEEMED</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#10</td>
+                            <td class="px-4 py-3">BTC &gt;$66K Feb 19</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">YES</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.68</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.32</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">✅ REDEEMED</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#9</td>
+                            <td class="px-4 py-3">BTC $75K Feb</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-danger/20 text-pm-danger rounded-full text-xs">NO</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.845</td>
+                            <td class="px-4 py-3 text-right">$0.83</td>
+                            <td class="px-4 py-3 text-right text-pm-danger">-$0.17</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-accent/20 text-pm-accent rounded-full text-xs">● OPEN</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#8</td>
+                            <td class="px-4 py-3">BTC &gt;$66K Feb 19</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">YES</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.62</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.38</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">✅ REDEEMED</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#7</td>
+                            <td class="px-4 py-3">BTC &gt;$66K Feb 19</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">YES</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.76</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.24</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">✅ REDEEMED</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#6</td>
+                            <td class="px-4 py-3">BTC dip $55K</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-danger/20 text-pm-danger rounded-full text-xs">NO</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.89</td>
+                            <td class="px-4 py-3 text-right">$0.93</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.07</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-accent/20 text-pm-accent rounded-full text-xs">● OPEN</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#5</td>
+                            <td class="px-4 py-3">BTC &gt;$66K Feb 19</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">YES</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.715</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.29</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">✅ REDEEMED</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#4</td>
+                            <td class="px-4 py-3">BTC &gt;$66K Feb 19</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">YES</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.42</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.58</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">✅ REDEEMED</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#3</td>
+                            <td class="px-4 py-3">BTC &gt;$66K Feb 19</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">YES</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.53</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.47</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-success/20 text-pm-success rounded-full text-xs">✅ REDEEMED</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#2</td>
+                            <td class="px-4 py-3">Iran strike Feb 20</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-danger/20 text-pm-danger rounded-full text-xs">NO</span></td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right">$0.93</td>
+                            <td class="px-4 py-3 text-right">$1.00</td>
+                            <td class="px-4 py-3 text-right text-pm-success">+$0.07</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-accent/20 text-pm-accent rounded-full text-xs">● OPEN</span></td>
+                        </tr>
+                        <tr class="hover:bg-pm-card/30">
+                            <td class="px-4 py-3">#1</td>
+                            <td class="px-4 py-3">Jesus return 2027</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-danger/20 text-pm-danger rounded-full text-xs">NO</span></td>
+                            <td class="px-4 py-3 text-right">$2.00</td>
+                            <td class="px-4 py-3 text-right">$0.97</td>
+                            <td class="px-4 py-3 text-right">$0.97</td>
+                            <td class="px-4 py-3 text-right text-gray-500">$0.00</td>
+                            <td class="px-4 py-3 text-center"><span class="px-2 py-1 bg-pm-accent/20 text-pm-accent rounded-full text-xs">● OPEN</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Fee Breakdown -->
+        <section class="card p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-receipt text-pm-accent"></i>
+                Fee Breakdown
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-pm-card/50 p-4 rounded-lg">
+                    <div class="text-gray-400 text-sm">Split Gas</div>
+                    <div class="text-lg font-semibold">~$0.015</div>
+                    <div class="text-xs text-gray-500">Per trade</div>
+                </div>
+                <div class="bg-pm-card/50 p-4 rounded-lg">
+                    <div class="text-gray-400 text-sm">CLOB Sell Gas</div>
+                    <div class="text-lg font-semibold">~$0.005</div>
+                    <div class="text-xs text-gray-500">Per trade</div>
+                </div>
+                <div class="bg-pm-card/50 p-4 rounded-lg">
+                    <div class="text-gray-400 text-sm">Redeem Gas</div>
+                    <div class="text-lg font-semibold">~$0.010</div>
+                    <div class="text-xs text-gray-500">Per redemption</div>
+                </div>
+                <div class="bg-pm-card/50 p-4 rounded-lg">
+                    <div class="text-gray-400 text-sm">Platform Fee</div>
+                    <div class="text-lg font-semibold text-pm-success">$0.00</div>
+                    <div class="text-xs text-gray-500">Polymarket = 0%</div>
+                </div>
+            </div>
+            <div class="mt-4 p-4 bg-pm-card/30 rounded-lg">
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-400">Total Gas Spent (All Trades)</span>
+                    <span class="text-xl font-bold">~$0.41</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wallet Info -->
+        <section class="card p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-wallet text-pm-accent"></i>
+                Wallet Details
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <div class="text-gray-400 text-sm mb-1">Address</div>
+                    <div class="font-mono text-sm bg-pm-card/50 p-3 rounded-lg break-all">
+                        0x557A656C110a9eFdbFa28773DE4aCc2c3924a274
+                    </div>
+                </div>
+                <div>
+                    <div class="text-gray-400 text-sm mb-1">Network</div>
+                    <div class="flex items-center gap-2 bg-pm-card/50 p-3 rounded-lg">
+                        <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center text-xs">P</div>
+                        <span>Polygon Mainnet</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 flex gap-4">
+                <a href="https://polygonscan.com/address/0x557A656C110a9eFdbFa28773DE4aCc2c3924a274" target="_blank" class="flex-1 text-center py-3 bg-pm-card border border-pm-border rounded-lg hover:border-pm-accent transition">
+                    <i class="fas fa-external-link-alt mr-2"></i>View on PolygonScan
+                </a>
+                <a href="https://polymarket.com/portfolio" target="_blank" class="flex-1 text-center py-3 bg-pm-accent/20 border border-pm-accent text-pm-accent rounded-lg hover:bg-pm-accent/30 transition">
+                    <i class="fas fa-chart-line mr-2"></i>Polymarket Portfolio
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm py-6">
+            <p>Last Updated: February 21, 2026 03:35 GMT</p>
+            <p class="mt-2">Auto-refresh: 30 seconds | Data: Live from Blockchain</p>
+        </footer>
+    </main>
+
+    <script>
+        // Auto-refresh countdown
+        let countdown = 30;
+        setInterval(() => {
+            countdown--;
+            if (countdown <= 0) {
+                location.reload();
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
