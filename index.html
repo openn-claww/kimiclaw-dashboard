@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polymarket Trading Dashboard</title>
-    <meta http-equiv="refresh" content="30">
+    <!-- Auto-refresh every 15 minutes (900 seconds) -->
+<meta http-equiv="refresh" content="900">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -46,10 +47,11 @@
                     <div class="flex items-center gap-2 text-sm">
                         <span class="w-2 h-2 bg-pm-success rounded-full pulse-dot"></span>
                         <span class="text-pm-success">Live</span>
-                        <span class="text-gray-500">| Auto-refresh: 30s</span>
+                        <span class="text-gray-500">| Auto-refresh: 15min</span>
                     </div>
-                    <button onclick="location.reload()" class="px-4 py-2 bg-pm-card border border-pm-border rounded-lg hover:border-pm-accent transition">
-                        <i class="fas fa-sync-alt mr-2"></i>Refresh
+                    <button onclick="manualRefresh()" class="px-4 py-2 bg-pm-accent text-black font-semibold rounded-lg hover:bg-pm-accent/80 transition flex items-center gap-2">
+                        <i class="fas fa-sync-alt" id="refresh-icon"></i>
+                        <span>Refresh Now</span>
                     </button>
                 </div>
             </div>
@@ -326,18 +328,35 @@
 
         <!-- Footer -->
         <footer class="text-center text-gray-500 text-sm py-6">
-            <p>Last Updated: February 21, 2026 03:35 GMT</p>
-            <p class="mt-2">Auto-refresh: 30 seconds | Data: Live from Blockchain</p>
+            <p>Last Updated: February 21, 2026 03:56 GMT</p>
+            <p class="mt-2">Auto-refresh: 15 minutes | <span id="countdown">15:00</span> until next refresh</p>
+            <p class="mt-1">Data: Live from Blockchain | Manual refresh available</p>
         </footer>
     </main>
 
     <script>
-        // Auto-refresh countdown
-        let countdown = 30;
+        // Manual refresh with loading state
+        function manualRefresh() {
+            const icon = document.getElementById('refresh-icon');
+            icon.classList.add('fa-spin');
+            location.reload();
+        }
+        
+        // Countdown timer for next auto-refresh
+        let timeLeft = 900; // 15 minutes in seconds
+        
         setInterval(() => {
-            countdown--;
-            if (countdown <= 0) {
+            timeLeft--;
+            if (timeLeft <= 0) {
                 location.reload();
+            }
+            
+            // Update countdown display if element exists
+            const countdownEl = document.getElementById('countdown');
+            if (countdownEl) {
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                countdownEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
             }
         }, 1000);
     </script>
