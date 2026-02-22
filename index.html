@@ -26,6 +26,25 @@
         .card { background: #151520; border: 1px solid #252535; border-radius: 16px; }
         .pulse-dot { animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-stack { flex-direction: column !important; }
+            .mobile-full { width: 100% !important; }
+            .mobile-text-sm { font-size: 0.875rem !important; }
+            .mobile-text-xs { font-size: 0.75rem !important; }
+            .mobile-p-2 { padding: 0.5rem !important; }
+            .mobile-p-3 { padding: 0.75rem !important; }
+            .mobile-gap-2 { gap: 0.5rem !important; }
+            .mobile-grid-1 { grid-template-columns: 1fr !important; }
+            .mobile-grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
+            .mobile-hidden { display: none !important; }
+            .mobile-block { display: block !important; }
+            .mobile-flex-col { flex-direction: column !important; }
+            .mobile-text-center { text-align: center !important; }
+            .mobile-overflow-x { overflow-x: auto !important; }
+            .mobile-whitespace-nowrap { white-space: nowrap !important; }
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -55,26 +74,26 @@
 
     <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
         <!-- Wallet Overview -->
-        <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="card p-6">
-                <div class="text-gray-400 text-sm mb-2">USDC.e Balance</div>
-                <div class="text-3xl font-bold text-pm-warning">$19.93</div>
-                <div class="text-sm text-gray-500 mt-1">After 2 active bets</div>
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <div class="card p-3 md:p-6">
+                <div class="text-gray-400 text-xs md:text-sm mb-1 md:mb-2">USDC.e</div>
+                <div class="text-xl md:text-3xl font-bold text-pm-warning">$19.93</div>
+                <div class="text-xs text-gray-500 mt-1">After 2 bets</div>
             </div>
-            <div class="card p-6">
-                <div class="text-gray-400 text-sm mb-2">POL Balance</div>
-                <div class="text-3xl font-bold">2.22</div>
-                <div class="text-sm text-gray-500 mt-1">Gas: ~70 trades left</div>
+            <div class="card p-3 md:p-6">
+                <div class="text-gray-400 text-xs md:text-sm mb-1 md:mb-2">POL</div>
+                <div class="text-xl md:text-3xl font-bold">2.22</div>
+                <div class="text-xs text-gray-500 mt-1">~70 trades</div>
             </div>
-            <div class="card p-6">
-                <div class="text-gray-400 text-sm mb-2">Active Bets</div>
-                <div class="text-3xl font-bold text-pm-accent">$13.00</div>
-                <div class="text-sm text-gray-500 mt-1">2 positions open</div>
+            <div class="card p-3 md:p-6">
+                <div class="text-gray-400 text-xs md:text-sm mb-1 md:mb-2">Active</div>
+                <div class="text-xl md:text-3xl font-bold text-pm-accent">$13</div>
+                <div class="text-xs text-gray-500 mt-1">2 positions</div>
             </div>
-            <div class="card p-6">
-                <div class="text-gray-400 text-sm mb-2">Target Progress</div>
-                <div class="text-3xl font-bold text-pm-success">40%</div>
-                <div class="text-sm text-gray-500 mt-1">$19.93 / $50 goal</div>
+            <div class="card p-3 md:p-6">
+                <div class="text-gray-400 text-xs md:text-sm mb-1 md:mb-2">Progress</div>
+                <div class="text-xl md:text-3xl font-bold text-pm-success">40%</div>
+                <div class="text-xs text-gray-500 mt-1">to $50</div>
             </div>
         </section>
 
