@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyClaw Trading Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 {
+            color: #00d4ff;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle { color: #888; margin-bottom: 30px; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: #151520;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #252535;
+        }
+        .card h2 {
+            color: #00d4ff;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .metric {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+        }
+        .metric.positive { color: #00ff88; }
+        .metric.negative { color: #ff4757; }
+        .metric-label {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .wallet-info {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .wallet-item {
+            background: #1a1a2e;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+        .wallet-item .label { color: #888; font-size: 0.8em; }
+        .wallet-item .value { color: #fff; font-size: 1.3em; font-weight: bold; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #252535;
+        }
+        th {
+            color: #00d4ff;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+        td { color: #ccc; }
+        tr:hover { background: #1a1a2e; }
+        .status-open { color: #00ff88; }
+        .status-closed { color: #888; }
+        .pnl-positive { color: #00ff88; }
+        .pnl-negative { color: #ff4757; }
+        
+        .refresh-btn {
+            background: #00d4ff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .refresh-btn:hover { background: #00b8e6; }
+        
+        .tx-link {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        .tx-link:hover { text-decoration: underline; }
+        
+        .info-box {
+            background: #1a1a2e;
+            border-left: 4px solid #00d4ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .info-box h3 { color: #00d4ff; margin-bottom: 10px; }
+        .info-box p { color: #aaa; line-height: 1.6; }
+        
+        .strategy-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .strategy-tab {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #888;
+        }
+        .strategy-tab.active {
+            background: #00d4ff;
+            color: #000;
+            border-color: #00d4ff;
+        }
+        
+        .short-term-badge {
+            background: #ff6b35;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        .long-term-badge {
+            background: #00d4ff;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        
+        .weather-icon { font-size: 1.5em; margin-right: 5px; }
+        
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .cost-item {
+            text-align: center;
+            padding: 15px;
+            background: #1a1a2e;
+            border-radius: 8px;
+        }
+        .cost-item .amount { font-size: 1.5em; font-weight: bold; color: #fff; }
+        .cost-item .label { color: #888; font-size: 0.8em; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦞 PolyClaw Dashboard</h1>
+        <p class="subtitle">Real-time Polymarket trading tracker — Short-term & Weather Focus</p>
+        
+        <button class="refresh-btn" onclick="location.reload()">🔄 Refresh Data</button>
+        
+        <!-- Strategy Toggle -->
+        <div class="strategy-tabs">
+            <div class="strategy-tab active">⚡ Short-Term (15min)</div>
+            <div class="strategy-tab">🌤️ Weather</div>
+            <div class="strategy-tab">📅 Long-Term</div>
+            <div class="strategy-tab" style="background: #ff6b35; color: #fff;">📊 Paper Trading</div>
+        </div>
+        
+        <!-- Wallet Overview -->
+        <div class="card">
+            <h2>💰 Wallet Status</h2>
+            <div class="wallet-info">
+                <div class="wallet-item">
+                    <div class="label">Address</div>
+                    <div class="value" style="font-size: 0.9em;">0x557A...a274</div>
+                </div>
+                <div class="wallet-item">
+                    <div class="label">USDC.e Balance</div>
+                    <div class="value" id="usdc-balance">$7.93</div>
+                </div>
+                <div class="wallet-item">
+                    <div class="label">POL Balance</div>
+                    <div class="value" id="pol-balance">8.92</div>
+                </div>
+                <div class="wallet-item">
+                    <div class="label">Status</div>
+                    <div class="value" style="color: #00ff88;">✓ Approved</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Metrics -->
+        <div class="grid">
+            <div class="card">
+                <h2>📊 Total P&L</h2>
+                <div class="metric" id="total-pnl">$0.00</div>
+                <div class="metric-label">Since start (Feb 19, 2026)</div>
+            </div>
+            <div class="card">
+                <h2>🎯 Win Rate</h2>
+                <div class="metric" id="win-rate">0%</div>
+                <div class="metric-label">0 wins / 0 losses</div>
+            </div>
+            <div class="card">
+                <h2>📈 Active Positions</h2>
+                <div class="metric" id="active-positions">1</div>
+                <div class="metric-label">Open trades</div>
+            </div>
+            <div class="card">
+                <h2>⏱️ Avg Hold Time</h2>
+                <div class="metric">--</div>
+                <div class="metric-label">Target: < 7 days</div>
+            </div>
+        </div>
+        
+        <!-- Active Positions -->
+        <div class="card">
+            <h2>🔥 Active Positions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Market</th>
+                        <th>Position</th>
+                        <th>Size</th>
+                        <th>Entry</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>TX</th>
+                    </tr>
+                </thead>
+                <tbody id="active-positions-table">
+                    <tr>
+                        <td>Will Jesus Christ return before 2027?</td>
+                        <td>NO</td>
+                        <td>$2.00</td>
+                        <td>$0.97</td>
+                        <td><span class="long-term-badge">LONG</span></td>
+                        <td class="status-open">● OPEN</td>
+                        <td><a href="https://polygonscan.com/tx/0x7f55f8a140da6033fc46d86aca0bfdff7a7326bc9401151baf0ecc78e7b41a2c" class="tx-link" target="_blank">View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Paper Trading Section -->
+        <div class="card" style="border: 2px solid #ff6b35;">
+            <h2>📊 Paper Trading (Virtual $940)</h2>
+            <p style="color: #888; margin-bottom: 15px;">5-min & 15-min market simulation — No real money risk</p>
+            
+            <div class="grid" style="margin-bottom: 20px;">
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">💰 Virtual Balance</h2>
+                    <div class="metric" id="paper-balance">$920.00</div>
+                    <div class="metric-label">Started: $1,000</div>
+                </div>
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">📈 Virtual P&L</h2>
+                    <div class="metric negative" id="paper-pnl">-$80.00</div>
+                    <div class="metric-label">-8.0%</div>
+                </div>
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">🎯 Paper Trades</h2>
+                    <div class="metric" id="paper-trades">4</div>
+                    <div class="metric-label">Total executed</div>
+                </div>
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">⏱️ Status</h2>
+                    <div class="metric" style="color: #00ff88;">ACTIVE</div>
+                    <div class="metric-label">Scanning 24/7</div>
+                </div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Market</th>
+                        <th>Side</th>
+                        <th>Amount</th>
+                        <th>Edge</th>
+                        <th>Balance After</th>
+                    </tr>
+                </thead>
+                <tbody id="paper-trades-table">
+                    <tr>
+                        <td>2026-02-23 23:37</td>
+                        <td>ETH Up or Down - 5 Minutes</td>
+                        <td>DOWN</td>
+                        <td>$20.00</td>
+                        <td>0.5%</td>
+                        <td>$960.00</td>
+                    </tr>
+                    <tr>
+                        <td>2026-02-23 23:37</td>
+                        <td>BTC Up or Down - 5 Minutes</td>
+                        <td>DOWN</td>
+                        <td>$20.00</td>
+                        <td>0.5%</td>
+                        <td>$980.00</td>
+                    </tr>
+                    <tr>
+                        <td>2026-02-23 19:14</td>
+                        <td>BTC above $66K Feb 23</td>
+                        <td>YES</td>
+                        <td>$20.00</td>
+                        <td>7.8%</td>
+                        <td>$980.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Weather Markets Section -->
+        <div class="card">
+            <h2>🌤️ Weather Trading (Simmer)</h2>
+            <p style="color: #888; margin-bottom: 15px;">Scanning for rain, snow, temperature markets with NOAA forecast integration</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Event</th>
+                        <th>Market Price</th>
+                        <th>Forecast</th>
+                        <th>Edge</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: #666; padding: 30px;">
+                            🔄 Scanning weather markets every 15 minutes...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Trade History -->
+        <div class="card">
+            <h2>📜 Trade History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Market</th>
+                        <th>Side</th>
+                        <th>Size</th>
+                        <th>Type</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="trade-history">
+                    <tr>
+                        <td>2026-02-19</td>
+                        <td>Jesus returns before 2027?</td>
+                        <td>NO</td>
+                        <td>$2.00</td>
+                        <td><span class="long-term-badge">LONG</span></td>
+                        <td>First trade. CLOB sell skipped.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- How It Works -->
+        <div class="info-box">
+            <h3>📖 How This Works</h3>
+            <p><strong>Short-Term Strategy (NEW):</strong> Focus on markets resolving within 7 days — weather, sports, crypto price moves. Faster feedback, quicker learning.</p>
+            <p><strong>Weather Trading:</strong> Uses NOAA forecasts (free) to find edge in rain/snow/temp markets. Compares forecast probability vs market price.</p>
+            <p><strong>15-Minute Cycles:</strong> Heartbeat scans for new opportunities every 15 minutes. Discord alerts for high-confidence signals.</p>
+        </div>
+        
+        <!-- Cost Breakdown -->
+        <div class="card">
+            <h2>💸 Cost Breakdown (What I Cost You)</h2>
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <div class="amount">$0.00</div>
+                    <div class="label">My Service</div>
+                </div>
+                <div class="cost-item">
+                    <div class="amount">~$0.01</div>
+                    <div class="label">Gas per Trade</div>
+                </div>
+                <div class="cost-item">
+                    <div class="amount">$0.00</div>
+                    <div class="label">NOAA Weather API</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; color: #888; font-size: 0.9em;">
+                <strong>I cost you nothing.</strong> I'm a local AI assistant running on your machine. 
+                The only costs are: (1) Polygon gas fees (~$0.01 per trade), (2) your Chainstack RPC node (if any limits). 
+                Weather data from NOAA is free. No subscription fees, no hidden costs.
+            </p>
+        </div>
+        
+        <!-- Auto-Updates Info -->
+        <div class="info-box">
+            <h3>🤖 Automated Updates</h3>
+            <p><strong>Every 15 minutes:</strong> Heartbeat scans wallet, markets, weather opportunities (no cost)</p>
+            <p><strong>Every 2 days:</strong> Full analysis report sent to Discord with P&L, win rate, recommendations</p>
+            <p><strong>After every trade:</strong> Auto-reflection and strategy improvement logged to database</p>
+        </div>
+        
+        <!-- Dashboard Access -->
+        <div class="card">
+            <h2>🖥️ Access Your Dashboard</h2>
+            <p style="color: #888; margin-bottom: 15px;">Dashboard is running on this server at port 8080</p>
+            <div style="background: #1a1a2e; padding: 15px; border-radius: 8px; font-family: monospace;">
+                <p><strong>On this machine:</strong></p>
+                <p>firefox http://localhost:8080/dashboard.html</p>
+                <p style="margin-top: 10px;"><strong>From your local machine:</strong></p>
+                <p>1. SSH tunnel: ssh -L 8080:localhost:8080 root@your-server</p>
+                <p>2. Then open: http://localhost:8080/dashboard.html</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-refresh every 60 seconds
+        setInterval(() => {
+            location.reload();
+        }, 60000);
+    </script>
+</body>
+</html>
+Rebuild: Tue Feb 24 01:52:11 AM CST 2026
