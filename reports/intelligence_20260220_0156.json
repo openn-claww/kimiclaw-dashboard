@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-02-20T01:56:29.234354",
+  "btc": {
+    "price_usd": 66262,
+    "change_24h": -1.22295,
+    "high_24h": 67206,
+    "low_24h": 65734,
+    "market_cap": 1324323807156,
+    "volume_24h": 36771120251,
+    "last_updated": "2026-02-19T17:56:13.068Z"
+  },
+  "eth": {
+    "price_usd": 1915.47,
+    "change_24h": -2.88776,
+    "high_24h": 1984.08,
+    "low_24h": 1914.26,
+    "market_cap": 231063636695,
+    "volume_24h": 18717395220,
+    "last_updated": "2026-02-19T17:56:03.655Z"
+  },
+  "opportunities": [
+    {
+      "market": "BTC >$66K",
+      "market_id": "1369917",
+      "recommendation": "YES",
+      "edge": 1.0,
+      "confidence": 10,
+      "real_price": 66262
+    }
+  ]
+}

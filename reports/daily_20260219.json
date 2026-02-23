@@ -1,0 +1,36 @@
+{
+  "type": "daily",
+  "date": "2026-02-19",
+  "generated_at": "2026-02-19T23:09:43.896211",
+  "summary": {
+    "trades_today": 3,
+    "total_trades": 3,
+    "open_positions": 3,
+    "pnl_today": 0,
+    "total_pnl": 0,
+    "win_rate": 0,
+    "roi_percent": 0.0
+  },
+  "market_data": {
+    "price_usd": 66473,
+    "change_24h": -1.30799,
+    "high_24h": 68118,
+    "low_24h": 65734,
+    "market_cap": 1331030628301,
+    "volume_24h": 36746913522,
+    "last_updated": "2026-02-19T15:08:13.479Z"
+  },
+  "opportunities": [
+    {
+      "market": "BTC >$66K",
+      "market_id": "1369917",
+      "recommendation": "YES",
+      "edge": 1.0,
+      "confidence": 10,
+      "real_price": 66473
+    }
+  ],
+  "insights": [
+    "\ud83c\udfaf 1 trading opportunity(s) detected"
+  ]
+}

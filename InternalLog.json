@@ -1,0 +1,441 @@
+[
+  {
+    "timestamp_utc": "2026-02-19 10:04:41",
+    "event_type": "trade_real",
+    "market": "Will Jesus Christ return before 2027?",
+    "side": "NO",
+    "amount": 2.0,
+    "reason_points": [
+      "Historical data: No returns in 2000 years",
+      "Probability near zero",
+      "Long time horizon"
+    ],
+    "your_prob": 99,
+    "ev": 0.06,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "First real trade. Still open.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-19 12:18:27",
+    "event_type": "trade_real",
+    "market": "US strikes Iran by February 20, 2026?",
+    "side": "NO",
+    "amount": 1.0,
+    "reason_points": [
+      "No imminent strike indicators",
+      "Diplomatic channels active",
+      "Short timeframe"
+    ],
+    "your_prob": 93,
+    "ev": 0.07,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON. Redeemed +$0.07",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-19 14:35:12",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above $66,000 on February 19?",
+    "side": "YES",
+    "amount": 1.0,
+    "reason_points": [
+      "BTC trading above $66K",
+      "Price momentum positive",
+      "Market structure"
+    ],
+    "your_prob": 90,
+    "ev": 0.47,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON. Part of 8 winning BTC trades.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-19 23:23:00",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above $66,000 on February 19?",
+    "side": "YES",
+    "amount": 1.0,
+    "reason_points": [
+      "Entry $0.42",
+      "High confidence",
+      "Price above threshold"
+    ],
+    "your_prob": 95,
+    "ev": 0.58,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON. Best entry price.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-19 23:33:00",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above $66,000 on February 19?",
+    "side": "YES",
+    "amount": 1.0,
+    "reason_points": [
+      "Entry $0.715",
+      "Momentum continued",
+      "Volume high"
+    ],
+    "your_prob": 85,
+    "ev": 0.29,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-19 23:43:00",
+    "event_type": "trade_real",
+    "market": "Will Bitcoin dip to $55,000 in February?",
+    "side": "NO",
+    "amount": 1.0,
+    "reason_points": [
+      "BTC stable above $60K",
+      "No dip indicators",
+      "Market sentiment"
+    ],
+    "your_prob": 85,
+    "ev": 0.11,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "Still open. Currently winning.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-19 23:53:00",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above $66,000 on February 19?",
+    "side": "YES",
+    "amount": 1.0,
+    "reason_points": [
+      "Entry $0.76",
+      "High confidence",
+      "Price holding"
+    ],
+    "your_prob": 85,
+    "ev": 0.24,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-20 00:03:00",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above $66,000 on February 19?",
+    "side": "YES",
+    "amount": 1.0,
+    "reason_points": [
+      "Entry $0.62",
+      "Good value",
+      "Price stable"
+    ],
+    "your_prob": 90,
+    "ev": 0.38,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-20 00:13:00",
+    "event_type": "trade_real",
+    "market": "Will Bitcoin reach $75,000 in February?",
+    "side": "NO",
+    "amount": 1.0,
+    "reason_points": [
+      "$75K ambitious target",
+      "Unlikely in short timeframe",
+      "Market resistance"
+    ],
+    "your_prob": 80,
+    "ev": 0.14,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "Still open. Currently winning.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-20 00:23:00",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above $66,000 on February 19?",
+    "side": "YES",
+    "amount": 1.0,
+    "reason_points": [
+      "Entry $0.68",
+      "Momentum",
+      "Volume strong"
+    ],
+    "your_prob": 85,
+    "ev": 0.32,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-20 00:33:00",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above $66,000 on February 19?",
+    "side": "YES",
+    "amount": 1.0,
+    "reason_points": [
+      "Entry $0.92",
+      "Very high confidence",
+      "Price well above"
+    ],
+    "your_prob": 95,
+    "ev": 0.08,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.13,
+    "notes": "WON. Highest entry, lowest profit.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-22 10:48:45",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be between 6,000 and 8,000 on February 22?",
+    "side": "NO",
+    "amount": 5.0,
+    "reason_points": [
+      "BTC at $68K",
+      "Way above range",
+      "Seemed like free money"
+    ],
+    "your_prob": 95,
+    "ev": 1.95,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 32.93,
+    "notes": "MISTAKE: Market structure issue. LOST -$5.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-22 10:48:51",
+    "event_type": "trade_real",
+    "market": "Will the price of Bitcoin be above 8,000 on February 22?",
+    "side": "YES",
+    "amount": 5.0,
+    "reason_points": [
+      "BTC at $68K",
+      "Obviously above $8K",
+      "Guaranteed win"
+    ],
+    "your_prob": 99,
+    "ev": 2.0,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 32.93,
+    "notes": "MISTAKE: Market structure issue. LOST -$5.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-22 16:44:00",
+    "event_type": "trade_real",
+    "market": "Bitcoin Up or Down - February 22, 3AM ET",
+    "side": "YES",
+    "amount": 5.0,
+    "reason_points": [
+      "BTC up 0.06%",
+      "Momentum play",
+      "Price $0.31 cheap"
+    ],
+    "your_prob": 60,
+    "ev": 3.23,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 19.93,
+    "notes": "MISTAKE: 0.06% is noise. LOST -$5.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-22 16:52:00",
+    "event_type": "trade_real",
+    "market": "Nuggets vs. Warriors",
+    "side": "YES",
+    "amount": 8.0,
+    "reason_points": [
+      "Nuggets favored $0.67",
+      "Home court",
+      "Recent form"
+    ],
+    "your_prob": 50,
+    "ev": 2.67,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 19.93,
+    "notes": "CRITICAL MISTAKE: Bet $8 not $5. No sports data. LOST -$2.28.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-22 17:00:00",
+    "event_type": "trade_real",
+    "market": "Spurs vs. Pistons",
+    "side": "YES",
+    "amount": 5.0,
+    "reason_points": [
+      "Spurs undervalued $0.47",
+      "Value bet",
+      "Even matchup"
+    ],
+    "your_prob": 50,
+    "ev": 2.82,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 19.93,
+    "notes": "MISTAKE: No sports data. Guessing. LOST -$2.36.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-23 03:32:00",
+    "event_type": "system_init",
+    "market": null,
+    "side": null,
+    "amount": null,
+    "reason_points": [
+      "Paper trading mode activated",
+      "Virtual bankroll $1000",
+      "StrictRiskBot v3 initialized"
+    ],
+    "your_prob": null,
+    "ev": null,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 1000.0,
+    "real_balance_snapshot": 0.03,
+    "notes": "Master Directive v3. All trading stopped. Paper mode only.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-23 19:14:00",
+    "event_type": "trade_sim",
+    "market": "Will the price of Bitcoin be above $66,000 on February 23?",
+    "side": "YES",
+    "amount": 20.0,
+    "reason_points": [
+      "BTC current: $66,309 (above $66K)",
+      "Market price $0.61 undervalued",
+      "24h volume $239K liquid"
+    ],
+    "your_prob": 85,
+    "ev": 7.8,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 980.0,
+    "real_balance_snapshot": 0.03,
+    "notes": "First paper trade. 2% risk. Awaiting resolution.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-23 19:16:00",
+    "event_type": "scan",
+    "market": null,
+    "side": null,
+    "amount": null,
+    "reason_points": [
+      "Searched 5min markets: 0 found",
+      "Searched 15min markets: 0 found",
+      "Searched hourly markets: 0 found"
+    ],
+    "your_prob": null,
+    "ev": null,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 980.0,
+    "real_balance_snapshot": 0.03,
+    "notes": "No short-term markets available on Polymarket currently.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-23 23:36:00",
+    "event_type": "market_discovery",
+    "market": "Bitcoin Up or Down - 5 Minutes (Slot 1771860900)",
+    "side": null,
+    "amount": null,
+    "reason_points": [
+      "Found via slug pattern btc-updown-5m-1771860900",
+      "Gamma API accessible",
+      "Active slot 10:35-10:40 AM ET"
+    ],
+    "your_prob": null,
+    "ev": null,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 980.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "12 markets discovered via slug pattern. Real wallet increased to $4.53.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-23 23:37:00",
+    "event_type": "trade_sim",
+    "market": "Bitcoin Up or Down - 5 Minutes",
+    "side": "DOWN",
+    "amount": 20.0,
+    "reason_points": [
+      "BTC at $65,828 showing weakness",
+      "Down from $66K earlier",
+      "Correlation with ETH both down",
+      "4:30 min left - momentum down",
+      "Volume high on BTC 5-min"
+    ],
+    "your_prob": 55,
+    "ev": 2.0,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 960.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "APPROVED. 5-min paper trade. 2% risk.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-23 23:37:00",
+    "event_type": "trade_sim",
+    "market": "Ethereum Up or Down - 5 Minutes",
+    "side": "DOWN",
+    "amount": 20.0,
+    "reason_points": [
+      "ETH at $1,905 stable but following BTC",
+      "Less volatile than BTC",
+      "Correlated with BTC movement",
+      "Lower volume than BTC",
+      "4:30 min left"
+    ],
+    "your_prob": 52,
+    "ev": 0.8,
+    "virtual_pnl_impact": 0,
+    "virtual_balance_after": 940.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "APPROVED. 5-min paper trade. 2% risk.",
+    "log_source": "InternalLog"
+  },
+  {
+    "timestamp_utc": "2026-02-23 17:33:03",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 20.0,
+    "reason_points": [
+      "BTC at $64567 spot price",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 55,
+    "ev": 0.10000000000000009,
+    "virtual_balance_after": 920.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "5m trade executed NOW"
+  }
+]
