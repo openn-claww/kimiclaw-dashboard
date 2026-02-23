@@ -184,6 +184,7 @@
             <div class="strategy-tab active">⚡ Short-Term (15min)</div>
             <div class="strategy-tab">🌤️ Weather</div>
             <div class="strategy-tab">📅 Long-Term</div>
+            <div class="strategy-tab" style="background: #ff6b35; color: #fff;">📊 Paper Trading</div>
         </div>
         
         <!-- Wallet Overview -->
@@ -257,6 +258,74 @@
                         <td><span class="long-term-badge">LONG</span></td>
                         <td class="status-open">● OPEN</td>
                         <td><a href="https://polygonscan.com/tx/0x7f55f8a140da6033fc46d86aca0bfdff7a7326bc9401151baf0ecc78e7b41a2c" class="tx-link" target="_blank">View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Paper Trading Section -->
+        <div class="card" style="border: 2px solid #ff6b35;">
+            <h2>📊 Paper Trading (Virtual $940)</h2>
+            <p style="color: #888; margin-bottom: 15px;">5-min & 15-min market simulation — No real money risk</p>
+            
+            <div class="grid" style="margin-bottom: 20px;">
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">💰 Virtual Balance</h2>
+                    <div class="metric" id="paper-balance">$920.00</div>
+                    <div class="metric-label">Started: $1,000</div>
+                </div>
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">📈 Virtual P&L</h2>
+                    <div class="metric negative" id="paper-pnl">-$80.00</div>
+                    <div class="metric-label">-8.0%</div>
+                </div>
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">🎯 Paper Trades</h2>
+                    <div class="metric" id="paper-trades">4</div>
+                    <div class="metric-label">Total executed</div>
+                </div>
+                <div class="card" style="background: #1a0f0a; border-color: #ff6b35;">
+                    <h2 style="color: #ff6b35;">⏱️ Status</h2>
+                    <div class="metric" style="color: #00ff88;">ACTIVE</div>
+                    <div class="metric-label">Scanning 24/7</div>
+                </div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Market</th>
+                        <th>Side</th>
+                        <th>Amount</th>
+                        <th>Edge</th>
+                        <th>Balance After</th>
+                    </tr>
+                </thead>
+                <tbody id="paper-trades-table">
+                    <tr>
+                        <td>2026-02-23 23:37</td>
+                        <td>ETH Up or Down - 5 Minutes</td>
+                        <td>DOWN</td>
+                        <td>$20.00</td>
+                        <td>0.5%</td>
+                        <td>$960.00</td>
+                    </tr>
+                    <tr>
+                        <td>2026-02-23 23:37</td>
+                        <td>BTC Up or Down - 5 Minutes</td>
+                        <td>DOWN</td>
+                        <td>$20.00</td>
+                        <td>0.5%</td>
+                        <td>$980.00</td>
+                    </tr>
+                    <tr>
+                        <td>2026-02-23 19:14</td>
+                        <td>BTC above $66K Feb 23</td>
+                        <td>YES</td>
+                        <td>$20.00</td>
+                        <td>7.8%</td>
+                        <td>$980.00</td>
                     </tr>
                 </tbody>
             </table>
