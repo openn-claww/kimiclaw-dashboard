@@ -2,7 +2,7 @@
 
 ## Account
 - **Address:** 0x557A656C110a9eFdbFa28773DE4aCc2c3924a274
-- **Current Balance:** $4.53 USDC.e (after redemption)
+- **Current Balance:** $9.03 USDC.e (after redemptions)
 - **Strategy:** Conservative NO positions on low-probability events
 - **Max Risk:** 8% per trade
 
@@ -12,8 +12,13 @@
 | 703258 | NO | $0.97 | ~$2 | $0.9675 | -$0.06 | HOLD - Long-term |
 | BTC $55K | NO | $0.89 | $1 | $0.90 | -$0.10 | OPEN - Resolves Feb 28 |
 | BTC $75K | NO | $0.845 | $1 | $0.83 | -$0.17 | OPEN - Resolves Feb 28 |
+| 1385457 | YES | $0.665 | $8 | $0.00 | -$8.00 | ❌ LOSS - Warriors won |
+| 1401343 | YES | $0.31 | $5 | $0.00 | -$5.00 | ❌ LOSS - BTC went DOWN |
+| 1402947 | YES | $0.0225 | $2.90 | $0.00 | -$2.90 | ❌ LOSS - BTC went DOWN |
+| 1382242 | NO | $0.61 | $5 | $0.00 | -$5.00 | ❌ LOSS - BTC was in range |
+| 1382273 | YES | $0.60 | $5 | $0.00 | -$5.00 | ❌ LOSS - BTC below $68K |
 | Iran Feb 20 | NO | $0.93 | $1 | $1.00 | +$0.07 | ✅ REDEEMED - NO WIN |
-| 1388774 | YES | $0.47 | $4.50 | $0.465 | -$0.02 | OPEN - Spurs vs Pistons |
+| 1388774 | YES | $0.47 | $4.50 | $1.00 | +$2.39 | ✅ REDEEMED - Spurs WIN |
 | 1385475 | YES | $0.47 | $4.50 | $1.00 | +$2.39 | ✅ REDEEMED - Blazers WIN |
 
 ## Trade History
@@ -30,7 +35,7 @@
 | 2026-02-19 | BTC $75K Feb 28 | NO | $1.00 | $0.845 | — | — | OPEN |
 | 2026-02-19 | Iran strike Feb 20 | NO | $1.00 | $0.93 | $1.00 | +$0.07 | ✅ REDEEMED NO WIN - TX: 33282cd... |
 | 2026-02-19 | Jesus return 2027 | NO | $2.00 | $0.97 | — | — | OPEN - Long-term |
-| 2026-02-22 | Spurs vs Pistons | YES | $4.50 | $0.47 | — | — | OPEN - NBA, ends Feb 24 |
+| 2026-02-22 | Spurs vs Pistons | YES | $4.50 | $0.47 | $1.00 | +$2.39 | ✅ REDEEMED - Spurs WIN |
 | 2026-02-22 | Blazers vs Suns | YES | $4.50 | $0.47 | $1.00 | +$2.39 | ✅ REDEEMED - Blazers WIN |
 
 ## Strategy Log
@@ -43,6 +48,16 @@
 - (none yet — first trade pending)
 
 ## Resolved Markets
+
+### Spurs vs Pistons - February 23, 2026 ✅ WIN - REDEEMED
+- **Resolution Date:** February 24, 2026 (game ended Feb 23)
+- **Redemption Date:** February 24, 2026 (auto-redeemed)
+- **Result:** Spurs won 114-103 (YES resolved)
+- **Position:** YES on Spurs
+- **Invested:** $4.50 at $0.465
+- **Profit:** +$2.39
+- **USDC Return:** $4.50 redeemed
+- **Status:** Token balance is 0, redemption confirmed
 
 ### Trail Blazers vs Suns - February 22, 2026 ✅ WIN - REDEEMED
 - **Resolution Date:** February 23, 2026 (game ended Feb 22)

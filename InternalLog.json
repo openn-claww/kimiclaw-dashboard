@@ -335,10 +335,10 @@
     ],
     "your_prob": 85,
     "ev": 7.8,
-    "virtual_pnl_impact": 0,
+    "virtual_pnl_impact": 7.800000000000001,
     "virtual_balance_after": 980.0,
     "real_balance_snapshot": 0.03,
-    "notes": "First paper trade. 2% risk. Awaiting resolution.",
+    "notes": "RESOLVED: WON +.80",
     "log_source": "InternalLog"
   },
   {
@@ -436,6 +436,119 @@
     "ev": 0.10000000000000009,
     "virtual_balance_after": 920.0,
     "real_balance_snapshot": 4.53,
-    "notes": "5m trade executed NOW"
+    "notes": "RESOLVED: WON +$10.00",
+    "virtual_pnl_impact": 10.0
+  },
+  {
+    "timestamp_utc": "2026-02-23 17:56:30",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 20.0,
+    "reason_points": [
+      "BTC spot price active",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.10000000000000009,
+    "virtual_balance_after": 900.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "RESOLVED: LOST $10.00",
+    "virtual_pnl_impact": -10.0
+  },
+  {
+    "timestamp_utc": "2026-02-23 18:11:28",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 20.0,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC spot price active",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.10000000000000009,
+    "virtual_balance_after": 920.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "RESOLVED: WON +$10.10",
+    "virtual_pnl_impact": 10.1
+  },
+  {
+    "timestamp_utc": "2026-02-24 02:14:01",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 18.400000000000002,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64775 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.0920000000000001,
+    "virtual_balance_after": 901.6,
+    "real_balance_snapshot": 4.53,
+    "notes": "RESOLVED: WON +$9.29",
+    "virtual_pnl_impact": 9.292000000000002
+  },
+  {
+    "timestamp_utc": "2026-02-23 19:11:54",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 20.0,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at  (CoinGecko real-time)",
+      "24h change: -3.99%",
+      "BTC down -4.0% in 24h - momentum DOWN"
+    ],
+    "your_prob": 55,
+    "ev": 2.0,
+    "virtual_balance_after": 880.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "RESOLVED: WON +$10.10",
+    "virtual_pnl_impact": 10.1
+  },
+  {
+    "timestamp_utc": "2026-02-24 13:04:50",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 15 Minutes",
+    "side": "NO",
+    "amount": 20.0,
+    "entry_price": 0.425,
+    "reason_points": [
+      "BTC at $62961 (CoinGecko)",
+      "24h change: -5.0%",
+      "NO at 0.425 = 7.5% edge vs 50% fair",
+      "15m timeframe for quick resolution"
+    ],
+    "your_prob": 57.5,
+    "ev": 1.5,
+    "virtual_balance_after": 1018.4,
+    "real_balance_snapshot": 4.53,
+    "notes": "15m trade - 7.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-24 22:47:27",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 20.0,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $63335 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.10000000000000009,
+    "virtual_balance_after": 998.4000000000001,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
   }
 ]
