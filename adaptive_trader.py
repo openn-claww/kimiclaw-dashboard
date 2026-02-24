@@ -1,259 +1,336 @@
 #!/usr/bin/env python3
 """
-Adaptive AI Trading System - Diljeet's Brain
-Learns from market conditions, takes calculated risks
+Adaptive Profit-First Trader
+- No hardcoded edge
+- Multiple free APIs for precise data
+- Adaptive to market conditions
+- Only goal: PROFIT
 """
 
-import os
-import sys
-import json
-import sqlite3
 import requests
-import subprocess
+import json
+import time
+import sys
 from datetime import datetime
-from pathlib import Path
 
-# Load API keys
-CONFIG_FILE = Path("/root/.openclaw/workspace/api_config.sh")
-if CONFIG_FILE.exists():
-    with open(CONFIG_FILE) as f:
-        for line in f:
-            if 'export' in line and '=' in line:
-                key_val = line.replace('export ', '').strip().split('=', 1)
-                if len(key_val) == 2:
-                    os.environ[key_val[0]] = key_val[1].strip().strip('"').strip("'")
-
-API_SPORTS_KEY = os.getenv('API_SPORTS_KEY', '')
-WEATHER_API_KEY = os.getenv('WEATHER_API_KEY', '')
-DB_PATH = "/root/.openclaw/skills/polytrader/trades.db"
+sys.path.insert(0, '/root/.openclaw/workspace')
 
 class AdaptiveTrader:
-    """AI-driven trading with dynamic thresholds"""
-    
     def __init__(self):
-        self.wallet = self.get_wallet_balance()
-        self.trades_made = self.get_today_trade_count()
-        self.market_conditions = self.assess_market_conditions()
+        self.virtual_balance = 1000.0
+        self.log_file = "/root/.openclaw/workspace/InternalLog.json"
+        self.discord_channel = "1475209252183343347"
+        self.recent_trades = []
         
-    def get_wallet_balance(self):
+    def log(self, message):
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] {message}")
+        
+    def load_log(self):
         try:
-            cmd = "cd /root/.openclaw/skills/polyclaw && source .env && uv run python scripts/polyclaw.py wallet status"
-            result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=10)
-            if result.returncode == 0:
-                data = json.loads(result.stdout)
-                return float(data.get('balances', {}).get('USDC.e', 0))
+            with open(self.log_file, 'r') as f:
+                return json.load(f)
         except:
-            pass
-        return 32.93
+            return []
     
-    def get_today_trade_count(self):
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM trades WHERE date(timestamp) = date('now')")
-        count = cursor.fetchone()[0]
-        conn.close()
-        return count
+    def save_log(self, log):
+        with open(self.log_file, 'w') as f:
+            json.dump(log, f, indent=2)
     
-    def assess_market_conditions(self):
-        """Assess current market conditions"""
-        conditions = {
-            'volatility': 'medium',
-            'opportunity_density': 'low',
-            'confidence_adjustment': 0
+    def get_comprehensive_data(self, symbol, coin_id):
+        """Get data from multiple free APIs"""
+        data = {
+            'price': 0,
+            'change_24h': 0,
+            'change_1h': 0,
+            'volume_24h': 0,
+            'high_24h': 0,
+            'low_24h': 0,
+            'rsi': 50,
+            'order_book_bias': 0,
+            'funding_rate': 0
         }
         
-        # Check how many opportunities exist
+        # API 1: CoinGecko (primary)
         try:
-            cmd = "cd /root/.openclaw/skills/polyclaw && source .env && uv run python scripts/polyclaw.py markets trending --limit 20"
-            result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=15)
-            if result.returncode == 0:
-                lines = result.stdout.strip().split('\n')
-                if len(lines) > 5:
-                    conditions['opportunity_density'] = 'medium'
+            resp = requests.get(
+                f'https://api.coingecko.com/api/v3/coins/{coin_id}?localization=false&tickers=false&market_data=true',
+                timeout=10
+            )
+            cg_data = resp.json()
+            md = cg_data.get('market_data', {})
+            data['price'] = md.get('current_price', {}).get('usd', 0)
+            data['change_24h'] = md.get('price_change_percentage_24h', 0)
+            data['volume_24h'] = md.get('total_volume', {}).get('usd', 0)
+            data['high_24h'] = md.get('high_24h', {}).get('usd', 0)
+            data['low_24h'] = md.get('low_24h', {}).get('usd', 0)
+        except Exception as e:
+            self.log(f"CoinGecko error: {e}")
+        
+        # API 2: CoinGecko 1h change (from chart)
+        try:
+            resp = requests.get(
+                f'https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart?vs_currency=usd&days=1',
+                timeout=10
+            )
+            chart = resp.json()
+            prices = chart.get('prices', [])
+            if len(prices) >= 2:
+                current = prices[-1][1]
+                hour_ago = prices[-2][1] if len(prices) >= 2 else prices[0][1]
+                data['change_1h'] = ((current - hour_ago) / hour_ago) * 100
         except:
             pass
         
-        return conditions
+        # API 3: Binance (free, no key needed for basic data)
+        try:
+            binance_symbol = symbol.upper() + "USDT"
+            resp = requests.get(
+                f'https://api.binance.com/api/v3/ticker/24hr?symbol={binance_symbol}',
+                timeout=5
+            )
+            bin_data = resp.json()
+            # Use as backup if CoinGecko fails
+            if data['price'] == 0:
+                data['price'] = float(bin_data.get('lastPrice', 0))
+            if data['change_24h'] == 0:
+                data['change_24h'] = float(bin_data.get('priceChangePercent', 0))
+            if data['volume_24h'] == 0:
+                data['volume_24h'] = float(bin_data.get('volume', 0)) * data['price']
+        except:
+            pass
+        
+        # API 4: CryptoCompare (free tier)
+        try:
+            resp = requests.get(
+                f'https://min-api.cryptocompare.com/data/pricemultifull?fsyms={symbol.upper()}&tsyms=USD',
+                timeout=5
+            )
+            cc_data = resp.json()
+            raw = cc_data.get('RAW', {}).get(symbol.upper(), {}).get('USD', {})
+            if data['volume_24h'] == 0:
+                data['volume_24h'] = raw.get('TOTALVOLUME24H', 0) * data['price']
+        except:
+            pass
+        
+        return data
     
-    def calculate_dynamic_thresholds(self):
-        """Diljeet's dynamic threshold calculation"""
+    def analyze_market(self, data):
+        """Deep market analysis - adaptive"""
+        score = 0
+        confidence = 0
+        reasons = []
         
-        # Base thresholds
-        base_confidence = 6.5  # 65%
-        base_edge = 0.05       # 5%
+        # 1. Trend Analysis (weight: high)
+        if abs(data['change_24h']) > 5:
+            score += 2 if data['change_24h'] > 0 else -2
+            confidence += 25
+            reasons.append(f"Strong 24h trend: {data['change_24h']:+.1f}%")
+        elif abs(data['change_24h']) > 2:
+            score += 1 if data['change_24h'] > 0 else -1
+            confidence += 15
+            reasons.append(f"Moderate 24h trend: {data['change_24h']:+.1f}%")
         
-        # Adjust based on market conditions
-        if self.market_conditions['opportunity_density'] == 'low':
-            # Lower thresholds when few opportunities
-            confidence = 6.0   # 60%
-            edge = 0.045       # 4.5%
-            reasoning = "Low opportunity density - lowering to catch good trades"
-        else:
-            confidence = base_confidence
-            edge = base_edge
-            reasoning = "Normal market conditions"
+        # 2. Short-term momentum (weight: high)
+        if abs(data['change_1h']) > 1.5:
+            score += 1.5 if data['change_1h'] > 0 else -1.5
+            confidence += 20
+            reasons.append(f"1h momentum: {data['change_1h']:+.1f}%")
         
-        # First 2 trades - be more aggressive
-        if self.trades_made < 2:
-            confidence = 5.5   # 55% - more aggressive
-            edge = 0.04        # 4%
-            reasoning = "First 2 trades mode - taking calculated risks to build momentum"
+        # 3. Range position (weight: medium)
+        if data['high_24h'] > data['low_24h']:
+            position = (data['price'] - data['low_24h']) / (data['high_24h'] - data['low_24h'])
+            if position > 0.85:
+                score -= 1.5  # Overbought
+                confidence += 10
+                reasons.append(f"Near 24h high ({position*100:.0f}%) - pullback likely")
+            elif position < 0.15:
+                score += 1.5  # Oversold
+                confidence += 10
+                reasons.append(f"Near 24h low ({position*100:.0f}%) - bounce likely")
+        
+        # 4. Volume confirmation (weight: medium)
+        if data['volume_24h'] > 1000000000:  # $1B+
+            confidence += 15
+            reasons.append("High volume confirms trend")
         
         return {
-            'confidence': confidence,
-            'edge': edge,
-            'reasoning': reasoning,
-            'bet_size': self.calculate_bet_size()
+            'score': score,
+            'confidence': min(confidence, 100),
+            'direction': 'UP' if score > 0 else 'DOWN' if score < 0 else 'NEUTRAL',
+            'strength': abs(score),
+            'reasons': reasons
         }
     
-    def calculate_bet_size(self):
-        """Dynamic bet sizing"""
-        if self.trades_made == 0:
-            return 3.0  # $3 on first trade (confident start)
-        elif self.trades_made == 1:
-            return 2.5  # $2.50 on second trade
-        else:
-            return 2.0  # $2 standard after that
+    def should_trade(self, analysis, market_price):
+        """Adaptive trade decision - no hardcoded edge"""
+        # Must have strong confidence
+        if analysis['confidence'] < 40:
+            return False, "Low confidence"
+        
+        # Must have clear direction
+        if analysis['direction'] == 'NEUTRAL':
+            return False, "No clear direction"
+        
+        # Must have strong signal
+        if analysis['strength'] < 2:
+            return False, "Signal too weak"
+        
+        # Check if market price aligns with our direction
+        # If we predict UP, YES should be reasonably priced (<0.7)
+        # If we predict DOWN, NO should be reasonably priced (<0.7)
+        if analysis['direction'] == 'UP' and market_price > 0.75:
+            return False, "YES too expensive for UP bet"
+        if analysis['direction'] == 'DOWN' and market_price > 0.75:
+            return False, "NO too expensive for DOWN bet"
+        
+        return True, "Strong signal + good price"
     
-    def analyze_opportunity(self, market_data):
-        """Deep analysis of a trading opportunity"""
-        analysis = {
-            'market': market_data.get('question', 'Unknown'),
-            'yes_price': market_data.get('yes_price', 0),
-            'no_price': market_data.get('no_price', 0),
-            'volume': market_data.get('volume', 0),
-            'confidence': 0,
-            'edge': 0,
-            'recommendation': 'PASS',
-            'reasoning': ''
-        }
+    def scan_all_markets(self):
+        """Scan 5m and 15m markets with adaptive logic"""
+        coins = [
+            ('btc', 'bitcoin', 'BTC'),
+            ('eth', 'ethereum', 'ETH'),
+            ('sol', 'solana', 'SOL'),
+            ('xrp', 'ripple', 'XRP')
+        ]
         
-        # Price-based analysis
-        yes_price = analysis['yes_price']
-        no_price = analysis['no_price']
-        
-        # If YES is cheap (<$0.30) and we have positive signals
-        if yes_price < 0.30:
-            analysis['confidence'] += 2
-            analysis['edge'] += 0.15
-            analysis['recommendation'] = 'YES'
-            analysis['reasoning'] = 'YES price is undervalued (<$0.30)'
-        
-        # If NO is cheap (<$0.30) and we have negative signals
-        elif no_price < 0.30:
-            analysis['confidence'] += 2
-            analysis['edge'] += 0.15
-            analysis['recommendation'] = 'NO'
-            analysis['reasoning'] = 'NO price is undervalued (<$0.30)'
-        
-        # Volume check - high volume = more reliable
-        if analysis['volume'] > 100000:
-            analysis['confidence'] += 1
-            analysis['reasoning'] += ', High volume ($' + str(analysis['volume']/1000) + 'K)'
-        
-        return analysis
-    
-    def get_live_opportunities(self):
-        """Scan for live opportunities"""
         opportunities = []
+        current = int(time.time())
         
-        print("🔍 Diljeet scanning markets with adaptive thresholds...")
-        
-        # Search various markets
-        search_terms = ['NBA', 'soccer', 'Bitcoin', 'rain', 'Trump', 'Iran']
-        
-        for term in search_terms[:3]:  # Check top 3 categories
-            try:
-                cmd = f"cd /root/.openclaw/skills/polyclaw && source .env && uv run python scripts/polyclaw.py markets search '{term}' --limit 5"
-                result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=10)
-                
-                if result.returncode == 0:
-                    lines = result.stdout.strip().split('\n')[2:]  # Skip header
-                    for line in lines:
-                        if '$' in line and '|' in line:
-                            parts = line.split('|')
-                            if len(parts) >= 4:
-                                try:
-                                    market_id = parts[0].strip()
-                                    yes_price = float(parts[1].replace('$', '').strip())
-                                    no_price = float(parts[2].replace('$', '').strip())
-                                    volume_str = parts[3].strip().replace('K', '000').replace('M', '000000')
-                                    volume = float(volume_str.replace('$', '').replace(',', ''))
-                                    question = parts[4].strip() if len(parts) > 4 else 'Unknown'
-                                    
-                                    opp = self.analyze_opportunity({
-                                        'id': market_id,
-                                        'question': question,
-                                        'yes_price': yes_price,
-                                        'no_price': no_price,
-                                        'volume': volume
-                                    })
-                                    
-                                    if opp['recommendation'] != 'PASS':
-                                        opportunities.append(opp)
-                                except:
-                                    continue
-            except:
+        for coin, coin_id, symbol in coins:
+            # Get comprehensive data
+            data = self.get_comprehensive_data(symbol, coin_id)
+            
+            if data['price'] == 0:
                 continue
+            
+            # Analyze
+            analysis = self.analyze_market(data)
+            
+            # Scan 5m
+            slot_5m = (current // 300) * 300
+            opp_5m = self.check_market(coin, '5m', slot_5m, analysis, data)
+            if opp_5m:
+                opportunities.append(opp_5m)
+            
+            # Scan 15m
+            slot_15m = (current // 900) * 900
+            opp_15m = self.check_market(coin, '15m', slot_15m, analysis, data)
+            if opp_15m:
+                opportunities.append(opp_15m)
         
         return opportunities
     
-    def execute_trade(self, opportunity, bet_size):
-        """Execute a trade with full logging"""
-        print(f"\n🎯 EXECUTING TRADE:")
-        print(f"   Market: {opportunity['market'][:50]}...")
-        print(f"   Side: {opportunity['recommendation']}")
-        print(f"   Amount: ${bet_size}")
-        print(f"   Confidence: {opportunity['confidence']}/10")
-        print(f"   Edge: {opportunity['edge']*100:.1f}%")
-        print(f"   Reasoning: {opportunity['reasoning']}")
+    def check_market(self, coin, timeframe, slot, analysis, data):
+        """Check specific market"""
+        slug = f'{coin}-updown-{timeframe}-{slot}'
         
-        # Here we would execute via PolyClaw
-        # For now, simulate
-        return True
-    
-    def run_trading_session(self):
-        """Main trading session"""
-        print("="*70)
-        print("ADAPTIVE AI TRADING - DILJEET'S BRAIN")
-        print("="*70)
-        print(f"Wallet: ${self.wallet:.2f}")
-        print(f"Trades today: {self.trades_made}")
-        print(f"Market conditions: {self.market_conditions}")
-        
-        # Get dynamic thresholds
-        thresholds = self.calculate_dynamic_thresholds()
-        print(f"\n🧠 DYNAMIC THRESHOLDS:")
-        print(f"   Confidence: {thresholds['confidence']}/10 ({thresholds['confidence']*10:.0f}%)")
-        print(f"   Edge: {thresholds['edge']*100:.1f}%")
-        print(f"   Bet size: ${thresholds['bet_size']}")
-        print(f"   Reasoning: {thresholds['reasoning']}")
-        
-        # Get opportunities
-        opportunities = self.get_live_opportunities()
-        
-        if opportunities:
-            print(f"\n📊 Found {len(opportunities)} opportunities")
+        try:
+            resp = requests.get(f'https://gamma-api.polymarket.com/markets/slug/{slug}', timeout=3)
+            if resp.status_code != 200:
+                return None
             
-            # Sort by edge
-            opportunities.sort(key=lambda x: x['edge'], reverse=True)
+            market_data = resp.json()
+            prices = json.loads(market_data.get('outcomePrices', '[]'))
             
-            # Take top opportunity if it meets dynamic threshold
-            best = opportunities[0]
-            if best['confidence'] >= thresholds['confidence'] and best['edge'] >= thresholds['edge']:
-                self.execute_trade(best, thresholds['bet_size'])
+            if len(prices) != 2:
+                return None
+            
+            yes_price = float(prices[0])
+            no_price = float(prices[1])
+            
+            # Determine which side to bet based on analysis
+            if analysis['direction'] == 'UP':
+                side = 'YES'
+                market_price = yes_price
+                potential_profit = (1 - yes_price) * 100
+            elif analysis['direction'] == 'DOWN':
+                side = 'NO'
+                market_price = no_price
+                potential_profit = (1 - no_price) * 100
             else:
-                print(f"\n⏳ Best opportunity doesn't meet thresholds:")
-                print(f"   Confidence: {best['confidence']}/10 (need {thresholds['confidence']})")
-                print(f"   Edge: {best['edge']*100:.1f}% (need {thresholds['edge']*100:.1f}%)")
-        else:
-            print("\n⏳ No opportunities found this scan")
+                return None
+            
+            # Adaptive decision
+            should_trade, reason = self.should_trade(analysis, market_price)
+            
+            if should_trade:
+                return {
+                    'coin': coin.upper(),
+                    'timeframe': timeframe,
+                    'side': side,
+                    'price': market_price,
+                    'potential_profit': potential_profit,
+                    'analysis': analysis,
+                    'data': data,
+                    'reason': reason
+                }
+            
+        except Exception as e:
+            pass
         
-        print("="*70)
-
-def main():
-    trader = AdaptiveTrader()
-    trader.run_trading_session()
+        return None
+    
+    def execute_trade(self, opp):
+        """Execute trade with full documentation"""
+        amount = min(20.0, self.virtual_balance * 0.02)
+        
+        reasons = [
+            f"{opp['coin']} at ${opp['data']['price']:,.2f}",
+            f"24h: {opp['data']['change_24h']:+.2f}% | 1h: {opp['data']['change_1h']:+.2f}%",
+            f"Signal: {opp['analysis']['direction']} (strength: {opp['analysis']['strength']:.1f})",
+            f"Confidence: {opp['analysis']['confidence']:.0f}%"
+        ]
+        reasons.extend(opp['analysis']['reasons'])
+        
+        trade = {
+            'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'event_type': 'trade_sim',
+            'market': f"{opp['coin']} Up or Down - {opp['timeframe']}",
+            'side': opp['side'],
+            'amount': amount,
+            'entry_price': opp['price'],
+            'reason_points': reasons,
+            'confidence': opp['analysis']['confidence'],
+            'signal_strength': opp['analysis']['strength'],
+            'direction': opp['analysis']['direction'],
+            'virtual_balance_after': self.virtual_balance - amount,
+            'real_balance_snapshot': 4.53,
+            'notes': f"ADAPTIVE: {opp['timeframe']} | {opp['analysis']['direction']} | Conf: {opp['analysis']['confidence']:.0f}%"
+        }
+        
+        log = self.load_log()
+        log.append(trade)
+        self.save_log(log)
+        
+        self.virtual_balance -= amount
+        
+        self.log(f"TRADE: {opp['coin']} {opp['timeframe']} {opp['side']} @ {opp['price']:.3f} | Conf: {opp['analysis']['confidence']:.0f}%")
+        
+        return trade
+    
+    def run(self):
+        """Main loop"""
+        self.log("ADAPTIVE TRADER STARTED")
+        self.log("Multi-API | No hardcoded edge | Profit-first")
+        self.log("APIs: CoinGecko + Binance + CryptoCompare")
+        
+        while True:
+            try:
+                opportunities = self.scan_all_markets()
+                
+                if opportunities:
+                    # Pick best opportunity
+                    best = max(opportunities, key=lambda x: x['analysis']['confidence'] * x['analysis']['strength'])
+                    self.execute_trade(best)
+                else:
+                    self.log("No high-confidence opportunities")
+                
+                time.sleep(60)
+            except Exception as e:
+                self.log(f"Error: {e}")
+                time.sleep(60)
 
 if __name__ == "__main__":
-    main()
+    trader = AdaptiveTrader()
+    trader.run()

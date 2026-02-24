@@ -550,5 +550,24 @@
     "virtual_balance_after": 998.4000000000001,
     "real_balance_snapshot": 4.53,
     "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-24 23:18:39",
+    "event_type": "trade_sim",
+    "market": "ETH Up or Down - 15m",
+    "side": "YES",
+    "amount": 20.0,
+    "entry_price": 0.445,
+    "reason_points": [
+      "ETH at $0.00 (CoinGecko)",
+      "24h change: +0.00% | 1h change: +0.00%",
+      "Entry: YES at $0.445 = 5.5% edge"
+    ],
+    "momentum_score": 0,
+    "your_prob": 55.5,
+    "ev": 1.0999999999999999,
+    "virtual_balance_after": 980.0,
+    "real_balance_snapshot": 4.53,
+    "notes": "IMPROVED v2: 15m | Edge: 5.5% | Momentum: +0"
   }
 ]
