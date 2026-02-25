@@ -17029,5 +17029,527 @@
     "virtual_balance_after": -1.503801469594352,
     "real_balance_snapshot": 4.53,
     "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:27:02",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.03007602939188704,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65052 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00015038014695943535,
+    "virtual_balance_after": -1.4737254402024649,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:28:03",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.0294745088040493,
+    "entry_price": 0.46,
+    "reason_points": [
+      "SOL at $82.1 (CoinGecko)",
+      "YES at 0.46 = 4.0% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 54.0,
+    "ev": -0.0011789803521619715,
+    "virtual_balance_after": -1.4442509313984155,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 4.0% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:29:03",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.02888501862796831,
+    "entry_price": 0.46,
+    "reason_points": [
+      "SOL at $82.09 (CoinGecko)",
+      "YES at 0.46 = 4.0% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 54.0,
+    "ev": -0.001155400745118732,
+    "virtual_balance_after": -1.4153659127704472,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 4.0% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:30:04",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.028307318255408945,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65066 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00014153659127704484,
+    "virtual_balance_after": -1.3870585945150382,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:31:04",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.027741171890300766,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65093 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00013870585945150395,
+    "virtual_balance_after": -1.3593174226247375,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:32:04",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.027186348452494753,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65107 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.0001359317422624739,
+    "virtual_balance_after": -1.3321310741722427,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:33:04",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.026642621483444855,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65132 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.0001332131074172244,
+    "virtual_balance_after": -1.305488452688798,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:34:05",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.02610976905377596,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65153 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00013054884526887993,
+    "virtual_balance_after": -1.279378683635022,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:35:05",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.025587573672700443,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65135 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00012793786836350234,
+    "virtual_balance_after": -1.2537911099623216,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:36:06",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.025075822199246433,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65130 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00012537911099623226,
+    "virtual_balance_after": -1.2287152877630751,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:37:06",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.024574305755261504,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65117 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00012287152877630763,
+    "virtual_balance_after": -1.2041409820078137,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:38:07",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.024082819640156274,
+    "entry_price": 0.17,
+    "reason_points": [
+      "SOL at $82.26 (CoinGecko)",
+      "YES at 0.17 = 33.0% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 83.0,
+    "ev": -0.007947330481251569,
+    "virtual_balance_after": -1.1800581623676574,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 33.0% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:39:07",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.023601163247353146,
+    "entry_price": 0.17,
+    "reason_points": [
+      "SOL at $82.24 (CoinGecko)",
+      "YES at 0.17 = 33.0% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 83.0,
+    "ev": -0.007788383871626536,
+    "virtual_balance_after": -1.1564569991203042,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 33.0% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:40:08",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.023129139982406084,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65035 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00011564569991203052,
+    "virtual_balance_after": -1.1333278591378981,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:41:08",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.022666557182757962,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65032 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00011333278591378992,
+    "virtual_balance_after": -1.1106613019551401,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:42:08",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.022213226039102803,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64973 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00011106613019551412,
+    "virtual_balance_after": -1.0884480759160373,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:43:09",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.021768961518320747,
+    "entry_price": 0.335,
+    "reason_points": [
+      "BTC at $64953 (CoinGecko)",
+      "NO at 0.335 = 16.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 66.5,
+    "ev": -0.0035918786505229226,
+    "virtual_balance_after": -1.0666791143977166,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 16.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:44:09",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.02133358228795433,
+    "entry_price": 0.315,
+    "reason_points": [
+      "SOL at $82.11 (CoinGecko)",
+      "NO at 0.315 = 18.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 68.5,
+    "ev": -0.003946712723271551,
+    "virtual_balance_after": -1.0453455321097622,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 18.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:45:10",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.020906910642195246,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64909 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00010453455321097631,
+    "virtual_balance_after": -1.024438621467567,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:46:10",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.020488772429351338,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64916 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00010244386214675677,
+    "virtual_balance_after": -1.0039498490382155,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:47:10",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.020078996980764312,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64939 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -0.00010039498490382164,
+    "virtual_balance_after": -0.9838708520574512,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:48:11",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.019677417041149024,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64949 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -9.83870852057452e-05,
+    "virtual_balance_after": -0.9641934350163022,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:49:11",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.019283868700326043,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64947 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -9.64193435016303e-05,
+    "virtual_balance_after": -0.9449095663159761,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:50:12",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.01889819132631952,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64940 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -9.449095663159769e-05,
+    "virtual_balance_after": -0.9260113749896566,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:51:12",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.01852022749979313,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64958 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -9.260113749896573e-05,
+    "virtual_balance_after": -0.9074911474898635,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:52:13",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.01814982294979727,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64976 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -9.074911474898644e-05,
+    "virtual_balance_after": -0.8893413245400662,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:53:13",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.017786826490801325,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $64973 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -8.893413245400672e-05,
+    "virtual_balance_after": -0.8715544980492649,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:54:14",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": -0.0174310899609853,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65002 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -8.715544980492656e-05,
+    "virtual_balance_after": -0.8541234080882796,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 15:55:14",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": -0.01708246816176559,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65009 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": -8.541234080882802e-05,
+    "virtual_balance_after": -0.837040939926514,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
   }
 ]
