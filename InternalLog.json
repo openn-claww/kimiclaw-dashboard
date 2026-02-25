@@ -397,7 +397,7 @@
     "virtual_pnl_impact": 0,
     "virtual_balance_after": 960.0,
     "real_balance_snapshot": 4.53,
-    "notes": "APPROVED. 5-min paper trade. 2% risk.",
+    "notes": "RESOLVED: LOST",
     "log_source": "InternalLog"
   },
   {
@@ -418,7 +418,7 @@
     "virtual_pnl_impact": 0,
     "virtual_balance_after": 940.0,
     "real_balance_snapshot": 4.53,
-    "notes": "APPROVED. 5-min paper trade. 2% risk.",
+    "notes": "RESOLVED: LOST",
     "log_source": "InternalLog"
   },
   {
@@ -531,7 +531,7 @@
     "ev": 1.5,
     "virtual_balance_after": 1018.4,
     "real_balance_snapshot": 4.53,
-    "notes": "15m trade - 7.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 22:47:27",
@@ -549,7 +549,7 @@
     "ev": 0.10000000000000009,
     "virtual_balance_after": 998.4000000000001,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:18:39",
@@ -568,7 +568,7 @@
     "ev": 1.0999999999999999,
     "virtual_balance_after": 980.0,
     "real_balance_snapshot": 4.53,
-    "notes": "IMPROVED v2: 15m | Edge: 5.5% | Momentum: +0"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:26:03",
@@ -586,7 +586,7 @@
     "ev": 0.0978400000000001,
     "virtual_balance_after": 958.8320000000001,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:27:04",
@@ -604,7 +604,7 @@
     "ev": 0.0958832000000001,
     "virtual_balance_after": 939.6553600000001,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:28:05",
@@ -622,7 +622,7 @@
     "ev": 0.6577587519999996,
     "virtual_balance_after": 920.8622528000001,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:30:05",
@@ -640,7 +640,7 @@
     "ev": 0.3683449011200004,
     "virtual_balance_after": 902.4450077440001,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:31:06",
@@ -658,7 +658,7 @@
     "ev": 0.3609780030976004,
     "virtual_balance_after": 884.3961075891201,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 15:31:39",
@@ -675,7 +675,7 @@
     ],
     "confidence": 60,
     "virtual_balance_after": 980.0,
-    "notes": "TRADE: DOWN | Conf: 60%"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:32:06",
@@ -693,7 +693,7 @@
     "ev": 0.34575844303564834,
     "virtual_balance_after": 847.1081854373377,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:33:07",
@@ -711,7 +711,7 @@
     "ev": 0.33884327417493537,
     "virtual_balance_after": 830.166021728591,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:34:08",
@@ -729,7 +729,7 @@
     "ev": 0.33206640869143667,
     "virtual_balance_after": 813.5627012940191,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:35:08",
@@ -747,7 +747,7 @@
     "ev": 0.08135627012940198,
     "virtual_balance_after": 797.2914472681388,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:36:10",
@@ -765,7 +765,7 @@
     "ev": 0.07972914472681394,
     "virtual_balance_after": 781.345618322776,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:37:10",
@@ -783,7 +783,7 @@
     "ev": 0.07813456183227767,
     "virtual_balance_after": 765.7187059563205,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:38:11",
@@ -801,7 +801,7 @@
     "ev": 0.07657187059563213,
     "virtual_balance_after": 750.404331837194,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:39:11",
@@ -819,7 +819,7 @@
     "ev": 0.07504043318371947,
     "virtual_balance_after": 735.3962452004502,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:40:12",
@@ -837,7 +837,7 @@
     "ev": 0.07353962452004507,
     "virtual_balance_after": 720.6883202964411,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:41:13",
@@ -855,7 +855,7 @@
     "ev": 0.21620649608893255,
     "virtual_balance_after": 706.2745538905123,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:42:13",
@@ -873,7 +873,7 @@
     "ev": 0.21188236616715386,
     "virtual_balance_after": 692.149062812702,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:43:14",
@@ -891,7 +891,7 @@
     "ev": 0.20764471884381078,
     "virtual_balance_after": 678.306081556448,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:44:15",
@@ -909,7 +909,7 @@
     "ev": 0.20349182446693462,
     "virtual_balance_after": 664.7399599253191,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:45:16",
@@ -927,7 +927,7 @@
     "ev": 0.06647399599253197,
     "virtual_balance_after": 651.4451607268127,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:46:17",
@@ -945,7 +945,7 @@
     "ev": 0.06514451607268133,
     "virtual_balance_after": 638.4162575122764,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:47:18",
@@ -963,7 +963,7 @@
     "ev": 0.0638416257512277,
     "virtual_balance_after": 625.6479323620308,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:48:18",
@@ -981,7 +981,7 @@
     "ev": 0.06256479323620313,
     "virtual_balance_after": 613.1349737147902,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:49:20",
@@ -999,7 +999,7 @@
     "ev": 2.57516688960212,
     "virtual_balance_after": 600.8722742404944,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 21.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:50:21",
@@ -1017,7 +1017,7 @@
     "ev": 0.0600872274240495,
     "virtual_balance_after": 588.8548287556846,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:51:22",
@@ -1035,7 +1035,7 @@
     "ev": 0.058885482875568516,
     "virtual_balance_after": 577.0777321805709,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:52:23",
@@ -1053,7 +1053,7 @@
     "ev": 0.057707773218057146,
     "virtual_balance_after": 565.5361775369595,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:53:23",
@@ -1071,7 +1071,7 @@
     "ev": 0.05655361775369601,
     "virtual_balance_after": 554.2254539862203,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-24 23:54:24",
@@ -1089,7 +1089,7 @@
     "ev": 2.660282179133857,
     "virtual_balance_after": 543.1409449064959,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 24.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:55:25",
@@ -1107,7 +1107,7 @@
     "ev": 0.05431409449064963,
     "virtual_balance_after": 532.2781260083659,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:56:02",
@@ -1125,7 +1125,7 @@
     "ev": 0.05322781260083664,
     "virtual_balance_after": 521.6325634881986,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:57:03",
@@ -1143,7 +1143,7 @@
     "ev": 0.0521632563488199,
     "virtual_balance_after": 511.1999122184346,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:58:03",
@@ -1161,7 +1161,7 @@
     "ev": 0.051119991221843505,
     "virtual_balance_after": 500.97591397406586,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-24 23:59:04",
@@ -1179,7 +1179,7 @@
     "ev": 0.05009759139740663,
     "virtual_balance_after": 490.95639569458456,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:00:04",
@@ -1197,7 +1197,7 @@
     "ev": 0.0490956395694585,
     "virtual_balance_after": 481.13726778069287,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:01:05",
@@ -1215,7 +1215,7 @@
     "ev": 0.04811372677806933,
     "virtual_balance_after": 471.514522425079,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:02:06",
@@ -1233,7 +1233,7 @@
     "ev": 0.04715145224250795,
     "virtual_balance_after": 462.0842319765774,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:03:06",
@@ -1251,7 +1251,7 @@
     "ev": 0.04620842319765779,
     "virtual_balance_after": 452.84254733704586,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:04:07",
@@ -1269,7 +1269,7 @@
     "ev": 0.045284254733704635,
     "virtual_balance_after": 443.78569639030496,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:05:12",
@@ -1287,7 +1287,7 @@
     "ev": 0.044378569639030536,
     "virtual_balance_after": 434.9099824624989,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:06:15",
@@ -1305,7 +1305,7 @@
     "ev": 0.04349099824624992,
     "virtual_balance_after": 426.2117828132489,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:07:18",
@@ -1323,7 +1323,7 @@
     "ev": 0.042621178281324924,
     "virtual_balance_after": 417.6875471569839,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:08:21",
@@ -1341,7 +1341,7 @@
     "ev": 0.04176875471569843,
     "virtual_balance_after": 409.3337962138442,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:09:22",
@@ -1359,7 +1359,7 @@
     "ev": 0.04093337962138446,
     "virtual_balance_after": 401.14712028956734,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:10:23",
@@ -1377,7 +1377,7 @@
     "ev": 0.04011471202895677,
     "virtual_balance_after": 393.124177883776,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:11:24",
@@ -1395,7 +1395,7 @@
     "ev": 0.039312417788377636,
     "virtual_balance_after": 385.26169432610044,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:12:24",
@@ -1413,7 +1413,7 @@
     "ev": 0.038526169432610086,
     "virtual_balance_after": 377.5564604395784,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:13:25",
@@ -1431,7 +1431,7 @@
     "ev": 0.037755646043957876,
     "virtual_balance_after": 370.00533123078685,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:14:25",
@@ -1449,7 +1449,7 @@
     "ev": 0.037000533123078716,
     "virtual_balance_after": 362.60522460617113,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:15:26",
@@ -1467,7 +1467,7 @@
     "ev": 0.036260522460617145,
     "virtual_balance_after": 355.3531201140477,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:16:28",
@@ -1485,7 +1485,7 @@
     "ev": 0.0355353120114048,
     "virtual_balance_after": 348.24605771176675,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:17:29",
@@ -1503,7 +1503,7 @@
     "ev": 0.03482460577117671,
     "virtual_balance_after": 341.2811365575314,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:18:29",
@@ -1521,7 +1521,7 @@
     "ev": 0.03412811365575317,
     "virtual_balance_after": 334.45551382638075,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:19:30",
@@ -1539,7 +1539,7 @@
     "ev": 0.033445551382638106,
     "virtual_balance_after": 327.7664035498531,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:20:31",
@@ -1557,7 +1557,7 @@
     "ev": 0.03277664035498534,
     "virtual_balance_after": 321.21107547885606,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:21:31",
@@ -1575,7 +1575,7 @@
     "ev": 0.032121107547885636,
     "virtual_balance_after": 314.7868539692789,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:22:32",
@@ -1593,7 +1593,7 @@
     "ev": 0.03147868539692792,
     "virtual_balance_after": 308.49111688989336,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:23:32",
@@ -1611,7 +1611,7 @@
     "ev": 0.030849111688989364,
     "virtual_balance_after": 302.3212945520955,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:24:33",
@@ -1629,7 +1629,7 @@
     "ev": 0.030232129455209575,
     "virtual_balance_after": 296.2748686610536,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:25:33",
@@ -1647,7 +1647,7 @@
     "ev": 0.029627486866105387,
     "virtual_balance_after": 290.3493712878325,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:26:02",
@@ -1665,7 +1665,7 @@
     "ev": 0.02903493712878328,
     "virtual_balance_after": 284.5423838620759,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:27:02",
@@ -1683,7 +1683,7 @@
     "ev": 0.028454238386207614,
     "virtual_balance_after": 278.8515361848344,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:28:03",
@@ -1701,7 +1701,7 @@
     "ev": 0.02788515361848347,
     "virtual_balance_after": 273.2745054611377,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:29:04",
@@ -1719,7 +1719,7 @@
     "ev": 0.027327450546113793,
     "virtual_balance_after": 267.809015351915,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:30:04",
@@ -1737,7 +1737,7 @@
     "ev": 0.026780901535191522,
     "virtual_balance_after": 262.4528350448767,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:31:05",
@@ -1755,7 +1755,7 @@
     "ev": 0.02624528350448769,
     "virtual_balance_after": 257.20377834397914,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:32:06",
@@ -1773,7 +1773,7 @@
     "ev": 0.02572037783439794,
     "virtual_balance_after": 252.05970277709955,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:33:07",
@@ -1791,7 +1791,7 @@
     "ev": 0.050411940555419955,
     "virtual_balance_after": 247.01850872155757,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:34:07",
@@ -1809,7 +1809,7 @@
     "ev": 0.04940370174431155,
     "virtual_balance_after": 242.07813854712643,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:35:08",
@@ -1827,7 +1827,7 @@
     "ev": 0.024207813854712667,
     "virtual_balance_after": 237.2365757761839,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:36:08",
@@ -1845,7 +1845,7 @@
     "ev": 0.1423419454657105,
     "virtual_balance_after": 232.49184426066023,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:37:09",
@@ -1863,7 +1863,7 @@
     "ev": 0.13949510655639627,
     "virtual_balance_after": 227.84200737544703,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:38:11",
@@ -1881,7 +1881,7 @@
     "ev": 0.13670520442526832,
     "virtual_balance_after": 223.28516722793808,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:39:11",
@@ -1899,7 +1899,7 @@
     "ev": 0.13397110033676296,
     "virtual_balance_after": 218.8194638833793,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:40:12",
@@ -1917,7 +1917,7 @@
     "ev": 0.021881946388337948,
     "virtual_balance_after": 214.44307460571173,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:41:13",
@@ -1935,7 +1935,7 @@
     "ev": 0.02144430746057119,
     "virtual_balance_after": 210.1542131135975,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:42:15",
@@ -1953,7 +1953,7 @@
     "ev": 0.02101542131135977,
     "virtual_balance_after": 205.95112885132556,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:43:16",
@@ -1971,7 +1971,7 @@
     "ev": 0.45309248347291614,
     "virtual_balance_after": 201.83210627429906,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 11.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:44:16",
@@ -1989,7 +1989,7 @@
     "ev": 0.44403063380345786,
     "virtual_balance_after": 197.7954641488131,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 11.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:45:17",
@@ -2007,7 +2007,7 @@
     "ev": 0.01977954641488133,
     "virtual_balance_after": 193.83955486583685,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:46:17",
@@ -2025,7 +2025,7 @@
     "ev": 0.019383955486583705,
     "virtual_balance_after": 189.96276376852012,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:47:18",
@@ -2043,7 +2043,7 @@
     "ev": 0.01899627637685203,
     "virtual_balance_after": 186.16350849314972,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:48:18",
@@ -2061,7 +2061,7 @@
     "ev": 0.03723270169862998,
     "virtual_balance_after": 182.44023832328674,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:49:19",
@@ -2079,7 +2079,7 @@
     "ev": 0.03648804766465738,
     "virtual_balance_after": 178.791433556821,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:50:20",
@@ -2097,7 +2097,7 @@
     "ev": 0.017879143355682116,
     "virtual_balance_after": 175.2156048856846,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:51:21",
@@ -2115,7 +2115,7 @@
     "ev": 0.017521560488568476,
     "virtual_balance_after": 171.7112927879709,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:52:21",
@@ -2133,7 +2133,7 @@
     "ev": 0.017171129278797107,
     "virtual_balance_after": 168.27706693221148,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:53:22",
@@ -2151,7 +2151,7 @@
     "ev": 0.016827706693221166,
     "virtual_balance_after": 164.91152559356726,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:54:22",
@@ -2169,7 +2169,7 @@
     "ev": 0.016491152559356743,
     "virtual_balance_after": 161.61329508169592,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:55:23",
@@ -2187,7 +2187,7 @@
     "ev": 0.016161329508169606,
     "virtual_balance_after": 158.381029180062,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:56:02",
@@ -2205,7 +2205,7 @@
     "ev": 0.015838102918006212,
     "virtual_balance_after": 155.21340859646077,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 00:57:02",
@@ -2223,7 +2223,7 @@
     "ev": 0.015521340859646092,
     "virtual_balance_after": 152.10914042453155,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:58:03",
@@ -2241,7 +2241,7 @@
     "ev": 0.015210914042453167,
     "virtual_balance_after": 149.06695761604092,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 00:59:04",
@@ -2259,7 +2259,7 @@
     "ev": 0.014906695761604105,
     "virtual_balance_after": 146.0856184637201,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:00:05",
@@ -2277,7 +2277,7 @@
     "ev": 0.014608561846372024,
     "virtual_balance_after": 143.1639060944457,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:01:06",
@@ -2295,7 +2295,7 @@
     "ev": 0.014316390609444585,
     "virtual_balance_after": 140.30062797255678,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:02:06",
@@ -2313,7 +2313,7 @@
     "ev": 0.014030062797255691,
     "virtual_balance_after": 137.49461541310563,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:03:09",
@@ -2331,7 +2331,7 @@
     "ev": 0.013749461541310576,
     "virtual_balance_after": 134.74472310484353,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:04:09",
@@ -2349,7 +2349,7 @@
     "ev": 0.013474472310484365,
     "virtual_balance_after": 132.04982864274666,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:05:10",
@@ -2367,7 +2367,7 @@
     "ev": 0.013204982864274677,
     "virtual_balance_after": 129.40883206989173,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:06:11",
@@ -2385,7 +2385,7 @@
     "ev": 0.012940883206989185,
     "virtual_balance_after": 126.8206554284939,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:07:14",
@@ -2403,7 +2403,7 @@
     "ev": 0.012682065542849402,
     "virtual_balance_after": 124.28424231992402,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:08:15",
@@ -2421,7 +2421,7 @@
     "ev": 0.012428424231992414,
     "virtual_balance_after": 121.79855747352553,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:26:02",
@@ -2439,7 +2439,7 @@
     "ev": 0.012179855747352563,
     "virtual_balance_after": 119.36258632405503,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:27:03",
@@ -2457,7 +2457,7 @@
     "ev": 0.011936258632405515,
     "virtual_balance_after": 116.97533459757393,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:28:03",
@@ -2475,7 +2475,7 @@
     "ev": 0.011697533459757405,
     "virtual_balance_after": 114.63582790562245,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:29:04",
@@ -2493,7 +2493,7 @@
     "ev": 0.011463582790562256,
     "virtual_balance_after": 112.34311134751,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:30:04",
@@ -2511,7 +2511,7 @@
     "ev": 0.01123431113475101,
     "virtual_balance_after": 110.0962491205598,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:31:05",
@@ -2529,7 +2529,7 @@
     "ev": 0.011009624912055989,
     "virtual_balance_after": 107.8943241381486,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:32:07",
@@ -2547,7 +2547,7 @@
     "ev": 0.01078943241381487,
     "virtual_balance_after": 105.73643765538563,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:33:08",
@@ -2565,7 +2565,7 @@
     "ev": 0.010573643765538572,
     "virtual_balance_after": 103.62170890227792,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:34:08",
@@ -2583,7 +2583,7 @@
     "ev": 0.0103621708902278,
     "virtual_balance_after": 101.54927472423236,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:35:09",
@@ -2601,7 +2601,7 @@
     "ev": 0.010154927472423246,
     "virtual_balance_after": 99.51828922974771,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:36:09",
@@ -2619,7 +2619,7 @@
     "ev": 0.009951828922974781,
     "virtual_balance_after": 97.52792344515275,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:37:10",
@@ -2637,7 +2637,7 @@
     "ev": 0.009752792344515284,
     "virtual_balance_after": 95.5773649762497,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:38:11",
@@ -2655,7 +2655,7 @@
     "ev": 0.009557736497624978,
     "virtual_balance_after": 93.6658176767247,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:39:11",
@@ -2673,7 +2673,7 @@
     "ev": 0.009366581767672478,
     "virtual_balance_after": 91.79250132319021,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:40:12",
@@ -2691,7 +2691,7 @@
     "ev": 0.009179250132319029,
     "virtual_balance_after": 89.9566512967264,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:41:13",
@@ -2709,7 +2709,7 @@
     "ev": 0.00899566512967265,
     "virtual_balance_after": 88.15751827079188,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:42:13",
@@ -2727,7 +2727,7 @@
     "ev": 0.008815751827079195,
     "virtual_balance_after": 86.39436790537604,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:43:14",
@@ -2745,7 +2745,7 @@
     "ev": 0.008639436790537613,
     "virtual_balance_after": 84.66648054726852,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:44:14",
@@ -2763,7 +2763,7 @@
     "ev": 0.00846664805472686,
     "virtual_balance_after": 82.97315093632315,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 01:45:14",
@@ -2781,7 +2781,7 @@
     "ev": 0.008297315093632322,
     "virtual_balance_after": 81.31368791759668,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:46:15",
@@ -2799,7 +2799,7 @@
     "ev": 0.008131368791759675,
     "virtual_balance_after": 79.68741415924475,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:47:16",
@@ -2817,7 +2817,7 @@
     "ev": 0.007968741415924482,
     "virtual_balance_after": 78.09366587605986,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:48:16",
@@ -2835,7 +2835,7 @@
     "ev": 0.007809366587605992,
     "virtual_balance_after": 76.53179255853865,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:49:17",
@@ -2853,7 +2853,7 @@
     "ev": 0.007653179255853872,
     "virtual_balance_after": 75.00115670736788,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:50:17",
@@ -2871,7 +2871,7 @@
     "ev": 0.007500115670736796,
     "virtual_balance_after": 73.50113357322053,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:51:18",
@@ -2889,7 +2889,7 @@
     "ev": 0.00735011335732206,
     "virtual_balance_after": 72.03111090175612,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:52:19",
@@ -2907,7 +2907,7 @@
     "ev": 0.007203111090175619,
     "virtual_balance_after": 70.590488683721,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:53:19",
@@ -2925,7 +2925,7 @@
     "ev": 0.007059048868372108,
     "virtual_balance_after": 69.17867891004659,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:54:20",
@@ -2943,7 +2943,7 @@
     "ev": 0.006917867891004665,
     "virtual_balance_after": 67.79510533184565,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:55:20",
@@ -2961,7 +2961,7 @@
     "ev": 0.006779510533184571,
     "virtual_balance_after": 66.43920322520873,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:56:01",
@@ -2979,7 +2979,7 @@
     "ev": 0.006643920322520879,
     "virtual_balance_after": 65.11041916070455,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:57:02",
@@ -2997,7 +2997,7 @@
     "ev": 0.006511041916070461,
     "virtual_balance_after": 63.80821077749046,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:58:03",
@@ -3015,7 +3015,7 @@
     "ev": 0.006380821077749051,
     "virtual_balance_after": 62.532046561940646,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 01:59:03",
@@ -3033,7 +3033,7 @@
     "ev": 0.0062532046561940705,
     "virtual_balance_after": 61.28140563070183,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 02:00:04",
@@ -3051,7 +3051,7 @@
     "ev": 0.006128140563070189,
     "virtual_balance_after": 60.055777518087794,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:01:04",
@@ -3069,7 +3069,7 @@
     "ev": 0.006005577751808785,
     "virtual_balance_after": 58.85466196772604,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:02:05",
@@ -3087,7 +3087,7 @@
     "ev": 0.005885466196772609,
     "virtual_balance_after": 57.67756872837152,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:03:06",
@@ -3105,7 +3105,7 @@
     "ev": 0.005767756872837157,
     "virtual_balance_after": 56.52401735380409,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:04:07",
@@ -3123,7 +3123,7 @@
     "ev": 0.005652401735380414,
     "virtual_balance_after": 55.39353700672801,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:05:08",
@@ -3141,7 +3141,7 @@
     "ev": 0.005539353700672806,
     "virtual_balance_after": 54.28566626659345,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:06:08",
@@ -3159,7 +3159,7 @@
     "ev": 0.00542856662665935,
     "virtual_balance_after": 53.199952941261586,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:07:09",
@@ -3177,7 +3177,7 @@
     "ev": 0.005319995294126163,
     "virtual_balance_after": 52.135953882436354,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:08:10",
@@ -3195,7 +3195,7 @@
     "ev": 0.01042719077648728,
     "virtual_balance_after": 51.09323480478763,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:09:10",
@@ -3213,7 +3213,7 @@
     "ev": 0.010218646960957534,
     "virtual_balance_after": 50.07137010869187,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:10:11",
@@ -3231,7 +3231,7 @@
     "ev": 0.005007137010869192,
     "virtual_balance_after": 49.069942706518034,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:11:11",
@@ -3249,7 +3249,7 @@
     "ev": 0.004906994270651808,
     "virtual_balance_after": 48.08854385238767,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:12:12",
@@ -3267,7 +3267,7 @@
     "ev": 0.004808854385238772,
     "virtual_balance_after": 47.12677297533992,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:13:12",
@@ -3285,7 +3285,7 @@
     "ev": 0.004712677297533997,
     "virtual_balance_after": 46.18423751583312,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:14:13",
@@ -3303,7 +3303,7 @@
     "ev": 0.004618423751583316,
     "virtual_balance_after": 45.26055276551646,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:15:13",
@@ -3321,7 +3321,7 @@
     "ev": 0.00452605527655165,
     "virtual_balance_after": 44.355341710206126,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:16:14",
@@ -3339,7 +3339,7 @@
     "ev": 0.004435534171020617,
     "virtual_balance_after": 43.468234876002,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:17:14",
@@ -3357,7 +3357,7 @@
     "ev": 0.004346823487600204,
     "virtual_balance_after": 42.59887017848196,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:18:15",
@@ -3375,7 +3375,7 @@
     "ev": 0.0042598870178482,
     "virtual_balance_after": 41.74689277491232,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:19:16",
@@ -3393,7 +3393,7 @@
     "ev": 0.004174689277491236,
     "virtual_balance_after": 40.91195491941407,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:20:16",
@@ -3411,7 +3411,7 @@
     "ev": 0.004091195491941411,
     "virtual_balance_after": 40.09371582102579,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:21:17",
@@ -3429,7 +3429,7 @@
     "ev": 0.004009371582102583,
     "virtual_balance_after": 39.29184150460527,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:22:17",
@@ -3447,7 +3447,7 @@
     "ev": 0.003929184150460531,
     "virtual_balance_after": 38.506004674513164,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:23:18",
@@ -3465,7 +3465,7 @@
     "ev": 0.00385060046745132,
     "virtual_balance_after": 37.7358845810229,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:24:18",
@@ -3483,7 +3483,7 @@
     "ev": 0.2490568382347511,
     "virtual_balance_after": 36.981166889402445,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 33.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:25:19",
@@ -3501,7 +3501,7 @@
     "ev": 0.0036981166889402477,
     "virtual_balance_after": 36.2415435516144,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:56:02",
@@ -3519,7 +3519,7 @@
     "ev": 0.003624154355161443,
     "virtual_balance_after": 35.51671268058211,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:57:02",
@@ -3537,7 +3537,7 @@
     "ev": 0.0035516712680582147,
     "virtual_balance_after": 34.80637842697047,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:58:03",
@@ -3555,7 +3555,7 @@
     "ev": 0.00348063784269705,
     "virtual_balance_after": 34.11025085843106,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 02:59:03",
@@ -3573,7 +3573,7 @@
     "ev": 0.0034110250858431085,
     "virtual_balance_after": 33.42804584126244,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:00:04",
@@ -3591,7 +3591,7 @@
     "ev": 0.0033428045841262465,
     "virtual_balance_after": 32.75948492443719,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:01:04",
@@ -3609,7 +3609,7 @@
     "ev": 0.0032759484924437215,
     "virtual_balance_after": 32.10429522594845,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:02:05",
@@ -3627,7 +3627,7 @@
     "ev": 0.0032104295225948475,
     "virtual_balance_after": 31.46220932142948,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:03:06",
@@ -3645,7 +3645,7 @@
     "ev": 0.003146220932142951,
     "virtual_balance_after": 30.83296513500089,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:04:06",
@@ -3663,7 +3663,7 @@
     "ev": 0.0030832965135000915,
     "virtual_balance_after": 30.216305832300872,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:05:07",
@@ -3681,7 +3681,7 @@
     "ev": 0.00302163058323009,
     "virtual_balance_after": 29.611979715654854,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:06:07",
@@ -3699,7 +3699,7 @@
     "ev": 0.0029611979715654883,
     "virtual_balance_after": 29.01974012134176,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:07:08",
@@ -3717,7 +3717,7 @@
     "ev": 0.0029019740121341785,
     "virtual_balance_after": 28.439345318914924,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:08:09",
@@ -3735,7 +3735,7 @@
     "ev": 0.0028439345318914955,
     "virtual_balance_after": 27.870558412536624,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:09:09",
@@ -3753,7 +3753,7 @@
     "ev": 0.0027870558412536645,
     "virtual_balance_after": 27.313147244285894,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:10:09",
@@ -3771,7 +3771,7 @@
     "ev": 0.0027313147244285916,
     "virtual_balance_after": 26.766884299400175,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:11:10",
@@ -3789,7 +3789,7 @@
     "ev": 0.0026766884299400193,
     "virtual_balance_after": 26.23154661341217,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:12:11",
@@ -3807,7 +3807,7 @@
     "ev": 0.002623154661341219,
     "virtual_balance_after": 25.706915681143926,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:13:11",
@@ -3825,7 +3825,7 @@
     "ev": 0.00514138313622879,
     "virtual_balance_after": 25.192777367521046,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:14:12",
@@ -3843,7 +3843,7 @@
     "ev": 0.005038555473504213,
     "virtual_balance_after": 24.688921820170624,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:15:12",
@@ -3861,7 +3861,7 @@
     "ev": 0.0024688921820170645,
     "virtual_balance_after": 24.19514338376721,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:16:13",
@@ -3879,7 +3879,7 @@
     "ev": 0.002419514338376723,
     "virtual_balance_after": 23.711240516091866,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:17:13",
@@ -3897,7 +3897,7 @@
     "ev": 0.0023711240516091888,
     "virtual_balance_after": 23.23701570577003,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:18:14",
@@ -3915,7 +3915,7 @@
     "ev": 0.002323701570577005,
     "virtual_balance_after": 22.77227539165463,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:19:15",
@@ -3933,7 +3933,7 @@
     "ev": 0.002277227539165465,
     "virtual_balance_after": 22.316829883821537,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:20:15",
@@ -3951,7 +3951,7 @@
     "ev": 0.0022316829883821557,
     "virtual_balance_after": 21.870493286145106,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:21:16",
@@ -3969,7 +3969,7 @@
     "ev": 0.0021870493286145127,
     "virtual_balance_after": 21.433083420422204,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:22:17",
@@ -3987,7 +3987,7 @@
     "ev": 0.0021433083420422227,
     "virtual_balance_after": 21.00442175201376,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:23:17",
@@ -4005,7 +4005,7 @@
     "ev": 0.002100442175201378,
     "virtual_balance_after": 20.584333316973485,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:24:18",
@@ -4023,7 +4023,7 @@
     "ev": 0.0020584333316973503,
     "virtual_balance_after": 20.172646650634015,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:25:18",
@@ -4041,7 +4041,7 @@
     "ev": 0.002017264665063403,
     "virtual_balance_after": 19.769193717621334,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:26:01",
@@ -4059,7 +4059,7 @@
     "ev": 0.001976919371762135,
     "virtual_balance_after": 19.37380984326891,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:27:02",
@@ -4077,7 +4077,7 @@
     "ev": 0.0019373809843268924,
     "virtual_balance_after": 18.98633364640353,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:28:02",
@@ -4095,7 +4095,7 @@
     "ev": 0.0018986333646403546,
     "virtual_balance_after": 18.606606973475458,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:29:03",
@@ -4113,7 +4113,7 @@
     "ev": 0.0018606606973475476,
     "virtual_balance_after": 18.234474834005947,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:30:03",
@@ -4131,7 +4131,7 @@
     "ev": 0.0018234474834005964,
     "virtual_balance_after": 17.86978533732583,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:31:04",
@@ -4149,7 +4149,7 @@
     "ev": 0.0017869785337325847,
     "virtual_balance_after": 17.512389630579314,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:32:04",
@@ -4167,7 +4167,7 @@
     "ev": 0.0017512389630579331,
     "virtual_balance_after": 17.162141837967727,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:33:05",
@@ -4185,7 +4185,7 @@
     "ev": 0.0017162141837967742,
     "virtual_balance_after": 16.818899001208372,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:34:06",
@@ -4203,7 +4203,7 @@
     "ev": 0.0016818899001208388,
     "virtual_balance_after": 16.482521021184205,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:35:06",
@@ -4221,7 +4221,7 @@
     "ev": 0.0016482521021184218,
     "virtual_balance_after": 16.152870600760522,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:36:07",
@@ -4239,7 +4239,7 @@
     "ev": 0.0016152870600760535,
     "virtual_balance_after": 15.829813188745312,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:37:07",
@@ -4257,7 +4257,7 @@
     "ev": 0.0015829813188745325,
     "virtual_balance_after": 15.513216924970406,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:38:08",
@@ -4275,7 +4275,7 @@
     "ev": 0.001551321692497042,
     "virtual_balance_after": 15.202952586470998,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:39:08",
@@ -4293,7 +4293,7 @@
     "ev": 0.001520295258647101,
     "virtual_balance_after": 14.898893534741578,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:40:09",
@@ -4311,7 +4311,7 @@
     "ev": 0.0014898893534741591,
     "virtual_balance_after": 14.600915664046747,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:41:09",
@@ -4329,7 +4329,7 @@
     "ev": 0.0014600915664046761,
     "virtual_balance_after": 14.308897350765813,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:42:10",
@@ -4347,7 +4347,7 @@
     "ev": 0.0014308897350765826,
     "virtual_balance_after": 14.022719403750497,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:43:10",
@@ -4365,7 +4365,7 @@
     "ev": 0.001402271940375051,
     "virtual_balance_after": 13.742265015675487,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:44:11",
@@ -4383,7 +4383,7 @@
     "ev": 0.0013742265015675497,
     "virtual_balance_after": 13.467419715361977,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:45:11",
@@ -4401,7 +4401,7 @@
     "ev": 0.004040225914608597,
     "virtual_balance_after": 13.198071321054737,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:46:12",
@@ -4419,7 +4419,7 @@
     "ev": 0.003959421396316425,
     "virtual_balance_after": 12.934109894633643,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:47:12",
@@ -4437,7 +4437,7 @@
     "ev": 0.0038802329683900964,
     "virtual_balance_after": 12.67542769674097,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:48:13",
@@ -4455,7 +4455,7 @@
     "ev": 0.0038026283090222945,
     "virtual_balance_after": 12.42191914280615,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:49:13",
@@ -4473,7 +4473,7 @@
     "ev": 0.003726575742841848,
     "virtual_balance_after": 12.173480759950026,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:50:14",
@@ -4491,7 +4491,7 @@
     "ev": 0.0012173480759950037,
     "virtual_balance_after": 11.930011144751026,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:51:15",
@@ -4509,7 +4509,7 @@
     "ev": 0.0011930011144751038,
     "virtual_balance_after": 11.691410921856006,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:52:15",
@@ -4527,7 +4527,7 @@
     "ev": 0.0011691410921856017,
     "virtual_balance_after": 11.457582703418886,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:53:16",
@@ -4545,7 +4545,7 @@
     "ev": 0.0011457582703418897,
     "virtual_balance_after": 11.228431049350508,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:54:16",
@@ -4563,7 +4563,7 @@
     "ev": 0.0011228431049350519,
     "virtual_balance_after": 11.003862428363497,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 03:55:17",
@@ -4581,7 +4581,7 @@
     "ev": 0.0011003862428363507,
     "virtual_balance_after": 10.783785179796228,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:56:02",
@@ -4599,7 +4599,7 @@
     "ev": 0.0010783785179796237,
     "virtual_balance_after": 10.568109476200304,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:57:02",
@@ -4617,7 +4617,7 @@
     "ev": 0.0010568109476200315,
     "virtual_balance_after": 10.356747286676297,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:58:03",
@@ -4635,7 +4635,7 @@
     "ev": 0.0010356747286676307,
     "virtual_balance_after": 10.149612340942772,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 03:59:03",
@@ -4653,7 +4653,7 @@
     "ev": 0.001014961234094278,
     "virtual_balance_after": 9.946620094123917,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:00:03",
@@ -4671,7 +4671,7 @@
     "ev": 0.0009946620094123926,
     "virtual_balance_after": 9.747687692241438,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:01:04",
@@ -4689,7 +4689,7 @@
     "ev": 0.0009747687692241447,
     "virtual_balance_after": 9.55273393839661,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:02:04",
@@ -4707,7 +4707,7 @@
     "ev": 0.0009552733938396618,
     "virtual_balance_after": 9.361679259628678,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:03:05",
@@ -4725,7 +4725,7 @@
     "ev": 0.0009361679259628687,
     "virtual_balance_after": 9.174445674436104,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:04:05",
@@ -4743,7 +4743,7 @@
     "ev": 0.0009174445674436112,
     "virtual_balance_after": 8.990956760947382,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:05:06",
@@ -4761,7 +4761,7 @@
     "ev": 0.0008990956760947392,
     "virtual_balance_after": 8.811137625728435,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:06:07",
@@ -4779,7 +4779,7 @@
     "ev": 0.0008811137625728444,
     "virtual_balance_after": 8.634914873213866,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:07:07",
@@ -4797,7 +4797,7 @@
     "ev": 0.0008634914873213874,
     "virtual_balance_after": 8.462216575749588,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:08:08",
@@ -4815,7 +4815,7 @@
     "ev": 0.0008462216575749595,
     "virtual_balance_after": 8.292972244234596,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:09:08",
@@ -4833,7 +4833,7 @@
     "ev": 0.0008292972244234603,
     "virtual_balance_after": 8.127112799349904,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:10:09",
@@ -4851,7 +4851,7 @@
     "ev": 0.0008127112799349911,
     "virtual_balance_after": 7.964570543362906,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:11:09",
@@ -4869,7 +4869,7 @@
     "ev": 0.0007964570543362913,
     "virtual_balance_after": 7.805279132495648,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:12:10",
@@ -4887,7 +4887,7 @@
     "ev": 0.0007805279132495654,
     "virtual_balance_after": 7.6491735498457345,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:13:10",
@@ -4905,7 +4905,7 @@
     "ev": 0.0007649173549845742,
     "virtual_balance_after": 7.496190078848819,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:14:11",
@@ -4923,7 +4923,7 @@
     "ev": 0.0007496190078848826,
     "virtual_balance_after": 7.346266277271843,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:15:11",
@@ -4941,7 +4941,7 @@
     "ev": 0.000734626627727185,
     "virtual_balance_after": 7.1993409517264055,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:16:12",
@@ -4959,7 +4959,7 @@
     "ev": 0.0007199340951726412,
     "virtual_balance_after": 7.055354132691877,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:17:12",
@@ -4977,7 +4977,7 @@
     "ev": 0.0007055354132691885,
     "virtual_balance_after": 6.91424705003804,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:18:13",
@@ -4995,7 +4995,7 @@
     "ev": 0.0006914247050038045,
     "virtual_balance_after": 6.7759621090372795,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:19:13",
@@ -5013,7 +5013,7 @@
     "ev": 0.0006775962109037285,
     "virtual_balance_after": 6.640442866856534,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:20:14",
@@ -5031,7 +5031,7 @@
     "ev": 0.000664044286685654,
     "virtual_balance_after": 6.507634009519403,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:21:14",
@@ -5049,7 +5049,7 @@
     "ev": 0.0006507634009519409,
     "virtual_balance_after": 6.377481329329015,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:22:15",
@@ -5067,7 +5067,7 @@
     "ev": 0.0006377481329329021,
     "virtual_balance_after": 6.249931702742435,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:23:15",
@@ -5085,7 +5085,7 @@
     "ev": 0.000624993170274244,
     "virtual_balance_after": 6.124933068687587,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:24:16",
@@ -5103,7 +5103,7 @@
     "ev": 0.0006124933068687592,
     "virtual_balance_after": 6.002434407313835,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:25:16",
@@ -5121,7 +5121,7 @@
     "ev": 0.0006002434407313841,
     "virtual_balance_after": 5.882385719167559,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:26:01",
@@ -5139,7 +5139,7 @@
     "ev": 0.0005882385719167564,
     "virtual_balance_after": 5.764738004784207,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:27:02",
@@ -5157,7 +5157,7 @@
     "ev": 0.0005764738004784213,
     "virtual_balance_after": 5.649443244688523,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:28:02",
@@ -5175,7 +5175,7 @@
     "ev": 0.0005649443244688528,
     "virtual_balance_after": 5.536454379794753,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:29:03",
@@ -5193,7 +5193,7 @@
     "ev": 0.0005536454379794758,
     "virtual_balance_after": 5.425725292198858,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:30:03",
@@ -5211,7 +5211,7 @@
     "ev": 0.0005425725292198863,
     "virtual_balance_after": 5.317210786354881,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:31:04",
@@ -5229,7 +5229,7 @@
     "ev": 0.0005317210786354886,
     "virtual_balance_after": 5.2108665706277835,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:32:04",
@@ -5247,7 +5247,7 @@
     "ev": 0.0005210866570627788,
     "virtual_balance_after": 5.106649239215228,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:33:05",
@@ -5265,7 +5265,7 @@
     "ev": 0.0005106649239215232,
     "virtual_balance_after": 5.004516254430923,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:34:05",
@@ -5283,7 +5283,7 @@
     "ev": 0.0005004516254430928,
     "virtual_balance_after": 4.904425929342305,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:35:06",
@@ -5301,7 +5301,7 @@
     "ev": 0.0004904425929342309,
     "virtual_balance_after": 4.806337410755459,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:36:06",
@@ -5319,7 +5319,7 @@
     "ev": 0.0004806337410755463,
     "virtual_balance_after": 4.71021066254035,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:37:07",
@@ -5337,7 +5337,7 @@
     "ev": 0.00047102106625403537,
     "virtual_balance_after": 4.616006449289543,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:38:07",
@@ -5355,7 +5355,7 @@
     "ev": 0.00046160064492895475,
     "virtual_balance_after": 4.523686320303752,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:39:08",
@@ -5373,7 +5373,7 @@
     "ev": 0.0004523686320303756,
     "virtual_balance_after": 4.433212593897677,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:40:08",
@@ -5391,7 +5391,7 @@
     "ev": 0.0004433212593897681,
     "virtual_balance_after": 4.344548342019723,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:41:09",
@@ -5409,7 +5409,7 @@
     "ev": 0.0004344548342019727,
     "virtual_balance_after": 4.2576573751793285,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:42:09",
@@ -5427,7 +5427,7 @@
     "ev": 0.0004257657375179332,
     "virtual_balance_after": 4.172504227675742,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:43:10",
@@ -5445,7 +5445,7 @@
     "ev": 0.0004172504227675746,
     "virtual_balance_after": 4.089054143122228,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:44:10",
@@ -5463,7 +5463,7 @@
     "ev": 0.0004089054143122231,
     "virtual_balance_after": 4.0072730602597835,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:45:11",
@@ -5481,7 +5481,7 @@
     "ev": 0.0004007273060259787,
     "virtual_balance_after": 3.9271275990545877,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:46:11",
@@ -5499,7 +5499,7 @@
     "ev": 0.0003927127599054591,
     "virtual_balance_after": 3.848585047073496,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:47:12",
@@ -5517,7 +5517,7 @@
     "ev": 0.00038485850470734994,
     "virtual_balance_after": 3.771613346132026,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:48:13",
@@ -5535,7 +5535,7 @@
     "ev": 0.0003771613346132029,
     "virtual_balance_after": 3.6961810792093854,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:49:13",
@@ -5553,7 +5553,7 @@
     "ev": 0.0003696181079209389,
     "virtual_balance_after": 3.6222574576251976,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 04:50:14",
@@ -5571,7 +5571,7 @@
     "ev": 0.00036222574576252013,
     "virtual_balance_after": 3.549812308472694,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:51:14",
@@ -5589,7 +5589,7 @@
     "ev": 0.0003549812308472698,
     "virtual_balance_after": 3.47881606230324,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:52:15",
@@ -5607,7 +5607,7 @@
     "ev": 0.0003478816062303243,
     "virtual_balance_after": 3.409239741057175,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:53:15",
@@ -5625,7 +5625,7 @@
     "ev": 0.00034092397410571783,
     "virtual_balance_after": 3.3410549462360315,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:54:16",
@@ -5643,7 +5643,7 @@
     "ev": 0.00033410549462360343,
     "virtual_balance_after": 3.274233847311311,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:55:16",
@@ -5661,7 +5661,7 @@
     "ev": 0.0003274233847311314,
     "virtual_balance_after": 3.208749170365085,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:56:01",
@@ -5679,7 +5679,7 @@
     "ev": 0.00032087491703650876,
     "virtual_balance_after": 3.144574186957783,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:57:02",
@@ -5697,7 +5697,7 @@
     "ev": 0.0003144574186957786,
     "virtual_balance_after": 3.081682703218627,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:58:02",
@@ -5715,7 +5715,7 @@
     "ev": 0.000308168270321863,
     "virtual_balance_after": 3.0200490491542547,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 04:59:03",
@@ -5733,7 +5733,7 @@
     "ev": 0.0003020049049154257,
     "virtual_balance_after": 2.9596480681711697,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:00:03",
@@ -5751,7 +5751,7 @@
     "ev": 0.00029596480681711725,
     "virtual_balance_after": 2.900455106807746,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:01:04",
@@ -5769,7 +5769,7 @@
     "ev": 0.00029004551068077485,
     "virtual_balance_after": 2.8424460046715914,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:02:04",
@@ -5787,7 +5787,7 @@
     "ev": 0.0002842446004671594,
     "virtual_balance_after": 2.7855970845781597,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:03:05",
@@ -5805,7 +5805,7 @@
     "ev": 0.0008356791253734487,
     "virtual_balance_after": 2.7298851428865967,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:04:05",
@@ -5823,7 +5823,7 @@
     "ev": 0.0008189655428659797,
     "virtual_balance_after": 2.675287440028865,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:05:06",
@@ -5841,7 +5841,7 @@
     "ev": 0.00026752874400288676,
     "virtual_balance_after": 2.6217816912282874,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:06:06",
@@ -5859,7 +5859,7 @@
     "ev": 0.000262178169122829,
     "virtual_balance_after": 2.5693460574037217,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:07:07",
@@ -5877,7 +5877,7 @@
     "ev": 0.0002569346057403724,
     "virtual_balance_after": 2.517959136255647,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:08:07",
@@ -5895,7 +5895,7 @@
     "ev": 0.00025179591362556493,
     "virtual_balance_after": 2.467599953530534,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:09:08",
@@ -5913,7 +5913,7 @@
     "ev": 0.0002467599953530536,
     "virtual_balance_after": 2.418247954459923,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:10:08",
@@ -5931,7 +5931,7 @@
     "ev": 0.00024182479544599254,
     "virtual_balance_after": 2.3698829953707246,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:11:09",
@@ -5949,7 +5949,7 @@
     "ev": 0.00023698829953707268,
     "virtual_balance_after": 2.32248533546331,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:12:09",
@@ -5967,7 +5967,7 @@
     "ev": 0.00023224853354633122,
     "virtual_balance_after": 2.2760356287540437,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:13:10",
@@ -5985,7 +5985,7 @@
     "ev": 0.0002276035628754046,
     "virtual_balance_after": 2.230514916178963,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:14:10",
@@ -6003,7 +6003,7 @@
     "ev": 0.0002230514916178965,
     "virtual_balance_after": 2.1859046178553836,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:15:10",
@@ -6021,7 +6021,7 @@
     "ev": 0.00021859046178553855,
     "virtual_balance_after": 2.1421865254982757,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:16:11",
@@ -6039,7 +6039,7 @@
     "ev": 0.00021421865254982777,
     "virtual_balance_after": 2.0993427949883103,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:17:12",
@@ -6057,7 +6057,7 @@
     "ev": 0.00020993427949883122,
     "virtual_balance_after": 2.057355939088544,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:18:12",
@@ -6075,7 +6075,7 @@
     "ev": 0.00020573559390885457,
     "virtual_balance_after": 2.0162088203067734,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:19:13",
@@ -6093,7 +6093,7 @@
     "ev": 0.0002016208820306775,
     "virtual_balance_after": 1.975884643900638,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:20:13",
@@ -6111,7 +6111,7 @@
     "ev": 0.00019758846439006398,
     "virtual_balance_after": 1.9363669510226251,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:21:14",
@@ -6129,7 +6129,7 @@
     "ev": 0.00019363669510226268,
     "virtual_balance_after": 1.8976396120021726,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:22:14",
@@ -6147,7 +6147,7 @@
     "ev": 0.00018976396120021742,
     "virtual_balance_after": 1.859686819762129,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:23:15",
@@ -6165,7 +6165,7 @@
     "ev": 0.00018596868197621308,
     "virtual_balance_after": 1.8224930833668864,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:24:15",
@@ -6183,7 +6183,7 @@
     "ev": 0.0001822493083366888,
     "virtual_balance_after": 1.7860432216995488,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:25:16",
@@ -6201,7 +6201,7 @@
     "ev": 0.00017860432216995503,
     "virtual_balance_after": 1.7503223572655577,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:26:02",
@@ -6219,7 +6219,7 @@
     "ev": 0.0001750322357265559,
     "virtual_balance_after": 1.7153159101202466,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:26:11",
@@ -6237,7 +6237,7 @@
     "ev": 0.00017153159101202482,
     "virtual_balance_after": 1.6810095919178416,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:27:12",
@@ -6255,7 +6255,7 @@
     "ev": 0.00016810095919178432,
     "virtual_balance_after": 1.6473894000794849,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:28:12",
@@ -6273,7 +6273,7 @@
     "ev": 0.00016473894000794864,
     "virtual_balance_after": 1.6144416120778953,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:29:13",
@@ -6291,7 +6291,7 @@
     "ev": 0.0001614441612077897,
     "virtual_balance_after": 1.5821527798363373,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:30:13",
@@ -6309,7 +6309,7 @@
     "ev": 0.00015821527798363388,
     "virtual_balance_after": 1.5505097242396106,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:31:14",
@@ -6327,7 +6327,7 @@
     "ev": 0.0001550509724239612,
     "virtual_balance_after": 1.5194995297548184,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:32:15",
@@ -6345,7 +6345,7 @@
     "ev": 0.000151949952975482,
     "virtual_balance_after": 1.489109539159722,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:33:15",
@@ -6363,7 +6363,7 @@
     "ev": 0.00014891095391597234,
     "virtual_balance_after": 1.4593273483765277,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:34:16",
@@ -6381,7 +6381,7 @@
     "ev": 0.0001459327348376529,
     "virtual_balance_after": 1.4301408014089971,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:35:16",
@@ -6399,7 +6399,7 @@
     "ev": 0.00014301408014089984,
     "virtual_balance_after": 1.4015379853808172,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:36:17",
@@ -6417,7 +6417,7 @@
     "ev": 0.00014015379853808183,
     "virtual_balance_after": 1.3735072256732008,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:37:17",
@@ -6435,7 +6435,7 @@
     "ev": 0.0001373507225673202,
     "virtual_balance_after": 1.3460370811597369,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:38:18",
@@ -6453,7 +6453,7 @@
     "ev": 0.0001346037081159738,
     "virtual_balance_after": 1.3191163395365422,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:39:18",
@@ -6471,7 +6471,7 @@
     "ev": 0.00013191163395365435,
     "virtual_balance_after": 1.2927340127458113,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:40:19",
@@ -6489,7 +6489,7 @@
     "ev": 0.00012927340127458125,
     "virtual_balance_after": 1.2668793324908951,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:41:19",
@@ -6507,7 +6507,7 @@
     "ev": 0.0007601275994945378,
     "virtual_balance_after": 1.2415417458410771,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:42:20",
@@ -6525,7 +6525,7 @@
     "ev": 0.0007449250475046469,
     "virtual_balance_after": 1.2167109109242555,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:43:20",
@@ -6543,7 +6543,7 @@
     "ev": 0.0007300265465545539,
     "virtual_balance_after": 1.1923766927057704,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:44:21",
@@ -6561,7 +6561,7 @@
     "ev": 0.002265515716140963,
     "virtual_balance_after": 1.168529158851655,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 9.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:45:21",
@@ -6579,7 +6579,7 @@
     "ev": 0.00011685291588516563,
     "virtual_balance_after": 1.145158575674622,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:46:22",
@@ -6597,7 +6597,7 @@
     "ev": 0.00011451585756746232,
     "virtual_balance_after": 1.1222554041611297,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:47:22",
@@ -6615,7 +6615,7 @@
     "ev": 0.00011222554041611307,
     "virtual_balance_after": 1.099810296077907,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:48:23",
@@ -6633,7 +6633,7 @@
     "ev": 0.0001099810296077908,
     "virtual_balance_after": 1.0778140901563489,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:49:23",
@@ -6651,7 +6651,7 @@
     "ev": 0.00010778140901563499,
     "virtual_balance_after": 1.056257808353222,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:50:24",
@@ -6669,7 +6669,7 @@
     "ev": 0.00010562578083532227,
     "virtual_balance_after": 1.0351326521861575,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:51:25",
@@ -6687,7 +6687,7 @@
     "ev": 0.00010351326521861582,
     "virtual_balance_after": 1.0144299991424344,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:52:25",
@@ -6705,7 +6705,7 @@
     "ev": 0.00010144299991424354,
     "virtual_balance_after": 0.9941413991595857,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:53:26",
@@ -6723,7 +6723,7 @@
     "ev": 9.941413991595865e-05,
     "virtual_balance_after": 0.9742585711763939,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:54:26",
@@ -6741,7 +6741,7 @@
     "ev": 9.742585711763947e-05,
     "virtual_balance_after": 0.954773399752866,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:55:27",
@@ -6759,7 +6759,7 @@
     "ev": 9.547733997528669e-05,
     "virtual_balance_after": 0.9356779317578087,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 05:56:01",
@@ -6777,7 +6777,7 @@
     "ev": 9.356779317578095e-05,
     "virtual_balance_after": 0.9169643731226524,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:57:02",
@@ -6795,7 +6795,7 @@
     "ev": 9.169643731226534e-05,
     "virtual_balance_after": 0.8986250856601994,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:58:03",
@@ -6813,7 +6813,7 @@
     "ev": 8.986250856602003e-05,
     "virtual_balance_after": 0.8806525839469954,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 05:59:03",
@@ -6831,7 +6831,7 @@
     "ev": 8.806525839469963e-05,
     "virtual_balance_after": 0.8630395322680555,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:00:03",
@@ -6849,7 +6849,7 @@
     "ev": 8.630395322680563e-05,
     "virtual_balance_after": 0.8457787416226944,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:01:04",
@@ -6867,7 +6867,7 @@
     "ev": 8.457787416226952e-05,
     "virtual_balance_after": 0.8288631667902405,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:02:04",
@@ -6885,7 +6885,7 @@
     "ev": 8.288631667902411e-05,
     "virtual_balance_after": 0.8122859034544357,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:03:05",
@@ -6903,7 +6903,7 @@
     "ev": 8.122859034544365e-05,
     "virtual_balance_after": 0.796040185385347,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:04:05",
@@ -6921,7 +6921,7 @@
     "ev": 7.960401853853478e-05,
     "virtual_balance_after": 0.7801193816776401,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:05:06",
@@ -6939,7 +6939,7 @@
     "ev": 7.801193816776408e-05,
     "virtual_balance_after": 0.7645169940440872,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:06:06",
@@ -6957,7 +6957,7 @@
     "ev": 7.64516994044088e-05,
     "virtual_balance_after": 0.7492266541632054,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:07:07",
@@ -6975,7 +6975,7 @@
     "ev": 7.492266541632061e-05,
     "virtual_balance_after": 0.7342421210799414,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:08:07",
@@ -6993,7 +6993,7 @@
     "ev": 7.342421210799421e-05,
     "virtual_balance_after": 0.7195572786583425,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:09:08",
@@ -7011,7 +7011,7 @@
     "ev": 7.195572786583431e-05,
     "virtual_balance_after": 0.7051661330851756,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:10:08",
@@ -7029,7 +7029,7 @@
     "ev": 7.051661330851762e-05,
     "virtual_balance_after": 0.6910628104234721,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:11:09",
@@ -7047,7 +7047,7 @@
     "ev": 6.910628104234727e-05,
     "virtual_balance_after": 0.6772415542150027,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:12:10",
@@ -7065,7 +7065,7 @@
     "ev": 6.772415542150033e-05,
     "virtual_balance_after": 0.6636967231307026,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:13:10",
@@ -7083,7 +7083,7 @@
     "ev": 6.636967231307033e-05,
     "virtual_balance_after": 0.6504227886680886,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:14:11",
@@ -7101,7 +7101,7 @@
     "ev": 6.504227886680891e-05,
     "virtual_balance_after": 0.6374143328947268,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:15:11",
@@ -7119,7 +7119,7 @@
     "ev": 6.374143328947274e-05,
     "virtual_balance_after": 0.6246660462368323,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:16:12",
@@ -7137,7 +7137,7 @@
     "ev": 6.246660462368328e-05,
     "virtual_balance_after": 0.6121727253120957,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:18:17",
@@ -7155,7 +7155,7 @@
     "ev": 6.121727253120962e-05,
     "virtual_balance_after": 0.5999292708058538,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:19:18",
@@ -7173,7 +7173,7 @@
     "ev": 0.0004799434166446828,
     "virtual_balance_after": 0.5879306853897367,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 4.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:20:18",
@@ -7191,7 +7191,7 @@
     "ev": 5.879306853897372e-05,
     "virtual_balance_after": 0.576172071681942,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:21:19",
@@ -7209,7 +7209,7 @@
     "ev": 5.761720716819425e-05,
     "virtual_balance_after": 0.5646486302483031,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:22:19",
@@ -7227,7 +7227,7 @@
     "ev": 5.646486302483037e-05,
     "virtual_balance_after": 0.553355657643337,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:23:20",
@@ -7245,7 +7245,7 @@
     "ev": 5.533556576433376e-05,
     "virtual_balance_after": 0.5422885444904703,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:24:20",
@@ -7263,7 +7263,7 @@
     "ev": 5.422885444904708e-05,
     "virtual_balance_after": 0.5314427736006608,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:25:21",
@@ -7281,7 +7281,7 @@
     "ev": 5.3144277360066126e-05,
     "virtual_balance_after": 0.5208139181286476,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:26:01",
@@ -7299,7 +7299,7 @@
     "ev": 5.208139181286481e-05,
     "virtual_balance_after": 0.5103976397660747,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:26:09",
@@ -7317,7 +7317,7 @@
     "ev": 5.103976397660751e-05,
     "virtual_balance_after": 0.5001896869707532,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:27:10",
@@ -7335,7 +7335,7 @@
     "ev": 5.001896869707536e-05,
     "virtual_balance_after": 0.4901858932313381,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:28:10",
@@ -7353,7 +7353,7 @@
     "ev": 4.9018589323133856e-05,
     "virtual_balance_after": 0.48038217536671135,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:29:11",
@@ -7371,7 +7371,7 @@
     "ev": 4.803821753667118e-05,
     "virtual_balance_after": 0.4707745318593771,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:30:11",
@@ -7389,7 +7389,7 @@
     "ev": 4.7077453185937755e-05,
     "virtual_balance_after": 0.46135904122218957,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:31:12",
@@ -7407,7 +7407,7 @@
     "ev": 4.6135904122219e-05,
     "virtual_balance_after": 0.4521318603977458,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:32:12",
@@ -7425,7 +7425,7 @@
     "ev": 4.5213186039774625e-05,
     "virtual_balance_after": 0.4430892231897909,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:33:13",
@@ -7443,7 +7443,7 @@
     "ev": 4.430892231897913e-05,
     "virtual_balance_after": 0.43422743872599506,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:34:13",
@@ -7461,7 +7461,7 @@
     "ev": 4.3422743872599544e-05,
     "virtual_balance_after": 0.42554288995147516,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:35:14",
@@ -7479,7 +7479,7 @@
     "ev": 4.2554288995147555e-05,
     "virtual_balance_after": 0.41703203215244566,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:36:14",
@@ -7497,7 +7497,7 @@
     "ev": 4.17032032152446e-05,
     "virtual_balance_after": 0.40869139150939676,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:37:15",
@@ -7515,7 +7515,7 @@
     "ev": 4.086913915093971e-05,
     "virtual_balance_after": 0.4005175636792088,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:38:15",
@@ -7533,7 +7533,7 @@
     "ev": 4.005175636792092e-05,
     "virtual_balance_after": 0.39250721240562464,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:39:16",
@@ -7551,7 +7551,7 @@
     "ev": 0.0007850144248112491,
     "virtual_balance_after": 0.38465706815751216,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 10.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:40:16",
@@ -7569,7 +7569,7 @@
     "ev": 3.846570681575125e-05,
     "virtual_balance_after": 0.3769639267943619,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:41:17",
@@ -7587,7 +7587,7 @@
     "ev": 3.769639267943623e-05,
     "virtual_balance_after": 0.36942464825847465,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:42:17",
@@ -7605,7 +7605,7 @@
     "ev": 0.001625468452337288,
     "virtual_balance_after": 0.3620361552933052,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 22.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:43:18",
@@ -7623,7 +7623,7 @@
     "ev": 0.0015929590832905428,
     "virtual_balance_after": 0.3547954321874391,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 22.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:44:18",
@@ -7641,7 +7641,7 @@
     "ev": 0.0015610999016247317,
     "virtual_balance_after": 0.3476995235436903,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 22.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:45:19",
@@ -7659,7 +7659,7 @@
     "ev": 3.4769952354369064e-05,
     "virtual_balance_after": 0.3407455330728165,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:46:19",
@@ -7677,7 +7677,7 @@
     "ev": 3.407455330728168e-05,
     "virtual_balance_after": 0.3339306224113602,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:47:20",
@@ -7695,7 +7695,7 @@
     "ev": 3.339306224113605e-05,
     "virtual_balance_after": 0.327252009963133,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:48:20",
@@ -7713,7 +7713,7 @@
     "ev": 9.817560298893998e-05,
     "virtual_balance_after": 0.3207069697638703,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:49:21",
@@ -7731,7 +7731,7 @@
     "ev": 9.621209092916118e-05,
     "virtual_balance_after": 0.3142928303685929,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:50:21",
@@ -7749,7 +7749,7 @@
     "ev": 3.142928303685932e-05,
     "virtual_balance_after": 0.30800697376122105,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:51:22",
@@ -7767,7 +7767,7 @@
     "ev": 3.080069737612213e-05,
     "virtual_balance_after": 0.3018468342859966,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:52:22",
@@ -7785,7 +7785,7 @@
     "ev": 3.018468342859969e-05,
     "virtual_balance_after": 0.2958098976002767,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:53:23",
@@ -7803,7 +7803,7 @@
     "ev": 0.0005028768259204706,
     "virtual_balance_after": 0.28989369964827116,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 8.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:54:23",
@@ -7821,7 +7821,7 @@
     "ev": 0.0011015960586634305,
     "virtual_balance_after": 0.2840958256553057,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 19.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:55:24",
@@ -7839,7 +7839,7 @@
     "ev": 2.8409582565530598e-05,
     "virtual_balance_after": 0.2784139091421996,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:56:01",
@@ -7857,7 +7857,7 @@
     "ev": 2.7841390914219987e-05,
     "virtual_balance_after": 0.2728456309593556,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 06:57:02",
@@ -7875,7 +7875,7 @@
     "ev": 8.185368928780674e-05,
     "virtual_balance_after": 0.2673887183401685,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:58:03",
@@ -7893,7 +7893,7 @@
     "ev": 8.021661550205062e-05,
     "virtual_balance_after": 0.2620409439733651,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 06:59:03",
@@ -7911,7 +7911,7 @@
     "ev": 7.861228319200958e-05,
     "virtual_balance_after": 0.25680012509389777,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:00:03",
@@ -7929,7 +7929,7 @@
     "ev": 2.56800125093898e-05,
     "virtual_balance_after": 0.2516641225920198,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:01:04",
@@ -7947,7 +7947,7 @@
     "ev": 2.5166412259202005e-05,
     "virtual_balance_after": 0.2466308401401794,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:02:04",
@@ -7965,7 +7965,7 @@
     "ev": 2.4663084014017962e-05,
     "virtual_balance_after": 0.24169822333737584,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:03:05",
@@ -7983,7 +7983,7 @@
     "ev": 2.4169822333737605e-05,
     "virtual_balance_after": 0.2368642588706283,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:04:05",
@@ -8001,7 +8001,7 @@
     "ev": 2.3686425887062853e-05,
     "virtual_balance_after": 0.23212697369321575,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:05:06",
@@ -8019,7 +8019,7 @@
     "ev": 2.32126973693216e-05,
     "virtual_balance_after": 0.22748443421935144,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:06:06",
@@ -8037,7 +8037,7 @@
     "ev": 2.2748443421935163e-05,
     "virtual_balance_after": 0.22293474553496442,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:07:07",
@@ -8055,7 +8055,7 @@
     "ev": 2.2293474553496466e-05,
     "virtual_balance_after": 0.21847605062426514,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:08:07",
@@ -8073,7 +8073,7 @@
     "ev": 2.1847605062426533e-05,
     "virtual_balance_after": 0.21410652961177984,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:09:08",
@@ -8091,7 +8091,7 @@
     "ev": 2.1410652961178003e-05,
     "virtual_balance_after": 0.20982439901954425,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:10:08",
@@ -8109,7 +8109,7 @@
     "ev": 2.0982439901954443e-05,
     "virtual_balance_after": 0.20562791103915337,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:11:09",
@@ -8127,7 +8127,7 @@
     "ev": 2.0562791103915355e-05,
     "virtual_balance_after": 0.2015153528183703,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:12:09",
@@ -8145,7 +8145,7 @@
     "ev": 2.0151535281837048e-05,
     "virtual_balance_after": 0.1974850457620029,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:13:10",
@@ -8163,7 +8163,7 @@
     "ev": 1.9748504576200305e-05,
     "virtual_balance_after": 0.19353534484676285,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:14:10",
@@ -8181,7 +8181,7 @@
     "ev": 1.9353534484676305e-05,
     "virtual_balance_after": 0.1896646379498276,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:15:11",
@@ -8199,7 +8199,7 @@
     "ev": 1.8966463794982777e-05,
     "virtual_balance_after": 0.18587134519083104,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:16:11",
@@ -8217,7 +8217,7 @@
     "ev": 1.8587134519083122e-05,
     "virtual_balance_after": 0.1821539182870144,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:17:12",
@@ -8235,7 +8235,7 @@
     "ev": 1.8215391828701457e-05,
     "virtual_balance_after": 0.17851083992127412,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:18:12",
@@ -8253,7 +8253,7 @@
     "ev": 1.7851083992127427e-05,
     "virtual_balance_after": 0.17494062312284864,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:19:13",
@@ -8271,7 +8271,7 @@
     "ev": 1.749406231228488e-05,
     "virtual_balance_after": 0.17144181066039166,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:20:14",
@@ -8289,7 +8289,7 @@
     "ev": 1.714418106603918e-05,
     "virtual_balance_after": 0.16801297444718383,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:21:14",
@@ -8307,7 +8307,7 @@
     "ev": 1.68012974447184e-05,
     "virtual_balance_after": 0.16465271495824016,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:22:15",
@@ -8325,7 +8325,7 @@
     "ev": 1.646527149582403e-05,
     "virtual_balance_after": 0.16135966065907537,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:23:15",
@@ -8343,7 +8343,7 @@
     "ev": 1.6135966065907552e-05,
     "virtual_balance_after": 0.15813246744589385,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:24:16",
@@ -8361,7 +8361,7 @@
     "ev": 1.58132467445894e-05,
     "virtual_balance_after": 0.15496981809697596,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:25:16",
@@ -8379,7 +8379,7 @@
     "ev": 1.549698180969761e-05,
     "virtual_balance_after": 0.15187042173503645,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:26:02",
@@ -8397,7 +8397,7 @@
     "ev": 1.5187042173503658e-05,
     "virtual_balance_after": 0.14883301330033571,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:27:02",
@@ -8415,7 +8415,7 @@
     "ev": 1.4883301330033586e-05,
     "virtual_balance_after": 0.145856353034329,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:28:03",
@@ -8433,7 +8433,7 @@
     "ev": 1.4585635303432913e-05,
     "virtual_balance_after": 0.14293922597364242,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:29:03",
@@ -8451,7 +8451,7 @@
     "ev": 1.4293922597364256e-05,
     "virtual_balance_after": 0.14008044145416956,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:30:03",
@@ -8469,7 +8469,7 @@
     "ev": 1.400804414541697e-05,
     "virtual_balance_after": 0.13727883262508617,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:31:04",
@@ -8487,7 +8487,7 @@
     "ev": 1.3727883262508629e-05,
     "virtual_balance_after": 0.13453325597258445,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:32:04",
@@ -8505,7 +8505,7 @@
     "ev": 1.3453325597258458e-05,
     "virtual_balance_after": 0.13184259085313277,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:33:05",
@@ -8523,7 +8523,7 @@
     "ev": 1.3184259085313287e-05,
     "virtual_balance_after": 0.1292057390360701,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:34:06",
@@ -8541,7 +8541,7 @@
     "ev": 1.2920573903607022e-05,
     "virtual_balance_after": 0.1266216242553487,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:35:06",
@@ -8559,7 +8559,7 @@
     "ev": 1.266216242553488e-05,
     "virtual_balance_after": 0.12408919177024173,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:36:07",
@@ -8577,7 +8577,7 @@
     "ev": 1.2408919177024185e-05,
     "virtual_balance_after": 0.1216074079348369,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:37:07",
@@ -8595,7 +8595,7 @@
     "ev": 1.21607407934837e-05,
     "virtual_balance_after": 0.11917525977614017,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:38:08",
@@ -8613,7 +8613,7 @@
     "ev": 1.1917525977614027e-05,
     "virtual_balance_after": 0.11679175458061737,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:39:08",
@@ -8631,7 +8631,7 @@
     "ev": 3.503752637418524e-05,
     "virtual_balance_after": 0.11445591948900502,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:40:09",
@@ -8649,7 +8649,7 @@
     "ev": 1.1445591948900512e-05,
     "virtual_balance_after": 0.11216680109922492,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:41:09",
@@ -8667,7 +8667,7 @@
     "ev": 1.1216680109922502e-05,
     "virtual_balance_after": 0.10992346507724042,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:42:10",
@@ -8685,7 +8685,7 @@
     "ev": 1.0992346507724053e-05,
     "virtual_balance_after": 0.10772499577569561,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:43:11",
@@ -8703,7 +8703,7 @@
     "ev": 1.077249957756957e-05,
     "virtual_balance_after": 0.10557049586018169,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:44:11",
@@ -8721,7 +8721,7 @@
     "ev": 1.0557049586018177e-05,
     "virtual_balance_after": 0.10345908594297806,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:45:11",
@@ -8739,7 +8739,7 @@
     "ev": 1.0345908594297813e-05,
     "virtual_balance_after": 0.1013899042241185,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:46:12",
@@ -8757,7 +8757,7 @@
     "ev": 1.013899042241186e-05,
     "virtual_balance_after": 0.09936210613963613,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:47:12",
@@ -8775,7 +8775,7 @@
     "ev": 9.936210613963623e-06,
     "virtual_balance_after": 0.09737486401684341,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:48:13",
@@ -8793,7 +8793,7 @@
     "ev": 9.73748640168435e-06,
     "virtual_balance_after": 0.09542736673650654,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:49:13",
@@ -8811,7 +8811,7 @@
     "ev": 9.542736673650662e-06,
     "virtual_balance_after": 0.0935188194017764,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:50:14",
@@ -8829,7 +8829,7 @@
     "ev": 9.35188194017765e-06,
     "virtual_balance_after": 0.09164844301374088,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:51:14",
@@ -8847,7 +8847,7 @@
     "ev": 9.164844301374097e-06,
     "virtual_balance_after": 0.08981547415346607,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:52:15",
@@ -8865,7 +8865,7 @@
     "ev": 8.981547415346614e-06,
     "virtual_balance_after": 0.08801916467039675,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:53:15",
@@ -8883,7 +8883,7 @@
     "ev": 8.801916467039683e-06,
     "virtual_balance_after": 0.08625878137698881,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 07:54:16",
@@ -8901,7 +8901,7 @@
     "ev": 3.450351255079555e-05,
     "virtual_balance_after": 0.08453360574944903,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:55:16",
@@ -8919,7 +8919,7 @@
     "ev": 8.45336057494491e-06,
     "virtual_balance_after": 0.08284293363446005,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:56:02",
@@ -8937,7 +8937,7 @@
     "ev": 8.284293363446012e-06,
     "virtual_balance_after": 0.08118607496177084,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:57:02",
@@ -8955,7 +8955,7 @@
     "ev": 8.11860749617709e-06,
     "virtual_balance_after": 0.07956235346253543,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:58:03",
@@ -8973,7 +8973,7 @@
     "ev": 7.95623534625355e-06,
     "virtual_balance_after": 0.07797110639328472,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 07:59:03",
@@ -8991,7 +8991,7 @@
     "ev": 7.797110639328479e-06,
     "virtual_balance_after": 0.07641168426541903,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:00:03",
@@ -9009,7 +9009,7 @@
     "ev": 7.641168426541909e-06,
     "virtual_balance_after": 0.07488345058011064,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:01:04",
@@ -9027,7 +9027,7 @@
     "ev": 7.488345058011071e-06,
     "virtual_balance_after": 0.07338578156850843,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:02:04",
@@ -9045,7 +9045,7 @@
     "ev": 7.33857815685085e-06,
     "virtual_balance_after": 0.07191806593713826,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:03:04",
@@ -9063,7 +9063,7 @@
     "ev": 7.191806593713833e-06,
     "virtual_balance_after": 0.07047970461839549,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:04:05",
@@ -9081,7 +9081,7 @@
     "ev": 7.047970461839556e-06,
     "virtual_balance_after": 0.06907011052602759,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:05:05",
@@ -9099,7 +9099,7 @@
     "ev": 6.9070110526027656e-06,
     "virtual_balance_after": 0.06768870831550704,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:06:06",
@@ -9117,7 +9117,7 @@
     "ev": 6.768870831550711e-06,
     "virtual_balance_after": 0.0663349341491969,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:07:06",
@@ -9135,7 +9135,7 @@
     "ev": 6.633493414919696e-06,
     "virtual_balance_after": 0.06500823546621297,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:08:07",
@@ -9153,7 +9153,7 @@
     "ev": 6.500823546621302e-06,
     "virtual_balance_after": 0.06370807075688871,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:09:07",
@@ -9171,7 +9171,7 @@
     "ev": 6.370807075688876e-06,
     "virtual_balance_after": 0.062433909341750936,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:10:08",
@@ -9189,7 +9189,7 @@
     "ev": 6.243390934175099e-06,
     "virtual_balance_after": 0.06118523115491592,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:11:08",
@@ -9207,7 +9207,7 @@
     "ev": 6.118523115491597e-06,
     "virtual_balance_after": 0.059961526531817605,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:12:09",
@@ -9225,7 +9225,7 @@
     "ev": 5.996152653181766e-06,
     "virtual_balance_after": 0.058762296001181255,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:13:10",
@@ -9243,7 +9243,7 @@
     "ev": 5.876229600118131e-06,
     "virtual_balance_after": 0.05758705008115763,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:14:10",
@@ -9261,7 +9261,7 @@
     "ev": 5.758705008115768e-06,
     "virtual_balance_after": 0.05643530907953448,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:15:10",
@@ -9279,7 +9279,7 @@
     "ev": 5.643530907953454e-06,
     "virtual_balance_after": 0.05530660289794379,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:16:11",
@@ -9297,7 +9297,7 @@
     "ev": 5.5306602897943844e-06,
     "virtual_balance_after": 0.054200470839984916,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:17:11",
@@ -9315,7 +9315,7 @@
     "ev": 5.420047083998496e-06,
     "virtual_balance_after": 0.05311646142318522,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:18:12",
@@ -9333,7 +9333,7 @@
     "ev": 5.311646142318527e-06,
     "virtual_balance_after": 0.05205413219472151,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:19:12",
@@ -9351,7 +9351,7 @@
     "ev": 5.205413219472156e-06,
     "virtual_balance_after": 0.05101304955082708,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:20:13",
@@ -9369,7 +9369,7 @@
     "ev": 5.101304955082713e-06,
     "virtual_balance_after": 0.04999278855981054,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:21:13",
@@ -9387,7 +9387,7 @@
     "ev": 4.999278855981059e-06,
     "virtual_balance_after": 0.04899293278861433,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:22:14",
@@ -9405,7 +9405,7 @@
     "ev": 4.899293278861438e-06,
     "virtual_balance_after": 0.048013074132842046,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:23:15",
@@ -9423,7 +9423,7 @@
     "ev": 4.801307413284209e-06,
     "virtual_balance_after": 0.047052812650185204,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:24:15",
@@ -9441,7 +9441,7 @@
     "ev": 4.705281265018524e-06,
     "virtual_balance_after": 0.0461117563971815,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:25:16",
@@ -9459,7 +9459,7 @@
     "ev": 4.611175639718155e-06,
     "virtual_balance_after": 0.04518952126923787,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:26:02",
@@ -9477,7 +9477,7 @@
     "ev": 4.5189521269237915e-06,
     "virtual_balance_after": 0.044285730843853115,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:27:02",
@@ -9495,7 +9495,7 @@
     "ev": 4.428573084385316e-06,
     "virtual_balance_after": 0.043400016226976056,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:28:03",
@@ -9513,7 +9513,7 @@
     "ev": 4.340001622697609e-06,
     "virtual_balance_after": 0.042532015902436535,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:29:03",
@@ -9531,7 +9531,7 @@
     "ev": 4.253201590243658e-06,
     "virtual_balance_after": 0.0416813755843878,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:30:04",
@@ -9549,7 +9549,7 @@
     "ev": 4.168137558438784e-06,
     "virtual_balance_after": 0.040847748072700044,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:31:04",
@@ -9567,7 +9567,7 @@
     "ev": 4.084774807270008e-06,
     "virtual_balance_after": 0.04003079311124604,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:32:05",
@@ -9585,7 +9585,7 @@
     "ev": 4.0030793111246086e-06,
     "virtual_balance_after": 0.03923017724902112,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:33:05",
@@ -9603,7 +9603,7 @@
     "ev": 3.923017724902115e-06,
     "virtual_balance_after": 0.0384455737040407,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:34:06",
@@ -9621,7 +9621,7 @@
     "ev": 4.997924581525291e-05,
     "virtual_balance_after": 0.037676662229959884,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 6.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:35:06",
@@ -9639,7 +9639,7 @@
     "ev": 3.7676662229959918e-06,
     "virtual_balance_after": 0.03692312898536069,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:36:07",
@@ -9657,7 +9657,7 @@
     "ev": 3.6923128985360725e-06,
     "virtual_balance_after": 0.03618466640565347,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:37:07",
@@ -9675,7 +9675,7 @@
     "ev": 3.6184666405653507e-06,
     "virtual_balance_after": 0.035460973077540404,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:38:08",
@@ -9693,7 +9693,7 @@
     "ev": 3.5460973077540434e-06,
     "virtual_balance_after": 0.034751753615989596,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:39:08",
@@ -9711,7 +9711,7 @@
     "ev": 3.475175361598963e-06,
     "virtual_balance_after": 0.0340567185436698,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:40:09",
@@ -9729,7 +9729,7 @@
     "ev": 3.4056718543669834e-06,
     "virtual_balance_after": 0.03337558417279641,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:41:10",
@@ -9747,7 +9747,7 @@
     "ev": 3.337558417279644e-06,
     "virtual_balance_after": 0.03270807248934048,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:42:10",
@@ -9765,7 +9765,7 @@
     "ev": 3.2708072489340513e-06,
     "virtual_balance_after": 0.03205391103955367,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:43:11",
@@ -9783,7 +9783,7 @@
     "ev": 3.20539110395537e-06,
     "virtual_balance_after": 0.031412832818762594,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:44:11",
@@ -9801,7 +9801,7 @@
     "ev": 3.141283281876262e-06,
     "virtual_balance_after": 0.03078457616238734,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:45:11",
@@ -9819,7 +9819,7 @@
     "ev": 3.078457616238737e-06,
     "virtual_balance_after": 0.030168884639139595,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:46:12",
@@ -9837,7 +9837,7 @@
     "ev": 3.0168884639139626e-06,
     "virtual_balance_after": 0.029565506946356804,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:47:13",
@@ -9855,7 +9855,7 @@
     "ev": 2.9565506946356833e-06,
     "virtual_balance_after": 0.02897419680742967,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:48:13",
@@ -9873,7 +9873,7 @@
     "ev": 2.8974196807429697e-06,
     "virtual_balance_after": 0.028394712871281074,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:49:14",
@@ -9891,7 +9891,7 @@
     "ev": 2.83947128712811e-06,
     "virtual_balance_after": 0.027826818613855452,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:50:14",
@@ -9909,7 +9909,7 @@
     "ev": 2.782681861385548e-06,
     "virtual_balance_after": 0.027270282241578344,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:51:15",
@@ -9927,7 +9927,7 @@
     "ev": 2.7270282241578368e-06,
     "virtual_balance_after": 0.02672487659674678,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:52:15",
@@ -9945,7 +9945,7 @@
     "ev": 2.67248765967468e-06,
     "virtual_balance_after": 0.026190379064811843,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:53:16",
@@ -9963,7 +9963,7 @@
     "ev": 2.6190379064811866e-06,
     "virtual_balance_after": 0.025666571483515605,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:54:16",
@@ -9981,7 +9981,7 @@
     "ev": 2.566657148351563e-06,
     "virtual_balance_after": 0.025153240053845293,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 08:55:17",
@@ -9999,7 +9999,7 @@
     "ev": 2.5153240053845314e-06,
     "virtual_balance_after": 0.024650175252768386,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:56:02",
@@ -10017,7 +10017,7 @@
     "ev": 2.465017525276841e-06,
     "virtual_balance_after": 0.024157171747713018,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:57:03",
@@ -10035,7 +10035,7 @@
     "ev": 2.4157171747713042e-06,
     "virtual_balance_after": 0.023674028312758756,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:58:03",
@@ -10053,7 +10053,7 @@
     "ev": 2.367402831275878e-06,
     "virtual_balance_after": 0.02320054774650358,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 08:59:04",
@@ -10071,7 +10071,7 @@
     "ev": 2.32005477465036e-06,
     "virtual_balance_after": 0.02273653679157351,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:00:04",
@@ -10089,7 +10089,7 @@
     "ev": 2.273653679157353e-06,
     "virtual_balance_after": 0.02228180605574204,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:01:04",
@@ -10107,7 +10107,7 @@
     "ev": 2.228180605574206e-06,
     "virtual_balance_after": 0.0218361699346272,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:02:05",
@@ -10125,7 +10125,7 @@
     "ev": 2.183616993462722e-06,
     "virtual_balance_after": 0.021399446535934657,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:03:05",
@@ -10143,7 +10143,7 @@
     "ev": 2.139944653593468e-06,
     "virtual_balance_after": 0.020971457605215963,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:04:06",
@@ -10161,7 +10161,7 @@
     "ev": 2.0971457605215984e-06,
     "virtual_balance_after": 0.020552028453111645,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:05:06",
@@ -10179,7 +10179,7 @@
     "ev": 2.0552028453111667e-06,
     "virtual_balance_after": 0.020140987884049413,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:06:07",
@@ -10197,7 +10197,7 @@
     "ev": 2.0140987884049433e-06,
     "virtual_balance_after": 0.019738168126368423,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:07:07",
@@ -10215,7 +10215,7 @@
     "ev": 1.973816812636844e-06,
     "virtual_balance_after": 0.019343404763841054,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:08:08",
@@ -10233,7 +10233,7 @@
     "ev": 1.934340476384107e-06,
     "virtual_balance_after": 0.018956536668564235,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:09:08",
@@ -10251,7 +10251,7 @@
     "ev": 1.895653666856425e-06,
     "virtual_balance_after": 0.01857740593519295,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:10:09",
@@ -10269,7 +10269,7 @@
     "ev": 1.8577405935192966e-06,
     "virtual_balance_after": 0.01820585781648909,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:11:09",
@@ -10287,7 +10287,7 @@
     "ev": 9.102928908244554e-06,
     "virtual_balance_after": 0.017841740660159307,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:12:10",
@@ -10305,7 +10305,7 @@
     "ev": 8.920870330079662e-06,
     "virtual_balance_after": 0.017484905846956122,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:13:11",
@@ -10323,7 +10323,7 @@
     "ev": 8.742452923478069e-06,
     "virtual_balance_after": 0.017135207730016998,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:14:11",
@@ -10341,7 +10341,7 @@
     "ev": 8.567603865008507e-06,
     "virtual_balance_after": 0.01679250357541666,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:15:11",
@@ -10359,7 +10359,7 @@
     "ev": 1.6792503575416674e-06,
     "virtual_balance_after": 0.016456653503908326,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:16:12",
@@ -10377,7 +10377,7 @@
     "ev": 1.645665350390834e-06,
     "virtual_balance_after": 0.01612752043383016,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:17:12",
@@ -10395,7 +10395,7 @@
     "ev": 1.6127520433830173e-06,
     "virtual_balance_after": 0.015804970025153554,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:18:13",
@@ -10413,7 +10413,7 @@
     "ev": 1.580497002515357e-06,
     "virtual_balance_after": 0.015488870624650482,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:19:13",
@@ -10431,7 +10431,7 @@
     "ev": 7.744435312325248e-06,
     "virtual_balance_after": 0.015179093212157473,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:20:14",
@@ -10449,7 +10449,7 @@
     "ev": 1.5179093212157488e-06,
     "virtual_balance_after": 0.014875511347914323,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:21:14",
@@ -10467,7 +10467,7 @@
     "ev": 1.4875511347914339e-06,
     "virtual_balance_after": 0.014578001120956037,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:22:15",
@@ -10485,7 +10485,7 @@
     "ev": 1.4578001120956053e-06,
     "virtual_balance_after": 0.014286441098536917,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:23:15",
@@ -10503,7 +10503,7 @@
     "ev": 1.4286441098536932e-06,
     "virtual_balance_after": 0.014000712276566178,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:24:16",
@@ -10521,7 +10521,7 @@
     "ev": 1.4000712276566192e-06,
     "virtual_balance_after": 0.013720698031034855,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:25:16",
@@ -10539,7 +10539,7 @@
     "ev": 1.3720698031034867e-06,
     "virtual_balance_after": 0.013446284070414158,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:26:02",
@@ -10557,7 +10557,7 @@
     "ev": 1.344628407041417e-06,
     "virtual_balance_after": 0.013177358389005875,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:27:02",
@@ -10575,7 +10575,7 @@
     "ev": 5.2709433556023536e-06,
     "virtual_balance_after": 0.012913811221225757,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:28:03",
@@ -10593,7 +10593,7 @@
     "ev": 5.165524488490307e-06,
     "virtual_balance_after": 0.012655534996801242,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:29:03",
@@ -10611,7 +10611,7 @@
     "ev": 5.062213998720501e-06,
     "virtual_balance_after": 0.012402424296865217,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:30:04",
@@ -10629,7 +10629,7 @@
     "ev": 1.2402424296865228e-06,
     "virtual_balance_after": 0.012154375810927912,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:31:04",
@@ -10647,7 +10647,7 @@
     "ev": 1.2154375810927923e-06,
     "virtual_balance_after": 0.011911288294709353,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:32:04",
@@ -10665,7 +10665,7 @@
     "ev": 8.337901806296542e-06,
     "virtual_balance_after": 0.011673062528815167,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:33:05",
@@ -10683,7 +10683,7 @@
     "ev": 8.171143770170609e-06,
     "virtual_balance_after": 0.011439601278238863,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:34:05",
@@ -10701,7 +10701,7 @@
     "ev": 8.007720894767199e-06,
     "virtual_balance_after": 0.011210809252674085,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:35:06",
@@ -10719,7 +10719,7 @@
     "ev": 1.1210809252674095e-06,
     "virtual_balance_after": 0.010986593067620603,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:36:06",
@@ -10737,7 +10737,7 @@
     "ev": 5.493296533810307e-06,
     "virtual_balance_after": 0.01076686120626819,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:37:07",
@@ -10755,7 +10755,7 @@
     "ev": 5.3834306031341e-06,
     "virtual_balance_after": 0.010551523982142827,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:38:08",
@@ -10773,7 +10773,7 @@
     "ev": 5.275761991071418e-06,
     "virtual_balance_after": 0.010340493502499971,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:39:08",
@@ -10791,7 +10791,7 @@
     "ev": 5.17024675124999e-06,
     "virtual_balance_after": 0.010133683632449972,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:40:09",
@@ -10809,7 +10809,7 @@
     "ev": 4.053473452979993e-06,
     "virtual_balance_after": 0.009931009959800972,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:41:09",
@@ -10827,7 +10827,7 @@
     "ev": 3.972403983920393e-06,
     "virtual_balance_after": 0.009732389760604953,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:42:10",
@@ -10845,7 +10845,7 @@
     "ev": 4.866194880302481e-06,
     "virtual_balance_after": 0.009537741965392855,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:43:10",
@@ -10863,7 +10863,7 @@
     "ev": 4.7688709826964315e-06,
     "virtual_balance_after": 0.009346987126084998,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:44:11",
@@ -10881,7 +10881,7 @@
     "ev": 4.673493563042503e-06,
     "virtual_balance_after": 0.009160047383563298,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:45:11",
@@ -10899,7 +10899,7 @@
     "ev": 9.160047383563307e-07,
     "virtual_balance_after": 0.008976846435892033,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:46:12",
@@ -10917,7 +10917,7 @@
     "ev": 8.976846435892041e-07,
     "virtual_balance_after": 0.008797309507174191,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:47:12",
@@ -10935,7 +10935,7 @@
     "ev": 8.797309507174199e-07,
     "virtual_balance_after": 0.008621363317030707,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:48:13",
@@ -10953,7 +10953,7 @@
     "ev": 8.621363317030716e-07,
     "virtual_balance_after": 0.008448936050690093,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:49:13",
@@ -10971,7 +10971,7 @@
     "ev": 8.448936050690103e-07,
     "virtual_balance_after": 0.00827995732967629,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:50:14",
@@ -10989,7 +10989,7 @@
     "ev": 8.279957329676297e-07,
     "virtual_balance_after": 0.008114358183082765,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:51:14",
@@ -11007,7 +11007,7 @@
     "ev": 8.114358183082772e-07,
     "virtual_balance_after": 0.007952071019421109,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:52:15",
@@ -11025,7 +11025,7 @@
     "ev": 2.3856213058263346e-06,
     "virtual_balance_after": 0.007793029599032686,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:53:15",
@@ -11043,7 +11043,7 @@
     "ev": 2.337908879709808e-06,
     "virtual_balance_after": 0.007637169007052033,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:54:16",
@@ -11061,7 +11061,7 @@
     "ev": 2.2911507021156122e-06,
     "virtual_balance_after": 0.007484425626910992,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 09:55:17",
@@ -11079,7 +11079,7 @@
     "ev": 7.484425626910999e-07,
     "virtual_balance_after": 0.0073347371143727726,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:56:02",
@@ -11097,7 +11097,7 @@
     "ev": 7.33473711437278e-07,
     "virtual_balance_after": 0.007188042372085317,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:57:02",
@@ -11115,7 +11115,7 @@
     "ev": 7.188042372085324e-07,
     "virtual_balance_after": 0.007044281524643611,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:58:03",
@@ -11133,7 +11133,7 @@
     "ev": 1.4088563049287236e-06,
     "virtual_balance_after": 0.006903395894150738,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 09:59:03",
@@ -11151,7 +11151,7 @@
     "ev": 1.3806791788301489e-06,
     "virtual_balance_after": 0.006765327976267724,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.0% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:00:04",
@@ -11169,7 +11169,7 @@
     "ev": 2.029598392880319e-06,
     "virtual_balance_after": 0.006630021416742369,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:01:04",
@@ -11187,7 +11187,7 @@
     "ev": 1.9890064250227126e-06,
     "virtual_balance_after": 0.006497420988407521,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:02:05",
@@ -11205,7 +11205,7 @@
     "ev": 1.949226296522258e-06,
     "virtual_balance_after": 0.006367472568639371,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:03:05",
@@ -11223,7 +11223,7 @@
     "ev": 1.910241770591813e-06,
     "virtual_balance_after": 0.006240123117266583,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:04:06",
@@ -11241,7 +11241,7 @@
     "ev": 1.8720369351799768e-06,
     "virtual_balance_after": 0.006115320654921251,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:05:06",
@@ -11259,7 +11259,7 @@
     "ev": 6.115320654921257e-07,
     "virtual_balance_after": 0.005993014241822826,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:06:07",
@@ -11277,7 +11277,7 @@
     "ev": 5.993014241822832e-07,
     "virtual_balance_after": 0.005873153956986369,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:07:08",
@@ -11295,7 +11295,7 @@
     "ev": 5.873153956986375e-07,
     "virtual_balance_after": 0.005755690877846642,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:08:08",
@@ -11313,7 +11313,7 @@
     "ev": 5.755690877846647e-07,
     "virtual_balance_after": 0.005640577060289709,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:09:09",
@@ -11331,7 +11331,7 @@
     "ev": 5.640577060289714e-07,
     "virtual_balance_after": 0.005527765519083914,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:10:09",
@@ -11349,7 +11349,7 @@
     "ev": 5.527765519083919e-07,
     "virtual_balance_after": 0.0054172102087022365,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:11:10",
@@ -11367,7 +11367,7 @@
     "ev": 5.417210208702241e-07,
     "virtual_balance_after": 0.005308866004528192,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:12:10",
@@ -11385,7 +11385,7 @@
     "ev": 5.308866004528196e-07,
     "virtual_balance_after": 0.005202688684437628,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:13:11",
@@ -11403,7 +11403,7 @@
     "ev": 5.202688684437633e-07,
     "virtual_balance_after": 0.005098634910748875,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:14:11",
@@ -11421,7 +11421,7 @@
     "ev": 5.09863491074888e-07,
     "virtual_balance_after": 0.004996662212533897,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:15:11",
@@ -11439,7 +11439,7 @@
     "ev": 4.996662212533901e-07,
     "virtual_balance_after": 0.00489672896828322,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:16:12",
@@ -11457,7 +11457,7 @@
     "ev": 4.896728968283224e-07,
     "virtual_balance_after": 0.004798794388917556,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:17:13",
@@ -11475,7 +11475,7 @@
     "ev": 4.79879438891756e-07,
     "virtual_balance_after": 0.004702818501139205,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:18:13",
@@ -11493,7 +11493,7 @@
     "ev": 4.702818501139209e-07,
     "virtual_balance_after": 0.00460876213111642,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:19:14",
@@ -11511,7 +11511,7 @@
     "ev": 4.608762131116425e-07,
     "virtual_balance_after": 0.004516586888494092,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:20:14",
@@ -11529,7 +11529,7 @@
     "ev": 4.5165868884940963e-07,
     "virtual_balance_after": 0.0044262551507242105,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:21:15",
@@ -11547,7 +11547,7 @@
     "ev": 4.426255150724215e-07,
     "virtual_balance_after": 0.0043377300477097265,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:22:15",
@@ -11565,7 +11565,7 @@
     "ev": 4.337730047709731e-07,
     "virtual_balance_after": 0.004250975446755532,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:23:16",
@@ -11583,7 +11583,7 @@
     "ev": 4.2509754467555356e-07,
     "virtual_balance_after": 0.004165955937820421,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:24:16",
@@ -11601,7 +11601,7 @@
     "ev": 4.1659559378204245e-07,
     "virtual_balance_after": 0.0040826368190640125,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:25:17",
@@ -11619,7 +11619,7 @@
     "ev": 4.082636819064016e-07,
     "virtual_balance_after": 0.004000984082682732,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:26:02",
@@ -11637,7 +11637,7 @@
     "ev": 4.000984082682736e-07,
     "virtual_balance_after": 0.003920964401029078,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:27:03",
@@ -11655,7 +11655,7 @@
     "ev": 3.920964401029081e-07,
     "virtual_balance_after": 0.0038425451130084964,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:28:03",
@@ -11673,7 +11673,7 @@
     "ev": 3.8425451130085003e-07,
     "virtual_balance_after": 0.0037656942107483263,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:29:04",
@@ -11691,7 +11691,7 @@
     "ev": 3.76569421074833e-07,
     "virtual_balance_after": 0.00369038032653336,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:30:04",
@@ -11709,7 +11709,7 @@
     "ev": 3.690380326533363e-07,
     "virtual_balance_after": 0.0036165727200026926,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:31:04",
@@ -11727,7 +11727,7 @@
     "ev": 3.616572720002696e-07,
     "virtual_balance_after": 0.003544241265602639,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:32:05",
@@ -11745,7 +11745,7 @@
     "ev": 3.5442412656026423e-07,
     "virtual_balance_after": 0.003473356440290586,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:33:05",
@@ -11763,7 +11763,7 @@
     "ev": 3.4733564402905896e-07,
     "virtual_balance_after": 0.0034038893114847744,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:34:06",
@@ -11781,7 +11781,7 @@
     "ev": 3.403889311484777e-07,
     "virtual_balance_after": 0.0033358115252550787,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:35:06",
@@ -11799,7 +11799,7 @@
     "ev": 3.335811525255082e-07,
     "virtual_balance_after": 0.003269095294749977,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:36:07",
@@ -11817,7 +11817,7 @@
     "ev": 3.26909529474998e-07,
     "virtual_balance_after": 0.0032037133888549777,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:37:07",
@@ -11835,7 +11835,7 @@
     "ev": 3.20371338885498e-07,
     "virtual_balance_after": 0.0031396391210778783,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:38:08",
@@ -11853,7 +11853,7 @@
     "ev": 3.1396391210778806e-07,
     "virtual_balance_after": 0.0030768463386563207,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:39:09",
@@ -11871,7 +11871,7 @@
     "ev": 3.0768463386563235e-07,
     "virtual_balance_after": 0.003015309411883194,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:40:09",
@@ -11889,7 +11889,7 @@
     "ev": 3.0153094118831967e-07,
     "virtual_balance_after": 0.0029550032236455304,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:41:10",
@@ -11907,7 +11907,7 @@
     "ev": 2.955003223645533e-07,
     "virtual_balance_after": 0.0028959031591726195,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:42:10",
@@ -11925,7 +11925,7 @@
     "ev": 2.895903159172622e-07,
     "virtual_balance_after": 0.002837985095989167,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:43:11",
@@ -11943,7 +11943,7 @@
     "ev": 8.513955287967509e-07,
     "virtual_balance_after": 0.002781225394069384,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:44:12",
@@ -11961,7 +11961,7 @@
     "ev": 1.390612697034693e-06,
     "virtual_balance_after": 0.002725600886187996,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:45:12",
@@ -11979,7 +11979,7 @@
     "ev": 2.7256008861879987e-07,
     "virtual_balance_after": 0.002671088868464236,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:46:12",
@@ -11997,7 +11997,7 @@
     "ev": 2.671088868464239e-07,
     "virtual_balance_after": 0.0026176670910949516,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:47:13",
@@ -12015,7 +12015,7 @@
     "ev": 2.617667091094954e-07,
     "virtual_balance_after": 0.0025653137492730525,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:48:13",
@@ -12033,7 +12033,7 @@
     "ev": 2.565313749273055e-07,
     "virtual_balance_after": 0.0025140074742875914,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:49:14",
@@ -12051,7 +12051,7 @@
     "ev": 1.0056029897150376e-06,
     "virtual_balance_after": 0.0024637273248018397,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:50:14",
@@ -12069,7 +12069,7 @@
     "ev": 2.4637273248018415e-07,
     "virtual_balance_after": 0.0024144527783058027,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:51:15",
@@ -12087,7 +12087,7 @@
     "ev": 2.414452778305805e-07,
     "virtual_balance_after": 0.002366163722739687,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:52:15",
@@ -12105,7 +12105,7 @@
     "ev": 2.366163722739689e-07,
     "virtual_balance_after": 0.002318840448284893,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:53:16",
@@ -12123,7 +12123,7 @@
     "ev": 2.318840448284895e-07,
     "virtual_balance_after": 0.0022724636393191954,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:54:16",
@@ -12141,7 +12141,7 @@
     "ev": 2.045217275387275e-06,
     "virtual_balance_after": 0.0022270143665328113,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 4.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:55:17",
@@ -12159,7 +12159,7 @@
     "ev": 2.2270143665328133e-07,
     "virtual_balance_after": 0.002182474079202155,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:56:02",
@@ -12177,7 +12177,7 @@
     "ev": 2.182474079202157e-07,
     "virtual_balance_after": 0.002138824597618112,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:57:02",
@@ -12195,7 +12195,7 @@
     "ev": 2.1388245976181138e-07,
     "virtual_balance_after": 0.0020960481056657497,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 10:58:03",
@@ -12213,7 +12213,7 @@
     "ev": 6.288144316997254e-07,
     "virtual_balance_after": 0.002054127143552435,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 10:59:03",
@@ -12231,7 +12231,7 @@
     "ev": 6.16238143065731e-07,
     "virtual_balance_after": 0.002013044600681386,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:00:04",
@@ -12249,7 +12249,7 @@
     "ev": 2.0130446006813879e-07,
     "virtual_balance_after": 0.0019727837086677582,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:01:04",
@@ -12267,7 +12267,7 @@
     "ev": 1.9727837086677598e-07,
     "virtual_balance_after": 0.001933328034494403,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:02:05",
@@ -12285,7 +12285,7 @@
     "ev": 7.733312137977618e-07,
     "virtual_balance_after": 0.001894661473804515,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:03:05",
@@ -12303,7 +12303,7 @@
     "ev": 7.578645895218068e-07,
     "virtual_balance_after": 0.0018567682443284246,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:04:06",
@@ -12321,7 +12321,7 @@
     "ev": 7.427072977313705e-07,
     "virtual_balance_after": 0.0018196328794418562,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 2.0% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:05:06",
@@ -12339,7 +12339,7 @@
     "ev": 1.8196328794418578e-07,
     "virtual_balance_after": 0.001783240221853019,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:06:07",
@@ -12357,7 +12357,7 @@
     "ev": 1.783240221853021e-07,
     "virtual_balance_after": 0.0017475754174159587,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:07:07",
@@ -12375,7 +12375,7 @@
     "ev": 1.7475754174159604e-07,
     "virtual_balance_after": 0.0017126239090676394,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:08:08",
@@ -12393,7 +12393,7 @@
     "ev": 1.7126239090676407e-07,
     "virtual_balance_after": 0.0016783714308862866,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:09:08",
@@ -12411,7 +12411,7 @@
     "ev": 1.6783714308862883e-07,
     "virtual_balance_after": 0.001644804002268561,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:10:09",
@@ -12429,7 +12429,7 @@
     "ev": 1.6448040022685625e-07,
     "virtual_balance_after": 0.0016119079222231896,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:11:09",
@@ -12447,7 +12447,7 @@
     "ev": 1.611907922223191e-07,
     "virtual_balance_after": 0.0015796697637787257,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:12:10",
@@ -12465,7 +12465,7 @@
     "ev": 1.579669763778727e-07,
     "virtual_balance_after": 0.0015480763685031512,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 0.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:13:10",
@@ -12483,7 +12483,7 @@
     "ev": 1.083653457952205e-06,
     "virtual_balance_after": 0.001517114841133088,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:14:11",
@@ -12501,7 +12501,7 @@
     "ev": 1.0619803887931608e-06,
     "virtual_balance_after": 0.0014867725443104263,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 3.5% edge"
+    "notes": "RESOLVED: LOST"
   },
   {
     "timestamp_utc": "2026-02-25 11:15:12",
@@ -12519,7 +12519,7 @@
     "ev": 4.460317632931283e-07,
     "virtual_balance_after": 0.0014570370934242178,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:16:12",
@@ -12537,7 +12537,7 @@
     "ev": 4.371111280272657e-07,
     "virtual_balance_after": 0.0014278963515557334,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:17:13",
@@ -12555,7 +12555,7 @@
     "ev": 4.2836890546672036e-07,
     "virtual_balance_after": 0.0013993384245246188,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:18:13",
@@ -12573,7 +12573,7 @@
     "ev": 4.1980152735738604e-07,
     "virtual_balance_after": 0.0013713516560341264,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:19:14",
@@ -12591,7 +12591,7 @@
     "ev": 4.1140549681023823e-07,
     "virtual_balance_after": 0.0013439246229134437,
     "real_balance_snapshot": 4.53,
-    "notes": "AUTO-TRADE: 1.5% edge"
+    "notes": "RESOLVED: WON"
   },
   {
     "timestamp_utc": "2026-02-25 11:20:14",
@@ -12682,5 +12682,527 @@
     "virtual_balance_after": 0.0012148014159830596,
     "real_balance_snapshot": 4.53,
     "notes": "AUTO-TRADE: 1.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:26:02",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 2.429602831966119e-05,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65519 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 1.2148014159830605e-07,
+    "virtual_balance_after": 0.0011905053876633985,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:28:03",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 15.125059114006836,
+    "entry_price": 0.485,
+    "reason_points": [
+      "SOL at $81.94 (CoinGecko)",
+      "NO at 0.485 = 1.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 51.5,
+    "ev": 0.22687588671010275,
+    "virtual_balance_after": 741.1278965863349,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 1.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:29:04",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 14.822557931726699,
+    "entry_price": 0.485,
+    "reason_points": [
+      "SOL at $81.92 (CoinGecko)",
+      "NO at 0.485 = 1.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 51.5,
+    "ev": 0.2223383689759007,
+    "virtual_balance_after": 726.3053386546082,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 1.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:30:04",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 14.526106773092165,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65579 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.07263053386546088,
+    "virtual_balance_after": 711.7792318815161,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:31:04",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 14.235584637630323,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65599 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.07117792318815168,
+    "virtual_balance_after": 697.5436472438859,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:32:05",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 13.950872944877718,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65588 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.06975436472438865,
+    "virtual_balance_after": 683.5927742990082,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:33:05",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 13.671855485980164,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65603 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.06835927742990087,
+    "virtual_balance_after": 669.920918813028,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:34:06",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 13.398418376260562,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65588 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.06699209188130287,
+    "virtual_balance_after": 656.5225004367675,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:35:06",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 13.13045000873535,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65572 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.06565225004367681,
+    "virtual_balance_after": 643.3920504280321,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:36:07",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 12.867841008560642,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65549 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.06433920504280327,
+    "virtual_balance_after": 630.5242094194715,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:37:07",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 12.61048418838943,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65552 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.0630524209419472,
+    "virtual_balance_after": 617.913725231082,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:38:08",
+    "event_type": "trade_sim",
+    "market": "ETH Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 12.35827450462164,
+    "entry_price": 0.465,
+    "reason_points": [
+      "ETH at $1907.68 (CoinGecko)",
+      "NO at 0.465 = 3.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 53.5,
+    "ev": 0.4325396076617571,
+    "virtual_balance_after": 605.5554507264604,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 3.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:39:08",
+    "event_type": "trade_sim",
+    "market": "ETH Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 12.111109014529209,
+    "entry_price": 0.465,
+    "reason_points": [
+      "ETH at $1906.82 (CoinGecko)",
+      "NO at 0.465 = 3.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 53.5,
+    "ev": 0.423888815508522,
+    "virtual_balance_after": 593.4443417119312,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 3.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:40:09",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 11.868886834238625,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65482 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.05934443417119318,
+    "virtual_balance_after": 581.5754548776926,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:41:09",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 11.63150909755385,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65469 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.05815754548776931,
+    "virtual_balance_after": 569.9439457801387,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:42:10",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 11.398878915602776,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65446 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.05699439457801393,
+    "virtual_balance_after": 558.545066864536,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:43:11",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 11.17090133729072,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65449 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.055854506686453656,
+    "virtual_balance_after": 547.3741655272453,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:44:11",
+    "event_type": "trade_sim",
+    "market": "ETH Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 10.947483310544905,
+    "entry_price": 0.34,
+    "reason_points": [
+      "ETH at $1906.76 (CoinGecko)",
+      "NO at 0.34 = 16.0% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 66.0,
+    "ev": 1.7515973296871845,
+    "virtual_balance_after": 536.4266822167003,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 16.0% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:45:11",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 10.728533644334007,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65463 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.05364266822167008,
+    "virtual_balance_after": 525.6981485723663,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:46:12",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 10.513962971447327,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65448 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.052569814857236684,
+    "virtual_balance_after": 515.184185600919,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:47:12",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 10.303683712018382,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65456 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.051518418560091955,
+    "virtual_balance_after": 504.88050188890065,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:48:13",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 10.097610037778013,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65484 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.05048805018889011,
+    "virtual_balance_after": 494.78289185112266,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:49:13",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 9.895657837022453,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65480 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.04947828918511231,
+    "virtual_balance_after": 484.8872340141002,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:50:14",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 9.697744680282005,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65431 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.04848872340141007,
+    "virtual_balance_after": 475.1894893338182,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:51:14",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 9.503789786676364,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65409 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.04751894893338186,
+    "virtual_balance_after": 465.68569954714184,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:52:15",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 9.313713990942837,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65411 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.04656856995471423,
+    "virtual_balance_after": 456.371985556199,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:53:16",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 9.12743971112398,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65453 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.04563719855561994,
+    "virtual_balance_after": 447.244545845075,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:54:16",
+    "event_type": "trade_sim",
+    "market": "XRP Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 8.9448909169015,
+    "entry_price": 0.405,
+    "reason_points": [
+      "XRP at $1.37 (CoinGecko)",
+      "YES at 0.405 = 9.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 59.5,
+    "ev": 0.8497646371056422,
+    "virtual_balance_after": 438.2996549281735,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 9.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-25 11:55:17",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 8.76599309856347,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $65435 (CoinGecko)",
+      "YES at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 0.04382996549281739,
+    "virtual_balance_after": 429.53366182961,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
   }
 ]
