@@ -1,0 +1,14 @@
+[
+  {
+    "timestamp_utc": "2026-02-25 14:40:05",
+    "event_type": "trade_sim_v3",
+    "strategy": "NEWS",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 20.0,
+    "entry_price": 0.505,
+    "virtual_balance_before": 500.0,
+    "virtual_balance_after": 480.0,
+    "notes": "NEWS: BEARISH"
+  }
+]
