@@ -1,0 +1,39 @@
+{
+  "wallet": "wallet1",
+  "mode": "paper",
+  "bankroll_start": 686.93,
+  "bankroll_current": 686.93,
+  "daily_pnl": 0,
+  "daily_pnl_pct": 0,
+  "kill_switch_triggered": false,
+  "trades": [],
+  "last_check": "2026-02-26T19:43:00+08:00",
+  "logs": [
+    {
+      "timestamp": "2026-02-26T19:41:00+08:00",
+      "action": "SCAN",
+      "result": "NO TRADE",
+      "reason": "No active 5m/15m BTC/ETH/XRP/SOL Up-Down markets found via CLOB API",
+      "binance_data": {
+        "BTC": {"price": 68171.13, "change_24h_pct": 4.21, "momentum": "bullish"},
+        "ETH": {"price": 2060.57, "change_24h_pct": 7.14, "momentum": "bullish"},
+        "XRP": {"price": 1.4416, "change_24h_pct": 4.40, "momentum": "bullish"},
+        "SOL": {"price": 86.96, "change_24h_pct": 4.82, "momentum": "bullish"}
+      },
+      "note": "All crypto assets showing strong upward momentum (4-7% gains). CLOB API returned mostly closed/resolved markets. Need direct Polymarket access for live crypto up/down markets."
+    },
+    {
+      "timestamp": "2026-02-26T19:43:00+08:00",
+      "action": "SCAN",
+      "result": "NO TRADE",
+      "reason": "No active 5m/15m BTC/ETH/XRP/SOL Up-Down markets available on Polymarket",
+      "binance_data": {
+        "BTC": {"price": 68094.14, "rsi_14": 34.88, "momentum_5m_pct": -0.058, "trend": "neutral", "edge_score": 40.9},
+        "ETH": {"price": 2059.13, "rsi_14": 35.74, "momentum_5m_pct": 0.084, "trend": "neutral", "edge_score": 41.48},
+        "XRP": {"price": 1.4416, "rsi_14": 35.4, "momentum_5m_pct": 0.171, "trend": "neutral", "edge_score": 41.31},
+        "SOL": {"price": 86.92, "rsi_14": 29.07, "momentum_5m_pct": 0.15, "trend": "neutral", "edge_score": 37.5}
+      },
+      "note": "Markets scanned: Gamma API returned 500 active markets - none are short-duration crypto Up/Down markets. All assets showing neutral trend with RSI in 29-36 range (oversold territory). SOL most oversold at RSI 29.07."
+    }
+  ]
+}

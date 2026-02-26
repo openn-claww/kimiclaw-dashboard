@@ -1,0 +1,51 @@
+{
+  "scan_time": "2026-02-26T19:55:00+08:00",
+  "wallet": "wallet1",
+  "mode": "PAPER",
+  "bankroll": 686.93,
+  "daily_pnl": 0,
+  "kill_switch_triggered": false,
+  "binance_prices": {
+    "BTC": 68020.21,
+    "ETH": 2057.29,
+    "XRP": 1.4367,
+    "SOL": 86.84
+  },
+  "technical_analysis": {
+    "BTC": {"rsi": 30.68, "momentum_5m": -0.6481, "signal": "OVERSOLD"},
+    "ETH": {"rsi": 33.77, "momentum_5m": -0.7474, "signal": "OVERSOLD"},
+    "XRP": {"rsi": 26.54, "momentum_5m": -1.4074, "signal": "OVERSOLD"},
+    "SOL": {"rsi": 25.30, "momentum_5m": -1.1949, "signal": "OVERSOLD"}
+  },
+  "polymarket_scan": {
+    "crypto_markets_found": 1,
+    "markets": [
+      {
+        "question": "Will bitcoin hit $1m before GTA VI?",
+        "yes_price": 0.488,
+        "no_price": 0.512,
+        "sum": 1.0,
+        "arbitrage_opportunity": false,
+        "end_date": "2026-07-31"
+      }
+    ],
+    "short_term_updown_markets": {
+      "BTC_5m": null,
+      "BTC_15m": null,
+      "ETH_5m": null,
+      "ETH_15m": null,
+      "XRP_5m": null,
+      "XRP_15m": null,
+      "SOL_5m": null,
+      "SOL_15m": null
+    }
+  },
+  "trade_decision": {
+    "action": "NO TRADE",
+    "reason": "No active 5m/15m BTC/ETH/XRP/SOL Up-Down markets found on Polymarket. Only long-term crypto market available (Bitcoin $1M before GTA VI) which does not meet strategy criteria.",
+    "opportunity_type": null,
+    "edge_percent": null,
+    "size": null
+  },
+  "next_scan": "2026-02-26T20:00:00+08:00"
+}

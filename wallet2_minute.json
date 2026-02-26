@@ -1,0 +1,78 @@
+[
+  {
+    "timestamp_utc": "2026-02-26 11:34:58",
+    "wallet": "WALLET_2",
+    "type": "SCAN_SUMMARY",
+    "markets_checked": ["BTC 5m", "BTC 15m", "ETH 5m", "ETH 15m", "SOL 5m", "SOL 15m", "XRP 5m", "XRP 15m"],
+    "opportunities_found": 0,
+    "trades_executed": 0,
+    "virtual_balance": 480.0,
+    "notes": "No active up/down markets found for 5m/15m timeframes. Markets may be between sessions or temporarily unavailable."
+  },
+  {
+    "timestamp_utc": "2026-02-26 11:36:52",
+    "wallet": "WALLET_2",
+    "type": "SCAN_SUMMARY",
+    "markets_checked": ["BTC 5m", "BTC 15m", "ETH 5m", "ETH 15m", "SOL 5m", "SOL 15m", "XRP 5m", "XRP 15m"],
+    "opportunities_found": 0,
+    "trades_executed": 0,
+    "virtual_balance": 480.0,
+    "market_data": {
+      "BTC": {"price": 68214.39, "change_24h": 4.324, "change_5m": 0.083, "change_15m": -0.194},
+      "ETH": {"price": 2061.94, "change_24h": 7.361, "change_5m": 0.140, "change_15m": -0.113},
+      "SOL": {"price": 86.94, "change_24h": 4.848, "change_5m": 0.092, "change_15m": -0.446},
+      "XRP": {"price": 1.441, "change_24h": 4.451, "change_5m": 0.160, "change_15m": -0.180}
+    },
+    "notes": "Markets showing strong 24h gains (4.3-7.4%). 5m momentum positive but 15m candles in pullback/consolidation. No >5% edge opportunity detected. Cooldown satisfied (114s since last trade)."
+  },
+  {
+    "timestamp_utc": "2026-02-26 11:38:03",
+    "wallet": "WALLET_2",
+    "type": "SCAN_SUMMARY",
+    "markets_checked": ["BTC 5m", "BTC 15m", "ETH 5m", "ETH 15m", "SOL 5m", "SOL 15m", "XRP 5m", "XRP 15m"],
+    "opportunities_found": 0,
+    "trades_executed": 0,
+    "virtual_balance": 480.0,
+    "market_data": {
+      "BTC": {"price": 68193.795, "change_24h": 4.324, "change_5m": -0.030, "change_15m": -0.194},
+      "ETH": {"price": 2061.15, "change_24h": 7.361, "change_5m": -0.038, "change_15m": -0.113},
+      "SOL": {"price": 86.9, "change_24h": 4.848, "change_5m": -0.046, "change_15m": -0.446},
+      "XRP": {"price": 1.44025, "change_24h": 4.451, "change_5m": -0.052, "change_15m": -0.180}
+    },
+    "analysis": {
+      "arbitrage_signals": 0,
+      "value_signals": 0,
+      "momentum_signals": 0,
+      "max_edge_detected": "0.05% (ETH 24h trend)"
+    },
+    "notes": "All four assets showing slight 5m pullback (-0.03% to -0.05%). 15m consolidation continues. No arbitrage (<0.995), no value (<0.18), no momentum (>0.1%) signals triggered. Edge insufficient for trade (>5% threshold). Cooldown satisfied (71s since last scan)."
+  },
+  {
+    "timestamp_utc": "2026-02-26 11:39:00",
+    "wallet": "WALLET_2",
+    "type": "SCAN_SUMMARY",
+    "markets_checked": ["BTC 5m", "BTC 15m", "ETH 5m", "ETH 15m", "SOL 5m", "SOL 15m", "XRP 5m", "XRP 15m"],
+    "opportunities_found": 0,
+    "trades_executed": 0,
+    "virtual_balance": 480.0,
+    "market_data": {
+      "BTC": {"price": 68472.0, "change_24h": 2.65, "change_5m": null, "change_15m": null},
+      "ETH": {"price": 2071.3, "change_24h": 11.64, "change_5m": null, "change_15m": null},
+      "SOL": {"price": 79.04, "change_24h": -1.57, "change_5m": null, "change_15m": null},
+      "XRP": {"price": 1.46662, "change_24h": 0.80, "change_5m": null, "change_15m": null}
+    },
+    "analysis": {
+      "arbitrage_signals": 0,
+      "value_signals": 0,
+      "momentum_signals": 0,
+      "max_edge_detected": "11.64% (ETH 24h - daily, not intraday)",
+      "technical_summary": {
+        "BTC": "neutral",
+        "ETH": "sell",
+        "SOL": "strong sell",
+        "XRP": "neutral"
+      }
+    },
+    "notes": "ETH leading with +11.64% 24h surge (short squeeze, $100M+ liquidations). SOL underperforming at -1.57%. No 5m/15m granular data available. Technical indicators show neutral to sell signals. No arbitrage (<0.995), no value (<0.18), no confirmed 5m/15m momentum (>0.1%) signals. Edge insufficient for trade (>5% threshold on intraday). Cooldown satisfied (~60s since last scan)."
+  }
+]
