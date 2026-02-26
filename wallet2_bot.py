@@ -1,202 +1,176 @@
 #!/usr/bin/env python3
 """
-WALLET 2 BOT - Fixed Rate Limit Version
-Uses Binance API instead of CoinGecko
+WALLET 2 BOT - Simplified Working Version
+Lower thresholds, every second scanning
 """
 
+import websocket
+import json
 import time
 import requests
-import json
 from datetime import datetime
 
-class Wallet2Bot:
-    def __init__(self):
-        self.running = True
-        self.prices = {}
-        self.last_prices = {}
-        self.trade_count = 0
-        self.last_trade_time = 0
-        self.virtual_balance = 500.0
-        self.virtual_free = 500.0
-        self.log_file = "/root/.openclaw/workspace/wallet2_trades.json"
-        
-        self.primary_timeframes = [5, 15]
-        self.extended_timeframes = [30, 60, 240, 1440]
-        self.coins = ['BTC', 'ETH', 'SOL', 'XRP']
-        
-    def log_trade(self, trade):
-        try:
-            with open(self.log_file, 'r') as f:
-                log = json.load(f)
-        except:
-            log = []
-        log.append(trade)
-        with open(self.log_file, 'w') as f:
-            json.dump(log, f, indent=2)
-    
-    def get_crypto_price(self, coin):
-        """Get price from Binance (no rate limits)"""
-        try:
-            symbol = coin + 'USDT'
-            resp = requests.get(
-                f'https://api.binance.com/api/v3/ticker/price?symbol={symbol}',
-                timeout=3
-            )
-            if resp.status_code == 200:
-                return float(resp.json()['price'])
-        except:
-            pass
-        return None
-    
-    def check_arbitrage(self, coin, yes_price, no_price, tf):
-        total = yes_price + no_price
-        if total < 0.99:
-            return {
-                'type': 'ARBITRAGE',
-                'coin': coin,
-                'tf': tf,
-                'yes': yes_price,
-                'no': no_price,
-                'profit': (1.0 - total) * 100
-            }
-        return None
-    
-    def check_momentum(self, coin, current_price, tf):
-        if coin not in self.last_prices:
-            return None
-        
-        change = (current_price - self.last_prices[coin]) / self.last_prices[coin]
-        
-        if tf == 5:
-            threshold = 0.005
-        elif tf == 15:
-            threshold = 0.008
-        else:
-            threshold = 0.02
-        
-        if abs(change) > threshold:
-            return {
-                'type': 'MOMENTUM',
-                'coin': coin,
-                'tf': tf,
-                'side': 'YES' if change > 0 else 'NO',
-                'strength': abs(change) * 100
-            }
-        return None
-    
-    def evaluate_market(self, coin, tf, current_price):
-        if self.virtual_free < 10:
-            return
-        
-        current_time = time.time()
-        min_interval = 10 if tf in [5, 15] else 30
-        
-        if current_time - self.last_trade_time < min_interval:
-            return
-        
-        try:
-            slot = int(current_time // (tf * 60)) * (tf * 60)
-            slug = f"{coin.lower()}-updown-{tf}m-{slot}"
-            
-            resp = requests.get(
-                f"https://gamma-api.polymarket.com/markets/slug/{slug}",
-                timeout=1
-            )
-            
-            if resp.status_code == 200:
-                data = resp.json()
-                prices = json.loads(data.get('outcomePrices', '[]'))
-                
-                if len(prices) == 2:
-                    yes_price = float(prices[0])
-                    no_price = float(prices[1])
-                    
-                    opportunity = None
-                    opportunity = self.check_arbitrage(coin, yes_price, no_price, tf)
-                    
-                    if not opportunity:
-                        momentum = self.check_momentum(coin, current_price, tf)
-                        if momentum:
-                            if tf in [5, 15] or momentum['strength'] > 3.0:
-                                opportunity = {
-                                    'type': 'MOMENTUM',
-                                    'coin': coin,
-                                    'tf': tf,
-                                    'side': momentum['side'],
-                                    'price': yes_price if momentum['side'] == 'YES' else no_price,
-                                    'reason': f"{momentum['strength']:.2f}%"
-                                }
-                    
-                    if opportunity:
-                        self.execute_trade(opportunity)
-                        self.last_trade_time = current_time
-                        
-        except Exception as e:
-            pass
-    
-    def execute_trade(self, opp):
-        amount = min(20.0, self.virtual_free * 0.04)
-        if amount < 10:
-            return
-        
-        self.trade_count += 1
-        tf_label = f"{opp['tf']}m"
-        
-        if opp['type'] == 'ARBITRAGE':
-            print(f"🎯 [{datetime.now().strftime('%H:%M:%S')}] W2 #{self.trade_count} ARBITRAGE {opp['coin']} {tf_label} | +{opp['profit']:.1f}% | ${self.virtual_free:.2f}")
-            trade = {
-                'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                'event_type': 'wallet2_trade',
-                'strategy': 'ARBITRAGE',
-                'market': f"{opp['coin'].upper()} {tf_label}",
-                'side': 'BOTH',
-                'amount': amount,
-                'expected_profit': opp['profit'],
-                'virtual_balance': self.virtual_free - amount
-            }
-            self.virtual_free -= amount
-        else:
-            print(f"📈 [{datetime.now().strftime('%H:%M:%S')}] W2 #{self.trade_count} MOMENTUM {opp['coin']} {tf_label} | {opp['side']} | {opp['reason']} | ${self.virtual_free:.2f}")
-            trade = {
-                'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                'event_type': 'wallet2_trade',
-                'strategy': 'MOMENTUM',
-                'market': f"{opp['coin'].upper()} {tf_label}",
-                'side': opp['side'],
-                'amount': amount,
-                'virtual_balance': self.virtual_free - amount
-            }
-            self.virtual_free -= amount
-        
-        self.log_trade(trade)
-    
-    def run(self):
-        print("="*70)
-        print("WALLET 2 BOT - BINANCE API (No Rate Limits)")
-        print("="*70)
-        print("Bankroll: $500.00")
-        print("Main: 5m/15m (80%) | Extended: 30m-24h (20%)")
-        print("Scanning every 3 seconds...")
-        print("="*70)
-        
-        cycle = 0
-        while self.running:
-            cycle += 1
-            for coin in self.coins:
-                price = self.get_crypto_price(coin)
-                if price:
-                    for tf in self.primary_timeframes:
-                        self.evaluate_market(coin, tf, price)
-                    for tf in self.extended_timeframes:
-                        self.evaluate_market(coin, tf, price)
-                    self.last_prices[coin] = price
-            
-            # Print status every 10 cycles (30 seconds)
-            if cycle % 10 == 0:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] Scanning... Balance: ${self.virtual_free:.2f} | Trades: {self.trade_count}")
-            
-            time.sleep(3)
+# Global variables
+prices = {}
+last_prices = {}
+velocities = {}
+trade_count = 0
+last_trade_time = 0
+virtual_free = 500.0
+log_file = "/root/.openclaw/workspace/wallet2_trades.json"
+timeframes = [5, 15, 30, 60, 240, 1440]
 
-if __name__ == "__main__":
-    bot = Wallet2Bot()
-    bot.run()
+def log_trade(trade):
+    try:
+        with open(log_file, 'r') as f:
+            log = json.load(f)
+    except:
+        log = []
+    log.append(trade)
+    with open(log_file, 'w') as f:
+        json.dump(log, f, indent=2)
+
+def check_arbitrage(coin, yes_price, no_price, tf):
+    total = yes_price + no_price
+    if total < 0.99:
+        return {'type': 'ARBITRAGE', 'coin': coin, 'tf': tf, 'profit': (1.0 - total) * 100}
+    return None
+
+def check_momentum(coin, tf):
+    if coin not in velocities:
+        return None
+    
+    velocity = velocities[coin]
+    
+    # LOWERED THRESHOLDS
+    if tf == 5:
+        threshold = 0.15  # 0.15% move
+    elif tf == 15:
+        threshold = 0.25  # 0.25% move
+    else:
+        threshold = 0.5   # 0.5% move
+    
+    if abs(velocity) > threshold:
+        return {'type': 'MOMENTUM', 'coin': coin, 'tf': tf, 'side': 'YES' if velocity > 0 else 'NO', 'strength': abs(velocity)}
+    return None
+
+def evaluate_market(coin, tf):
+    global trade_count, last_trade_time, virtual_free
+    
+    if virtual_free < 10:
+        return
+    
+    current_time = time.time()
+    min_interval = 10 if tf in [5, 15] else 30
+    
+    if current_time - last_trade_time < min_interval:
+        return
+    
+    try:
+        slot = int(current_time // (tf * 60)) * (tf * 60)
+        slug = f"{coin.lower()}-updown-{tf}m-{slot}"
+        
+        resp = requests.get(f"https://gamma-api.polymarket.com/markets/slug/{slug}", timeout=1)
+        
+        if resp.status_code == 200:
+            data = resp.json()
+            prices_pm = json.loads(data.get('outcomePrices', '[]'))
+            
+            if len(prices_pm) == 2:
+                yes_price = float(prices_pm[0])
+                no_price = float(prices_pm[1])
+                
+                opportunity = None
+                opportunity = check_arbitrage(coin, yes_price, no_price, tf)
+                
+                if not opportunity:
+                    momentum = check_momentum(coin, tf)
+                    if momentum:
+                        if tf in [5, 15] or momentum['strength'] > 3.0:
+                            opportunity = {
+                                'type': 'MOMENTUM',
+                                'coin': coin,
+                                'tf': tf,
+                                'side': momentum['side'],
+                                'price': yes_price if momentum['side'] == 'YES' else no_price
+                            }
+                
+                if opportunity:
+                    execute_trade(opportunity)
+                    last_trade_time = current_time
+                    
+    except:
+        pass
+
+def execute_trade(opp):
+    global trade_count, virtual_free
+    
+    amount = min(20.0, virtual_free * 0.04)
+    if amount < 10:
+        return
+    
+    trade_count += 1
+    tf_label = f"{opp['tf']}m"
+    
+    if opp['type'] == 'ARBITRAGE':
+        print(f"🎯 [{datetime.now().strftime('%H:%M:%S')}] W2 #{trade_count} ARBITRAGE {opp['coin']} {tf_label} | +{opp['profit']:.1f}% | ${virtual_free:.2f}")
+        trade = {
+            'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'event_type': 'wallet2_trade',
+            'strategy': 'ARBITRAGE',
+            'market': f"{opp['coin'].upper()} {tf_label}",
+            'side': 'BOTH',
+            'amount': amount,
+            'virtual_balance': virtual_free - amount
+        }
+        virtual_free -= amount
+    else:
+        print(f"📈 [{datetime.now().strftime('%H:%M:%S')}] W2 #{trade_count} MOMENTUM {opp['coin']} {tf_label} | {opp['side']} | ${virtual_free:.2f}")
+        trade = {
+            'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'event_type': 'wallet2_trade',
+            'strategy': 'MOMENTUM',
+            'market': f"{opp['coin'].upper()} {tf_label}",
+            'side': opp['side'],
+            'amount': amount,
+            'virtual_balance': virtual_free - amount
+        }
+        virtual_free -= amount
+    
+    log_trade(trade)
+
+def on_message(ws, message):
+    global prices, last_prices, velocities
+    
+    try:
+        data = json.loads(message)
+        symbol = data.get('s', '').replace('USDT', '')
+        price = float(data.get('p', 0))
+        
+        if symbol and price:
+            if symbol in prices:
+                velocities[symbol] = price - prices[symbol]
+            
+            last_prices[symbol] = prices.get(symbol, price)
+            prices[symbol] = price
+            
+            for tf in timeframes:
+                evaluate_market(symbol, tf)
+                
+    except:
+        pass
+
+def on_open(ws):
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Wallet 2: WebSocket CONNECTED!")
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] Thresholds: 5m=0.15% | 15m=0.25% | Extended=0.5%")
+
+print("="*70)
+print("WALLET 2 BOT - LOWER THRESHOLDS")
+print("="*70)
+
+ws = websocket.WebSocketApp(
+    "wss://stream.binance.com:9443/ws/btcusdt@trade/ethusdt@trade/solusdt@trade/xrpusdt@trade",
+    on_open=on_open,
+    on_message=on_message
+)
+ws.run_forever()
