@@ -1,0 +1,13 @@
+[
+  {
+    "time": "18:42:03",
+    "name": "WALLET_1",
+    "coin": "XRP",
+    "tf": 5,
+    "side": "NO",
+    "amount": 20,
+    "type": "MOMENTUM",
+    "reason": "-0.12%",
+    "balance": 666.93
+  }
+]

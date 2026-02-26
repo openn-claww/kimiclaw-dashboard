@@ -1,0 +1,22 @@
+[
+  {
+    "time": "2026-02-26 18:49:33",
+    "name": "WALLET_1",
+    "coin": "BTC",
+    "tf": 5,
+    "side": "NO",
+    "amount": 20,
+    "reason": "TIME-based entry",
+    "balance": 666.93
+  },
+  {
+    "time": "2026-02-26 18:50:46",
+    "name": "WALLET_1",
+    "coin": "BTC",
+    "tf": 5,
+    "side": "NO",
+    "amount": 20,
+    "reason": "TIME-based entry",
+    "balance": 666.93
+  }
+]

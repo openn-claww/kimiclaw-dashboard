@@ -1,0 +1,98 @@
+[
+  {
+    "timestamp_utc": "2026-02-26 18:26:29",
+    "wallet": "WALLET_2",
+    "type": "MOMENTUM",
+    "market": "ETH 5m",
+    "side": "YES",
+    "amount": 25.0,
+    "edge": 0.15,
+    "reason": "Move: +26.35% (from BTC, corr: 85%)",
+    "virtual_balance": 475.0,
+    "positions": {
+      "YES": 25.0,
+      "NO": 0,
+      "total_risk": 25.0
+    }
+  },
+  {
+    "timestamp_utc": "2026-02-26 18:26:40",
+    "wallet": "WALLET_2",
+    "type": "MOMENTUM",
+    "market": "ETH 5m",
+    "side": "NO",
+    "amount": 25.0,
+    "edge": 0.05950000000013915,
+    "reason": "Move: -5.95% (from BTC, corr: 85%)",
+    "virtual_balance": 450.0,
+    "positions": {
+      "YES": 25.0,
+      "NO": 25.0,
+      "total_risk": 50.0
+    }
+  },
+  {
+    "timestamp_utc": "2026-02-26 18:26:52",
+    "wallet": "WALLET_2",
+    "type": "MOMENTUM",
+    "market": "SOL 15m",
+    "side": "YES",
+    "amount": 25.0,
+    "edge": 0.007500000000003837,
+    "reason": "Move: +0.75% (from BTC, corr: 75%)",
+    "virtual_balance": 425.0,
+    "positions": {
+      "YES": 50.0,
+      "NO": 25.0,
+      "total_risk": 75.0
+    }
+  },
+  {
+    "timestamp_utc": "2026-02-26 18:27:45",
+    "wallet": "WALLET_2",
+    "type": "MOMENTUM",
+    "market": "ETH 15m",
+    "side": "YES",
+    "amount": 25.0,
+    "edge": 0.008500000000185536,
+    "reason": "Move: +0.85% (from BTC, corr: 85%)",
+    "virtual_balance": 475.0,
+    "positions": {
+      "YES": 25.0,
+      "NO": 0,
+      "total_risk": 25.0
+    }
+  },
+  {
+    "timestamp_utc": "2026-02-26 18:27:46",
+    "wallet": "WALLET_2",
+    "type": "MOMENTUM",
+    "market": "SOL 15m",
+    "side": "YES",
+    "amount": 25.0,
+    "edge": 0.014999999999997016,
+    "reason": "Move: +1.50% (from BTC, corr: 75%)",
+    "virtual_balance": 450.0,
+    "positions": {
+      "YES": 50.0,
+      "NO": 0,
+      "total_risk": 50.0
+    }
+  },
+  {
+    "timestamp_utc": "2026-02-26 18:28:10",
+    "wallet": "WALLET_2",
+    "type": "MOMENTUM",
+    "market": "SOL 15m",
+    "side": "YES",
+    "amount": 25.0,
+    "edge": 0.007500000000003837,
+    "reason": "Move: +0.75% (from BTC, corr: 75%)",
+    "virtual_balance": 475.0,
+    "positions": {
+      "YES": 25.0,
+      "NO": 0,
+      "total_risk": 25.0
+    }
+  }
+]
