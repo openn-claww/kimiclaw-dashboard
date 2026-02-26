@@ -9,17 +9,23 @@
 ## Active Positions
 | Market ID | Side | Entry | Size | Current | P&L | Status |
 |-----------|------|-------|------|---------|-----|--------|
-| 703258 | NO | $0.97 | ~$2 | $0.9675 | -$0.06 | HOLD - Long-term |
-| BTC $55K | NO | $0.89 | $1 | $0.90 | -$0.10 | OPEN - Resolves Feb 28 |
-| BTC $75K | NO | $0.845 | $1 | $0.83 | -$0.17 | OPEN - Resolves Feb 28 |
-| 1385457 | YES | $0.665 | $8 | $0.00 | -$8.00 | ❌ LOSS - Warriors won |
-| 1401343 | YES | $0.31 | $5 | $0.00 | -$5.00 | ❌ LOSS - BTC went DOWN |
-| 1402947 | YES | $0.0225 | $2.90 | $0.00 | -$2.90 | ❌ LOSS - BTC went DOWN |
-| 1382242 | NO | $0.61 | $5 | $0.00 | -$5.00 | ❌ LOSS - BTC was in range |
-| 1382273 | YES | $0.60 | $5 | $0.00 | -$5.00 | ❌ LOSS - BTC below $68K |
-| Iran Feb 20 | NO | $0.93 | $1 | $1.00 | +$0.07 | ✅ REDEEMED - NO WIN |
-| 1388774 | YES | $0.47 | $4.50 | $1.00 | +$2.39 | ✅ REDEEMED - Spurs WIN |
-| 1385475 | YES | $0.47 | $4.50 | $1.00 | +$2.39 | ✅ REDEEMED - Blazers WIN |
+| 703258 | NO | $0.97 | ~$2 | $0.9625 | -$0.01 | HOLD - Long-term (expires Dec 31, 2026) |
+| 1303400 | NO | $0.89 | $1 | $0.9925 | +$0.10 | OPEN - Resolves March 1 |
+| 1345641 | NO | $0.845 | $1 | $0.942 | +$0.10 | OPEN - Resolves March 1 |
+| 1198423 | YES | $0.235 | $1 | $0.095 | -$0.14 | OPEN - Resolves Feb 28 |
+
+## Closed Positions (Resolved)
+| Market ID | Side | Entry | Size | Result | P&L | Status |
+|-----------|------|-------|------|--------|-----|--------|
+| 1385457 | YES | $0.665 | $8 | Warriors won | -$8.00 | ❌ LOSS |
+| 1401343 | YES | $0.31 | $5 | BTC went DOWN | -$5.00 | ❌ LOSS |
+| 1402947 | YES | $0.0225 | $2.90 | BTC went DOWN | -$2.90 | ❌ LOSS |
+| 1382242 | NO | $0.61 | $5 | BTC was in range | -$5.00 | ❌ LOSS |
+| 1382273 | YES | $0.60 | $5 | BTC below $68K | -$5.00 | ❌ LOSS |
+| 1386650 | YES | $0.075 | $0.50 | No strike by Feb 21 | -$0.50 | ❌ LOSS - Resolved NO |
+| Iran Feb 20 | NO | $0.93 | $1 | No strike | +$0.07 | ✅ REDEEMED |
+| 1388774 | YES | $0.47 | $4.50 | Spurs won | +$2.39 | ✅ REDEEMED |
+| 1385475 | YES | $0.47 | $4.50 | Blazers won | +$2.39 | ✅ REDEEMED |
 
 ## Trade History
 | Date | Market | Side | Size | Entry | Exit | P&L | Notes |
@@ -35,6 +41,8 @@
 | 2026-02-19 | BTC $75K Feb 28 | NO | $1.00 | $0.845 | — | — | OPEN |
 | 2026-02-19 | Iran strike Feb 20 | NO | $1.00 | $0.93 | $1.00 | +$0.07 | ✅ REDEEMED NO WIN - TX: 33282cd... |
 | 2026-02-19 | Jesus return 2027 | NO | $2.00 | $0.97 | — | — | OPEN - Long-term |
+| 2026-02-19 | Iran strike Feb 21 | YES | $0.50 | $0.075 | $0.00 | -$0.50 | ❌ LOSS - Resolved NO |
+| 2026-02-19 | Iran strike Feb 28 | YES | $1.00 | $0.235 | — | — | OPEN |
 | 2026-02-22 | Spurs vs Pistons | YES | $4.50 | $0.47 | $1.00 | +$2.39 | ✅ REDEEMED - Spurs WIN |
 | 2026-02-22 | Blazers vs Suns | YES | $4.50 | $0.47 | $1.00 | +$2.39 | ✅ REDEEMED - Blazers WIN |
 
@@ -78,6 +86,14 @@
 - **Profit:** +$0.07
 - **USDC Return:** $2.00 redeemed
 - **Transaction:** https://polygonscan.com/tx/33282cdac491eec156e4c9060f4e8aff912179f2bd36b7253de09af3e9fbb4d8
+
+### Iran Strike by Feb 21, 2026 ❌ LOSS - Resolved
+- **Resolution Date:** February 22, 2026
+- **Result:** NO (No US airstrike against Iran occurred by Feb 21)
+- **Position:** YES (losing position)
+- **Invested:** $0.50 at $0.075
+- **Loss:** -$0.50
+- **Status:** Token balance exists but worthless (losing position)
 
 ### BTC >$66K on February 19, 2026 ✅ WIN
 - **Resolution Date:** February 17, 2026
