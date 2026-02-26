@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-WALLET 2 BOT - Fast Polling Version (WebSocket backup)
-Main: 5m/15m | Extended: 30m-24h (arbitrage only)
+WALLET 2 BOT - Fixed Rate Limit Version
+Uses Binance API instead of CoinGecko
 """
 
 import time
@@ -35,15 +35,15 @@ class Wallet2Bot:
             json.dump(log, f, indent=2)
     
     def get_crypto_price(self, coin):
-        """Get price from CoinGecko"""
+        """Get price from Binance (no rate limits)"""
         try:
-            coin_id = {'BTC': 'bitcoin', 'ETH': 'ethereum', 'SOL': 'solana', 'XRP': 'ripple'}[coin]
+            symbol = coin + 'USDT'
             resp = requests.get(
-                f'https://api.coingecko.com/api/v3/simple/price?ids={coin_id}&vs_currencies=usd',
-                timeout=2
+                f'https://api.binance.com/api/v3/ticker/price?symbol={symbol}',
+                timeout=3
             )
             if resp.status_code == 200:
-                return resp.json()[coin_id]['usd']
+                return float(resp.json()['price'])
         except:
             pass
         return None
@@ -85,14 +85,12 @@ class Wallet2Bot:
         return None
     
     def evaluate_market(self, coin, tf, current_price):
-        """Evaluate a specific market"""
         if self.virtual_free < 10:
             return
         
         current_time = time.time()
-        
-        # Rate limits
         min_interval = 10 if tf in [5, 15] else 30
+        
         if current_time - self.last_trade_time < min_interval:
             return
         
@@ -114,11 +112,8 @@ class Wallet2Bot:
                     no_price = float(prices[1])
                     
                     opportunity = None
-                    
-                    # Priority 1: Arbitrage (any timeframe)
                     opportunity = self.check_arbitrage(coin, yes_price, no_price, tf)
                     
-                    # Priority 2: Momentum (primary only, or strong for extended)
                     if not opportunity:
                         momentum = self.check_momentum(coin, current_price, tf)
                         if momentum:
@@ -136,7 +131,7 @@ class Wallet2Bot:
                         self.execute_trade(opportunity)
                         self.last_trade_time = current_time
                         
-        except:
+        except Exception as e:
             pass
     
     def execute_trade(self, opp):
@@ -177,28 +172,30 @@ class Wallet2Bot:
     
     def run(self):
         print("="*70)
-        print("WALLET 2 BOT - FAST POLLING")
+        print("WALLET 2 BOT - BINANCE API (No Rate Limits)")
         print("="*70)
         print("Bankroll: $500.00")
         print("Main: 5m/15m (80%) | Extended: 30m-24h (20%)")
-        print("Scanning every 2 seconds...")
+        print("Scanning every 3 seconds...")
         print("="*70)
         
+        cycle = 0
         while self.running:
+            cycle += 1
             for coin in self.coins:
                 price = self.get_crypto_price(coin)
                 if price:
-                    # Check primary timeframes
                     for tf in self.primary_timeframes:
                         self.evaluate_market(coin, tf, price)
-                    
-                    # Check extended timeframes
                     for tf in self.extended_timeframes:
                         self.evaluate_market(coin, tf, price)
-                    
                     self.last_prices[coin] = price
             
-            time.sleep(2)  # 2-second polling
+            # Print status every 10 cycles (30 seconds)
+            if cycle % 10 == 0:
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] Scanning... Balance: ${self.virtual_free:.2f} | Trades: {self.trade_count}")
+            
+            time.sleep(3)
 
 if __name__ == "__main__":
     bot = Wallet2Bot()

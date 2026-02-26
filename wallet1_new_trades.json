@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "timestamp_utc": "2026-02-26 11:52:07",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 24.729479999999995,
+    "entry_price": 0.495,
+    "edge": 1.4677999999977325,
+    "virtual_balance": 662.20052
+  }
+]
