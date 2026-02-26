@@ -53029,5 +53029,23 @@
     "virtual_balance_after": 4.19251128705922e-15,
     "real_balance_snapshot": 4.53,
     "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-27 01:56:01",
+    "event_type": "trade_sim",
+    "market": "BTC Up or Down - 5 Minutes",
+    "side": "NO",
+    "amount": 8.38502257411844e-17,
+    "entry_price": 0.495,
+    "reason_points": [
+      "BTC at $66800 (CoinGecko)",
+      "NO at 0.495 = 0.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 50.5,
+    "ev": 4.192511287059224e-19,
+    "virtual_balance_after": 4.108661061318036e-15,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 0.5% edge"
   }
 ]
