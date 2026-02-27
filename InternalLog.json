@@ -63685,5 +63685,23 @@
     "virtual_balance_after": 2.6810878863874004e-20,
     "real_balance_snapshot": 4.53,
     "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-27 11:56:12",
+    "event_type": "trade_sim",
+    "market": "SOL Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 5.362175772774801e-22,
+    "entry_price": 0.485,
+    "reason_points": [
+      "SOL at $87.36 (CoinGecko)",
+      "YES at 0.485 = 1.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 51.5,
+    "ev": 8.043263659162209e-24,
+    "virtual_balance_after": 2.6274661286596523e-20,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 1.5% edge"
   }
 ]
