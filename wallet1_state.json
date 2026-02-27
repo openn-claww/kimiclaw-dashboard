@@ -1,0 +1,133 @@
+{
+  "balance": 411.1411612443159,
+  "positions": [
+    {
+      "timestamp_utc": "2026-02-28 03:17:31",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 24.729479999999995,
+      "entry_price": 0.49,
+      "edge": 0.30940000000060536,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:17:49",
+      "market": "BTC 5m",
+      "side": "NO",
+      "amount": 23.839218719999998,
+      "entry_price": 0.51,
+      "edge": 0.5208000000013271,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:18:02",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 22.98100684608,
+      "entry_price": 0.49,
+      "edge": 0.5278000000015891,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:18:20",
+      "market": "BTC 5m",
+      "side": "NO",
+      "amount": 22.153690599621118,
+      "entry_price": 0.51,
+      "edge": 0.1871999999997206,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:18:35",
+      "market": "BTC 5m",
+      "side": "NO",
+      "amount": 21.356157738034756,
+      "entry_price": 0.51,
+      "edge": 0.12240000000048894,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:18:46",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 20.587336059465507,
+      "entry_price": 0.49,
+      "edge": 0.6370000000011351,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:19:11",
+      "market": "BTC 5m",
+      "side": "NO",
+      "amount": 19.84619196132475,
+      "entry_price": 0.51,
+      "edge": 0.0815999999991618,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:19:48",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 19.131729050717055,
+      "entry_price": 0.155,
+      "edge": 0.4105500000013853,
+      "slug": "btc-updown-5m-1772219700"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:20:11",
+      "market": "BTC 5m",
+      "side": "NO",
+      "amount": 18.442986804891245,
+      "entry_price": 0.495,
+      "edge": 0.1249499999994805,
+      "slug": "btc-updown-5m-1772220000"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:20:23",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 17.77903927991516,
+      "entry_price": 0.505,
+      "edge": 0.379750000000713,
+      "slug": "btc-updown-5m-1772220000"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:20:34",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 17.138993865838216,
+      "entry_price": 0.505,
+      "edge": 0.42629999999950086,
+      "slug": "btc-updown-5m-1772220000"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:20:47",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 16.521990086668037,
+      "entry_price": 0.505,
+      "edge": 0.16905000000057044,
+      "slug": "btc-updown-5m-1772220000"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:22:13",
+      "market": "BTC 5m",
+      "side": "YES",
+      "amount": 15.927198443547988,
+      "entry_price": 0.505,
+      "edge": 0.22294999999907303,
+      "slug": "btc-updown-5m-1772220000"
+    },
+    {
+      "timestamp_utc": "2026-02-28 03:22:28",
+      "market": "BTC 5m",
+      "side": "NO",
+      "amount": 15.353819299580262,
+      "entry_price": 0.495,
+      "edge": 0.08415000000044529,
+      "slug": "btc-updown-5m-1772220000"
+    }
+  ],
+  "trade_count": 14,
+  "last_update": "2026-02-28 03:22:28"
+}
