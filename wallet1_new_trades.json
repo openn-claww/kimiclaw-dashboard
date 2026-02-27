@@ -31,5 +31,170 @@
     "entry_price": 0.495,
     "edge": 0.255,
     "virtual_balance": 638.36130128
+  },
+  {
+    "timestamp_utc": "2026-02-27 13:58:08",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 22.98100684608,
+    "entry_price": 0.505,
+    "edge": 0.3626000000025669,
+    "virtual_balance": 615.38029443392
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:11:45",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 15m",
+    "side": "NO",
+    "amount": 24.729479999999995,
+    "entry_price": 0.335,
+    "edge": 0.12034999999734282,
+    "virtual_balance": 662.20052
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:12:50",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 23.839218719999998,
+    "entry_price": 0.505,
+    "edge": 0.32339999999814606,
+    "virtual_balance": 638.36130128
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:13:30",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "ETH 15m",
+    "side": "YES",
+    "amount": 22.98100684608,
+    "entry_price": 0.145,
+    "edge": 0.10889999999990095,
+    "virtual_balance": 615.38029443392
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:13:44",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 22.153690599621118,
+    "entry_price": 0.505,
+    "edge": 0.11024999999928696,
+    "virtual_balance": 593.2266038342989
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:13:58",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 21.356157738034756,
+    "entry_price": 0.495,
+    "edge": 0.2090999999980704,
+    "virtual_balance": 571.8704460962641
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:14:12",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 20.587336059465507,
+    "entry_price": 0.495,
+    "edge": 0.08415000000044529,
+    "virtual_balance": 551.2831100367986
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:14:23",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 19.84619196132475,
+    "entry_price": 0.495,
+    "edge": 0.08415000000044529,
+    "virtual_balance": 531.4369180754738
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:14:36",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 19.131729050717055,
+    "entry_price": 0.495,
+    "edge": 0.196350000001039,
+    "virtual_balance": 512.3051890247568
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:15:17",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 18.442986804891245,
+    "entry_price": 0.495,
+    "edge": 0.09690000000118744,
+    "virtual_balance": 493.8622022198656
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:15:35",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 17.77903927991516,
+    "entry_price": 0.495,
+    "edge": 0.1530000000014843,
+    "virtual_balance": 476.08316293995045
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:16:07",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 17.138993865838216,
+    "entry_price": 0.505,
+    "edge": 0.09554999999985739,
+    "virtual_balance": 458.9441690741122
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:16:22",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 16.521990086668037,
+    "entry_price": 0.505,
+    "edge": 0.25969999999942955,
+    "virtual_balance": 442.42217898744417
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:17:45",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 15.927198443547988,
+    "entry_price": 0.495,
+    "edge": 0.18870000000133588,
+    "virtual_balance": 426.4949805438962
+  },
+  {
+    "timestamp_utc": "2026-02-27 14:18:26",
+    "event_type": "wallet1_trade",
+    "strategy": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 15.353819299580262,
+    "entry_price": 0.505,
+    "edge": 0.23520000000156868,
+    "virtual_balance": 411.1411612443159
   }
 ]
