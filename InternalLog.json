@@ -80893,5 +80893,23 @@
     "virtual_balance_after": 1.0975881573189864e-28,
     "real_balance_snapshot": 4.53,
     "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-28 03:56:03",
+    "event_type": "trade_sim",
+    "market": "ETH Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 2.195176314637973e-30,
+    "entry_price": 0.485,
+    "reason_points": [
+      "ETH at $1921.25 (CoinGecko)",
+      "YES at 0.485 = 1.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 51.5,
+    "ev": 3.2927644719569623e-32,
+    "virtual_balance_after": 1.0756363941726066e-28,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 1.5% edge"
   }
 ]
