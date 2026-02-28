@@ -1,0 +1,56 @@
+[
+  {
+    "name": "V1: Original",
+    "trades": 6925,
+    "win_rate": 71.8,
+    "return_pct": 2.690348665459712e+37,
+    "pf": 7.32,
+    "final": 1.345174332729856e+38,
+    "time": 0.02
+  },
+  {
+    "name": "V2: +Volume",
+    "trades": 652,
+    "win_rate": 71.6,
+    "return_pct": 207905.0,
+    "pf": 7.49,
+    "final": 1040025.21,
+    "time": 0.01
+  },
+  {
+    "name": "V3: +Sentiment",
+    "trades": 561,
+    "win_rate": 70.2,
+    "return_pct": 45142.0,
+    "pf": 6.24,
+    "final": 226210.06,
+    "time": 0.01
+  },
+  {
+    "name": "V4: +MTF",
+    "trades": 544,
+    "win_rate": 70.0,
+    "return_pct": 37901.1,
+    "pf": 6.88,
+    "final": 190005.58,
+    "time": 0.01
+  },
+  {
+    "name": "V6: +Kelly",
+    "trades": 7,
+    "win_rate": 100.0,
+    "return_pct": 12.1,
+    "pf": 60.67,
+    "final": 560.67,
+    "time": 0.01
+  },
+  {
+    "name": "V7: +Session",
+    "trades": 396,
+    "win_rate": 71.7,
+    "return_pct": 3181.8,
+    "pf": 8.3,
+    "final": 16409.23,
+    "time": 0.01
+  }
+]

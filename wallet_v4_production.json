@@ -1,0 +1,18 @@
+{
+  "wallet": "V4_PRODUCTION",
+  "mode": "paper",
+  "bankroll_start": 500.00,
+  "bankroll_current": 500.00,
+  "daily_pnl": 0,
+  "daily_pnl_pct": 0,
+  "trades_today": 0,
+  "wins_today": 0,
+  "losses_today": 0,
+  "kill_switch_triggered": false,
+  "trades": [],
+  "started_at": "2026-03-01T05:35:00+08:00",
+  "expected_return_12h": "+150-300%",
+  "expected_balance_12h": "$1250-2000",
+  "strategy": "V4: Volume + Sentiment + Adaptive Exits + MTF",
+  "win_rate_expected": "71.4%"
+}

@@ -1,43 +1,87 @@
 #!/usr/bin/env python3
+"""Generate all-bets report for Discord"""
 import sqlite3
+from pathlib import Path
 
-conn = sqlite3.connect('memory/memory.db')
-cursor = conn.cursor()
-cursor.execute('SELECT * FROM trades ORDER BY id DESC')
-trades = cursor.fetchall()
-conn.close()
+DB_PATH = Path(__file__).parent / "positions.db"
 
-print('=== ALL BETS TRACKER ===\n')
-print(f'Total Bets: {len(trades)}')
-print(f'Open Bets: {sum(1 for t in trades if t[10] == "OPEN")}')
-print(f'Closed Bets: {sum(1 for t in trades if t[10] == "CLOSED")}')
-print()
+def get_all_positions():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.execute("""
+        SELECT id, market_slug, side, entry_price, size, entry_time, status, condition_id
+        FROM positions
+        ORDER BY entry_time DESC
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
 
-for trade in trades:
-    id_, timestamp, market_id, market_question, side, size_usd, entry_price, exit_price, pnl_usd, pnl_percent, status, tx_hash, strategy, reflection, tags = trade
+def format_report():
+    positions = get_all_positions()
     
-    # Calculate expected return
-    if status == 'OPEN':
-        if side == 'YES':
-            expected_return = size_usd * (1 / entry_price) if entry_price > 0 else 0
-        else:  # NO
-            expected_return = size_usd * (1 / (1 - entry_price)) if entry_price < 1 else 0
-    else:  # CLOSED
-        if pnl_usd is not None:
-            expected_return = size_usd + pnl_usd
+    if not positions:
+        return "📊 **ALL BETS TRACKER**\n\nNo bets found in database."
+    
+    lines = ["📊 **ALL BETS TRACKER**", f"🗓️ Report Time: Sunday, March 1st, 2026 — 5:32 AM (Asia/Shanghai)", ""]
+    lines.append(f"📈 **Total Bets: {len(positions)} | Open: {len([p for p in positions if p['status']=='open'])} | Closed: {len([p for p in positions if p['status']=='closed'])}**")
+    lines.append("")
+    
+    total_wagered = 0
+    total_expected = 0
+    
+    for idx, p in enumerate(positions, 1):
+        market = p['market_slug']
+        side = p['side']
+        entry_price = p['entry_price']
+        size = p['size']
+        status = p['status'].upper()
+        condition_id = p['condition_id']
+        
+        # Amount wagered = size * entry_price
+        amount_wagered = size * entry_price
+        total_wagered += amount_wagered
+        
+        # Expected return calculation:
+        # If YES wins: payout = size (you get $1 per share)
+        # If NO wins: payout = size (you get $1 per share)
+        # Expected return = size (potential payout) if open
+        expected_return = size if status == "OPEN" else 0
+        total_expected += expected_return
+        
+        # Format market name nicely
+        if "btc-updown-5m" in market:
+            market_display = f"BTC Up/Down 5m"
+        elif "btc-updown-15m" in market:
+            market_display = f"BTC Up/Down 15m"
         else:
-            expected_return = size_usd
+            market_display = market
+        
+        # Extract timestamp from ID for display
+        parts = p['id'].split('-')
+        if len(parts) >= 4:
+            ts = parts[-2] if parts[-1] in ['YES', 'NO'] else parts[-1]
+            try:
+                from datetime import datetime
+                dt = datetime.fromtimestamp(int(ts))
+                time_str = dt.strftime("%m/%d %H:%M")
+            except:
+                time_str = ""
+        else:
+            time_str = ""
+        
+        # Transaction link (Polygonscan)
+        tx_link = f"https://polygonscan.com/tx/{condition_id}" if condition_id else "N/A"
+        
+        line = f"📊 **BET #{idx}** | Market: {market_display} ({time_str}) | Side: {side} | Amount: ${amount_wagered:.2f} | Status: {status} | Expected: ${expected_return:.2f} | Tx: <{tx_link}>"
+        lines.append(line)
     
-    tx_link = f'https://polygonscan.com/tx/{tx_hash}' if tx_hash else 'N/A'
+    lines.append("")
+    lines.append(f"💰 **Total Wagered: ${total_wagered:.2f}**")
+    lines.append(f"💵 **Total Expected Returns (if all win): ${total_expected:.2f}**")
+    lines.append(f"📊 **Potential Profit: ${total_expected - total_wagered:.2f}**")
     
-    print(f'📊 BET #{id_}')
-    print(f'   Market: {market_question}')
-    print(f'   Side: {side}')
-    print(f'   Amount: ${size_usd:.2f}')
-    print(f'   Status: {status}')
-    print(f'   Expected Return: ${expected_return:.2f}')
-    print(f'   Tx: {tx_link}')
-    if pnl_usd is not None:
-        pnl_str = f'{pnl_percent*100:.1f}%' if pnl_percent is not None else 'N/A'
-        print(f'   PnL: ${pnl_usd:.2f} ({pnl_str})')
-    print()
+    return "\n".join(lines)
+
+if __name__ == "__main__":
+    print(format_report())
