@@ -82,8 +82,8 @@ def monitor_wallet():
     """Monitor wallet and alert on issues"""
     log("Checking wallet...")
     
-    # Use bash explicitly for source command
-    cmd = f"bash -c 'cd {SKILL_DIR} && source .env && uv run python scripts/polyclaw.py wallet status'"
+    # Use direct python execution with environment loaded
+    cmd = f"cd {SKILL_DIR} && python3 scripts/polyclaw.py wallet status"
     success, output = retry_command(cmd, max_retries=3)
     
     if success:

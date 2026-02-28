@@ -163,5 +163,16 @@
     "exit_reason": "stop_loss",
     "pnl_pct": -38.70967741935485,
     "virtual_balance": 453.0773335748241
+  },
+  {
+    "timestamp_utc": "2026-02-28 23:35:15",
+    "type": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 20.159463716487526,
+    "entry_price": 0.505,
+    "edge": 0.17198212388291761,
+    "regime": "high_vol",
+    "virtual_balance": 479.84053628351245
   }
 ]
