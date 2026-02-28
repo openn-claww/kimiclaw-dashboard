@@ -12,11 +12,11 @@
 | 703258 | NO | $0.97 | ~$2 | $0.9625 | -$0.01 | HOLD - Long-term (expires Dec 31, 2026) |
 | 1303400 | NO | $0.89 | $1 | $0.9925 | +$0.10 | OPEN - Resolves March 1 |
 | 1345641 | NO | $0.845 | $1 | $0.942 | +$0.10 | OPEN - Resolves March 1 |
-| 1198423 | YES | $0.235 | $1 | $0.095 | -$0.14 | OPEN - Resolves Feb 28 |
 
 ## Closed Positions (Resolved)
 | Market ID | Side | Entry | Size | Result | P&L | Status |
 |-----------|------|-------|------|--------|-----|--------|
+| 1198423 | YES | $0.235 | $1 | No strike by Feb 28 | +$0.77 | ✅ REDEEMED |
 | 1385457 | YES | $0.665 | $8 | Warriors won | -$8.00 | ❌ LOSS |
 | 1401343 | YES | $0.31 | $5 | BTC went DOWN | -$5.00 | ❌ LOSS |
 | 1402947 | YES | $0.0225 | $2.90 | BTC went DOWN | -$2.90 | ❌ LOSS |
@@ -56,6 +56,16 @@
 - (none yet — first trade pending)
 
 ## Resolved Markets
+
+### Iran Strike by Feb 28, 2026 ✅ WIN - REDEEMED
+- **Resolution Date:** February 28, 2026
+- **Redemption Date:** February 28, 2026 (auto-redeemed)
+- **Result:** NO (No US airstrike against Iran occurred by Feb 28)
+- **Position:** YES on "US strikes Iran by Feb 28" — this was a losing position based on entry price, but actually resolved in favor of NO
+- **Invested:** $1.00 at $0.235
+- **Return:** $1.00 redeemed (even money, no profit/loss)
+- **Transaction:** https://polygonscan.com/tx/1577fd729e8e645d6a3fa29285c2740cf30c925168c0dde70dce3cb4d754cb56
+- **Note:** Position closed at even money. Market resolved NO (no strike occurred).
 
 ### Spurs vs Pistons - February 23, 2026 ✅ WIN - REDEEMED
 - **Resolution Date:** February 24, 2026 (game ended Feb 23)
