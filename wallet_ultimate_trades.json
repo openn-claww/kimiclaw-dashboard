@@ -273,5 +273,27 @@
     "exit_reason": "take_profit",
     "pnl_pct": 352.38095238095235,
     "virtual_balance": 468.13382817730627
+  },
+  {
+    "timestamp_utc": "2026-03-01 03:40:50",
+    "type": "EDGE",
+    "market": "BTC 15m",
+    "side": "NO",
+    "amount": 25.0,
+    "entry_price": 0.025,
+    "edge": 0.7402222292041427,
+    "regime": "choppy",
+    "virtual_balance": 475.0
+  },
+  {
+    "timestamp_utc": "2026-03-01 03:41:42",
+    "type": "EXIT",
+    "market": "BTC-15m",
+    "side": "NO",
+    "exit_price": 0.015,
+    "entry_price": 0.025,
+    "exit_reason": "stop_loss",
+    "pnl_pct": -40.00000000000001,
+    "virtual_balance": 475.375
   }
 ]

@@ -1,0 +1,37 @@
+{
+  "type": "daily",
+  "date": "2026-03-01",
+  "generated_at": "2026-03-01T03:27:24.730716",
+  "summary": {
+    "trades_today": 0,
+    "total_trades": 15,
+    "open_positions": 15,
+    "pnl_today": 0,
+    "total_pnl": 0,
+    "win_rate": 0,
+    "roi_percent": 0.0
+  },
+  "market_data": {
+    "price_usd": 65701,
+    "change_24h": 0.50534,
+    "high_24h": 66021,
+    "low_24h": 63177,
+    "market_cap": 1313993088369,
+    "volume_24h": 41993741817,
+    "last_updated": "2026-02-28T19:26:24.653Z"
+  },
+  "opportunities": [
+    {
+      "market": "BTC >$66K",
+      "market_id": "1369917",
+      "recommendation": "NO",
+      "edge": 1.0,
+      "confidence": 10,
+      "real_price": 65701
+    }
+  ],
+  "insights": [
+    "\ud83c\udfaf 1 trading opportunity(s) detected",
+    "\ud83d\udcca High position count: 15 open trades"
+  ]
+}
