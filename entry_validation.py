@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 
 MIN_YES_PRICE   = 0.15   # Below this → market is nearly resolved NO
 MAX_YES_PRICE   = 0.85   # Above this → market is nearly resolved YES
-MIN_NO_PRICE    = 0.15   # Mirror for NO side
-MAX_NO_PRICE    = 0.85
+MIN_NO_PRICE    = 0.15   # Mirror for NO side - THE BUG FIX
+MAX_NO_PRICE    = 0.85   # Mirror for NO side - THE BUG FIX
 
 MIN_LIQUIDITY   = 50.0   # Minimum $ liquidity to enter
 MIN_VOLUME_24H  = 100.0  # Minimum 24h volume
@@ -143,6 +143,12 @@ def validate_trade(
         reasons.append(f"yes_price {yes_price:.3f} below hard floor {MIN_YES_PRICE} (market near-resolved NO)")
     if yes_price > MAX_YES_PRICE:
         reasons.append(f"yes_price {yes_price:.3f} above hard ceiling {MAX_YES_PRICE} (market near-resolved YES)")
+    
+    # ── BUG FIX: Check NO price too ──
+    if no_price < MIN_NO_PRICE:
+        reasons.append(f"no_price {no_price:.3f} below hard floor {MIN_NO_PRICE} (market near-resolved YES)")
+    if no_price > MAX_NO_PRICE:
+        reasons.append(f"no_price {no_price:.3f} above hard ceiling {MAX_NO_PRICE} (market near-resolved NO)")
 
     # ── Regime-specific bounds ──
     regime_min = regime_params.get('min_price', MIN_YES_PRICE)
