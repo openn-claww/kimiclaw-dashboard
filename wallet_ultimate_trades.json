@@ -86,5 +86,82 @@
     "edge": 0.25869857825810694,
     "regime": "high_vol",
     "virtual_balance": 456.6936708281995
+  },
+  {
+    "timestamp_utc": "2026-02-28 22:57:51",
+    "type": "EXIT",
+    "market": "BTC-15m",
+    "side": "YES",
+    "exit_price": 0.015,
+    "entry_price": 0.045,
+    "exit_reason": "stop_loss",
+    "pnl_pct": -66.66666666666666,
+    "virtual_balance": 457.01654945905096
+  },
+  {
+    "timestamp_utc": "2026-02-28 22:58:17",
+    "type": "EDGE",
+    "market": "BTC 15m",
+    "side": "YES",
+    "amount": 34.878784445317756,
+    "entry_price": 0.015,
+    "edge": 0.13598689672912537,
+    "regime": "low_vol",
+    "virtual_balance": 422.1377650137332
+  },
+  {
+    "timestamp_utc": "2026-02-28 22:58:56",
+    "type": "EDGE",
+    "market": "BTC 15m",
+    "side": "YES",
+    "amount": 21.873902757864037,
+    "entry_price": 0.015,
+    "edge": 0.37495611031456144,
+    "regime": "choppy",
+    "virtual_balance": 478.126097242136
+  },
+  {
+    "timestamp_utc": "2026-02-28 22:59:08",
+    "type": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 20.877572852932627,
+    "entry_price": 0.525,
+    "edge": 0.22775686070250412,
+    "regime": "high_vol",
+    "virtual_balance": 457.24852438920334
+  },
+  {
+    "timestamp_utc": "2026-02-28 23:00:07",
+    "type": "EXIT",
+    "market": "BTC-15m",
+    "side": "YES",
+    "exit_price": 0.525,
+    "entry_price": 0.015,
+    "exit_reason": "take_profit",
+    "pnl_pct": 3400.0,
+    "virtual_balance": 468.73232333708194
+  },
+  {
+    "timestamp_utc": "2026-02-28 23:02:14",
+    "type": "EDGE",
+    "market": "BTC 15m",
+    "side": "NO",
+    "amount": 21.895090576584387,
+    "entry_price": 0.465,
+    "edge": 0.2785214676009893,
+    "regime": "high_vol",
+    "virtual_balance": 446.83723276049756
+  },
+  {
+    "timestamp_utc": "2026-02-28 23:09:56",
+    "type": "EXIT",
+    "market": "BTC-15m",
+    "side": "NO",
+    "exit_price": 0.285,
+    "entry_price": 0.465,
+    "exit_reason": "stop_loss",
+    "pnl_pct": -38.70967741935485,
+    "virtual_balance": 453.0773335748241
   }
 ]
