@@ -1,6 +1,13 @@
 {
-  "balance": 500.00,
-  "positions": {},
-  "trade_count": 0,
-  "last_update": "2026-02-28 20:45:00"
+  "balance": 456.6936708281995,
+  "positions": {
+    "BTC-15m": [
+      "YES"
+    ],
+    "BTC-5m": [
+      "NO"
+    ]
+  },
+  "trade_count": 2,
+  "last_update": "2026-02-28 22:54:59"
 }
