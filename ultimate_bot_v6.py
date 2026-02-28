@@ -27,10 +27,10 @@ MIN_EDGE = 0.10
 RECONNECT_DELAY = 5
 
 VELOCITY_THRESHOLDS = {
-    'BTC': {'raw': 0.088, 'ema_factor': 0.3},  # 3.5% × 2.5
-    'ETH': {'raw': 0.113, 'ema_factor': 0.3},  # 4.5% × 2.5
-    'SOL': {'raw': 0.163, 'ema_factor': 0.3},  # 6.5% × 2.5
-    'XRP': {'raw': 0.138, 'ema_factor': 0.3},  # 5.5% × 2.5
+    'BTC': {'raw': 0.15, 'ema_factor': 0.3},
+    'ETH': {'raw': 0.015, 'ema_factor': 0.3},
+    'SOL': {'raw': 0.25, 'ema_factor': 0.3},
+    'XRP': {'raw': 0.08, 'ema_factor': 0.3},
 }
 
 COINS = ['BTC', 'ETH', 'SOL', 'XRP']
