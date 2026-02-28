@@ -347,6 +347,132 @@ def evaluate_market(coin, tf):
     except Exception as e:
         pass
 
+def evaluate_market_with_volume(coin, tf, current_volume):
+    """Evaluate trading opportunity with volume confirmation."""
+    global trade_count, last_trade_time, virtual_free
+    
+    if virtual_free < 20:
+        return
+    
+    current_time = time.time()
+    min_interval = 10 if tf == 5 else 20
+    
+    if current_time - last_trade_time < min_interval:
+        return
+    
+    our_regime = current_regimes.get(coin, 'choppy')
+    
+    # Check volume confirmation
+    vs = get_volume_state(coin)
+    confirmed, debug = is_volume_confirmed(vs, current_volume)
+    
+    if not confirmed:
+        if debug.get('block_reason'):
+            print(f"[VOLUME BLOCKED] {coin} {tf}m | {debug['block_reason']}")
+        return
+    
+    try:
+        slot = int(current_time // (tf * 60)) * (tf * 60)
+        slug = f"{coin.lower()}-updown-{tf}m-{slot}"
+        market_key = f"{coin}-{tf}m"
+        
+        import requests
+        resp = requests.get(f"{GAMMA_API}/markets/slug/{slug}", timeout=2)
+        
+        if resp.status_code == 200:
+            data = resp.json()
+            
+            if data.get('resolved'):
+                return
+            
+            prices_pm = json.loads(data.get('outcomePrices', '[]'))
+            
+            if len(prices_pm) == 2:
+                yes_price = float(prices_pm[0])
+                no_price = float(prices_pm[1])
+                
+                # Check arbitrage
+                if yes_price + no_price < 0.985:
+                    amount = min(50.0, virtual_free * POSITION_SIZE_PCT)
+                    if amount >= 20:
+                        # Risk check
+                        ok, reason = rm.pre_trade_check(coin=coin, side="ARB", size_usd=amount)
+                        if not ok:
+                            print(f"⛔ RISK BLOCK: {reason[:60]}")
+                            return
+                        
+                        trade_count += 1
+                        profit = (1.0 - (yes_price + no_price)) * 100
+                        print(f"🎯 [{datetime.now().strftime('%H:%M:%S')}] #{trade_count} ARB {coin} {tf}m | +{profit:.2f}% | VOL✓")
+                        
+                        pos_id = rm.on_trade_opened(coin=coin, side="ARB", size_usd=amount, market_id=market_key)
+                        
+                        virtual_free -= amount
+                        save_state()
+                        last_trade_time = current_time
+                    return
+                
+                # Use FIXED calculate_edge with volume confirmation
+                if coin in velocities_ema and velocities_ema[coin] != 0:
+                    signal = calculate_edge(
+                        coin=coin,
+                        yes_price=yes_price,
+                        no_price=no_price,
+                        velocity=velocities_ema[coin],
+                        regime_params=REGIME_PARAMS.get(our_regime, REGIME_PARAMS['default']),
+                        market=data
+                    )
+                    
+                    if signal:
+                        amount = min(50.0, virtual_free * POSITION_SIZE_PCT * signal.get('confidence', 1.0))
+                        if amount < 20:
+                            return
+                        
+                        # RISK MANAGER CHECK
+                        ok, reason = rm.pre_trade_check(coin=coin, side=signal['side'], size_usd=amount)
+                        if not ok:
+                            print(f"⛔ RISK BLOCK: {reason[:60]}")
+                            return
+                        
+                        trade_count += 1
+                        side = signal['side']
+                        entry_price = signal['yes_price']
+                        volume_ratio = debug.get('volume_ratio', 0)
+                        
+                        print(f"📈 [{datetime.now().strftime('%H:%M:%S')}] #{trade_count} EDGE {coin} {tf}m | {side} @ {entry_price:.3f} | VOL {volume_ratio:.1f}x✓")
+                        
+                        # Register with risk manager
+                        pos_id = rm.on_trade_opened(coin=coin, side=side, size_usd=amount, market_id=market_key)
+                        
+                        virtual_free -= amount
+                        
+                        active_positions[market_key] = {
+                            'side': side,
+                            'entry_price': entry_price,
+                            'shares': amount,
+                            'entry_time': time.time(),
+                            'pos_id': pos_id
+                        }
+                        open_positions[market_key].append(side)
+                        
+                        log_trade({
+                            'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                            'type': 'EDGE',
+                            'market': f"{coin.upper()} {tf}m",
+                            'side': side,
+                            'amount': amount,
+                            'entry_price': entry_price,
+                            'edge': signal['edge'],
+                            'volume_ratio': volume_ratio,
+                            'virtual_balance': virtual_free
+                        })
+                        
+                        save_state()
+                        last_trade_time = current_time
+                    
+    except Exception as e:
+        pass
+
 def on_message(ws, message):
     """Handle WebSocket message with volume filter."""
     global prices, velocities_ema, current_regimes

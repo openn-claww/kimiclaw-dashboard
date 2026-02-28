@@ -350,5 +350,16 @@
     "edge": 0.23828942597433966,
     "regime": "high_vol",
     "virtual_balance": 449.1802381875236
+  },
+  {
+    "timestamp_utc": "2026-03-01 04:41:41",
+    "type": "EDGE",
+    "market": "BTC 5m",
+    "side": "YES",
+    "amount": 20.150486185050088,
+    "entry_price": 0.505,
+    "edge": 0.17168287283500297,
+    "regime": "high_vol",
+    "virtual_balance": 479.8495138149499
   }
 ]
