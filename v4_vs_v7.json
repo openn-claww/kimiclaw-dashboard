@@ -1,0 +1,32 @@
+[
+  {
+    "name": "V4: Base",
+    "trades": 256,
+    "win_rate": 71.5,
+    "return_pct": 1800.8,
+    "pf": 8.14,
+    "final": 9503.81
+  },
+  {
+    "name": "V7: +Session",
+    "trades": 165,
+    "win_rate": 78.2,
+    "return_pct": 957.3,
+    "pf": 10.91,
+    "final": 5286.47,
+    "session_stats": {
+      "asian": {
+        "trades": 21,
+        "wins": 14
+      },
+      "european": {
+        "trades": 64,
+        "wins": 49
+      },
+      "us": {
+        "trades": 80,
+        "wins": 66
+      }
+    }
+  }
+]

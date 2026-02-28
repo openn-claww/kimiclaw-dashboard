@@ -1,0 +1,18 @@
+[
+  {
+    "name": "V4: Fixed 5%",
+    "trades": 256,
+    "win_rate": 71.5,
+    "return_pct": 1800.8,
+    "pf": 9.34,
+    "final": 9503.81
+  },
+  {
+    "name": "V6: Kelly Criterion",
+    "trades": 11,
+    "win_rate": 90.9,
+    "return_pct": 18.3,
+    "pf": 37.63,
+    "final": 591.56
+  }
+]

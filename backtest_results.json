@@ -1,0 +1,47 @@
+[
+  {
+    "name": "V1: Original",
+    "trades": 33,
+    "win_rate": 48.5,
+    "return_pct": 15.7,
+    "max_dd": 5.4,
+    "pf": 1.5,
+    "final": 578.5
+  },
+  {
+    "name": "V2: +Volume",
+    "trades": 203,
+    "win_rate": 56.2,
+    "return_pct": 340.1,
+    "max_dd": 5.6,
+    "pf": 2.87,
+    "final": 2200.72
+  },
+  {
+    "name": "V3: +Sentiment",
+    "trades": 218,
+    "win_rate": 58.7,
+    "return_pct": 483.1,
+    "max_dd": 4.0,
+    "pf": 3.3,
+    "final": 2915.58
+  },
+  {
+    "name": "V4: +MTF",
+    "trades": 308,
+    "win_rate": 71.4,
+    "return_pct": 1749.3,
+    "max_dd": 4.2,
+    "pf": 5.4,
+    "final": 9246.58
+  },
+  {
+    "name": "V5: +OrderBook",
+    "trades": 78,
+    "win_rate": 69.2,
+    "return_pct": 91.9,
+    "max_dd": 2.3,
+    "pf": 5.45,
+    "final": 959.39
+  }
+]

@@ -361,5 +361,38 @@
     "edge": 0.17168287283500297,
     "regime": "high_vol",
     "virtual_balance": 479.8495138149499
+  },
+  {
+    "timestamp_utc": "2026-03-01 05:12:00",
+    "type": "EDGE",
+    "market": "BTC 15m",
+    "side": "YES",
+    "amount": 23.116034125023592,
+    "entry_price": 0.385,
+    "edge": 0.4246413650009437,
+    "regime": "choppy",
+    "virtual_balance": 476.8839658749764
+  },
+  {
+    "timestamp_utc": "2026-03-01 05:12:44",
+    "type": "EXIT",
+    "market": "BTC-15m",
+    "side": "YES",
+    "exit_price": 0.135,
+    "entry_price": 0.385,
+    "exit_reason": "stop_loss",
+    "pnl_pct": -64.93506493506493,
+    "virtual_balance": 480.0046304818546
+  },
+  {
+    "timestamp_utc": "2026-03-01 05:13:58",
+    "type": "EDGE",
+    "market": "BTC 5m",
+    "side": "NO",
+    "amount": 21.488335349682547,
+    "entry_price": 0.495,
+    "edge": 0.24611555754199685,
+    "regime": "high_vol",
+    "virtual_balance": 458.51629513217205
   }
 ]
