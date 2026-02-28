@@ -99415,5 +99415,23 @@
     "virtual_balance_after": 1.02818508596052e-37,
     "real_balance_snapshot": 4.53,
     "notes": "AUTO-TRADE: 0.5% edge"
+  },
+  {
+    "timestamp_utc": "2026-02-28 21:26:02",
+    "event_type": "trade_sim",
+    "market": "XRP Up or Down - 5 Minutes",
+    "side": "YES",
+    "amount": 2.05637017192104e-39,
+    "entry_price": 0.485,
+    "reason_points": [
+      "XRP at $1.3 (CoinGecko)",
+      "YES at 0.485 = 1.5% edge",
+      "5-min slot active with liquidity"
+    ],
+    "your_prob": 51.5,
+    "ev": 3.084555257881563e-41,
+    "virtual_balance_after": 1.0076213842413095e-37,
+    "real_balance_snapshot": 4.53,
+    "notes": "AUTO-TRADE: 1.5% edge"
   }
 ]
