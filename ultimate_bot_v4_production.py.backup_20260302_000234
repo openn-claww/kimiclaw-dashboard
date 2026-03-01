@@ -4,10 +4,6 @@ ULTIMATE BOT v4 - PRODUCTION VERSION
 Features: Volume Filter + Sentiment + Adaptive Exits + MTF
 """
 
-# PID mutex - MUST be first to prevent duplicate processes
-from bot_lock import acquire_lock
-acquire_lock()
-
 import websocket
 import json
 import time
@@ -48,7 +44,7 @@ STATE_FILE = "/root/.openclaw/workspace/wallet_v4_production.json"
 LOG_FILE = "/root/.openclaw/workspace/trades_v4_production.json"
 
 # ============ INITIALIZE ============
-rm = RiskManager.load(starting_bankroll=VIRTUAL_BANKROLL)
+rm = RiskManager(starting_balance=VIRTUAL_BANKROLL)
 
 prices = {}
 velocities_ema = {}
