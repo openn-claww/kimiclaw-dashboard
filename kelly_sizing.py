@@ -1,204 +1,310 @@
-# kelly_sizing.py - Kelly Criterion position sizing
-from dataclasses import dataclass, field
-from collections import deque
+"""
+kelly_sizing.py
+Kelly Criterion Position Sizing for Polymarket Binary Markets
+
+FORMULA:
+  Kelly fraction = (p * b - q) / b
+  Where:
+    p = true win probability
+    q = 1 - p (loss probability)
+    b = net odds (profit per $1 risked)
+      YES at price P: b = (1 - P) / P  (e.g., P=0.025 → b=39)
+      NO  at price P: b = P / (1 - P)
+
+USAGE:
+  from kelly_sizing import kelly_position_size, KellySizer
+
+  # Simple function call
+  dollars = kelly_position_size(bankroll=500, entry_price=0.025,
+                                 estimated_edge_pct=0.03, side='YES')
+
+  # Full sizer with logging
+  sizer = KellySizer(bankroll=500)
+  rec = sizer.recommend(entry_price=0.40, estimated_edge_pct=0.03)
+  print(rec)
+"""
+
+from dataclasses import dataclass
 from typing import Optional
-from enum import Enum
-import time
-import json
-import os
 
-# Configuration
-KELLY_FRACTION = 0.5        # Half-Kelly
-MAX_POSITION_PCT = 0.10     # Hard cap at 10%
-MIN_POSITION_PCT = 0.005    # Floor at 0.5%
-MIN_TRADES = 15             # Minimum trades before Kelly valid
-ROLLING_WINDOW = 20         # Rolling window for stats
-MIN_WIN_RATE = 0.40
-MIN_REWARD_RATIO = 0.80
-PERSIST_PATH = "/root/.openclaw/workspace/kelly_stats.json"
 
-class TradeOutcome(Enum):
-    WIN = "win"
-    LOSS = "loss"
-    SCRATCH = "scratch"
+# ─── CONFIG ──────────────────────────────────────────────────────────────────
 
-@dataclass
-class TradeRecord:
-    coin: str
-    side: str
-    pnl_pct: float
-    timestamp: float = field(default_factory=time.time)
-    edge_score: float = 0.0
-    regime: str = ""
-    
-    @property
-    def outcome(self) -> TradeOutcome:
-        if abs(self.pnl_pct) < 0.005:
-            return TradeOutcome.SCRATCH
-        return TradeOutcome.WIN if self.pnl_pct > 0 else TradeOutcome.LOSS
+POLYMARKET_FEE = 0.02       # Fee reduces effective net odds
+MAX_STAKE_PCT  = 0.05       # Hard cap: never risk more than 5% of bankroll
+MIN_STAKE      = 1.00       # Minimum trade size in dollars
+KELLY_FRACTION = 0.5        # Use half-Kelly by default (reduces variance significantly)
 
-@dataclass
-class KellyStats:
-    coin: str
-    trades: deque = field(default_factory=lambda: deque(maxlen=ROLLING_WINDOW))
-    win_rate: float = 0.0
-    avg_win: float = 0.0
-    avg_loss: float = 0.0
-    reward_ratio: float = 0.0
-    kelly_f: float = 0.0
-    sample_size: int = 0
-    last_computed: float = 0.0
-    
-    def add_trade(self, record: TradeRecord):
-        if record.outcome != TradeOutcome.SCRATCH:
-            self.trades.append(record)
-    
-    def compute(self) -> "KellyStats":
-        active = [t for t in self.trades if t.outcome != TradeOutcome.SCRATCH]
-        self.sample_size = len(active)
-        self.last_computed = time.time()
-        
-        if self.sample_size < MIN_TRADES:
-            self.kelly_f = 0.0
-            return self
-        
-        wins = [t for t in active if t.outcome == TradeOutcome.WIN]
-        losses = [t for t in active if t.outcome == TradeOutcome.LOSS]
-        
-        if not wins or not losses:
-            self.kelly_f = 0.0
-            return self
-        
-        self.win_rate = len(wins) / self.sample_size
-        self.avg_win = sum(t.pnl_pct for t in wins) / len(wins)
-        self.avg_loss = abs(sum(t.pnl_pct for t in losses) / len(losses))
-        self.reward_ratio = self.avg_win / self.avg_loss if self.avg_loss > 0 else 0.0
-        
-        p, q, b = self.win_rate, 1 - self.win_rate, self.reward_ratio
-        
-        if b <= MIN_REWARD_RATIO or p <= MIN_WIN_RATE:
-            self.kelly_f = 0.0
-        else:
-            self.kelly_f = max(0.0, (p * b - q) / b)
-        
-        return self
-    
-    @property
-    def is_ready(self) -> bool:
-        return self.sample_size >= MIN_TRADES and self.kelly_f > 0
 
-@dataclass
-class KellyVerdict:
-    allowed: bool
-    position_pct: float
-    position_dollars: float
-    kelly_f: float
-    fractional_kelly: float
-    edge_adjusted: float
-    capped: bool
-    stats_source: str
-    sample_size: int
-    block_reason: Optional[str]
+# ─── CORE KELLY FUNCTIONS ────────────────────────────────────────────────────
 
-class KellyStatsManager:
-    def __init__(self):
-        self.per_coin: dict[str, KellyStats] = {}
-        self.global_pool = KellyStats(coin="__global__")
-        self._load()
-    
-    def record_trade(self, record: TradeRecord):
-        if record.coin not in self.per_coin:
-            self.per_coin[record.coin] = KellyStats(coin=record.coin)
-        self.per_coin[record.coin].add_trade(record)
-        self.global_pool.add_trade(record)
-        self._save()
-    
-    def get_stats(self, coin: str) -> tuple[KellyStats, str]:
-        coin_stats = self.per_coin.get(coin)
-        if coin_stats and coin_stats.compute().is_ready:
-            return coin_stats, "per_coin"
-        self.global_pool.compute()
-        return self.global_pool, "global"
-    
-    def _save(self):
-        try:
-            os.makedirs(os.path.dirname(PERSIST_PATH), exist_ok=True)
-            data = {
-                "global": self._stats_to_dict(self.global_pool),
-                "coins": {k: self._stats_to_dict(v) for k, v in self.per_coin.items()}
-            }
-            with open(PERSIST_PATH, "w") as f:
-                json.dump(data, f, indent=2)
-        except Exception as e:
-            print(f"[KELLY] Save failed: {e}")
-    
-    def _load(self):
-        try:
-            if not os.path.exists(PERSIST_PATH):
-                return
-            with open(PERSIST_PATH) as f:
-                data = json.load(f)
-            for coin, d in data.get("coins", {}).items():
-                self.per_coin[coin] = self._dict_to_stats(coin, d)
-            if "global" in data:
-                self.global_pool = self._dict_to_stats("__global__", data["global"])
-        except Exception as e:
-            print(f"[KELLY] Load failed: {e}")
-    
-    @staticmethod
-    def _stats_to_dict(s: KellyStats) -> dict:
-        return {"trades": [{"coin": t.coin, "side": t.side, "pnl_pct": t.pnl_pct,
-                "timestamp": t.timestamp, "edge_score": t.edge_score, "regime": t.regime}
-                for t in s.trades]}
-    
-    @staticmethod
-    def _dict_to_stats(coin: str, d: dict) -> KellyStats:
-        stats = KellyStats(coin=coin)
-        for t in d.get("trades", []):
-            stats.add_trade(TradeRecord(**t))
-        return stats
+def net_odds(entry_price: float, side: str) -> float:
+    """
+    Net odds = profit per $1 staked if you win (before fee).
+    After fee, effective odds are slightly lower.
 
-def calculate_kelly_size(coin: str, bankroll: float, edge_score: float,
-                         stats_manager: KellyStatsManager,
-                         kelly_fraction: float = KELLY_FRACTION) -> KellyVerdict:
-    def _block(reason: str) -> KellyVerdict:
-        return KellyVerdict(False, 0.0, 0.0, 0.0, 0.0, 0.0, False, "none", 0, reason)
-    
+    YES at 0.025: win $39 for every $1 staked (gross), net $38.22 after 2% fee
+    NO  at 0.025: win $0.0256 for every $1 staked — terrible bet
+    """
+    if side == 'YES':
+        gross_odds = (1 - entry_price) / entry_price
+    else:  # NO
+        gross_odds = entry_price / (1 - entry_price)
+
+    # Reduce odds by fee (fee is charged on winnings)
+    effective_odds = gross_odds * (1 - POLYMARKET_FEE)
+    return effective_odds
+
+
+def full_kelly(p_win: float, odds: float) -> float:
+    """
+    Full Kelly fraction of bankroll to bet.
+
+    Returns a value in [0, 1]. Negative means no edge (don't bet).
+    Never bet negative Kelly — it means the market has better info than you.
+    """
+    q = 1 - p_win
+    kelly = (p_win * odds - q) / odds
+    return max(kelly, 0.0)
+
+
+def half_kelly(p_win: float, odds: float) -> float:
+    """
+    Half-Kelly: half the full Kelly fraction.
+
+    Gives up ~25% of expected growth rate but cuts variance by ~75%.
+    Strongly recommended for real trading — full Kelly leads to brutal drawdowns.
+    """
+    return full_kelly(p_win, odds) * KELLY_FRACTION
+
+
+# ─── POSITION SIZE CALCULATOR ────────────────────────────────────────────────
+
+def kelly_position_size(
+    bankroll:          float,
+    entry_price:       float,
+    estimated_edge_pct: float,
+    side:              str  = 'YES',
+    use_half_kelly:    bool = True,
+    max_pct:           float = MAX_STAKE_PCT,
+    min_dollars:       float = MIN_STAKE,
+) -> float:
+    """
+    Returns the dollar amount to stake on this trade.
+
+    Args:
+        bankroll:           Current account balance
+        entry_price:        Market price (0.0 to 1.0)
+        estimated_edge_pct: Your estimated edge over market (e.g., 0.03 = 3%)
+        side:               'YES' or 'NO'
+        use_half_kelly:     If True, use 50% of full Kelly (recommended)
+        max_pct:            Hard cap as fraction of bankroll
+        min_dollars:        Minimum trade size (return 0 if below this)
+
+    Returns:
+        Dollar amount to stake (0.0 if no positive edge)
+    """
+    # Input validation
+    if not (0.0 < entry_price < 1.0):
+        raise ValueError(f"entry_price must be between 0 and 1, got {entry_price}")
+    if estimated_edge_pct < 0:
+        return 0.0  # No edge, don't bet
     if bankroll <= 0:
-        return _block("bankroll is zero")
-    if edge_score <= 0:
-        return _block("edge_score is zero")
-    
-    stats, source = stats_manager.get_stats(coin)
-    
-    if not stats.is_ready:
-        bootstrap_pct = 0.02
-        return KellyVerdict(True, bootstrap_pct, round(bankroll * bootstrap_pct, 2),
-                           0.0, 0.0, bootstrap_pct, False, f"{source}_bootstrap",
-                           stats.sample_size, None)
-    
-    if stats.kelly_f == 0.0:
-        return _block(f"Kelly=0 | WR={stats.win_rate:.0%} b={stats.reward_ratio:.2f}")
-    
-    fractional = stats.kelly_f * kelly_fraction
-    edge_adjusted = fractional * edge_score
-    capped = edge_adjusted > MAX_POSITION_PCT
-    final_pct = min(edge_adjusted, MAX_POSITION_PCT)
-    
-    if final_pct < MIN_POSITION_PCT:
-        return _block(f"Position {final_pct:.2%} below minimum")
-    
-    return KellyVerdict(True, round(final_pct, 4), round(bankroll * final_pct, 2),
-                       stats.kelly_f, fractional, edge_adjusted, capped, source,
-                       stats.sample_size, None)
+        return 0.0
 
-def compose_edge_score(velocity: float, velocity_max: float,
-                       mtf_confidence: float, book_confidence: float,
-                       sentiment_mult: float, volume_ratio: float) -> float:
-    vel_norm = min(1.0, abs(velocity) / max(velocity_max, 1e-9))
-    vol_norm = min(1.0, max(0.0, (volume_ratio - 1.0) / 2.0))
-    sent_norm = min(1.0, max(0.0, (sentiment_mult - 0.5)))
-    
-    score = vel_norm * 0.20 + vol_norm * 0.15 + mtf_confidence * 0.30 + \
-            book_confidence * 0.25 + sent_norm * 0.10
-    return round(min(1.0, max(0.0, score)), 4)
+    # True win probability = market price + your edge
+    if side == 'YES':
+        p_win = min(entry_price + estimated_edge_pct, 0.99)
+    else:  # NO
+        p_win = min((1 - entry_price) + estimated_edge_pct, 0.99)
+
+    odds = net_odds(entry_price, side)
+
+    # Calculate Kelly fraction
+    if use_half_kelly:
+        fraction = half_kelly(p_win, odds)
+    else:
+        fraction = full_kelly(p_win, odds)
+
+    # Apply hard cap
+    fraction = min(fraction, max_pct)
+
+    # Convert to dollars
+    stake = bankroll * fraction
+
+    # Enforce minimum
+    if stake < min_dollars:
+        return 0.0
+
+    return round(stake, 2)
+
+
+# ─── DATACLASS FOR FULL RECOMMENDATION ──────────────────────────────────────
+
+@dataclass
+class SizingRecommendation:
+    entry_price:       float
+    side:              str
+    estimated_edge:    float
+    true_prob:         float
+    net_odds:          float
+    full_kelly_pct:    float
+    half_kelly_pct:    float
+    recommended_pct:   float     # After caps
+    recommended_dollars: float
+    bankroll:          float
+    notes:             str = ""
+
+    def __str__(self):
+        lines = [
+            f"─── Kelly Sizing Recommendation ──────────────",
+            f"  Entry Price:      {self.entry_price:.4f} ({self.side})",
+            f"  Estimated Edge:   {self.estimated_edge:+.2%}",
+            f"  True Prob:        {self.true_prob:.2%}",
+            f"  Net Odds:         {self.net_odds:.2f}x",
+            f"  Full Kelly:       {self.full_kelly_pct:.2%} of bankroll",
+            f"  Half Kelly:       {self.half_kelly_pct:.2%} of bankroll",
+            f"  → Recommended:    {self.recommended_pct:.2%}  (${self.recommended_dollars:.2f})",
+            f"  Bankroll:         ${self.bankroll:.2f}",
+        ]
+        if self.notes:
+            lines.append(f"  ⚠ Note: {self.notes}")
+        lines.append(f"──────────────────────────────────────────────")
+        return "\n".join(lines)
+
+
+# ─── KELLY SIZER CLASS ───────────────────────────────────────────────────────
+
+class KellySizer:
+    """
+    Stateful Kelly sizer. Tracks bankroll and provides recommendations.
+
+    Usage:
+        sizer = KellySizer(bankroll=500.0)
+        rec = sizer.recommend(entry_price=0.40, estimated_edge_pct=0.03)
+        print(rec)
+        sizer.update_bankroll(new_balance=512.50)
+    """
+
+    def __init__(
+        self,
+        bankroll:    float,
+        kelly_frac:  float = KELLY_FRACTION,
+        max_pct:     float = MAX_STAKE_PCT,
+        min_dollars: float = MIN_STAKE,
+    ):
+        self.bankroll    = bankroll
+        self.kelly_frac  = kelly_frac
+        self.max_pct     = max_pct
+        self.min_dollars = min_dollars
+
+    def update_bankroll(self, new_balance: float):
+        self.bankroll = new_balance
+
+    def recommend(
+        self,
+        entry_price:        float,
+        estimated_edge_pct: float,
+        side:               str  = 'YES',
+    ) -> SizingRecommendation:
+        """Full recommendation with diagnostics."""
+        notes = []
+
+        if side == 'YES':
+            p_win = min(entry_price + estimated_edge_pct, 0.99)
+        else:
+            p_win = min((1 - entry_price) + estimated_edge_pct, 0.99)
+
+        odds        = net_odds(entry_price, side)
+        fk          = full_kelly(p_win, odds)
+        hk          = fk * self.kelly_frac
+        rec_pct     = min(hk, self.max_pct)
+
+        if fk == 0.0:
+            notes.append("No edge detected — Kelly is 0, skipping trade")
+            rec_pct = 0.0
+        elif fk > self.max_pct * 2:
+            notes.append(f"Kelly ({fk:.1%}) far exceeds cap ({self.max_pct:.0%}) — verify edge estimate")
+        if entry_price < 0.05 or entry_price > 0.95:
+            notes.append("Extreme price — edge estimate uncertainty is high")
+
+        stake = round(self.bankroll * rec_pct, 2)
+        if stake < self.min_dollars:
+            stake = 0.0
+            rec_pct = 0.0
+            notes.append(f"Stake below minimum (${self.min_dollars}) — skipping")
+
+        return SizingRecommendation(
+            entry_price=entry_price,
+            side=side,
+            estimated_edge=estimated_edge_pct,
+            true_prob=p_win,
+            net_odds=odds,
+            full_kelly_pct=fk,
+            half_kelly_pct=hk,
+            recommended_pct=rec_pct,
+            recommended_dollars=stake,
+            bankroll=self.bankroll,
+            notes="; ".join(notes),
+        )
+
+    def size_table(self, estimated_edge_pct: float = 0.03):
+        """Print a sizing table for various prices at a given edge."""
+        print(f"\nSizing Table | Bankroll=${self.bankroll:.0f} | Edge={estimated_edge_pct:.0%} | Half-Kelly capped at {self.max_pct:.0%}")
+        print(f"{'Price':>7}  {'Side':>4}  {'TrueP':>6}  {'Odds':>6}  {'FullK':>6}  {'HalfK':>6}  {'Stake$':>7}")
+        print(f"{'─'*7}  {'─'*4}  {'─'*6}  {'─'*6}  {'─'*6}  {'─'*6}  {'─'*7}")
+
+        prices = [0.025, 0.05, 0.10, 0.15, 0.25, 0.35, 0.50, 0.65, 0.75, 0.85]
+        for price in prices:
+            for side in ['YES', 'NO']:
+                rec = self.recommend(price, estimated_edge_pct, side)
+                print(f"  {price:>5.3f}  {side:>4}  {rec.true_prob:>5.1%}  "
+                      f"{rec.net_odds:>5.2f}x  {rec.full_kelly_pct:>5.2%}  "
+                      f"{rec.half_kelly_pct:>5.2%}  ${rec.recommended_dollars:>6.2f}")
+
+
+# ─── MAIN / EXAMPLES ─────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    print("=" * 60)
+    print("  Kelly Criterion Position Sizing — Polymarket")
+    print("=" * 60)
+
+    sizer = KellySizer(bankroll=500.0)
+
+    # Example 1: Your ETH moonshot trade
+    print("\n[Example 1] ETH moonshot — Entry 0.025 YES, 3% edge")
+    rec = sizer.recommend(entry_price=0.025, estimated_edge_pct=0.03, side='YES')
+    print(rec)
+
+    # Example 2: Moderate edge, center price
+    print("\n[Example 2] Standard trade — Entry 0.40 YES, 3% edge")
+    rec = sizer.recommend(entry_price=0.40, estimated_edge_pct=0.03, side='YES')
+    print(rec)
+
+    # Example 3: High edge, edge zone
+    print("\n[Example 3] High confidence — Entry 0.20 YES, 8% edge")
+    rec = sizer.recommend(entry_price=0.20, estimated_edge_pct=0.08, side='YES')
+    print(rec)
+
+    # Example 4: No edge (should return 0)
+    print("\n[Example 4] No edge — should return $0")
+    rec = sizer.recommend(entry_price=0.50, estimated_edge_pct=0.0, side='YES')
+    print(rec)
+
+    # Sizing table
+    sizer.size_table(estimated_edge_pct=0.03)
+
+    # Quick function reference
+    print("\n" + "=" * 60)
+    print("  Quick Function Reference")
+    print("=" * 60)
+    size = kelly_position_size(
+        bankroll=500,
+        entry_price=0.025,
+        estimated_edge_pct=0.03,
+        side='YES'
+    )
+    print(f"  kelly_position_size(500, 0.025, 0.03, 'YES') = ${size:.2f}")
+    size2 = kelly_position_size(500, 0.40, 0.03, 'YES')
+    print(f"  kelly_position_size(500, 0.40,  0.03, 'YES') = ${size2:.2f}")

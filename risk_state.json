@@ -1,0 +1,52 @@
+{
+  "starting_bankroll": 500.0,
+  "peak_bankroll": 1000,
+  "current_bankroll": 690,
+  "day_start_bankroll": 500.0,
+  "daily_pnl": 0.0,
+  "consecutive_losses": 0,
+  "consecutive_wins": 0,
+  "open_positions": 0,
+  "total_trades": 0,
+  "total_wins": 0,
+  "total_losses": 0,
+  "halted": true,
+  "halt_reason": "Drawdown 31.0% >= 30% limit",
+  "halt_until": null,
+  "paused": false,
+  "pause_reason": "",
+  "pause_until": null,
+  "last_daily_reset": "2026-03-01T15:47:42.920248+00:00",
+  "events": [
+    {
+      "ts": "2026-03-01T15:47:42.920274+00:00",
+      "event": "system_start",
+      "details": "RiskManager initialized | bankroll=$500.00",
+      "bankroll": 500.0,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-01T15:47:42.920323+00:00",
+      "event": "trade_allowed",
+      "details": "stake=$10.00 | positions=0",
+      "bankroll": 500,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-01T15:47:42.920509+00:00",
+      "event": "circuit_break_halt",
+      "details": "Drawdown 31.0% >= 30% limit",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 31.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    }
+  ]
+}
