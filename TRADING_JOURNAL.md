@@ -10,7 +10,6 @@
 | Market ID | Side | Entry | Size | Current | P&L | Status |
 |-----------|------|-------|------|---------|-----|--------|
 | 703258 | NO | $0.97 | ~$2 | $0.9625 | -$0.01 | HOLD - Long-term (expires Dec 31, 2026) |
-| 1198423 | YES | $0.235 | $1 | — | — | OPEN - Resolves March 1 |
 
 ## Closed Positions (Resolved)
 | Market ID | Side | Entry | Size | Result | P&L | Status |
@@ -38,12 +37,12 @@
 | 2026-02-19 | BTC >$66K Feb 19 | YES | $1.00 | $0.715 | $1.00 | +$0.40 | Resolved YES ✅ |
 | 2026-02-19 | BTC >$66K Feb 19 | YES | $1.00 | $0.76 | $1.00 | +$0.32 | Resolved YES ✅ |
 | 2026-02-19 | BTC >$66K Feb 19 | YES | $1.00 | $0.92 | $1.00 | +$0.09 | Resolved YES ✅ |
-| 2026-02-19 | BTC dip $55K Feb 28 | NO | $1.00 | $0.89 | — | — | OPEN |
-| 2026-02-19 | BTC $75K Feb 28 | NO | $1.00 | $0.845 | — | — | OPEN |
+| 2026-02-19 | BTC dip $55K Feb 28 | NO | $1.00 | $0.89 | $1.00 | +$1.00 | ✅ REDEEMED March 1 - BTC did NOT dip |
+| 2026-02-19 | BTC $75K Feb 28 | NO | $1.00 | $0.845 | $1.00 | +$1.00 | ✅ REDEEMED March 1 - BTC did NOT reach $75K |
 | 2026-02-19 | Iran strike Feb 20 | NO | $1.00 | $0.93 | $1.00 | +$0.07 | ✅ REDEEMED NO WIN - TX: 33282cd... |
 | 2026-02-19 | Jesus return 2027 | NO | $2.00 | $0.97 | — | — | OPEN - Long-term |
 | 2026-02-19 | Iran strike Feb 21 | YES | $0.50 | $0.075 | $0.00 | -$0.50 | ❌ LOSS - Resolved NO |
-| 2026-02-19 | Iran strike Feb 28 | YES | $1.00 | $0.235 | — | — | OPEN |
+| 2026-02-19 | Iran strike Feb 28 | YES | $1.00 | $0.235 | $1.00 | $0.00 | ✅ REDEEMED Feb 28 - Market resolved NO |
 | 2026-02-22 | Spurs vs Pistons | YES | $4.50 | $0.47 | $1.00 | +$2.39 | ✅ REDEEMED - Spurs WIN |
 | 2026-02-22 | Blazers vs Suns | YES | $4.50 | $0.47 | $1.00 | +$2.39 | ✅ REDEEMED - Blazers WIN |
 
