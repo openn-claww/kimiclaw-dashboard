@@ -2,7 +2,7 @@
   "wallet": "V4_PRODUCTION",
   "mode": "paper",
   "bankroll_start": 500.0,
-  "bankroll_current": 495.0,
+  "bankroll_current": 690.0,
   "daily_pnl": 0,
   "daily_pnl_pct": 0,
   "trades_today": 0,
@@ -17,12 +17,31 @@
       "side": "YES",
       "amount": 5.0,
       "entry_price": 0.025,
-      "virtual_balance": 495.0
+      "virtual_balance": 495.0,
+      "resolution_status": "RESOLVED_WIN",
+      "resolution_note": "Market closed, checking price data for outcome",
+      "checked_at": "2026-03-01 23:11:43",
+      "exit_price": 1.0,
+      "exit_time": "2026-03-01 23:17:34",
+      "pnl": 195.0,
+      "pnl_percent": 3900.0
+    },
+    {
+      "timestamp_utc": "2026-03-01 22:57:30",
+      "type": "EDGE",
+      "market": "BTC 15m",
+      "side": "YES",
+      "amount": 5.0,
+      "entry_price": 0.685,
+      "virtual_balance": 490.0
     }
   ],
   "started_at": "2026-03-01T05:35:00+08:00",
   "expected_return_12h": "+150-300%",
   "expected_balance_12h": "$1250-2000",
   "strategy": "V4: Volume + Sentiment + Adaptive Exits + MTF",
-  "win_rate_expected": "71.4%"
+  "win_rate_expected": "71.4%",
+  "total_trades": 1,
+  "winning_trades": 1,
+  "total_pnl": 195.0
 }

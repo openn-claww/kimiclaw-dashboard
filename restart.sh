@@ -13,8 +13,9 @@ echo "[RESTART] Validating environment..."
 ./setup.sh --validate-only
 
 echo "[RESTART] Starting bot..."
-PYTHONUNBUFFERED=1 nohup python3 -u ultimate_bot_v4_fixed.py \
-    >> /tmp/ultimate_v4_fixed.log 2>&1 &
+# Use the PRODUCTION bot (not fixed)
+PYTHONUNBUFFERED=1 nohup python3 -u ultimate_bot_v4_production.py \
+    >> /tmp/ultimate_v4_production.log 2>&1 &
 BOT_PID=$!
 echo "[RESTART] Bot started with PID $BOT_PID"
 
