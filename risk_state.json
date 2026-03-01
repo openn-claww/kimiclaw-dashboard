@@ -1,6 +1,6 @@
 {
   "starting_bankroll": 500.0,
-  "peak_bankroll": 1000,
+  "peak_bankroll": 690.0,
   "current_bankroll": 690,
   "day_start_bankroll": 500.0,
   "daily_pnl": 0.0,
@@ -10,8 +10,8 @@
   "total_trades": 0,
   "total_wins": 0,
   "total_losses": 0,
-  "halted": true,
-  "halt_reason": "Drawdown 31.0% >= 30% limit",
+  "halted": false,
+  "halt_reason": "",
   "halt_until": null,
   "paused": false,
   "pause_reason": "",

@@ -346,19 +346,26 @@ class RiskManager:
 
     @classmethod
     def load(cls, starting_bankroll: float = 500.0) -> "RiskManager":
-        """Load persisted state or create fresh if none exists."""
+        """Load persisted state with validation. Corrupted values are corrected and logged."""
         rm = cls.__new__(cls)
         rm.config = DEFAULT_CONFIG.copy()
 
         if STATE_PATH.exists():
             try:
-                data  = json.loads(STATE_PATH.read_text())
-                rm.state = RiskState(**data)
-                logger.info(f"Loaded risk state | bankroll=${rm.state.current_bankroll:.2f}")
+                raw   = json.loads(STATE_PATH.read_text())
+                state = RiskState(**raw)
+                state = cls._validate_state(state, starting_bankroll)
+                rm.state = state
+                logger.info(
+                    f"Loaded risk state | bankroll=${rm.state.current_bankroll:.2f} "
+                    f"| peak=${rm.state.peak_bankroll:.2f} "
+                    f"| drawdown={((rm.state.peak_bankroll - rm.state.current_bankroll) / rm.state.peak_bankroll * 100) if rm.state.peak_bankroll > 0 else 0:.1f}%"
+                )
                 return rm
             except Exception as e:
-                logger.warning(f"Failed to load state ({e}) — starting fresh")
+                logger.error(f"Failed to load risk state ({e}) — starting fresh")
 
+        # No valid state — fresh start
         rm.state = RiskState(
             starting_bankroll=starting_bankroll,
             peak_bankroll=starting_bankroll,
@@ -371,8 +378,78 @@ class RiskManager:
             total_trades=0,
             total_wins=0,
             total_losses=0,
+            last_daily_reset=datetime.now(timezone.utc).isoformat(),
         )
         return rm
+
+    @staticmethod
+    def _validate_state(state: RiskState, starting_bankroll: float) -> RiskState:
+        """
+        Validate and auto-correct impossible state values on load.
+        Every correction is logged — nothing changes silently.
+        """
+        corrections = []
+
+        # Rule 1: Peak can't be more than 10x starting — catches bad init values like $1000
+        max_plausible = starting_bankroll * 10
+        if state.peak_bankroll > max_plausible:
+            corrections.append(
+                f"peak ${state.peak_bankroll:.2f} exceeds 10x starting (${max_plausible:.2f})"
+                f" — reset to current ${state.current_bankroll:.2f}"
+            )
+            state.peak_bankroll = state.current_bankroll
+
+        # Rule 2: Peak must be >= current (you can't be above your all-time high)
+        if state.peak_bankroll < state.current_bankroll:
+            corrections.append(
+                f"peak ${state.peak_bankroll:.2f} < current ${state.current_bankroll:.2f}"
+                f" — corrected peak to current"
+            )
+            state.peak_bankroll = state.current_bankroll
+
+        # Rule 3: Peak must be >= starting
+        if state.peak_bankroll < starting_bankroll:
+            corrections.append(
+                f"peak ${state.peak_bankroll:.2f} < starting ${starting_bankroll:.2f}"
+                f" — corrected peak to starting"
+            )
+            state.peak_bankroll = starting_bankroll
+
+        # Rule 4: Current can't be negative
+        if state.current_bankroll < 0:
+            corrections.append(f"current ${state.current_bankroll:.2f} is negative — set to 0")
+            state.current_bankroll = 0.0
+
+        # Rule 5: If halted for drawdown, re-check whether halt is still valid
+        # after correcting the peak. This is exactly what bit you today.
+        if state.halted and "drawdown" in (state.halt_reason or "").lower():
+            real_dd = (
+                (state.peak_bankroll - state.current_bankroll) / state.peak_bankroll * 100
+                if state.peak_bankroll > 0 else 0
+            )
+            halt_threshold = DEFAULT_CONFIG["drawdown_halt_pct"] * 100
+            if real_dd < halt_threshold:
+                corrections.append(
+                    f"drawdown halt lifted: real drawdown is {real_dd:.1f}%"
+                    f" (< {halt_threshold:.0f}% limit) after peak correction"
+                )
+                state.halted      = False
+                state.halt_reason = ""
+                state.halt_until  = None
+
+        # Log everything
+        if corrections:
+            for c in corrections:
+                logger.warning(f"[state_validation] Correction: {c}")
+            logger.warning(
+                f"[state_validation] Final values after correction: "
+                f"peak=${state.peak_bankroll:.2f}, current=${state.current_bankroll:.2f}, "
+                f"halted={state.halted}"
+            )
+        else:
+            logger.info("[state_validation] All checks passed — no corrections needed")
+
+        return state
 
     # ─── INTERNAL HELPERS ────────────────────────────────────────────────────
 
