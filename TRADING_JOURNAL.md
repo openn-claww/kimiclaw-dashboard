@@ -2,7 +2,7 @@
 
 ## Account
 - **Address:** 0x557A656C110a9eFdbFa28773DE4aCc2c3924a274
-- **Current Balance:** $9.03 USDC.e (after redemptions)
+- **Current Balance:** $11.03 USDC.e (after redemptions)
 - **Strategy:** Conservative NO positions on low-probability events
 - **Max Risk:** 8% per trade
 
@@ -10,12 +10,13 @@
 | Market ID | Side | Entry | Size | Current | P&L | Status |
 |-----------|------|-------|------|---------|-----|--------|
 | 703258 | NO | $0.97 | ~$2 | $0.9625 | -$0.01 | HOLD - Long-term (expires Dec 31, 2026) |
-| 1303400 | NO | $0.89 | $1 | $0.9925 | +$0.10 | OPEN - Resolves March 1 |
-| 1345641 | NO | $0.845 | $1 | $0.942 | +$0.10 | OPEN - Resolves March 1 |
+| 1198423 | YES | $0.235 | $1 | — | — | OPEN - Resolves March 1 |
 
 ## Closed Positions (Resolved)
 | Market ID | Side | Entry | Size | Result | P&L | Status |
 |-----------|------|-------|------|--------|-----|--------|
+| 1303400 | NO | $0.89 | $1 | BTC did NOT dip to $55K | +$1.00 | ✅ REDEEMED March 1 |
+| 1345641 | NO | $0.845 | $1 | BTC did NOT reach $75K | +$1.00 | ✅ REDEEMED March 1 |
 | 1198423 | YES | $0.235 | $1 | No strike by Feb 28 | +$0.77 | ✅ REDEEMED |
 | 1385457 | YES | $0.665 | $8 | Warriors won | -$8.00 | ❌ LOSS |
 | 1401343 | YES | $0.31 | $5 | BTC went DOWN | -$5.00 | ❌ LOSS |

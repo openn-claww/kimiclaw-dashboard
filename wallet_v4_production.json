@@ -1,15 +1,25 @@
 {
   "wallet": "V4_PRODUCTION",
   "mode": "paper",
-  "bankroll_start": 500.00,
-  "bankroll_current": 500.00,
+  "bankroll_start": 500.0,
+  "bankroll_current": 495.0,
   "daily_pnl": 0,
   "daily_pnl_pct": 0,
   "trades_today": 0,
   "wins_today": 0,
   "losses_today": 0,
   "kill_switch_triggered": false,
-  "trades": [],
+  "trades": [
+    {
+      "timestamp_utc": "2026-03-01 16:54:22",
+      "type": "EDGE",
+      "market": "ETH 15m",
+      "side": "YES",
+      "amount": 5.0,
+      "entry_price": 0.025,
+      "virtual_balance": 495.0
+    }
+  ],
   "started_at": "2026-03-01T05:35:00+08:00",
   "expected_return_12h": "+150-300%",
   "expected_balance_12h": "$1250-2000",
