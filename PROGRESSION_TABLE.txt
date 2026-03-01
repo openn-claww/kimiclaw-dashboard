@@ -1,0 +1,115 @@
+================================================================================
+                    BOT INTEGRATION PROGRESSION TABLE
+================================================================================
+
+BASELINE (Before Any Fixes)
+---------------------------
+• 7 duplicate processes running
+• Peak bankroll: $1,000 (corrupted)
+• Drawdown halt: 31% (FALSE - bot blocked)
+• Wallet writes: Non-atomic (crash risk)
+• Kelly edge: Hardcoded 3% (fake)
+• Resolution: No fallback (6h+ delays)
+
+================================================================================
+
+FIX #1: PID Mutex + Duplicate Prevention
+----------------------------------------
+Status: [DONE]
+
+Changes:
+• bot_lock.py - File-based process mutex
+• restart.sh - Kills all variants before start
+
+Result:
+• Process count: 7 -> 1
+• Duplicate attempts: Blocked with FATAL message
+• Lock auto-released on exit
+
+================================================================================
+
+FIX #2: Peak Bankroll Corruption Fix
+------------------------------------
+Status: [DONE]
+
+Changes:
+• Manual repair: Set peak = $690
+• risk_manager.py: _validate_state() on load
+
+Result:
+• Peak: $1,000 -> $690
+• Drawdown: 31% -> 0%
+• Halted: True -> False
+• Auto-correction for future corruptions
+
+================================================================================
+
+FIX #3: Atomic Wallet Writes
+----------------------------
+Status: [DONE]
+
+Changes:
+• atomic_json.py - Atomic write + backup + recovery
+• save_state() - Uses atomic_write_json()
+• log_trade() - Uses safe_load_json() + atomic_write_json()
+
+Result:
+• Crash mid-write -> No data loss
+• Corrupted file -> Auto-recovery from backup
+• $690 protected
+
+================================================================================
+
+BACKTEST RESULTS (50,000 trades, 3% edge, $5 stake)
+--------------------------------------------------
+
+Strategy          Final $      Return    Win Rate   Max DD   Sharpe
+--------------------------------------------------------------------
+Production       $18,303      +3561%      53.2%     17.2%    0.57
+Zoned            $12,228      +2346%      53.2%     14.9%    0.60
+
+Winner: Production (higher return)
+Safer: Zoned (lower drawdown)
+
+================================================================================
+
+SENSITIVITY ANALYSIS - Production Strategy
+------------------------------------------
+Edge    Win Rate     Final $      Return    Max DD
+----------------------------------------------------
+0.0%      50.0%    $     0.00    -100.0%   100.0%  [RUIN]
+1.0%      51.2%    $ 5,571.48   +1014.3%    36.8%
+2.0%      52.2%    $12,363.45   +2372.7%    21.1%
+3.0%      53.2%    $18,303.32   +3560.7%    17.2%
+5.0%      55.2%    $29,882.93   +5876.6%    16.6%
+8.0%      58.2%    $48,624.01   +9624.8%    13.8%
+
+================================================================================
+
+REMAINING FIXES
+---------------
+
+FIX #4: Edge Tracker (Calibrated Kelly)          Status: [PENDING]
+------------------------------------------------------------------
+• Track win rate by price bucket
+• Replace fake 3% edge with real data
+• Requires: 30+ trades per bucket for confidence
+
+FIX #5: Resolution Fallback (Binance/Coinbase)   Status: [PENDING]
+------------------------------------------------------------------
+• Check price data when Polymarket API fails
+• Auto-resolve after 2h delay
+• Free capital after 48h if still unresolved
+
+================================================================================
+
+CURRENT BOT STATUS
+------------------
+• Balance: $690.00
+• Bot PID: 381469
+• WebSocket: Connected
+• Risk: Can trade (0% drawdown)
+• Open trades: 1 (BTC 15m)
+• Protection: PID mutex + Peak validation + Atomic writes
+
+================================================================================

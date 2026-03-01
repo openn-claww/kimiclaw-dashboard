@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "created_at": "2026-03-01T17:13:39.609242+00:00",
+  "saved_at": "2026-03-01T17:13:39.609528+00:00",
+  "total_trades": 1,
+  "default_edge": 0.01,
+  "min_samples": 30,
+  "buckets": {
+    "0.05:YES": {
+      "bucket": 0.05,
+      "side": "YES",
+      "wins": 1,
+      "losses": 0,
+      "first_trade": "2026-03-01T17:13:39.609511+00:00",
+      "last_trade": "2026-03-01T17:13:39.609511+00:00"
+    }
+  }
+}
