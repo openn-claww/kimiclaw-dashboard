@@ -1,0 +1,8 @@
+{
+  "simulations": 1000,
+  "profitable_pct": 0.775,
+  "avg_win_rate": 0.8457606177606177,
+  "avg_profit": 0.016394200000000022,
+  "total_trades": 2449,
+  "avg_trades_per_sim": 2.449
+}
