@@ -1,0 +1,65 @@
+{
+  "last_updated": "2026-03-11T05:29:15.323729",
+  "rankings": [
+    {
+      "rank": 1,
+      "strategy": "High-Probability Bond Buying",
+      "win_rate": "90%+",
+      "freq": "1-2/week",
+      "capital_required": "$50+",
+      "risk": "Low",
+      "edge": "Time value of money",
+      "feasibility": "HIGH"
+    },
+    {
+      "rank": 2,
+      "strategy": "4h Mean Reversion",
+      "win_rate": "60%",
+      "freq": "1-3/day",
+      "capital_required": "$50+",
+      "risk": "Medium",
+      "edge": "Statistical edge",
+      "feasibility": "HIGH"
+    },
+    {
+      "rank": 3,
+      "strategy": "1h Trend Following",
+      "win_rate": "55%",
+      "freq": "5-10/day",
+      "capital_required": "$50+",
+      "risk": "Medium",
+      "edge": "Momentum",
+      "feasibility": "MEDIUM"
+    },
+    {
+      "rank": 4,
+      "strategy": "Event Trading",
+      "win_rate": "60%",
+      "freq": "Variable",
+      "capital_required": "$50+",
+      "risk": "High",
+      "edge": "Information advantage",
+      "feasibility": "MEDIUM"
+    },
+    {
+      "rank": 5,
+      "strategy": "ML-Based Prediction",
+      "win_rate": "Unknown",
+      "freq": "Variable",
+      "capital_required": "$500+",
+      "risk": "High",
+      "edge": "Data advantage",
+      "feasibility": "LOW"
+    }
+  ],
+  "recommended": {
+    "rank": 1,
+    "strategy": "High-Probability Bond Buying",
+    "win_rate": "90%+",
+    "freq": "1-2/week",
+    "capital_required": "$50+",
+    "risk": "Low",
+    "edge": "Time value of money",
+    "feasibility": "HIGH"
+  }
+}
