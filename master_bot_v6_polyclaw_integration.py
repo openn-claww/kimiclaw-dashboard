@@ -98,6 +98,15 @@ except ImportError as e:
     _ARB_AVAILABLE = False
     CrossMarketArbitrage = None
 
+# ── [DUAL STRATEGY] External Arb + Momentum side by side ────────────────────
+try:
+    from dual_strategy import DualStrategyEngine
+    _DUAL_AVAILABLE = True
+except ImportError as e:
+    print(f"[DUAL] WARNING: dual_strategy not found ({e})")
+    _DUAL_AVAILABLE = False
+    DualStrategyEngine = None
+
 # ── [NEWS] News feed ─────────────────────────────────────────────────────────
 try:
     from news_feed_compact import NewsFeed, combine_signals
@@ -843,6 +852,7 @@ class MasterBotV6:
         self._last_trade_ts     = 0.0
         self._last_exit_ts      = 0.0
         self._last_health_ts    = 0.0
+        self._last_market_data  = {}  # [NEW] Cache market data for external arb
 
         self._regime_detectors  = {c: RegimeDetector() for c in COINS}
         self._current_regimes   = {c: Regime.CHOPPY    for c in COINS}
@@ -927,6 +937,24 @@ class MasterBotV6:
                 log.info("[ARB] Cross-market arbitrage engine initialized")
             except Exception as e:
                 log.warning(f"[ARB] Arb engine init failed: {e}")
+
+        # [DUAL] Dual strategy engine (External Arb + Momentum side by side)
+        self.dual_engine = None
+        if _DUAL_AVAILABLE and DualStrategyEngine:
+            try:
+                self.dual_engine = DualStrategyEngine(self)
+                log.info("[DUAL] Dual strategy engine initialized (External Arb + Momentum)")
+            except Exception as e:
+                log.warning(f"[DUAL] Dual engine init failed: {e}")
+
+        # [MEANREV] Mean Reversion Strategy Engine
+        self.mean_rev_engine = None
+        try:
+            from mean_reversion_integration import MeanReversionIntegration
+            self.mean_rev_engine = MeanReversionIntegration(bot_instance=self, bankroll=5.0)
+            log.info("[MEANREV] Mean reversion strategy engine initialized")
+        except Exception as e:
+            log.warning(f"[MEANREV] Mean reversion engine init failed: {e}")
 
         # [NEWS] News feed engine
         self.news_feed = None
@@ -1125,21 +1153,48 @@ class MasterBotV6:
         if self.rm:
             self.rm.print_status()
         log.info("Bot ready")
+        loop_counter = 0  # [DEBUG]
 
         while not self.emergency_stop.is_active():
+            loop_counter += 1  # [DEBUG]
             try:
-                # [NEWS+ARB] Check arb opportunities with news filter
+                # [DEBUG] Log every 12 iterations (1 minute)
+                if loop_counter % 12 == 0:
+                    log.info(f"[DEBUG] Main loop alive - iteration {loop_counter}")
+                
+                # [EVALUATE] Check all markets for opportunities (internal + external arb)
+                for coin in COINS:
+                    for tf in TIMEFRAMES:
+                        try:
+                            self._evaluate_market(coin, tf)
+                        except Exception as e:
+                            log.debug(f"[Main] Error evaluating {coin}/{tf}m: {e}")
+                
+                # [NEWS+ARB] Check external arb opportunities
                 if self.arb_engine:
                     try:
-                        arb_opps = self.arb_engine.check_all()
-                        # News filtering integrated in arb execution
+                        market_cache = {}
+                        for coin in COINS:
+                            for tf in TIMEFRAMES:
+                                mk = f"{coin.upper()}-{tf}m"
+                                if hasattr(self, '_last_market_data') and mk in self._last_market_data:
+                                    market_cache[mk] = self._last_market_data[mk]
+                        
+                        arb_opps = self.arb_engine.check_all(
+                            markets=market_cache,
+                            bankroll=self._virtual_free,
+                            paper=IS_PAPER_TRADING
+                        )
+                        
+                        for opp in arb_opps:
+                            log.info(f"[Arb] External signal: {opp}")
                     except Exception as e:
                         log.error(f"[ARB] arb_engine.check_all: {e}")
 
                 self._check_exits()
-                self._retry_sell_queue()   # [FIX-1] retry failed sells
+                self._retry_sell_queue()
                 self._write_health()
-                time.sleep(1)
+                time.sleep(5)  # Check every 5 seconds
             except Exception as e:
                 log.error(f"Main loop: {e}", exc_info=True)
                 self.kill_switch.record_api_error()
@@ -1184,19 +1239,47 @@ class MasterBotV6:
     # ── EVALUATE ───────────────────────────────────────────────────────────
 
     def _evaluate_market(self, coin: str, tf: int):
+        # [DEBUG] Log entry
+        log.debug(f"[_evaluate_market] Checking {coin}/{tf}m")
+        
         with self._state_lock:
             vf=self._virtual_free; n=len(self._active_positions)
             regime=self._current_regimes.get(coin,Regime.CHOPPY); lt=self._last_trade_ts
-        if vf<20 or n>=MAX_POSITIONS: return
-        # [FIX-2C] Auto-reset kill switch if it's been quiet for 15min
+        
+        if vf<20:
+            log.debug(f"[_evaluate_market] {coin}/{tf}m - SKIP: balance {vf:.2f} < 20")
+            return
+        if n>=MAX_POSITIONS:
+            log.debug(f"[_evaluate_market] {coin}/{tf}m - SKIP: max positions {n}/{MAX_POSITIONS}")
+            return
+            
         self.kill_switch.reset_if_stale(quiet_window_secs=900)
-        if self.kill_switch.is_active() or self.circuit_breaker.is_tripped(): return
+        if self.kill_switch.is_active():
+            log.debug(f"[_evaluate_market] {coin}/{tf}m - SKIP: kill switch active")
+            return
+        if self.circuit_breaker.is_tripped():
+            log.debug(f"[_evaluate_market] {coin}/{tf}m - SKIP: circuit breaker tripped")
+            return
+            
         min_i = 10 if tf==5 else 20
-        if time.time()-lt < min_i: return
+        time_since_last = time.time()-lt
+        if time_since_last < min_i:
+            log.debug(f"[_evaluate_market] {coin}/{tf}m - SKIP: cooldown {time_since_last:.0f}s < {min_i}s")
+            return
+            
         rp = self._regime_detectors[coin].get_params(regime)
-        if rp.get('timeframe')!=tf and regime in [Regime.TREND_UP,Regime.TREND_DOWN,Regime.LOW_VOL]: return
-        if not self.rate_limiter.acquire(wait=2.0): return
-        try: self._evaluate_http(coin, tf, rp, regime)
+        if rp.get('timeframe')!=tf and regime in [Regime.TREND_UP,Regime.TREND_DOWN,Regime.LOW_VOL]:
+            log.debug(f"[_evaluate_market] {coin}/{tf}m - SKIP: regime mismatch")
+            return
+            
+        if not self.rate_limiter.acquire(wait=2.0):
+            log.debug(f"[_evaluate_market] {coin}/{tf}m - SKIP: rate limited")
+            return
+            
+        log.info(f"[_evaluate_market] {coin}/{tf}m - EVALUATING (balance=${vf:.2f})")
+        
+        try:
+            self._evaluate_http(coin, tf, rp, regime)
         except Exception as e:
             log.error(f"evaluate {coin}/{tf}: {e}", exc_info=True)
             self.kill_switch.record_api_error()
@@ -1227,18 +1310,129 @@ class MasterBotV6:
 
         mkt      = markets[0]
         prices_p = json.loads(mkt.get('outcomePrices','[]'))
-        if len(prices_p)!=2: return
+        if len(prices_p)!=2:
+            log.debug(f"[_evaluate_http] {coin}/{tf}m - SKIP: invalid prices {prices_p}")
+            return
         yes_p, no_p = float(prices_p[0]), float(prices_p[1])
+        
+        # [DEBUG] Log prices
+        log.info(f"[_evaluate_http] {coin}/{tf}m - YES={yes_p:.3f} NO={no_p:.3f} SUM={yes_p+no_p:.3f}")
 
-        # Extract CLOB token IDs
+        # [FETCH SPOT PRICE] Get from Binance REST API if RTDS not providing
+        spot_price = self._prices.get(coin, 0)
+        if spot_price <= 0:
+            try:
+                symbol = f"{coin.upper()}USDT"
+                binance_resp = requests.get(f"https://api.binance.com/api/v3/ticker/price?symbol={symbol}", timeout=2)
+                if binance_resp.status_code == 200:
+                    spot_price = float(binance_resp.json().get('price', 0))
+                    self._prices[coin] = spot_price
+                    log.debug(f"[_evaluate_http] {coin}/{tf}m - Fetched spot from Binance: ${spot_price:,.2f}")
+            except Exception as e:
+                log.debug(f"[_evaluate_http] {coin}/{tf}m - Failed to fetch Binance price: {e}")
+
+        # Extract CLOB token IDs FIRST (needed for cache)
         tokens       = mkt.get('clobTokenIds') or mkt.get('tokens',[])
         yes_asset_id = str(tokens[0]) if len(tokens)>0 and tokens[0] else ''
         no_asset_id  = str(tokens[1]) if len(tokens)>1 and tokens[1] else ''
         token_id     = yes_asset_id if yes_p >= no_p else no_asset_id
 
-        # Arb
-        if yes_p+no_p < 0.985:
-            self._enter_arb(coin,tf,yes_p,no_p,rp,slug,yes_asset_id,no_asset_id); return
+        # [NEW] Cache market data for external arb with proper threshold/spot
+        mk = f"{coin.upper()}-{tf}m"
+        
+        # Try to extract threshold from market description or use current price
+        threshold = None
+        market_desc = mkt.get('description', '') or event.get('title', '')
+        # Look for price like $70,000 or 70000 in description
+        import re
+        price_match = re.search(r'\$?([\d,]+(?:\.\d+)?)', market_desc)
+        if price_match:
+            try:
+                threshold = float(price_match.group(1).replace(',', ''))
+            except:
+                pass
+        
+        # If no threshold found, use spot price as threshold (neutral assumption)
+        if not threshold and spot_price > 0:
+            threshold = spot_price
+        
+        log.info(f"[_evaluate_http] {coin}/{tf}m - spot=${spot_price:,.2f} threshold=${threshold:,.2f}" if spot_price > 0 and threshold else f"[_evaluate_http] {coin}/{tf}m - NO SPOT PRICE")
+        
+        with self._state_lock:
+            self._last_market_data[mk] = {
+                'pm_data': {
+                    'market_id': mk,
+                    'conditionId': mkt.get('conditionId'),
+                    'outcomePrices': [yes_p, no_p],
+                    'clobTokenIds': tokens,
+                    'slug': slug
+                },
+                'spot_data': {
+                    'coin': coin,
+                    'timeframe': tf,
+                    'threshold': threshold or spot_price,
+                    'price': spot_price,
+                    'time_remaining_sec': (slot + tf*60) - time.time()
+                }
+            }
+
+        # [DUAL STRATEGY] Run External Arb + Momentum side by side
+        if self.dual_engine and spot_price > 0:
+            try:
+                velocity = self._velocities_ema.get(coin, 0.0)
+                bankroll = self._virtual_free if IS_PAPER_TRADING else (self.live.get_balance() if self.live else self._virtual_free)
+                
+                signals = self.dual_engine.evaluate_all(coin, self._last_market_data[mk]['pm_data'], 
+                                                       self._last_market_data[mk]['spot_data'], 
+                                                       velocity, bankroll)
+                for signal in signals:
+                    if self.dual_engine.execute_trade(signal, bankroll):
+                        log.info(f"[DUAL] Executing {signal.strategy}: {coin} {signal.side} @ {signal.entry_price:.3f}")
+                        # Execute the trade through live or paper
+                        if IS_PAPER_TRADING:
+                            self._execute_paper_trade(coin, tf, signal.side, signal.amount, 
+                                                     yes_p if signal.side=='YES' else no_p, 
+                                                     slug, yes_asset_id, no_asset_id)
+                        elif self.live:
+                            self._execute_live_trade(coin, tf, signal.side, signal.amount,
+                                                    yes_p if signal.side=='YES' else no_p,
+                                                    slug, yes_asset_id, no_asset_id)
+            except Exception as e:
+                log.debug(f"[DUAL] Strategy evaluation failed: {e}")
+
+        # [MEAN REVERSION] Evaluate mean reversion strategy
+        if self.mean_rev_engine and spot_price > 0:
+            try:
+                bankroll = self._virtual_free if IS_PAPER_TRADING else (self.live.get_balance() if self.live else self._virtual_free)
+                
+                signal = self.mean_rev_engine.evaluate(
+                    coin=coin,
+                    pm_data=self._last_market_data[mk]['pm_data'],
+                    spot_data=self._last_market_data[mk]['spot_data'],
+                    bankroll=bankroll
+                )
+                
+                if signal:
+                    log.info(f"[MEANREV] Signal: {coin} {signal.side} @ {signal.entry_price:.3f} (confidence: {signal.confidence:.1%})")
+                    # Execute the trade
+                    if IS_PAPER_TRADING:
+                        self._execute_paper_trade(coin, tf, signal.side, signal.amount,
+                                                 yes_p if signal.side=='YES' else no_p,
+                                                 slug, yes_asset_id, no_asset_id)
+                    elif self.live:
+                        self._execute_live_trade(coin, tf, signal.side, signal.amount,
+                                                yes_p if signal.side=='YES' else no_p,
+                                                slug, yes_asset_id, no_asset_id)
+            except Exception as e:
+                log.debug(f"[MEANREV] Strategy evaluation failed: {e}")
+
+        # Arb - MAXIMUM AGGRESSIVE: trade if ANY spread < 1.0
+        if yes_p+no_p < 1.001:  # Trade if any spread exists
+            edge = (1.0 - (yes_p+no_p)) * 100
+            if edge > 0:  # Only trade if positive edge
+                log.info(f"🎯 ARB SIGNAL {coin}/{tf}m: SUM={yes_p+no_p:.4f} EDGE={edge:.3f}%")
+                self._enter_arb(coin,tf,yes_p,no_p,rp,slug,yes_asset_id,no_asset_id)
+                return
 
         # Edge
         with self._state_lock:
