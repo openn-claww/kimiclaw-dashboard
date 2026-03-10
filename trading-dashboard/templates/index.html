@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyClaw Trading Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --bg-hover: #1e1e28;
+            --border: #2a2a3a;
+            --border-light: #353545;
+            --text-primary: #ffffff;
+            --text-secondary: #8b8b9e;
+            --text-muted: #5a5a6e;
+            --accent: #00d4ff;
+            --accent-glow: rgba(0, 212, 255, 0.3);
+            --success: #00ff88;
+            --success-dim: rgba(0, 255, 136, 0.1);
+            --danger: #ff4757;
+            --danger-dim: rgba(255, 71, 87, 0.1);
+            --warning: #ffc107;
+            --warning-dim: rgba(255, 193, 7, 0.1);
+            --info: #7c3aed;
+            --gradient-1: linear-gradient(135deg, #00d4ff, #7c3aed);
+            --gradient-2: linear-gradient(135deg, #00ff88, #00d4ff);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-light);
+        }
+
+        /* Layout */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 16px 12px;
+            overflow-y: auto;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0 12px;
+            margin-bottom: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            margin: 4px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: var(--bg-card);
+            color: var(--accent);
+            box-shadow: inset 0 0 0 1px var(--border);
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--danger);
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.disconnected {
+            background: var(--danger);
+            box-shadow: 0 0 8px var(--danger);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            height: 72px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .bot-status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .bot-status-badge.running {
+            border-color: var(--success);
+            color: var(--success);
+            background: var(--success-dim);
+        }
+
+        .bot-status-badge.stopped {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: var(--danger-dim);
+        }
+
+        .mode-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mode-badge.paper {
+            background: var(--warning-dim);
+            color: var(--warning);
+        }
+
+        .mode-badge.live {
+            background: var(--danger-dim);
+            color: var(--danger);
+        }
+
+        .header-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border-color: var(--border-light);
+        }
+
+        /* Page Content */
+        .page-content {
+            flex: 1;
+            padding: 24px 32px;
+            overflow-y: auto;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--accent);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .stat-icon.blue { background: rgba(0, 212, 255, 0.1); color: var(--accent); }
+        .stat-icon.green { background: var(--success-dim); color: var(--success); }
+        .stat-icon.red { background: var(--danger-dim); color: var(--danger); }
+        .stat-icon.yellow { background: var(--warning-dim); color: var(--warning); }
+        .stat-icon.purple { background: rgba(124, 58, 237, 0.1); color: var(--info); }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-change {
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-change.positive { color: var(--success); }
+        .stat-change.negative { color: var(--danger); }
+        .stat-change.neutral { color: var(--text-secondary); }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .content-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 16px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover td {
+            background: var(--bg-hover);
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tag-success { background: var(--success-dim); color: var(--success); }
+        .tag-danger { background: var(--danger-dim); color: var(--danger); }
+        .tag-warning { background: var(--warning-dim); color: var(--warning); }
+        .tag-info { background: rgba(124, 58, 237, 0.1); color: var(--info); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--bg-primary);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-light);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        /* Control Panel */
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .control-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .control-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .control-value {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 52px;
+            height: 28px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-hover);
+            border-radius: 28px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        input:checked + .toggle-slider {
+            background: var(--success);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* Logs */
+        .log-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            height: 500px;
+            overflow-y: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .log-line {
+            padding: 4px 0;
+            border-bottom: 1px solid var(--bg-hover);
+        }
+
+        .log-line:last-child {
+            border-bottom: none;
+        }
+
+        .log-timestamp {
+            color: var(--text-muted);
+        }
+
+        .log-level-info { color: var(--accent); }
+        .log-level-error { color: var(--danger); }
+        .log-level-warning { color: var(--warning); }
+        .log-level-success { color: var(--success); }
+
+        /* Strategy Cards */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .strategy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .strategy-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .strategy-card.active {
+            border-color: var(--success);
+            box-shadow: 0 0 0 1px var(--success);
+        }
+
+        .strategy-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .strategy-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .strategy-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .strategy-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .strategy-metric {
+            background: var(--bg-hover);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .strategy-metric-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .strategy-metric-value {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content-grid { grid-template-columns: 1fr; }
+            .strategy-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .stats-grid { grid-template-columns: 1fr; }
+            .strategy-grid { grid-template-columns: 1fr; }
+            .content-grid-2 { grid-template-columns: 1fr; }
+            .header { padding: 0 16px; }
+            .page-content { padding: 16px; }
+            .control-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Overlay for mobile menu */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-overlay.show {
+                display: block;
+            }
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        /* Alerts */
+        .alert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--bg-hover);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .alert-item.error { border-left-color: var(--danger); }
+        .alert-item.warning { border-left-color: var(--warning); }
+        .alert-item.success { border-left-color: var(--success); }
+
+        .alert-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .alert-time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🦞</div>
+                    <div>
+                        <div class="logo-text">PolyClaw</div>
+                        <div class="logo-subtitle">Trading Dashboard</div>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <div class="nav-item active" data-page="dashboard">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="nav-item" data-page="trading">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Trading Control</span>
+                    </div>
+                    <div class="nav-item" data-page="strategies">
+                        <i class="fas fa-chess-knight"></i>
+                        <span>Strategies</span>
+                    </div>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Analysis</div>
+                    <div class="nav-item" data-page="markets">
+                        <i class="fas fa-globe"></i>
+                        <span>Market Analysis</span>
+                    </div>
+                    <div class="nav-item" data-page="logs">
+                        <i class="fas fa-terminal"></i>
+                        <span>Logs</span>
+                        <span class="nav-badge" id="log-badge">3</span>
+                    </div>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <div class="nav-item" data-page="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="connection-status">
+                    <div class="status-dot" id="ws-status"></div>
+                    <span id="ws-text">Connected</span>
+                </div>
+            </div>
+        </aside>
+        
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="page-title">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="bot-status-badge stopped" id="bot-status-badge">
+                        <i class="fas fa-circle"></i>
+                        <span id="bot-status-text">Stopped</span>
+                    </div>
+                    <span class="mode-badge paper" id="mode-badge">Paper Trading</span>
+                    <button class="header-btn" onclick="refreshData()" title="Refresh">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Dashboard Page -->
+                <div class="page active" id="page-dashboard">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Total Balance</span>
+                                <div class="stat-icon blue">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="stat-balance">$0.00</div>
+                            <div class="stat-change neutral">
+                                <i class="fas fa-minus"></i>
+                                <span>Available USDC</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Net P&L</span>
+                                <div class="stat-icon green">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="stat-pnl">$0.00</div>
+                            <div class="stat-change neutral" id="pnl-change">
+                                <i class="fas fa-minus"></i>
+                                <span>All time</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Win Rate</span>
+                                <div class="stat-icon yellow">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="stat-winrate">0%</div>
+                            <div class="stat-change neutral">
+                                <i class="fas fa-minus"></i>
+                                <span id="stat-trades">0 trades</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Open Positions</span>
+                                <div class="stat-icon purple">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="stat-positions">0</div>
+                            <div class="stat-change neutral">
+                                <i class="fas fa-minus"></i>
+                                <span>Active trades</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-chart-area"></i>
+                                    P&L Over Time
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="pnl-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-bell"></i>
+                                    Recent Alerts
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert-list" id="alert-list">
+                                    <div class="empty-state">
+                                        <i class="fas fa-bell-slash"></i>
+                                        <h3>No alerts</h3>
+                                        <p>Alerts will appear here when the bot is running</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-history"></i>
+                                    Recent Trades
+                                </div>
+                            </div>
+                            <div class="card-body" style="padding: 0;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Market</th>
+                                            <th>Type</th>
+                                            <th>Side</th>
+                                            <th>Amount</th>
+                                            <th>Price</th>
+                                            <th>P&L</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recent-trades">
+                                        <tr>
+                                            <td colspan="8" class="empty-state">
+                                                <i class="fas fa-inbox"></i>
+                                                <h3>No trades yet</h3>
+                                                <p>Trades will appear here when the bot starts</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Control Page -->
+                <div class="page" id="page-trading">
+                    <div class="content-grid-2">
+                        <div class="control-panel">
+                            <div class="control-section">
+                                <div class="control-section-title">
+                                    <i class="fas fa-power-off" style="color: var(--accent);"></i>
+                                    Bot Control
+                                </div>
+                                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                                    <button class="btn btn-success btn-large" id="btn-start" onclick="startBot()">
+                                        <i class="fas fa-play"></i>
+                                        Start Bot
+                                    </button>
+                                    <button class="btn btn-danger btn-large" id="btn-stop" onclick="stopBot()" disabled>
+                                        <i class="fas fa-stop"></i>
+                                        Stop Bot
+                                    </button>
+                                </div>
+                                
+                                <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Current Mode</div>
+                                    <div style="display: flex; gap: 12px;">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="mode-toggle" onchange="toggleMode()">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span id="mode-label" style="font-weight: 600;">Paper Trading</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+                                    <i class="fas fa-info-circle" style="color: var(--accent); margin-right: 6px;"></i>
+                                    Switching modes requires stopping and restarting the bot. Live mode uses real funds.
+                                </div>
+                            </div>
+                            
+                            <div class="control-section">
+                                <div class="control-section-title">
+                                    <i class="fas fa-shield-alt" style="color: var(--success);"></i>
+                                    Safety Controls
+                                </div>
+                                <div class="control-grid">
+                                    <div class="control-item">
+                                        <span class="control-label">Kill Switch</span>
+                                        <span class="control-value" style="color: var(--success);">Inactive</span>
+                                    </div>
+                                    <div class="control-item">
+                                        <span class="control-label">Circuit Breaker</span>
+                                        <span class="control-value" style="color: var(--success);">Normal</span>
+                                    </div>
+                                    <div class="control-item">
+                                        <span class="control-label">Daily Loss</span>
+                                        <span class="control-value">$0.00</span>
+                                    </div>
+                                    <div class="control-item">
+                                        <span class="control-label">Consecutive Losses</span>
+                                        <span class="control-value">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="card" style="margin-bottom: 24px;">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <i class="fas fa-info-circle"></i>
+                                        Bot Status
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="control-grid">
+                                        <div class="control-item">
+                                            <span class="control-label">Connection</span>
+                                            <span class="control-value" style="color: var(--success);">Connected</span>
+                                        </div>
+                                        <div class="control-item">
+                                            <span class="control-label">Price Feed</span>
+                                            <span class="control-value">RTDS</span>
+                                        </div>
+                                        <div class="control-item">
+                                            <span class="control-label">Auto-Redeem</span>
+                                            <span class="control-value" style="color: var(--success);">Enabled</span>
+                                        </div>
+                                        <div class="control-item">
+                                            <span class="control-label">Proxy</span>
+                                            <span class="control-value">Active</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <i class="fas fa-history"></i>
+                                        Activity Log
+                                    </div>
+                                </div>
+                                <div class="card-body" style="padding: 0; max-height: 300px; overflow-y: auto;">
+                                    <div id="activity-log" style="padding: 16px; font-size: 13px; line-height: 1.8;">
+                                        <div style="color: var(--text-muted);">No recent activity</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategies Page -->
+                <div class="page" id="page-strategies">
+                    <div class="strategy-grid" id="strategy-grid">
+                        <!-- Strategies loaded dynamically -->
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Performance by Strategy
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="strategy-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Analysis Page -->
+                <div class="page" id="page-markets">
+                    <div class="content-grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-bitcoin"></i>
+                                    BTC Markets
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="btc-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fab fa-ethereum"></i>
+                                    ETH Markets
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="eth-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-search-dollar"></i>
+                                    Active Opportunities
+                                </div>
+                            </div>
+                            <div class="card-body" style="padding: 0;">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Market</th>
+                                            <th>Type</th>
+                                            <th>Edge</th>
+                                            <th>Signal</th>
+                                            <th>Confidence</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="opportunities-table">
+                                        <tr>
+                                            <td colspan="6" class="empty-state">
+                                                <i class="fas fa-search"></i>
+                                                <h3>Scanning markets...</h3>
+                                                <p>Opportunities will appear when the bot is running</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logs Page -->
+                <div class="page" id="page-logs">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <i class="fas fa-terminal"></i>
+                                Bot Logs
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn btn-secondary" onclick="loadLogs(100)">100 lines</button>
+                                <button class="btn btn-secondary" onclick="loadLogs(500)">500 lines</button>
+                                <button class="btn btn-secondary" onclick="loadLogs(1000)">1000 lines</button>
+                                <button class="header-btn" onclick="refreshLogs()" title="Refresh">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <div class="log-container" id="log-container">
+                                <div class="log-line">
+                                    <span class="log-timestamp">Loading logs...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Page -->
+                <div class="page" id="page-settings">
+                    <div class="content-grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-key"></i>
+                                    API Configuration
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">API Key</label>
+                                    <input type="password" class="form-input" placeholder="Enter API Key" id="api-key">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Secret Key</label>
+                                    <input type="password" class="form-input" placeholder="Enter Secret Key" id="api-secret">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Passphrase</label>
+                                    <input type="password" class="form-input" placeholder="Enter Passphrase" id="api-passphrase">
+                                </div>
+                                <button class="btn btn-primary" onclick="saveApiConfig()">
+                                    <i class="fas fa-save"></i>
+                                    Save API Keys
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-sliders-h"></i>
+                                    Risk Parameters
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Max Position Size (USDC)</label>
+                                    <input type="number" class="form-input" value="50" id="max-position">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Daily Loss Limit (USDC)</label>
+                                    <input type="number" class="form-input" value="25" id="daily-loss-limit">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Consecutive Loss Limit</label>
+                                    <input type="number" class="form-input" value="5" id="consec-loss-limit">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Circuit Breaker Win Rate (%)</label>
+                                    <input type="number" class="form-input" value="35" id="circuit-winrate">
+                                </div>
+                                <button class="btn btn-primary" onclick="saveRiskParams()">
+                                    <i class="fas fa-save"></i>
+                                    Save Risk Settings
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Danger Zone
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; gap: 16px; align-items: center;">
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; margin-bottom: 4px;">Reset All Data</div>
+                                        <div style="font-size: 13px; color: var(--text-secondary);">This will clear all trade history and reset the bot state. Cannot be undone.</div>
+                                    </div>
+                                    <button class="btn btn-danger" onclick="resetAllData()">
+                                        <i class="fas fa-trash"></i>
+                                        Reset Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ── State ──────────────────────────────────────────────────────────────
+        let ws = null;
+        let reconnectAttempts = 0;
+        let currentPage = 'dashboard';
+        let charts = {};
+        let botState = {
+            running: false,
+            mode: 'paper',
+            balance: 0,
+            tradeCount: 0,
+            openPositions: 0
+        };
+
+        // ── Navigation ─────────────────────────────────────────────────────────
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const page = item.dataset.page;
+                navigateTo(page);
+            });
+        });
+
+        function navigateTo(page) {
+            // Update nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.page === page) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Update page visibility
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(`page-${page}`).classList.add('active');
+
+            // Update title
+            const titles = {
+                dashboard: 'Dashboard',
+                trading: 'Trading Control',
+                strategies: 'Strategies',
+                markets: 'Market Analysis',
+                logs: 'Logs',
+                settings: 'Settings'
+            };
+            document.getElementById('page-title').textContent = titles[page];
+
+            // Page-specific initialization
+            if (page === 'logs') loadLogs(100);
+            if (page === 'strategies') loadStrategies();
+
+            currentPage = page;
+            
+            // Close mobile menu
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebar-overlay').classList.remove('show');
+        }
+
+        // Mobile menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebar-overlay').classList.toggle('show');
+        });
+
+        document.getElementById('sidebar-overlay').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebar-overlay').classList.remove('show');
+        });
+
+        // ── WebSocket Connection ───────────────────────────────────────────────
+        function connectWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
+
+            ws.onopen = () => {
+                console.log('WebSocket connected');
+                reconnectAttempts = 0;
+                updateConnectionStatus(true);
+            };
+
+            ws.onmessage = (event) => {
+                const message = JSON.parse(event.data);
+                handleWebSocketMessage(message);
+            };
+
+            ws.onclose = () => {
+                console.log('WebSocket disconnected');
+                updateConnectionStatus(false);
+                
+                // Reconnect with exponential backoff
+                reconnectAttempts++;
+                const delay = Math.min(1000 * Math.pow(2, reconnectAttempts), 30000);
+                setTimeout(connectWebSocket, delay);
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+        }
+
+        function updateConnectionStatus(connected) {
+            const dot = document.getElementById('ws-status');
+            const text = document.getElementById('ws-text');
+            
+            if (connected) {
+                dot.classList.remove('disconnected');
+                text.textContent = 'Connected';
+            } else {
+                dot.classList.add('disconnected');
+                text.textContent = 'Disconnected';
+            }
+        }
+
+        function handleWebSocketMessage(message) {
+            if (message.type === 'status_update' || message.type === 'initial') {
+                updateDashboard(message.data);
+            }
+        }
+
+        // ── Dashboard Updates ──────────────────────────────────────────────────
+        function updateDashboard(data) {
+            if (data.status) {
+                botState = { ...botState, ...data.status };
+                
+                // Update bot status badge
+                const badge = document.getElementById('bot-status-badge');
+                const badgeText = document.getElementById('bot-status-text');
+                
+                if (botState.running) {
+                    badge.classList.remove('stopped');
+                    badge.classList.add('running');
+                    badgeText.textContent = 'Running';
+                    document.getElementById('btn-start').disabled = true;
+                    document.getElementById('btn-stop').disabled = false;
+                } else {
+                    badge.classList.remove('running');
+                    badge.classList.add('stopped');
+                    badgeText.textContent = 'Stopped';
+                    document.getElementById('btn-start').disabled = false;
+                    document.getElementById('btn-stop').disabled = true;
+                }
+
+                // Update mode badge
+                const modeBadge = document.getElementById('mode-badge');
+                if (botState.mode === 'live') {
+                    modeBadge.classList.remove('paper');
+                    modeBadge.classList.add('live');
+                    modeBadge.textContent = 'Live Trading';
+                } else {
+                    modeBadge.classList.remove('live');
+                    modeBadge.classList.add('paper');
+                    modeBadge.textContent = 'Paper Trading';
+                }
+
+                // Update stats
+                document.getElementById('stat-balance').textContent = formatCurrency(botState.balance);
+                document.getElementById('stat-positions').textContent = botState.open_positions || 0;
+            }
+
+            if (data.pnl) {
+                const pnl = data.pnl;
+                document.getElementById('stat-pnl').textContent = formatCurrency(pnl.net_pnl);
+                document.getElementById('stat-winrate').textContent = formatPercent(pnl.win_rate);
+                document.getElementById('stat-trades').textContent = `${pnl.total_trades} trades`;
+                
+                // Update P&L color
+                const pnlEl = document.getElementById('stat-pnl');
+                if (pnl.net_pnl >= 0) {
+                    pnlEl.style.color = 'var(--success)';
+                } else {
+                    pnlEl.style.color = 'var(--danger)';
+                }
+            }
+        }
+
+        // ── Bot Controls ───────────────────────────────────────────────────────
+        async function startBot() {
+            try {
+                const mode = document.getElementById('mode-toggle').checked ? 'live' : 'paper';
+                const response = await fetch(`/api/bot/start?mode=${mode}`, { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    logActivity(`Bot started in ${mode} mode`);
+                    refreshData();
+                } else {
+                    alert('Failed to start bot');
+                }
+            } catch (error) {
+                console.error('Error starting bot:', error);
+                alert('Error starting bot');
+            }
+        }
+
+        async function stopBot() {
+            try {
+                const response = await fetch('/api/bot/stop', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    logActivity('Bot stopped');
+                    refreshData();
+                } else {
+                    alert('Failed to stop bot');
+                }
+            } catch (error) {
+                console.error('Error stopping bot:', error);
+                alert('Error stopping bot');
+            }
+        }
+
+        function toggleMode() {
+            const toggle = document.getElementById('mode-toggle');
+            const label = document.getElementById('mode-label');
+            
+            if (toggle.checked) {
+                label.textContent = 'Live Trading';
+                label.style.color = 'var(--danger)';
+            } else {
+                label.textContent = 'Paper Trading';
+                label.style.color = 'var(--text-primary)';
+            }
+        }
+
+        function logActivity(message) {
+            const log = document.getElementById('activity-log');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.innerHTML = `<span style="color: var(--text-muted);">[${time}]</span> ${message}`;
+            log.insertBefore(entry, log.firstChild);
+        }
+
+        // ── Data Loading ───────────────────────────────────────────────────────
+        async function refreshData() {
+            try {
+                const response = await fetch('/api/status');
+                const status = await response.json();
+                
+                const pnlResponse = await fetch('/api/pnl');
+                const pnl = await pnlResponse.json();
+                
+                updateDashboard({ status, pnl });
+                loadRecentTrades();
+                loadAlerts();
+            } catch (error) {
+                console.error('Error refreshing data:', error);
+            }
+        }
+
+        async function loadRecentTrades() {
+            try {
+                const response = await fetch('/api/trades?limit=10');
+                const data = await response.json();
+                
+                const tbody = document.getElementById('recent-trades');
+                
+                if (!data.trades || data.trades.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="8" class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <h3>No trades yet</h3>
+                                <p>Trades will appear here when the bot starts</p>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                tbody.innerHTML = data.trades.map(trade => {
+                    const time = trade.timestamp ? new Date(trade.timestamp).toLocaleTimeString() : '-';
+                    const pnlClass = trade.pnl_pct > 0 ? 'positive' : trade.pnl_pct < 0 ? 'negative' : 'neutral';
+                    const pnlIcon = trade.pnl_pct > 0 ? 'fa-arrow-up' : trade.pnl_pct < 0 ? 'fa-arrow-down' : 'fa-minus';
+                    
+                    return `
+                        <tr>
+                            <td>${time}</td>
+                            <td>${trade.market || '-'}</td>
+                            <td><span class="tag tag-info">${trade.type}</span></td>
+                            <td>${trade.side || '-'}</td>
+                            <td>${trade.amount ? '$' + trade.amount.toFixed(2) : '-'}</td>
+                            <td>${trade.entry_price ? trade.entry_price.toFixed(3) : '-'}</td>
+                            <td class="stat-change ${pnlClass}">
+                                <i class="fas ${pnlIcon}"></i>
+                                ${trade.pnl_pct ? trade.pnl_pct.toFixed(2) + '%' : '-'}
+                            </td>
+                            <td><span class="tag ${trade.exit_reason ? 'tag-success' : 'tag-warning'}">${trade.exit_reason || 'Open'}</span></td>
+                        </tr>
+                    `;
+                }).reverse().join('');
+            } catch (error) {
+                console.error('Error loading trades:', error);
+            }
+        }
+
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/alerts');
+                const data = await response.json();
+                
+                const list = document.getElementById('alert-list');
+                
+                if (!data.alerts || data.alerts.length === 0) {
+                    list.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-bell-slash"></i>
+                            <h3>No alerts</h3>
+                            <p>Alerts will appear here when the bot is running</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                list.innerHTML = data.alerts.map(alert => `
+                    <div class="alert-item ${alert.level || 'info'}">
+                        <div class="alert-icon" style="background: var(--${alert.level === 'error' ? 'danger' : alert.level === 'warning' ? 'warning' : 'accent'}-dim); color: var(--${alert.level === 'error' ? 'danger' : alert.level === 'warning' ? 'warning' : 'accent'});">
+                            <i class="fas fa-${alert.level === 'error' ? 'exclamation-circle' : alert.level === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                        </div>
+                        <div class="alert-content">
+                            <div class="alert-title">${alert.title || 'Alert'}</div>
+                            <div>${alert.message || ''}</div>
+                            <div class="alert-time">${alert.time || ''}</div>
+                        </div>
+                    </div>
+                `).reverse().join('');
+            } catch (error) {
+                console.error('Error loading alerts:', error);
+            }
+        }
+
+        async function loadLogs(lines = 100) {
+            try {
+                const response = await fetch(`/api/logs?lines=${lines}`);
+                const data = await response.json();
+                
+                const container = document.getElementById('log-container');
+                
+                if (!data.logs || data.logs.length === 0) {
+                    container.innerHTML = '<div class="log-line"><span class="log-timestamp">No logs available</span></div>';
+                    return;
+                }
+                
+                container.innerHTML = data.logs.map(line => {
+                    const match = line.match(/^(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})\s+\[(\w+)\]\s+(.+)$/);
+                    if (match) {
+                        const [, timestamp, level, message] = match;
+                        const levelClass = `log-level-${level.toLowerCase()}`;
+                        return `<div class="log-line"><span class="log-timestamp">${timestamp}</span> <span class="${levelClass}">[${level}]</span> ${escapeHtml(message)}</div>`;
+                    }
+                    return `<div class="log-line">${escapeHtml(line)}</div>`;
+                }).join('');
+                
+                container.scrollTop = container.scrollHeight;
+            } catch (error) {
+                console.error('Error loading logs:', error);
+            }
+        }
+
+        function refreshLogs() {
+            loadLogs(100);
+        }
+
+        function loadStrategies() {
+            const strategies = [
+                {
+                    name: 'Cross-Market Arb',
+                    description: 'Exploits price differences between prediction markets and spot prices',
+                    active: true,
+                    trades: 216,
+                    winRate: 34.7,
+                    pnl: -32.64,
+                    color: 'var(--accent)'
+                },
+                {
+                    name: 'Momentum',
+                    description: 'Follows price momentum with RSI and trend confirmation',
+                    active: false,
+                    trades: 0,
+                    winRate: 0,
+                    pnl: 0,
+                    color: 'var(--info)'
+                },
+                {
+                    name: 'News-Based',
+                    description: 'Reacts to news sentiment and market-moving events',
+                    active: true,
+                    trades: 45,
+                    winRate: 42.2,
+                    pnl: 5.23,
+                    color: 'var(--warning)'
+                }
+            ];
+            
+            const grid = document.getElementById('strategy-grid');
+            grid.innerHTML = strategies.map(s => `
+                <div class="strategy-card ${s.active ? 'active' : ''}">
+                    <div class="strategy-header">
+                        <div class="strategy-name" style="color: ${s.color}">${s.name}</div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" ${s.active ? 'checked' : ''} onchange="toggleStrategy('${s.name}')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="strategy-desc">${s.description}</div>
+                    <div class="strategy-metrics">
+                        <div class="strategy-metric">
+                            <div class="strategy-metric-label">Trades</div>
+                            <div class="strategy-metric-value">${s.trades}</div>
+                        </div>
+                        <div class="strategy-metric">
+                            <div class="strategy-metric-label">Win Rate</div>
+                            <div class="strategy-metric-value">${s.winRate.toFixed(1)}%</div>
+                        </div>
+                        <div class="strategy-metric">
+                            <div class="strategy-metric-label">P&L</div>
+                            <div class="strategy-metric-value" style="color: ${s.pnl >= 0 ? 'var(--success)' : 'var(--danger)'}">${s.pnl >= 0 ? '+' : ''}${s.pnl.toFixed(2)}</div>
+                        </div>
+                        <div class="strategy-metric">
+                            <div class="strategy-metric-label">Status</div>
+                            <div class="strategy-metric-value" style="color: ${s.active ? 'var(--success)' : 'var(--text-muted)'}">${s.active ? 'Active' : 'Inactive'}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Initialize strategy chart
+            initStrategyChart(strategies);
+        }
+
+        function toggleStrategy(name) {
+            logActivity(`Strategy ${name} toggled`);
+        }
+
+        // ── Charts ─────────────────────────────────────────────────────────────
+        function initCharts() {
+            // P&L Chart
+            const pnlCtx = document.getElementById('pnl-chart');
+            if (pnlCtx) {
+                charts.pnl = new Chart(pnlCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'P&L',
+                            data: [0, -5, -10, -20, -25, -30, -32.64],
+                            borderColor: '#ff4757',
+                            backgroundColor: 'rgba(255, 71, 87, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                grid: { color: 'rgba(255,255,255,0.05)' },
+                                ticks: { color: '#8b8b9e' }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: '#8b8b9e' }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // BTC Chart placeholder
+            const btcCtx = document.getElementById('btc-chart');
+            if (btcCtx) {
+                charts.btc = new Chart(btcCtx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({length: 24}, (_, i) => `${i}:00`),
+                        datasets: [{
+                            label: 'BTC Price',
+                            data: Array.from({length: 24}, () => 69000 + Math.random() * 2000),
+                            borderColor: '#f7931a',
+                            backgroundColor: 'rgba(247, 147, 26, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: {
+                                grid: { color: 'rgba(255,255,255,0.05)' },
+                                ticks: { color: '#8b8b9e' }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: '#8b8b9e', maxTicksLimit: 8 }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // ETH Chart placeholder
+            const ethCtx = document.getElementById('eth-chart');
+            if (ethCtx) {
+                charts.eth = new Chart(ethCtx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({length: 24}, (_, i) => `${i}:00`),
+                        datasets: [{
+                            label: 'ETH Price',
+                            data: Array.from({length: 24}, () => 2000 + Math.random() * 100),
+                            borderColor: '#627eea',
+                            backgroundColor: 'rgba(98, 126, 234, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: {
+                                grid: { color: 'rgba(255,255,255,0.05)' },
+                                ticks: { color: '#8b8b9e' }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: '#8b8b9e', maxTicksLimit: 8 }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function initStrategyChart(strategies) {
+            const ctx = document.getElementById('strategy-chart');
+            if (!ctx) return;
+            
+            if (charts.strategy) {
+                charts.strategy.destroy();
+            }
+            
+            charts.strategy = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: strategies.map(s => s.name),
+                    datasets: [{
+                        label: 'P&L (USDC)',
+                        data: strategies.map(s => s.pnl),
+                        backgroundColor: strategies.map(s => s.pnl >= 0 ? '#00ff88' : '#ff4757'),
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#8b8b9e' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#8b8b9e' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ── Utilities ──────────────────────────────────────────────────────────
+        function formatCurrency(value) {
+            if (value === undefined || value === null) return '$0.00';
+            return '$' + Math.abs(value).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        function formatPercent(value) {
+            if (value === undefined || value === null) return '0%';
+            return (value * 100).toFixed(1) + '%';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ── Settings ───────────────────────────────────────────────────────────
+        function saveApiConfig() {
+            logActivity('API configuration saved');
+            alert('API keys saved successfully');
+        }
+
+        function saveRiskParams() {
+            logActivity('Risk parameters updated');
+            alert('Risk settings saved successfully');
+        }
+
+        function resetAllData() {
+            if (confirm('Are you sure you want to reset all data? This cannot be undone.')) {
+                logActivity('All data reset');
+                alert('Data reset successfully');
+            }
+        }
+
+        // ── Initialization ─────────────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            connectWebSocket();
+            initCharts();
+            refreshData();
+            
+            // Auto-refresh every 10 seconds
+            setInterval(() => {
+                if (currentPage === 'dashboard') {
+                    refreshData();
+                }
+            }, 10000);
+        });
+    </script>
+</body>
+</html>
