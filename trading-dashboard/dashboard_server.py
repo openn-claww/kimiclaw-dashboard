@@ -51,9 +51,17 @@ logger = logging.getLogger('dashboard')
 class BotStatus:
     running: bool
     mode: str  # 'paper' or 'live'
+    strategy: str  # Current active strategy
+    strategies: List[str]  # Available strategies
     balance: float
+    paper_balance: float  # Separate paper trading balance
+    real_balance: float   # Separate real trading balance
     trade_count: int
+    paper_trades: int     # Separate paper trade count
+    real_trades: int      # Separate real trade count
     open_positions: int
+    paper_positions: int  # Separate paper positions
+    real_positions: int   # Separate real positions
     uptime: Optional[str] = None
     last_update: Optional[str] = None
 
@@ -126,7 +134,7 @@ class DashboardState:
         return default if default is not None else {}
 
     def get_bot_status(self) -> BotStatus:
-        """Get current bot status from state files"""
+        """Get current bot status from state files with separate paper/real tracking"""
         state = self.safe_load_json(STATE_FILE, {})
         health = self.safe_load_json(HEALTH_FILE, {})
         
@@ -140,12 +148,33 @@ class DashboardState:
             except (ValueError, ProcessLookupError, PermissionError):
                 running = False
         
+        # Get strategy information
+        strategies = ['Mean Reversion', 'Bond Buyer', 'Dual Strategy', 'Momentum']
+        current_strategy = health.get('active_strategy', 'Mean Reversion')
+        
+        # Separate paper and real trading data
+        paper_data = state.get('paper_trading', {})
+        real_data = state.get('live_trading', {})
+        
+        # Get active positions split by mode
+        active_positions = state.get('active_positions', {})
+        paper_positions = sum(1 for p in active_positions.values() if p.get('paper', True))
+        real_positions = sum(1 for p in active_positions.values() if not p.get('paper', True))
+        
         return BotStatus(
             running=running,
             mode='paper' if health.get('paper_mode', True) else 'live',
+            strategy=current_strategy,
+            strategies=strategies,
             balance=state.get('balance', 0.0),
+            paper_balance=paper_data.get('balance', state.get('balance', 0.0)),
+            real_balance=real_data.get('balance', 0.0),
             trade_count=state.get('trade_count', 0),
-            open_positions=len(state.get('active_positions', {})),
+            paper_trades=paper_data.get('trade_count', 0),
+            real_trades=real_data.get('trade_count', 0),
+            open_positions=len(active_positions),
+            paper_positions=paper_positions,
+            real_positions=real_positions,
             last_update=state.get('last_update')
         )
 
@@ -274,7 +303,7 @@ manager = ConnectionManager()
 
 # ── Background Tasks ─────────────────────────────────────────────────────────
 async def data_refresh_loop():
-    """Continuously refresh data and broadcast to clients"""
+    """Continuously refresh data and broadcast to clients with paper/real split"""
     while True:
         try:
             if manager.active_connections:
@@ -287,9 +316,17 @@ async def data_refresh_loop():
                         'status': {
                             'running': status.running,
                             'mode': status.mode,
+                            'strategy': status.strategy,
+                            'strategies': status.strategies,
                             'balance': status.balance,
+                            'paper_balance': status.paper_balance,
+                            'real_balance': status.real_balance,
                             'trade_count': status.trade_count,
-                            'open_positions': status.open_positions
+                            'paper_trades': status.paper_trades,
+                            'real_trades': status.real_trades,
+                            'open_positions': status.open_positions,
+                            'paper_positions': status.paper_positions,
+                            'real_positions': status.real_positions
                         },
                         'pnl': asdict(pnl) if pnl else None,
                         'timestamp': datetime.now(timezone.utc).isoformat()
@@ -396,11 +433,115 @@ async def bot_stop():
 
 @app.post("/api/bot/mode")
 async def bot_mode_switch(mode: str):
-    """Switch bot mode (requires restart)"""
+    """Switch bot mode between paper and live"""
     if mode not in ['paper', 'live']:
         raise HTTPException(status_code=400, detail="Mode must be 'paper' or 'live'")
-    # Note: Mode switch requires bot restart
-    return {'success': True, 'message': f'Switch to {mode} mode on next start'}
+    
+    try:
+        # Update health file with new mode
+        health = dashboard_state.safe_load_json(HEALTH_FILE, {})
+        health['paper_mode'] = (mode == 'paper')
+        health['mode_switched_at'] = datetime.now(timezone.utc).isoformat()
+        
+        with open(HEALTH_FILE, 'w') as f:
+            json.dump(health, f, indent=2)
+        
+        # Broadcast mode change to all clients
+        await manager.broadcast({
+            'type': 'mode_changed',
+            'data': {'mode': mode, 'timestamp': health['mode_switched_at']}
+        })
+        
+        return {
+            'success': True, 
+            'mode': mode,
+            'message': f'Switched to {mode.upper()} trading mode',
+            'requires_restart': False
+        }
+    except Exception as e:
+        logger.error(f"Error switching mode: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/bot/strategy")
+async def bot_strategy_switch(strategy: str):
+    """Switch active trading strategy"""
+    available_strategies = ['Mean Reversion', 'Bond Buyer', 'Dual Strategy', 'Momentum']
+    
+    if strategy not in available_strategies:
+        raise HTTPException(
+            status_code=400, 
+            detail=f"Strategy must be one of: {', '.join(available_strategies)}"
+        )
+    
+    try:
+        # Update health file with new strategy
+        health = dashboard_state.safe_load_json(HEALTH_FILE, {})
+        previous_strategy = health.get('active_strategy', 'Mean Reversion')
+        health['active_strategy'] = strategy
+        health['strategy_switched_at'] = datetime.now(timezone.utc).isoformat()
+        health['previous_strategy'] = previous_strategy
+        
+        with open(HEALTH_FILE, 'w') as f:
+            json.dump(health, f, indent=2)
+        
+        # Broadcast strategy change to all clients
+        await manager.broadcast({
+            'type': 'strategy_changed',
+            'data': {
+                'strategy': strategy,
+                'previous': previous_strategy,
+                'timestamp': health['strategy_switched_at']
+            }
+        })
+        
+        return {
+            'success': True,
+            'strategy': strategy,
+            'previous': previous_strategy,
+            'message': f'Switched to {strategy} strategy'
+        }
+    except Exception as e:
+        logger.error(f"Error switching strategy: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/strategies")
+async def api_strategies():
+    """Get available strategies and their performance"""
+    strategies = [
+        {
+            'id': 'mean_reversion',
+            'name': 'Mean Reversion',
+            'win_rate': 81.9,
+            'sharpe': 3.79,
+            'status': 'active',
+            'description': 'RSI + Bollinger Bands based signals'
+        },
+        {
+            'id': 'bond_buyer',
+            'name': 'Bond Buyer',
+            'win_rate': 84.6,
+            'sharpe': 2.5,
+            'status': 'ready',
+            'description': 'High probability (90%+) position buying'
+        },
+        {
+            'id': 'dual',
+            'name': 'Dual Strategy',
+            'win_rate': None,
+            'sharpe': None,
+            'status': 'active',
+            'description': 'External Arb + Momentum combined'
+        },
+        {
+            'id': 'momentum',
+            'name': 'Momentum',
+            'win_rate': 50.0,
+            'sharpe': 0.8,
+            'status': 'baseline',
+            'description': 'Velocity-based trend following'
+        }
+    ]
+    return {'strategies': strategies}
 
 # ── WebSocket Endpoint ───────────────────────────────────────────────────────
 

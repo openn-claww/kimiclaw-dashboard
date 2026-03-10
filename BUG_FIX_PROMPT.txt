@@ -1,0 +1,218 @@
+URGENT: Multiple Bugs in Production Trading Bot - Need Fixes
+
+MODEL: Claude 3.5 Sonnet
+
+=== WHO WE ARE ===
+We're running a Polymarket trading bot (master_bot_v6_polyclaw_integration.py + pnl_tracker.py + cross_market_arb.py) that trades 5-minute binary markets on BTC and ETH. Bot has been running for 5+ hours and is profitable (+$9.20) but has several bugs that need fixing.
+
+=== CURRENT ARCHITECTURE ===
+
+1. **master_bot_v6_polyclaw_integration.py** (~1300 lines)
+   - Main bot class with _execute_exit(), _monitor_positions() 
+   - Position monitor polls every 15s for market resolutions
+   - Calls Gamma API to check if markets resolved
+
+2. **pnl_tracker.py** 
+   - Thread-safe P&L tracking
+   - record_entry() on trade open
+   - record_exit() on trade close
+   - Saves to pnl_trades.json
+
+3. **cross_market_arb.py**
+   - Arb signal detection
+   - _execute_arb() creates positions
+
+=== ISSUE 1: CLOB CONNECTION DROPS (CRITICAL) ===
+
+**Problem:** Bot loses CLOB WebSocket connection every 2 minutes:
+```
+2026-03-09 02:25:57 ERROR [CLOB] Error: Connection to remote host was lost.
+2026-03-09 02:25:57 ERROR Connection to remote host was lost. - goodbye
+2026-03-09 02:28:03 ERROR [CLOB] Error: Connection to remote host was lost.
+```
+
+**Impact:** May miss trades or exits during outages
+
+**Current WebSocket Code in master_bot_v6:**
+```python
+self.clob_ws.connect()
+self.rtds_ws.connect()
+
+log.info(f"Waiting up to {WS_CONNECT_TIMEOUT}s for RTDS...")
+if not self.rtds_ws._connect_event.wait(timeout=WS_CONNECT_TIMEOUT):
+    _send_alert('WARNING', "RTDS timeout — starting Binance fallback")
+    self._start_binance_ws()
+
+if not self.clob_ws._connect_event.wait(timeout=10):
+    log.warning("CLOB WS not connected — price-based exits may lag")
+```
+
+**Questions:**
+1. Should we add automatic reconnection logic when CLOB drops?
+2. Is there a reconnect method in the WebSocket client?
+3. Should we use exponential backoff for reconnection attempts?
+
+=== ISSUE 2: MONITOR CALCULATION BUG (MEDIUM) ===
+
+**Problem:** 54 errors in position monitor:
+```
+[Monitor] Error checking ETH-5m: unsupported operand type(s) for -: 'ExitReason' and 'float'
+```
+
+**Current _monitor_positions code (lines ~763-850):**
+```python
+def _monitor_positions(self):
+    """Poll active positions every 15s, call _execute_exit on resolution."""
+    import time as _time
+    log.info("[Monitor] Position monitor started")
+    while not self._stop_event.is_set():
+        try:
+            with self._state_lock:
+                open_ids = list(self._active_positions.keys())
+
+            for mid in open_ids:
+                try:
+                    with self._state_lock:
+                        pos = self._active_positions.get(mid)
+                    if pos is None:
+                        continue
+
+                    slug = getattr(pos, 'slug', None) or mid
+                    resolved, winner = self._check_market_resolved(slug)
+
+                    if resolved:
+                        our_side   = getattr(pos, 'side', 'YES')
+                        exit_price = 1.0 if (winner or '').upper() == our_side.upper() else 0.0
+                        log.info(
+                            f"[Monitor] {mid} RESOLVED — winner={winner} "
+                            f"our={our_side} exit_price={exit_price}"
+                        )
+                        self._execute_exit(pos, exit_price, ExitReason.RESOLVED)
+                    else:
+                        # Time fallback: force-close if way past expiry
+                        age = _time.time() - getattr(pos, 'entry_time', _time.time())
+                        tf  = int(getattr(pos, 'tf', 5))
+                        if age > (tf * 60) + 120:  # tf + 2 min buffer
+                            log.warning(f"[Monitor] {mid} age={age:.0f}s forcing exit")
+                            # BUG IS HERE - what's being passed to _execute_exit?
+                            self._execute_exit(pos, 0.5, ExitReason.TIMEOUT)
+
+                except Exception as e:
+                    log.warning(f"[Monitor] Error checking {mid}: {e}")
+
+            _time.sleep(15)
+        except Exception as e:
+            log.error(f"[Monitor] Loop error: {e}", exc_info=True)
+            _time.sleep(15)
+```
+
+**Current _execute_exit signature (lines ~1100-1140):**
+```python
+def _execute_exit(self, pos: Position, cur_price: float, reason: ExitReason, extra: dict = None):
+    # ... calculates PnL, calls record_exit, removes position
+    # Line causing error - probably here:
+    pnl = (cur_price - pos.entry_price) / pos.entry_price * 100
+    # OR here:
+    if reason == ExitReason.RESOLVED:
+        # something with reason enum
+```
+
+**ExitReason enum:**
+```python
+class ExitReason(Enum):
+    RESOLVED = 'resolved'
+    STOP_LOSS = 'stop_loss'
+    TAKE_PROFIT = 'take_profit'
+    TRAILING_STOP = 'trailing_stop'
+    TIMEOUT = 'timeout'
+    MANUAL = 'manual'
+```
+
+**Questions:**
+1. Where exactly is the 'ExitReason - float' error occurring?
+2. Is _execute_exit expecting different parameter types?
+3. Should we pass reason.value instead of reason?
+
+=== ISSUE 3: PnL DATA INCONSISTENCY (MEDIUM) ===
+
+**Problem:** 36 trades have status='won'/'lost' but missing exit_price
+
+**Current record_exit in pnl_tracker.py:**
+```python
+def record_exit(self, trade_id: str, exit_price: float, exit_reason: str = ''):
+    with self._lock:
+        rec = self._trades.pop(trade_id, None)
+        # [FIX-3B] Fuzzy match added
+        if rec is None:
+            candidates = [
+                (k, v) for k, v in self._trades.items()
+                if k.startswith(trade_id) and v.status == 'open'
+            ]
+            if candidates:
+                best_key = max(candidates, key=lambda x: x[1].entry_time)[0]
+                rec = self._trades.pop(best_key)
+                log.info(f"[PnL] record_exit: fuzzy match '{trade_id}' → '{best_key}'")
+        if rec is None:
+            log.warning(f"[PnL] No open trade found for {trade_id} — creating stub")
+            rec = TradeRecord(
+                trade_id=trade_id, market_id=trade_id,
+                side='?', entry_price=exit_price,
+                shares=0, amount_usd=0,
+            )
+
+        rec.close(exit_price, exit_reason)  # <-- Sets exit_price
+        self._closed.append(rec.to_dict())
+
+    won = rec.status == 'won'
+    log.info(f"[PnL] EXIT {trade_id} | {'WIN' if won else 'LOSS'} | net=${rec.net_pnl:+.4f}")
+    self._persist()
+```
+
+**TradeRecord.close():**
+```python
+def close(self, exit_price: float, exit_reason: str):
+    self.exit_price = exit_price  # <-- Should set this
+    self.exit_ts = datetime.now(timezone.utc).isoformat()
+    # ... PnL calculation
+```
+
+**Questions:**
+1. Why would exit_price be missing if close() sets it?
+2. Is the stub creation (when rec is None) causing issues?
+3. Should we validate exit_price before calling close()?
+
+=== ISSUE 4: SERVICE STATUS (LOW) ===
+
+**Problem:** systemd shows service failed but bot running standalone
+```
+systemctl is-active v6-bot.service → failed
+```
+
+**Impact:** No auto-restart if bot crashes
+
+**Question:** Should we fix systemd service or just ensure bot is stable?
+
+=== WHAT WE NEED ===
+
+1. Fix CLOB reconnection logic
+2. Fix Monitor calculation bug (ExitReason - float)
+3. Fix PnL data consistency
+4. Optional: Fix systemd service
+
+=== FILES TO PATCH ===
+- /root/.openclaw/workspace/master_bot_v6_polyclaw_integration.py
+- /root/.openclaw/workspace/pnl_tracker.py (if needed)
+
+=== QUESTIONS FOR CLAUDE ===
+
+1. For CLOB reconnects: Should we add a reconnect loop in the main thread or a separate watchdog thread?
+
+2. For the ExitReason error: Can you trace through _execute_exit and find where the type mismatch occurs? The error message says 'ExitReason' - 'float'.
+
+3. For PnL inconsistency: Should we add validation that exit_price is set before calling persist()?
+
+4. Can you provide the EXACT line-by-line fixes with context (5 lines before/after each change)?
+
+5. Are there any other critical issues we're missing?
+
+Give complete, working code fixes. The bot is live and profitable - we need stable fixes!

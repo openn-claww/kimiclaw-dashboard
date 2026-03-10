@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-03-06T23:38:38.079478",
+  "initial_bankroll": 500.0,
+  "final_bankroll": 39481.588973616665,
+  "total_return_pct": 7796.3177947233335,
+  "total_trades": 10000,
+  "win_rate": 52.769999999999996,
+  "profit_factor": 1.3343772091773631,
+  "max_drawdown": 27.946320933971514,
+  "sharpe_ratio": 25.19043813297815,
+  "resolution_stats": {
+    "tier1_official": 7964,
+    "tier2_fallback": 2036,
+    "tier3_forced": 0,
+    "delayed_resolutions": 2036
+  },
+  "monthly_projection": {
+    "trades": 300,
+    "expected_pnl": 1184.447669208514,
+    "expected_return_pct": 236.8895338417028
+  }
+}

@@ -1,0 +1,160 @@
+URGENT: Fix Parameter Order Bug in Position Monitor
+
+MODEL: Claude 3.5 Sonnet
+
+=== THE CRITICAL BUG FOUND ===
+
+**Error:** `unsupported operand type(s) for -: 'ExitReason' and 'float'`
+
+**Root Cause:** Wrong parameter order when calling `_execute_exit()`
+
+=== THE CODE ===
+
+**_execute_exit signature (line 1188):**
+```python
+def _execute_exit(self, pos: Position, reason: ExitReason, cur_price: float, extra: dict=None):
+    pnl = (cur_price - pos.entry_price) / pos.entry_price * 100  # <-- ERROR HERE
+    # ... rest of function
+```
+
+**_monitor_positions calling it WRONG (line ~804):**
+```python
+if resolved:
+    our_side   = getattr(pos, 'side', 'YES')
+    exit_price = 1.0 if (winner or '').upper() == our_side.upper() else 0.0
+    log.info(f"[Monitor] {mid} RESOLVED — winner={winner} our={our_side} exit_price={exit_price}")
+    
+    # BUG: Arguments in wrong order!
+    # Current (WRONG):  self._execute_exit(pos, exit_price, ExitReason.RESOLVED)
+    # Should be:        self._execute_exit(pos, ExitReason.RESOLVED, exit_price)
+    
+    self._execute_exit(pos, exit_price, ExitReason.RESOLVED)  # <-- WRONG ORDER
+```
+
+**Why it fails:**
+- exit_price (float 1.0 or 0.0) goes to `reason` parameter (expects ExitReason enum)
+- ExitReason.RESOLVED (enum) goes to `cur_price` parameter (expects float)
+- In _execute_exit: `(cur_price - pos.entry_price)` tries to do: `(ExitReason.RESOLVED - 0.505)`
+- You can't subtract a float from an enum → TypeError
+
+=== THE FIX ===
+
+**Change line ~804 in _monitor_positions:**
+
+FROM:
+```python
+self._execute_exit(pos, exit_price, ExitReason.RESOLVED)
+```
+
+TO:
+```python
+self._execute_exit(pos, ExitReason.RESOLVED, exit_price)
+```
+
+=== SECONDARY BUG: Missing Timeout Exit ===
+
+In the time fallback section (lines ~807-814), there's no actual exit call:
+
+```python
+else:
+    # Time fallback: force-close if way past expiry
+    age = _time.time() - getattr(pos, 'entry_time', _time.time())
+    tf  = int(getattr(pos, 'tf', 5))
+    if age > (tf * 60) + 120:  # tf + 2 min buffer
+        log.warning(
+            f"[Monitor] {mid} age={age/60:.1f}min > {tf+2}min "
+            f"— forcing resolution check"
+        )
+        # MISSING: Actually exit the position!
+```
+
+**Fix:** Add exit call:
+```python
+else:
+    # Time fallback: force-close if way past expiry
+    age = _time.time() - getattr(pos, 'entry_time', _time.time())
+    tf  = int(getattr(pos, 'tf', 5))
+    if age > (tf * 60) + 120:  # tf + 2 min buffer
+        log.warning(
+            f"[Monitor] {mid} age={age/60:.1f}min > {tf+2}min "
+            f"— forcing TIMEOUT exit"
+        )
+        # Force exit at current market price (0.5 = neutral)
+        self._execute_exit(pos, ExitReason.TIMEOUT, 0.5)
+```
+
+=== COMPLETE FIXED _monitor_positions SECTION ===
+
+```python
+    def _monitor_positions(self):
+        """Poll active positions every 15s, call _execute_exit on resolution."""
+        import time as _time
+        log.info("[Monitor] Position monitor started")
+        while not self._stop_event.is_set():
+            try:
+                with self._state_lock:
+                    open_ids = list(self._active_positions.keys())
+
+                for mid in open_ids:
+                    try:
+                        with self._state_lock:
+                            pos = self._active_positions.get(mid)
+                        if pos is None:
+                            continue
+
+                        slug = getattr(pos, 'slug', None) or mid
+                        resolved, winner = self._check_market_resolved(slug)
+
+                        if resolved:
+                            our_side   = getattr(pos, 'side', 'YES')
+                            exit_price = 1.0 if (winner or '').upper() == our_side.upper() else 0.0
+                            log.info(
+                                f"[Monitor] {mid} RESOLVED — winner={winner} "
+                                f"our={our_side} exit_price={exit_price}"
+                            )
+                            # [FIX] Correct parameter order: reason first, then price
+                            self._execute_exit(pos, ExitReason.RESOLVED, exit_price)
+                        else:
+                            # Time fallback: force-close if way past expiry
+                            age = _time.time() - getattr(pos, 'entry_time', _time.time())
+                            tf  = int(getattr(pos, 'tf', 5))
+                            if age > (tf * 60) + 120:  # tf + 2 min buffer
+                                log.warning(
+                                    f"[Monitor] {mid} age={age/60:.1f}min > {tf+2}min "
+                                    f"— forcing TIMEOUT exit"
+                                )
+                                # [FIX] Actually exit the position
+                                self._execute_exit(pos, ExitReason.TIMEOUT, 0.5)
+
+                    except Exception as e:
+                        log.warning(f"[Monitor] Error checking {mid}: {e}")
+
+                _time.sleep(15)
+
+            except Exception as e:
+                log.error(f"[Monitor] Loop error: {e}", exc_info=True)
+                _time.sleep(15)
+        log.info("[Monitor] Position monitor stopped")
+```
+
+=== QUESTIONS ===
+
+1. Is the parameter order fix correct? (reason before cur_price)
+
+2. Should we use 0.5 as the exit price for TIMEOUT, or try to get current market price?
+
+3. Are there any other places in the code that call _execute_exit with wrong parameter order?
+
+=== IMPACT ===
+
+**Before fix:**
+- 54 errors: "ExitReason - float"
+- Trades not exiting properly
+- PnL calculation failing
+
+**After fix:**
+- Clean exits
+- Proper PnL recording
+- All 61 trades should process correctly
+
+Give confirmation these fixes are correct!

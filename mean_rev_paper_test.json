@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-03-11T05:44:16.457202",
+  "strategy": "mean_reversion",
+  "mode": "paper",
+  "initial_bankroll": 5.0,
+  "final_bankroll": 4.7269,
+  "trades": 3,
+  "win_rate": 1.0,
+  "profit": 0.0668,
+  "roi_pct": -5.46,
+  "sharpe": 11.0325,
+  "passed": true
+}

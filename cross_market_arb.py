@@ -273,6 +273,45 @@ class CrossMarketArb:
             "circuit_breaker": self.circuit.status(),
         }
 
+    def check_all(self, markets=None, bankroll=None, paper=None):
+        """
+        Legacy API wrapper for MasterBotV6 compatibility.
+        Iterates through provided markets or bot's market cache.
+        """
+        results = []
+        
+        # Get defaults from bot if not provided
+        if bankroll is None:
+            bankroll = getattr(self.bot, '_virtual_free', 56.71)
+        if paper is None:
+            paper = getattr(self.bot, 'IS_PAPER_TRADING', True)
+        
+        # If markets provided, use them
+        if markets:
+            for market_key, market_data in markets.items():
+                try:
+                    pm_data = market_data.get('pm_data', market_data)
+                    spot_data = market_data.get('spot_data', {})
+                    rec = self.check_market(pm_data, spot_data, bankroll, paper)
+                    if rec:
+                        results.append(rec)
+                except Exception as e:
+                    log.debug(f"[Arb] check_all error for {market_key}: {e}")
+        
+        # Also check if bot has market cache
+        elif hasattr(self.bot, '_market_cache'):
+            for market_key, market_data in self.bot._market_cache.items():
+                try:
+                    pm_data = market_data.get('pm_data', market_data)
+                    spot_data = market_data.get('spot_data', {})
+                    rec = self.check_market(pm_data, spot_data, bankroll, paper)
+                    if rec:
+                        results.append(rec)
+                except Exception as e:
+                    log.debug(f"[Arb] check_all error for {market_key}: {e}")
+        
+        return results
+
     # ─────────────────────────────────────────────────────────────────────────
     # STRATEGY CORE
     # ─────────────────────────────────────────────────────────────────────────
@@ -280,14 +319,13 @@ class CrossMarketArb:
     def detect_arbitrage(self, pm_data: dict, spot_data: dict) -> Optional[ArbSignal]:
         """
         Time-decay arbitrage using log-normal probability with MM-lag detection.
-
-        KEY INSIGHT from backtesting: edge only exists when spot has moved
-        recently AND the market price hasn't caught up. When both real_prob
-        and market_price are near 1.0, there's no edge. We need the SPREAD
-        between our probability estimate and the market's stale price.
-
-        Returns ArbSignal if edge > MIN_NET_EDGE, else None.
         """
+        # [DEBUG] Log entry with key data
+        coin = str(spot_data.get('coin', 'BTC')).upper()
+        threshold = spot_data.get('threshold', 0)
+        spot = spot_data.get('price', 0)
+        log.debug(f"[detect_arbitrage] {coin} - threshold={threshold} spot={spot}")
+        
         # ── 1. Extract and validate prices ───────────────────────────────────
         prices = pm_data.get('outcomePrices', [])
         if len(prices) < 2:
@@ -536,3 +574,6 @@ class CrossMarketArb:
 
         log.debug("[Arb] time_remaining unavailable — add window_end_ts to spot_data")
         return None
+
+# Backward compatibility alias
+CrossMarketArbitrage = CrossMarketArb

@@ -1,0 +1,70 @@
+URGENT FIX NEEDED - Bot Keeps Crashing
+
+MODEL: Claude 3.5 Sonnet
+
+=== THE PROBLEMS ===
+
+1. BOT CRASHES EVERY FEW MINUTES
+Error: 'dict' object has no attribute 'append'
+Location: _send_alert function in master_bot_v6_polyclaw_integration.py
+
+Code causing crash:
+```python
+def _send_alert(level: str, message: str):
+    if level == 'CRITICAL': log.critical(f"🚨 ALERT: {message}")
+    elif level == 'WARNING': log.warning(f"⚠️  ALERT: {message}")
+    else: log.info(f"ℹ️  ALERT: {message}")
+    with _FILE_LOCK:
+        data = safe_load_json(ALERT_FILE, default=[])
+        if not isinstance(data, list):
+            data = []
+        data.append({'ts': datetime.now(tz=timezone.utc).isoformat(), 'level': level, 'message': message})
+        if len(data) > 500: data = data[-200:]
+        atomic_write_json(data, ALERT_FILE)
+```
+
+I added `if not isinstance(data, list): data = []` but it still crashes.
+Why isn't this working? Is it a race condition with _FILE_LOCK?
+
+2. TRADES NOT SHOWING AS COMPLETED
+- Seeing "_execute_arb START" logs
+- NOT seeing "RETURN TRUE" or "ARB EXECUTED" logs
+- PnL tracker still shows only 2 historical test trades
+
+Relevant code in cross_market_arb.py:
+```python
+# _execute_arb starts
+def _execute_arb(self, coin, tf, side, entry_price, amount, slug, pm_data, opportunity):
+    market_key = f"{coin.upper()}-{tf}m"
+    log.info(f"[_execute_arb] START {market_key} {side} ${amount}")
+    
+    # ... position checks, kill switch, etc ...
+    
+    # At the end:
+    if hasattr(self.bot, '_save_state'):
+        self.bot._save_state()
+    
+    log.info(f"[_execute_arb] RETURN TRUE - {market_key} executed successfully")
+    return True
+```
+
+We see START logs but never RETURN TRUE logs. What could cause _execute_arb to not return?
+
+=== WHAT I NEED ===
+
+1. Fix _send_alert crash permanently (bot keeps dying every few minutes)
+2. Debug why _execute_arb doesn't return True (no "RETURN TRUE" logs)
+3. Verify PnL tracker is recording trades properly
+
+=== FILES ===
+- /root/.openclaw/workspace/master_bot_v6_polyclaw_integration.py (lines ~258-270 for _send_alert)
+- /root/.openclaw/workspace/cross_market_arb.py (lines ~594-765 for _execute_arb)
+
+=== CONTEXT ===
+- Bot running in paper mode
+- Trades ARE being detected ("ARB SIGNAL" logs)
+- _execute_arb START logs appear
+- Bot crashes with signal handler errors
+- After crash, bot restarts and cycle repeats
+
+Give me exact fixes with line numbers. Bot is trading but we can't track P&L because it keeps crashing.

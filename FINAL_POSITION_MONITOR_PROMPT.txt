@@ -1,0 +1,179 @@
+URGENT: Position Monitor Missing - Complete Context for Fix
+
+MODEL: Claude 3.5 Sonnet
+
+=== WHO WE ARE ===
+We are debugging a Polymarket trading bot (master_bot_v6_polyclaw_integration.py). The bot trades 5-minute binary markets on BTC and ETH. 
+
+=== THE CRITICAL ISSUE ===
+1. Bot successfully executes trades (we see "ARB EXECUTED" in logs)
+2. record_entry() is called - PnL tracker records entries
+3. BUT record_exit() is NEVER called for 5-minute markets
+4. Trades stay "open" forever - no PnL calculated
+5. pnl_trades.json only has entries, no exits
+
+ROOT CAUSE: There is NO position monitor polling to detect when 5-minute markets resolve. _execute_exit() is never triggered.
+
+=== THE EXISTING CODE STRUCTURE ===
+
+File: master_bot_v6_polyclaw_integration.py (1300+ lines)
+
+Key existing components:
+1. class MasterBot with __init__(), run(), start() methods
+2. _execute_exit() method exists (lines ~1100-1130) - handles exits
+3. resolution_engine - exists but may not be triggering for 5m markets
+4. auto_redeem - exists for CTF redemptions
+5. _active_positions dict - stores open positions
+6. ExitReason enum exists with RESOLVED member
+7. _state_lock threading.Lock() exists
+
+Existing _execute_exit signature:
+```python
+def _execute_exit(self, pos: Position, cur_price: float, reason: ExitReason, extra: dict = None):
+    # ... calculates PnL, calls record_exit, removes position
+```
+
+=== WHAT WE NEED TO ADD ===
+
+A position monitor that:
+1. Runs every 15 seconds
+2. Checks all open positions in _active_positions
+3. Calls Gamma API to check if market resolved
+4. Calls _execute_exit() with correct exit_price (1.0 for win, 0.0 for loss)
+
+=== THE COMPLETE CODE TO ADD ===
+
+Add these TWO methods to master_bot_v6_polyclaw_integration.py:
+
+```python
+def _monitor_positions(self):
+    """[FIX-3] Poll active positions every 15s and call _execute_exit on resolution."""
+    import time as _time
+    while not self._stop_event.is_set():
+        try:
+            with self._state_lock:
+                open_ids = list(self._active_positions.keys())
+
+            for mid in open_ids:
+                try:
+                    with self._state_lock:
+                        pos = self._active_positions.get(mid)
+                    if pos is None:
+                        continue
+
+                    # Check if market has resolved via Gamma API
+                    slug = getattr(pos, 'slug', None) or mid
+                    resolved, winner = self._check_market_resolved(slug)
+                    if resolved:
+                        # Determine outcome for our side
+                        our_side  = getattr(pos, 'side', 'YES')
+                        exit_price = 1.0 if winner == our_side else 0.0
+                        log.info(
+                            f"[Monitor] {mid} RESOLVED — winner={winner} "
+                            f"our_side={our_side} exit_price={exit_price}"
+                        )
+                        self._execute_exit(pos, exit_price, ExitReason.RESOLVED)
+
+                    else:
+                        # Time-based fallback: if position age > tf + 2min, force check
+                        age_min = (_time.time() - getattr(pos, 'entry_time', _time.time())) / 60
+                        tf_min  = int(getattr(pos, 'timeframe', 5))
+                        if age_min > tf_min + 2:
+                            log.warning(
+                                f"[Monitor] {mid} age={age_min:.1f}min > {tf_min+2}min "
+                                f"— forcing resolution check"
+                            )
+
+                except Exception as e:
+                    log.warning(f"[Monitor] Position check error for {mid}: {e}")
+
+            _time.sleep(15)  # poll every 15s — fast enough for 5m markets
+
+        except Exception as e:
+            log.error(f"[Monitor] Loop error: {e}", exc_info=True)
+            _time.sleep(15)
+
+def _check_market_resolved(self, slug: str):
+    """Returns (resolved: bool, winner: str | None)"""
+    import requests as _req
+    try:
+        r = _req.get(
+            f"https://gamma-api.polymarket.com/events/slug/{slug}",
+            timeout=5
+        )
+        if r.status_code != 200:
+            return False, None
+        data = r.json()
+        # Handle both list and dict responses
+        event = data[0] if isinstance(data, list) else data
+        markets = event.get('markets', [])
+        for m in markets:
+            if m.get('closed') or m.get('resolved'):
+                # Find winning outcome
+                outcomes = m.get('outcomes', [])
+                prices   = m.get('outcomePrices', [])
+                for i, (o, p) in enumerate(zip(outcomes, prices)):
+                    if float(p) >= 0.99:
+                        return True, o.upper()
+                return True, None  # resolved but winner unclear
+        return False, None
+    except Exception as e:
+        log.debug(f"[Monitor] _check_market_resolved({slug}) error: {e}")
+        return False, None
+```
+
+AND add this thread starter code (need to find right location):
+
+```python
+# [FIX-3] Start position monitor thread
+self._stop_event = threading.Event()  # if not already defined
+self._monitor_thread = threading.Thread(
+    target=self._monitor_positions, daemon=True, name='pos-monitor'
+)
+self._monitor_thread.start()
+log.info("[Monitor] Position monitor started (15s poll)")
+```
+
+=== QUESTIONS FOR CLAUDE ===
+
+1. The master_bot_v6 has __init__(), run(), start() methods. 
+   - Where exactly should _monitor_positions() and _check_market_resolved() be inserted?
+   - Give exact line context (what comes before/after)
+
+2. Where should the thread starter code go?
+   - In __init__() at the end?
+   - In run() at the beginning?
+   - After arb_engine.start() in start()?
+
+3. Is self._stop_event likely already defined? If not, where should we add:
+   ```python
+   self._stop_event = threading.Event()
+   ```
+
+4. The Position class has these attributes we need:
+   - slug (str) - market slug
+   - side (str) - 'YES' or 'NO'
+   - entry_time (float) - timestamp
+   - timeframe (int) - usually 5
+   - market_id (str)
+   
+   The _check_market_resolved uses 'slug' but falls back to 'mid'. Is this correct?
+
+5. The bot has these existing components - do they conflict?
+   - resolution_engine (ResolutionEngine class)
+   - auto_redeem (AutoRedeemEngine class)
+   
+   Should we disable them or work alongside them?
+
+6. Can you provide the EXACT insertion points with 5-10 lines of surrounding code context so we know exactly where to paste?
+
+7. Should we add any import statements at the top of the file?
+
+=== CRITICAL ===
+Without this position monitor, the bot will:
+- Execute trades forever
+- Never record exits
+- Never calculate actual PnL
+- Make it impossible to know if strategy is profitable
+
+Give us EXACT code placement with surrounding context. The bot is running live now!

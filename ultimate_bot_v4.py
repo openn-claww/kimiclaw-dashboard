@@ -17,6 +17,24 @@ from enum import Enum
 from collections import defaultdict, deque
 from scipy.stats import linregress
 
+# ── Live trading integration (Part 2 patch) ─────────────────────────────────
+import os
+import logging
+from live_trading.live_trading_config import load_live_config
+from live_trading.v4_live_integration import V4BotLiveIntegration
+
+# ── Load live trading config ─────────────────────────────────────────────────
+# Reads from environment variables (see live_trading_config.py)
+# To enable: export POLY_LIVE_ENABLED=true POLY_PRIVATE_KEY=0x... POLY_ADDRESS=0x...
+logger = logging.getLogger(__name__)
+try:
+    _LIVE_CONFIG, _POLY_PRIVATE_KEY, _POLY_ADDRESS = load_live_config()
+except EnvironmentError as e:
+    logger.error(f"Live trading config error: {e}")
+    _LIVE_CONFIG = {"enabled": False, "dry_run": True}
+    _POLY_PRIVATE_KEY = None
+    _POLY_ADDRESS = None
+
 # ============ CONFIGURATION ============
 VIRTUAL_BANKROLL = 686.93
 MAX_POSITIONS = 5
@@ -371,6 +389,15 @@ class UltimateBot:
         self.last_trade_time = 0
         self.last_exit_check = 0
         
+        # ── Live trading integration (Part 2 patch) ──────────────────────────
+        self.live = V4BotLiveIntegration(
+            config=_LIVE_CONFIG,
+            private_key=_POLY_PRIVATE_KEY,
+            address=_POLY_ADDRESS,
+        )
+        logger.info(f"V4 bot live integration loaded: {self.live.get_status()}")
+        # ── End live trading init ─────────────────────────────────────────────
+        
     def start(self):
         """Start the bot."""
         print("="*70)
@@ -528,7 +555,7 @@ class UltimateBot:
     
     def execute_trade_edge(self, coin: str, tf: int, edge_trade: dict, yes_price: float, 
                           no_price: float, regime_params: dict):
-        """Execute edge trade."""
+        """Execute edge trade with live trading integration."""
         edge = edge_trade['edge']
         base_size = POSITION_SIZE_PCT * regime_params['size_mult']
         size_multiplier = min(2.0, 1.0 + (edge * 2))
@@ -540,11 +567,49 @@ class UltimateBot:
         self.trade_count += 1
         side = edge_trade['side']
         entry_price = edge_trade['price']
+        market_id = f"{coin.upper()}-{tf}m"
         
         print(f"📈 [{datetime.now().strftime('%H:%M:%S')}] #{self.trade_count} EDGE {coin} {tf}m | "
               f"{side} @ {entry_price:.3f} | Regime: {self.current_regimes[coin].value}")
         
-        self.virtual_free -= amount
+        # ── Part 2 patch: route through live integration ──────────────────────────
+        live_result = self.live.execute_buy(
+            market_id=market_id,
+            side=side,
+            amount=amount,
+            price=entry_price,
+            signal_data={
+                "market_id": market_id,
+                "side": side,
+                "v4_estimated_price": entry_price,
+                "edge": edge,
+                "regime": self.current_regimes[coin].value,
+            },
+        )
+        
+        # Update V4's internal balance and position tracking
+        if live_result["success"]:
+            self.virtual_free -= amount
+            self.active_positions[market_id] = Position(
+                market_id=market_id,
+                side=side,
+                entry_price=live_result["fill_price"],
+                shares=live_result["filled_size"],
+            )
+            # Store live order info for exit
+            if market_id not in self.open_positions:
+                self.open_positions[market_id] = []
+            self.open_positions[market_id].append({
+                "order_id": live_result.get("order_id"),
+                "filled_size": live_result["filled_size"],
+                "fill_price": live_result["fill_price"],
+                "virtual": live_result["virtual"],
+            })
+        else:
+            # Live trade failed, still do virtual for tracking
+            self.virtual_free -= amount
+        # ── End Part 2 patch ──────────────────────────────────────────────────────
+        
         self.log_trade({
             'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'type': 'EDGE',
@@ -553,7 +618,9 @@ class UltimateBot:
             'amount': amount,
             'edge': edge,
             'regime': self.current_regimes[coin].value,
-            'virtual_balance': self.virtual_free
+            'virtual_balance': self.virtual_free,
+            'live_order_id': live_result.get("order_id"),
+            'live_virtual': live_result.get("virtual", True),
         })
     
     def check_exits(self):
@@ -581,13 +648,31 @@ class UltimateBot:
         return None
     
     def execute_exit(self, position: Position, reason: ExitReason, current_price: float):
-        """Execute position exit."""
+        """Execute position exit with live trading integration."""
         pnl = (current_price - position.entry_price) / position.entry_price * 100
         
         print(f"🚪 [{datetime.now().strftime('%H:%M:%S')}] EXIT {position.market_id} | "
               f"{reason.value} | PnL: {pnl:+.1f}%")
         
-        self.virtual_free += position.shares * current_price
+        # ── Part 2 patch: route through live integration ──────────────────────────
+        live_pnl = 0
+        live_result = self.live.execute_sell(
+            market_id=position.market_id,
+            exit_price=current_price,
+            signal_data={
+                "market_id": position.market_id,
+                "v4_exit_price": current_price,
+                "exit_reason": reason.value,
+            },
+        )
+        
+        if live_result["success"]:
+            live_pnl = live_result.get("pnl", 0)
+            self.virtual_free += position.shares * current_price
+        else:
+            # Live exit failed, still update virtual
+            self.virtual_free += position.shares * current_price
+        # ── End Part 2 patch ──────────────────────────────────────────────────────
         
         self.log_trade({
             'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -595,6 +680,7 @@ class UltimateBot:
             'market': position.market_id,
             'exit_reason': reason.value,
             'pnl_pct': pnl,
+            'live_pnl': live_pnl,
             'virtual_balance': self.virtual_free
         })
         

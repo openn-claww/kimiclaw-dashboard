@@ -2,7 +2,7 @@
   "starting_bankroll": 500.0,
   "peak_bankroll": 690.0,
   "current_bankroll": 690,
-  "day_start_bankroll": 500.0,
+  "day_start_bankroll": 690,
   "daily_pnl": 0.0,
   "consecutive_losses": 0,
   "consecutive_wins": 0,
@@ -16,7 +16,7 @@
   "paused": false,
   "pause_reason": "",
   "pause_until": null,
-  "last_daily_reset": "2026-03-01T15:47:42.920248+00:00",
+  "last_daily_reset": "2026-03-10T02:59:48.751007+00:00",
   "events": [
     {
       "ts": "2026-03-01T15:47:42.920274+00:00",
@@ -45,6 +45,96 @@
       "bankroll": 690,
       "daily_pnl": 0.0,
       "drawdown_pct": 31.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-02T00:09:47.818634+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-03T00:07:03.869837+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-04T00:02:37.042910+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-05T00:02:07.632515+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-06T00:10:16.336574+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-07T00:08:25.924971+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-08T00:00:00.193980+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-09T12:42:31.188697+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
+      "consecutive_losses": 0,
+      "open_positions": 0
+    },
+    {
+      "ts": "2026-03-10T02:59:48.751021+00:00",
+      "event": "daily_reset",
+      "details": "new day_start=$690.00",
+      "bankroll": 690,
+      "daily_pnl": 0.0,
+      "drawdown_pct": 0.0,
       "consecutive_losses": 0,
       "open_positions": 0
     }

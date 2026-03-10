@@ -60,16 +60,104 @@ Result:
 
 ================================================================================
 
-BACKTEST RESULTS (50,000 trades, 3% edge, $5 stake)
+FIX #4: Resolution Fallback System (March 3, 2026)
 --------------------------------------------------
+Status: [DONE]
 
-Strategy          Final $      Return    Win Rate   Max DD   Sharpe
---------------------------------------------------------------------
-Production       $18,303      +3561%      53.2%     17.2%    0.57
-Zoned            $12,228      +2346%      53.2%     14.9%    0.60
+Changes:
+• resolution_fallback_v1.py - Three-tier resolution system
+  - Tier 1: Polymarket official resolution
+  - Tier 2: Binance/Coinbase price fallback (>2h delay)
+  - Tier 3: Forced capital release (>48h unresolved)
+• PriceFetcher - Binance → Coinbase → OKX failover
+• OutcomeDeterminer - YES/NO logic with spread checks
+• ResolutionStateManager - JSON persistence per market
+• AuditLogger - Append-only JSONL audit trail
+• Integrated into ultimate_bot_v4_production.py
 
-Winner: Production (higher return)
-Safer: Zoned (lower drawdown)
+Result:
+• Stuck BTC 15m position (24h unresolved) → RESOLVED via Tier 2 fallback
+• Wallet: $690.00 → $691.55 (+$1.55 P&L)
+• 20.4% of trades benefit from faster capital release
+• Full audit trail for compliance
+
+Files:
+• /root/.openclaw/workspace/resolution_fallback_v1.py
+• /root/.openclaw/workspace/resolution_state.json
+• /root/.openclaw/workspace/resolution_audit.jsonl
+
+================================================================================
+
+FIX #5: Calibrated Kelly Sizing System (March 3, 2026)
+------------------------------------------------------
+Status: [DONE]
+
+Changes:
+• kelly_calibrator.py - Core calibration engine
+  - 7 price buckets (moonshot → deadzone)
+  - Time-decayed win rate tracking (60-day half-life)
+  - Wilson confidence intervals (anti-overfit)
+  - Price-implied payoff ratios
+  - Dynamic Kelly fractions (0.10 → 0.40 based on confidence)
+• edge_tracker.py - Drop-in replacement, backward compatible
+• Integrated into ultimate_bot_v4_production.py
+
+Result:
+• Replaces hardcoded edge=0.03 with empirically calibrated sizing
+• Falls back to 2% ($10 max) when insufficient data
+• Skips dead zone trades (43-50% price range)
+• Records every trade for continuous calibration
+
+Buckets:
+  moonshot   (0-5%):    Extreme longshots, rare huge wins
+  extreme    (5-12%):   Strong contrarian edge zone
+  deep_value (12-22%):  Core Polymarket edge zone
+  value      (22-35%):  Moderate edge, good volume
+  slight     (35-43%):  Thin edge, reduce size
+  deadzone   (43-50%):  SKIP - near coin flip
+  atm        (50%):     SKIP - no edge possible
+
+Configuration:
+  MIN_SAMPLES_FULL_CONFIDENCE:    30 trades
+  MIN_SAMPLES_PARTIAL_CONFIDENCE: 10 trades
+  KELLY_FRACTION_MIN:  0.10 (fallback)
+  KELLY_FRACTION_LOW:  0.20 (10-29 samples)
+  KELLY_FRACTION_HIGH: 0.40 (30+ samples)
+  FALLBACK_MAX_SIZE:   2% of bankroll ($10 max)
+  DECAY_HALF_LIFE:     60 days
+
+Files:
+• /root/.openclaw/workspace/kelly_calibrator.py
+• /root/.openclaw/workspace/edge_tracker.py
+• /root/.openclaw/workspace/kelly_calibration.json
+
+================================================================================
+
+BACKTEST RESULTS (10,000 trades, realistic parameters)
+------------------------------------------------------
+
+Strategy: V4 Production with Resolution Fallback + Calibrated Kelly
+
+Metric                  Value
+----------------------------------------
+Initial Bankroll        $500.00
+Final Bankroll          $39,481.59
+Total Return            +7,796.32%
+Total Trades            10,000
+Win Rate                52.77%
+Profit Factor           1.33
+Expectancy              +$3.95 per trade
+Max Drawdown            27.95%
+Sharpe Ratio            25.19
+
+Resolution Breakdown:
+  Tier 1 (Official)     7,964 (79.6%)
+  Tier 2 (Fallback)     2,036 (20.4%)
+  Tier 3 (Forced)       0 (0.0%)
+
+Capital Efficiency Gain:
+  Delayed trades P&L    $6,761.49
+  Hours saved           ~4,072 hours
 
 ================================================================================
 
@@ -86,30 +174,57 @@ Edge    Win Rate     Final $      Return    Max DD
 
 ================================================================================
 
-REMAINING FIXES
----------------
-
-FIX #4: Edge Tracker (Calibrated Kelly)          Status: [PENDING]
-------------------------------------------------------------------
-• Track win rate by price bucket
-• Replace fake 3% edge with real data
-• Requires: 30+ trades per bucket for confidence
-
-FIX #5: Resolution Fallback (Binance/Coinbase)   Status: [PENDING]
-------------------------------------------------------------------
-• Check price data when Polymarket API fails
-• Auto-resolve after 2h delay
-• Free capital after 48h if still unresolved
+CURRENT BOT STATUS (March 3, 2026)
+----------------------------------
+• Balance: $691.55
+• Bot PID: 665260
+• WebSocket: Connected
+• Risk: Can trade (0% drawdown)
+• Open trades: 0
+• Mode: Paper trading
+• Protection: 
+  - PID mutex ✓
+  - Peak validation ✓
+  - Atomic writes ✓
+  - Resolution fallback ✓
+  - Calibrated Kelly ✓
 
 ================================================================================
 
-CURRENT BOT STATUS
-------------------
-• Balance: $690.00
-• Bot PID: 381469
-• WebSocket: Connected
-• Risk: Can trade (0% drawdown)
-• Open trades: 1 (BTC 15m)
-• Protection: PID mutex + Peak validation + Atomic writes
+TRADE HISTORY
+-------------
+#1  ETH 15m YES @ 0.025  → WIN  (+$195.00)  [Official]
+#2  BTC 15m YES @ 0.685  → WIN  (+$1.55)   [Tier 2 Fallback]
+
+Total P&L: +$196.55
+Win Rate:  100% (2/2)
+
+================================================================================
+
+NEXT STEPS
+----------
+1. [DONE] All 5 fixes implemented
+2. Monitor bot for live trades with new Kelly sizing
+3. Build sample size per bucket (target: 30+ trades each)
+4. Consider live trading mode after calibration matures
+5. Review resolution_audit.jsonl for any discrepancies
+
+================================================================================
+
+FILE MANIFEST
+-------------
+New/Modified Files:
+  ✓ resolution_fallback_v1.py    (FIX #4)
+  ✓ kelly_calibrator.py          (FIX #5)
+  ✓ edge_tracker.py              (FIX #5, updated)
+  ✓ ultimate_bot_v4_production.py (Integrated all fixes)
+  ✓ atomic_json.py               (FIX #3)
+  ✓ bot_lock.py                  (FIX #1)
+
+Data Files:
+  ✓ wallet_v4_production.json
+  ✓ resolution_state.json
+  ✓ resolution_audit.jsonl
+  ✓ kelly_calibration.json
 
 ================================================================================

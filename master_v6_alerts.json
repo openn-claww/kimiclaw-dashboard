@@ -1,0 +1,2147 @@
+[
+  {
+    "ts": "2026-03-08T12:39:06.863739+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T12:39:06.864173+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T12:40:55.670566+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T12:43:18.107813+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T12:43:18.122379+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T13:33:03.848625+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T13:33:03.893667+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T15:33:11.964946+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:35:18.393768+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:37:24.810313+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:39:31.240516+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:41:37.616334+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:43:44.027276+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:45:50.427841+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:47:56.856080+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:50:03.233075+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:52:09.660742+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:54:16.088773+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:56:22.498686+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T15:58:28.887575+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:00:35.304028+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:02:41.687846+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:04:48.124796+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:06:54.545773+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:09:00.948797+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:11:07.358700+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:13:13.772925+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:15:20.182485+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:17:26.563083+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:19:32.970949+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:21:39.359671+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:23:45.773435+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:25:52.163250+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:27:58.570909+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:30:04.943110+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T16:32:11.377318+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:33:17.211513+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:35:23.636378+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:37:30.066869+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:39:36.454352+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:41:42.854255+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:43:49.269589+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:45:55.697908+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:48:02.073734+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:50:08.492378+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:52:14.898931+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:54:21.280094+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:56:27.693034+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T17:58:34.114849+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:00:40.526075+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:02:46.898922+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:04:53.297279+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:06:59.727813+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:09:06.113369+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:11:12.502841+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:13:18.914361+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:15:25.306307+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:17:31.697811+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:19:38.129096+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:21:44.508426+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:23:50.908883+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:25:57.329814+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:28:03.768657+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:30:10.175157+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:32:16.602613+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T18:55:55.698999+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T18:55:55.709964+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-08T20:56:00.226503+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T20:58:06.634081+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:00:13.057573+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:02:19.462506+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:04:25.845761+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:06:32.262357+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:08:38.624622+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:10:45.017170+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:12:51.412063+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:14:57.834968+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:17:04.230245+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:19:10.607866+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:21:16.987094+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:23:23.383919+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:25:29.789237+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:27:36.195167+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:29:42.604224+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:31:48.990130+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:33:55.416739+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:36:01.820110+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:38:08.219158+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:40:14.619693+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:42:21.031804+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:44:27.445850+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:46:33.852991+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:48:40.269797+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:50:46.697494+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:52:53.100076+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T21:54:59.482861+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T22:56:04.783379+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T22:58:11.177557+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:00:17.575070+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:02:23.965603+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:04:30.390055+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:06:36.770816+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:08:43.177472+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:10:49.587624+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:12:55.978538+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:15:02.387154+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:17:08.625335+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:19:15.046907+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:21:21.452239+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:23:27.673838+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:25:34.058766+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:27:40.291188+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:29:46.681211+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:31:53.095469+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:33:59.510301+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:36:05.914044+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:38:12.329289+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:40:18.703433+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:42:25.072408+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:44:31.499106+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:46:37.889312+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:48:44.308553+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:50:50.716086+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:52:57.097130+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-08T23:55:03.480499+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T00:56:09.081893+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T00:58:15.448103+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:00:21.879404+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:02:28.270995+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:04:34.669788+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:06:41.066587+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:08:47.463510+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:10:53.850537+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:13:00.264865+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:15:06.666107+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:17:13.058830+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:19:19.456093+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:21:25.862291+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:23:32.246242+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:25:38.644400+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:27:45.049172+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:29:51.441946+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:31:57.822610+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:34:04.230393+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:36:10.627834+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:38:17.023711+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:40:23.407502+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:42:29.797165+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:44:36.167592+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:46:42.576288+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:48:48.973363+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:50:55.368482+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:53:01.745942+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T01:55:08.152355+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T02:56:13.837951+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T02:58:20.273979+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:00:26.693297+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:02:33.113407+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:04:39.543240+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:06:45.940963+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:08:52.333078+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:10:58.736755+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:13:05.132689+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:15:11.544940+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:17:17.934824+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:20:00.041966+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:22:06.442470+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:24:12.842196+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:26:19.246070+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:28:25.636695+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:30:32.044608+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:32:38.499818+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:34:44.889187+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:36:51.290384+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:38:57.698897+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:41:04.096789+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:43:10.522707+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:45:16.745002+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:47:23.120665+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:49:29.511061+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:51:35.916582+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:53:42.349874+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T03:55:48.761780+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T04:56:54.017163+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T04:59:00.432265+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:01:06.813227+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:03:13.239698+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:05:19.622015+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:07:26.012156+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:09:32.433047+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:11:38.847369+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:13:45.227611+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:15:51.633411+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:17:58.074004+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:20:04.497888+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:22:10.889435+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:24:17.280169+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:26:23.711544+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:28:30.103951+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:30:36.515833+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:32:42.939813+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:34:49.354616+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:36:55.781207+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:39:02.210829+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:41:08.611868+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:43:15.041169+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:45:21.469904+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:47:27.888128+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:49:34.270740+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:51:40.664175+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:53:47.065165+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T05:55:53.467211+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T06:56:59.336228+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T06:59:05.749974+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:01:12.169586+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:03:18.560855+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:05:24.951568+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:07:31.366852+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:09:37.783224+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:11:44.184992+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:13:50.572211+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:15:57.021510+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:18:03.442845+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:20:09.849679+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:22:16.287202+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:24:22.666995+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:26:29.086491+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:28:35.503962+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:30:41.893248+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:32:48.304592+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:34:54.722195+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:37:01.131057+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:39:07.550325+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:41:13.956410+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:43:20.352244+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:45:26.749564+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:47:33.162514+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:49:39.557113+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:51:45.947024+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:53:52.322716+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T07:55:58.741016+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T08:57:04.428670+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T08:59:10.816803+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:01:17.212330+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:03:23.620287+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:05:30.025712+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:07:36.407629+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:09:42.795658+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:11:49.178346+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:13:55.579646+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:16:01.985253+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:18:08.363501+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:20:14.739965+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:22:21.140540+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:24:27.520893+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:26:33.903944+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:28:40.296300+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:30:46.689564+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:32:53.074152+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:34:59.477502+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:37:05.866280+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:39:12.249431+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:41:18.638499+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:43:25.050989+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:45:31.448192+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:47:37.831744+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:49:44.230099+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:51:50.625608+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:53:57.023408+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T09:56:03.406125+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T10:57:08.422167+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T10:59:14.834490+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:01:21.224713+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:03:27.615240+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:05:34.036186+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:07:40.440738+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:09:46.879882+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:11:53.278088+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:13:59.663980+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:16:06.093144+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:18:12.468685+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:20:18.907542+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:22:25.154060+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:24:31.544489+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:26:37.923231+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:28:44.313374+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:30:50.687010+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:32:57.081154+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:35:03.476654+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:37:09.864205+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:39:16.247728+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:41:22.624046+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:43:29.005109+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:45:35.381148+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:47:41.610598+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:49:47.985733+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:51:54.364774+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:54:00.745926+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T11:56:07.128463+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-09T12:42:23.559258+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T12:44:05.893471+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T13:32:51.547091+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T13:34:47.995823+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T13:36:54.770043+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T13:38:20.037596+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T14:51:16.790867+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T14:53:05.393625+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T14:53:50.791681+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T14:54:35.603546+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T14:56:30.301042+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T14:58:37.946216+00:00",
+    "level": "CRITICAL",
+    "message": "execute_sell exception for ETH-5m: V4BotLiveIntegration.execute_sell() got an unexpected keyword argument 'shares'"
+  },
+  {
+    "ts": "2026-03-09T15:01:38.901915+00:00",
+    "level": "CRITICAL",
+    "message": "execute_sell exception for BTC-5m: V4BotLiveIntegration.execute_sell() got an unexpected keyword argument 'shares'"
+  },
+  {
+    "ts": "2026-03-09T15:07:26.145487+00:00",
+    "level": "CRITICAL",
+    "message": "execute_sell exception for ETH-5m: V4BotLiveIntegration.execute_sell() got an unexpected keyword argument 'shares'"
+  },
+  {
+    "ts": "2026-03-09T15:11:43.206319+00:00",
+    "level": "CRITICAL",
+    "message": "execute_sell exception for BTC-5m: V4BotLiveIntegration.execute_sell() got an unexpected keyword argument 'shares'"
+  },
+  {
+    "ts": "2026-03-09T15:14:29.360652+00:00",
+    "level": "CRITICAL",
+    "message": "execute_sell exception for ETH-5m: V4BotLiveIntegration.execute_sell() got an unexpected keyword argument 'shares'"
+  },
+  {
+    "ts": "2026-03-09T15:15:10.902046+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T15:17:30.343593+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:23:18.108951+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:23:48.376902+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:24:29.401579+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T15:26:27.655725+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T15:27:48.564517+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:28:33.982311+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:34:07.047708+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T15:36:33.575491+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:38:49.684051+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:42:51.497837+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:44:07.108666+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:50:09.889682+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:51:09.349873+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T15:52:33.446892+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:57:51.329201+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T15:58:36.668259+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:04:09.252202+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:04:54.558838+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:08:25.595542+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:14:43.335793+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:15:43.558292+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:16:10.129754+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T16:27:06.777413+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:27:52.289883+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:34:25.516960+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:36:58.302517+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:42:21.587925+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:46:25.601114+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:49:57.488845+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:49:57.491075+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 7 consecutive losses"
+  },
+  {
+    "ts": "2026-03-09T16:55:14.007278+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T16:55:14.009448+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 8 consecutive losses"
+  },
+  {
+    "ts": "2026-03-09T18:22:51.206688+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T18:31:33.915304+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T18:34:13.830927+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:34:44.333548+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:38:15.355087+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:42:46.429909+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:48:49.002043+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:51:35.439782+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:56:52.375309+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:56:52.377669+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 7 consecutive losses"
+  },
+  {
+    "ts": "2026-03-09T18:59:22.933182+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T18:59:22.935378+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 8 consecutive losses"
+  },
+  {
+    "ts": "2026-03-09T19:50:12.597849+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T19:54:25.652325+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T19:57:51.120516+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T19:58:10.107479+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:05:47.432446+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:06:05.886293+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:07:12.846465+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T20:16:23.846540+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:16:46.805928+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:18:21.085236+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T20:24:38.969589+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:29:35.696690+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:34:04.573629+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:37:12.152273+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:37:32.485459+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:43:29.095043+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:43:46.711151+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED BTC-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:43:46.714754+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 7 consecutive losses"
+  },
+  {
+    "ts": "2026-03-09T20:50:11.784751+00:00",
+    "level": "CRITICAL",
+    "message": "LIVE SELL FAILED ETH-5m \u2014 queuing for manual retry"
+  },
+  {
+    "ts": "2026-03-09T20:50:11.789384+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 8 consecutive losses"
+  },
+  {
+    "ts": "2026-03-09T21:41:31.388785+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T21:57:54.922601+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-09T22:09:55.319694+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T02:59:38.874691+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T03:18:25.388809+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T03:20:25.252569+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T03:42:51.351728+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T03:43:25.116215+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T03:46:50.350426+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T14:52:24.515590+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T14:53:52.819162+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T17:52:33.842986+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:03:45.578251+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:24:08.424419+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:26:13.224304+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:26:35.190841+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:26:55.819449+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:29:19.180205+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:35:31.148709+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:36:45.097904+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:43:06.114747+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:46:16.186442+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:51:14.049001+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:51:59.992419+00:00",
+    "level": "WARNING",
+    "message": "RTDS failed \u2014 switching to Binance"
+  },
+  {
+    "ts": "2026-03-10T20:52:06.338332+00:00",
+    "level": "WARNING",
+    "message": "RTDS timeout \u2014 starting Binance fallback"
+  },
+  {
+    "ts": "2026-03-10T20:52:51.453137+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:52:52.033263+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 31 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:52:53.116566+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 32 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:52:57.236386+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 33 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:52:58.330489+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 34 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:02.441636+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 35 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:03.528573+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 36 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:07.643512+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 37 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:08.728408+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 38 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:12.852439+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 39 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:13.928215+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 40 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:16.475075+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 41 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:18.053456+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 42 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:19.138719+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 43 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:23.251515+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 44 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:24.338594+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 45 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T20:53:26.736143+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T20:56:31.681962+00:00",
+    "level": "CRITICAL",
+    "message": "Kill switch: 30 API errors/hr"
+  },
+  {
+    "ts": "2026-03-10T21:07:17.246520+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T21:07:44.040372+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T21:09:09.911033+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T21:50:56.283569+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  },
+  {
+    "ts": "2026-03-10T21:51:26.923574+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
+  }
+]

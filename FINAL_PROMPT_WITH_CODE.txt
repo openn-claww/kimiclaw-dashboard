@@ -1,0 +1,150 @@
+URGENT: Multiple Critical Issues Preventing Live Trading — CODE INCLUDED FOR INSPECTION
+
+MODEL: Claude 3.5 Sonnet
+
+=== ISSUE 1: PnL CALCULATION SHOWING $0 ===
+
+Trade data from pnl_trades.json:
+```
+BTC-5m YES @ $0.505 -> $1.0 | won | PnL: $+0.00
+ETH-5m YES @ $0.51 -> $1.0 | won | PnL: $+0.00
+```
+
+**PnL CALCULATION CODE (pnl_tracker.py lines 118-137):**
+```python
+def close(self, exit_price: float, exit_reason: str):
+    self.exit_price  = exit_price
+    self.exit_reason = exit_reason
+    self.exit_time   = time.time()
+    self.exit_ts     = datetime.now(tz=timezone.utc).isoformat()
+    self.hold_secs   = self.exit_time - self.entry_time
+
+    # Gross P&L: (exit - entry) * shares
+    # On Polymarket binary markets:
+    #   WIN  → exit_price = 1.0, gross = (1.0 - entry) * shares
+    #   LOSS → exit_price = 0.0, gross = (0.0 - entry) * shares = -amount_usd
+    self.gross_pnl = (exit_price - self.entry_price) * self.shares
+
+    # Fee: 2% of winnings only
+    self.fee = self.gross_pnl * POLYMARKET_FEE if self.gross_pnl > 0 else 0.0
+
+    self.net_pnl = self.gross_pnl - self.fee
+    self.pnl_pct = (self.net_pnl / self.amount_usd * 100) if self.amount_usd > 0 else 0.0
+    self.status  = 'won' if self.net_pnl > 0 else 'lost'
+```
+
+QUESTION: Why is PnL $0 when exit_price ($1.0) > entry_price ($0.505)?
+Is shares=0? Is gross_pnl calculation wrong?
+
+=== ISSUE 2: PnL STATE NOT PERSISTING (CRITICAL) ===
+
+**PnL SAVE CODE (pnl_tracker.py lines 331-337):**
+```python
+def _persist(self):
+    """Append-safe atomic write to pnl_trades.json."""
+    with self._lock:
+        data = list(self._closed)
+    self._atomic_write(data, TRADES_FILE)
+```
+
+**record_exit calls _persist() (line 233):**
+```python
+def record_exit(self, trade_id: str, exit_price: float, exit_reason: str = ''):
+    with self._lock:
+        rec = self._trades.pop(trade_id, None)
+        if rec is None:
+            log.warning(f"[PnL] No open trade found for {trade_id} — creating stub")
+            rec = TradeRecord(...)
+        rec.close(exit_price, exit_reason)
+        self._closed.append(rec.to_dict())
+    # ... logging ...
+    self._persist()      # <-- Saves here
+    self._write_summary()
+```
+
+**record_entry does NOT call _persist() (lines 187-203):**
+```python
+def record_entry(self, trade_id: str, ...):
+    with self._lock:
+        if trade_id in self._trades:
+            return
+        self._trades[trade_id] = TradeRecord(...)
+    log.info(f"[PnL] ENTRY {trade_id} ...")
+    # NO save() call here!
+```
+
+Problem:
+- record_entry does NOT save to disk
+- Only record_exit saves
+- If bot crashes/restarts before exit, entry is LOST
+- Recent trades (20:42, 20:44) executed but not in pnl_trades.json
+
+QUESTION: Should we add _persist() call in record_entry()? Or is there a different design intention?
+
+=== ISSUE 3: TRADE COUNT RESET ===
+
+**Trade count in _execute_arb (cross_market_arb.py lines 714-720):**
+```python
+with self.bot._state_lock:
+    self.bot._virtual_free          -= amount
+    self.bot._active_positions[market_key] = pos
+    self.bot._trade_count           += 1
+    tc = self.bot._trade_count
+log.info(f"[_execute_arb] State updated: trade_count={tc}, virtual_free=${self.bot._virtual_free:.2f}")
+```
+
+QUESTION: trade_count increments but does it persist? Health shows trade_count=2 but we've done 4+ trades.
+
+=== ISSUE 4: WHERE IS record_exit CALLED? ===
+
+**record_exit in master_bot_v6 (lines 1114-1123):**
+```python
+# [PnL] Record trade exit
+log.info(f"[PnL] record_exit called for {pos.market_id} — tracker={self.pnl_tracker is not None}")
+if self.pnl_tracker:
+    try:
+        self.pnl_tracker.record_exit(
+            trade_id    = pos.market_id,
+            exit_price  = cur_price,
+            exit_reason = reason.value,
+        )
+    except Exception as e:
+        log.warning(f"[PnL] record_exit error: {e}")
+```
+
+This is inside _execute_exit() method.
+
+QUESTION: When does _execute_exit get called for 5-minute markets? Is it:
+- Resolution engine polling?
+- Auto-redeem checking positions?
+- Manual intervention?
+
+We see record_entry in logs but NEVER see record_exit calls.
+
+=== ISSUE 5: STALE POSITIONS ===
+
+Health file shows open_positions=2 but PnL shows 0 open.
+Are these from old crashed sessions?
+
+=== WHAT WE NEED ===
+
+1. Fix PnL calculation — why $0?
+2. Add persist() call after record_entry so entries survive crashes
+3. Confirm _execute_exit is being triggered for 5m resolutions
+4. Clear stale positions on startup
+5. Make bot stable for live trading
+
+=== CODE FILES TO FIX ===
+
+1. /root/.openclaw/workspace/pnl_tracker.py
+   - Add _persist() in record_entry()
+   - Debug why close() calculates $0 PnL
+
+2. /root/.openclaw/workspace/master_bot_v6_polyclaw_integration.py
+   - Ensure _execute_exit is called for resolved markets
+   - Clear stale positions on startup
+
+3. /root/.openclaw/workspace/cross_market_arb.py
+   - (Already has record_entry calls working)
+
+Give exact code fixes with line numbers. Include the corrected functions.

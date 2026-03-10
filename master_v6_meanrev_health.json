@@ -1,0 +1,33 @@
+{
+  "timestamp_utc": "2026-03-10T22:10:16.213555+00:00",
+  "bot_state": "running",
+  "balance": 686.93,
+  "trade_count": 0,
+  "open_positions": 1,
+  "clob_connected": true,
+  "rtds_connected": true,
+  "price_feed": "rtds",
+  "emergency_stop": false,
+  "kill_switch": {
+    "active": false,
+    "daily_loss_usd": 0.0,
+    "daily_loss_pct": 0.0,
+    "consec": 0
+  },
+  "circuit_breaker": {
+    "tripped": false,
+    "win_rate": null,
+    "sample": 0,
+    "total": 0,
+    "warmup": true
+  },
+  "paper_mode": true,
+  "mean_reversion": {
+    "enabled": true,
+    "trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0,
+    "total_pnl": 0.0
+  }
+}

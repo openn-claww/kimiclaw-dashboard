@@ -1,0 +1,20 @@
+{
+  "balance": 56.710344,
+  "trade_count": 213,
+  "bot_state": "running",
+  "active_positions": {},
+  "kill_switch": {
+    "active": false,
+    "daily_loss_usd": 0.0,
+    "daily_loss_pct": 0.0,
+    "consec": 0
+  },
+  "circuit_breaker": {
+    "tripped": false,
+    "win_rate": null,
+    "sample": 0,
+    "total": 0,
+    "warmup": true
+  },
+  "last_update": "2026-03-10T20:51:36.333305+00:00"
+}

@@ -1,0 +1,48 @@
+INFO:kelly_calibrator:[KellyCalibrator] Loaded 214 historical trades.
+INFO:live_trading.live_trading_config:Live trading config loaded — mode: DISABLED
+INFO:live_trading.live_trading_config:  max_position=$20.0 | daily_loss_limit=$20.0 | max_slippage=2.0%
+INFO:live_trading.v4_live_integration:Live trading disabled — running virtual only
+INFO:live_trading.v4_live_integration:Loaded 0 existing trade records
+INFO:master_v6_meanrev:[Live] Integration: {'enabled': False, 'dry_run': True, 'kill_switch': False, 'live_pnl': 0.0, 'virtual_pnl': 0.0, 'daily_loss_used': 0.0, 'daily_loss_limit': 20.0, 'daily_loss_remaining': 20.0, 'open_live_positions': 0, 'trade_count': 0, 'trader_ready': False}
+INFO:RiskManager:[state_validation] All checks passed — no corrections needed
+INFO:RiskManager:Loaded risk state | bankroll=$690.00 | peak=$690.00 | drawdown=0.0%
+INFO:root:[ResolutionEngine] Init | mode=PAPER | fallback1=2.0h | fallback2=48.0h
+INFO:master_v6_meanrev:[AutoRedeem] Engine loaded
+INFO:master_v6_meanrev:[Arb] Cross-market arbitrage engine initialized
+INFO:master_v6_meanrev:[Dual] Dual strategy engine initialized
+INFO:news_feed:[NEWS] NewsFeed initialized
+INFO:master_v6_meanrev:[News] News feed initialized
+INFO:pnl_tracker:[PnL] Loaded 216 closed trades from disk
+INFO:pnl_tracker:[PnL] Tracker ready — 216 historical trades loaded
+INFO:master_v6_meanrev:[PnL] Tracker initialized
+INFO:mean_rev_integration:✅ Mean Reversion Integration initialized with $137.39 bankroll
+INFO:master_v6_meanrev:[MeanRev] ✅ Integration initialized with $137.39 allocation (20%)
+INFO:master_v6_meanrev:[MeanRev] Paper mode: True
+WARNING:atomic_json:Main file unreadable (master_v6_meanrev_state.json): file not found
+INFO:atomic_json:No file found at /root/.openclaw/workspace/master_v6_meanrev_state.json — returning default
+INFO:master_v6_meanrev:No saved state — fresh start
+INFO:master_v6_meanrev:======================================================================
+INFO:master_v6_meanrev:MASTER BOT V6 + MEAN REVERSION — Strategy Testing Build
+INFO:master_v6_meanrev:  Paper mode      : True
+INFO:master_v6_meanrev:  Mean Rev enabled: True
+INFO:master_v6_meanrev:  Mean Rev alloc  : $137.39 (20%)
+INFO:master_v6_meanrev:  Mean Rev paper  : True
+INFO:master_v6_meanrev:  Balance         : $686.93
+INFO:master_v6_meanrev:  Positions       : 0
+INFO:master_v6_meanrev:======================================================================
+INFO:master_v6_meanrev:ℹ️  🚀 Bot V6 + Mean Reversion started | Paper: True | MeanRev: True
+INFO:master_v6_meanrev:Waiting up to 30s for RTDS...
+INFO:websocket:Websocket connected
+INFO:master_v6_meanrev:[CLOB] Connected
+INFO:websocket:Websocket connected
+INFO:master_v6_meanrev:[RTDS] Connected
+INFO:auto_redeem:[AutoRedeem] Poller started (every 300s)
+INFO:master_v6_meanrev:[Monitor] Position monitor started
+INFO:master_v6_meanrev:[Monitor] Position monitor thread launched
+INFO:master_v6_meanrev:[MeanRev] Position monitor started
+INFO:master_v6_meanrev:[MeanRev] Monitor thread launched
+INFO:master_v6_meanrev:Bot ready — entering main loop
+INFO:master_v6_meanrev:[STATUS] Loop #12 | Elapsed: 1.3min | Trades: 0 | MeanRev: 0
+CRITICAL:master_v6_meanrev:🚨 Signal 15 — emergency stop
+CRITICAL:master_v6_meanrev:BOT HALTED
+INFO:master_v6_meanrev:[MeanRev] No trades executed — no report to generate

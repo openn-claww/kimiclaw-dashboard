@@ -1,0 +1,80 @@
+URGENT FIX NEEDED - V6 Bot PnL Not Recording
+
+MODEL: Claude 3.5 Sonnet
+
+=== THE PROBLEM ===
+PnL tracker code is in place but NOT executing. Trades happen (8 since 17:50) but pnl_tracker.summary() shows 0 trades.
+
+=== CODE THAT SHOULD WORK (BUT DOESN'T) ===
+
+File: cross_market_arb.py (lines 691-710)
+```python
+pnl_tracker = getattr(self.bot, 'pnl_tracker', None)
+if pnl_tracker:
+    try:
+        pnl_tracker.record_entry(
+            trade_id    = market_key,
+            market_id   = market_key,
+            side        = side,
+            entry_price = fill_price,
+            shares      = filled_size,
+            amount_usd  = amount,
+            coin        = coin,
+            strategy    = 'ARB',
+            spread      = opportunity.get('spread', 0),
+            edge        = opportunity.get('edge', 0),
+        )
+    except Exception as e:
+        log.debug(f"[PnL] record_entry error: {e}")
+```
+
+File: master_bot_v6_polyclaw_integration.py (_execute_exit)
+```python
+if self.pnl_tracker:
+    try:
+        self.pnl_tracker.record_exit(
+            trade_id    = pos.market_id,
+            exit_price  = cur_price,
+            exit_reason = reason.value,
+        )
+    except Exception as e:
+        log.debug(f"[PnL] record_exit error: {e}")
+```
+
+=== INITIALIZATION (master_bot_v6) ===
+```python
+# [PnL] P&L Tracker
+self.pnl_tracker = None
+if _PNL_AVAILABLE and PnLTracker:
+    try:
+        self.pnl_tracker = PnLTracker()
+        log.info("[PnL] P&L Tracker initialized")
+    except Exception as e:
+        log.warning(f"[PnL] Tracker init failed: {e}")
+```
+
+=== ERRORS IN LOG ===
+- "Connection to remote host was lost" - goodbye
+- Bot service shows "failed" frequently
+- PnL logs show initialization but no entry/exit records
+
+=== WHAT CLAUDE NEEDS TO DO ===
+1. Why isn't record_entry() executing even though code is there?
+2. Add visible logging (INFO level) to confirm if pnl_tracker is None or if record_entry is being called
+3. Check if the issue is:
+   - self.bot.pnl_tracker is None?
+   - Exception being caught silently?
+   - Code path not being reached?
+4. Provide exact fix with line numbers
+
+=== QUESTIONS ===
+- Should I add log.info() instead of log.debug() to see errors?
+- Should I check if pnl_tracker exists BEFORE _execute_arb is called?
+- Is there a race condition where bot.pnl_tracker isn't initialized yet?
+
+=== FILES ===
+- /root/.openclaw/workspace/cross_market_arb.py
+- /root/.openclaw/workspace/master_bot_v6_polyclaw_integration.py
+- /root/.openclaw/workspace/pnl_tracker.py (works when tested standalone)
+
+Give me the exact fix to make P&L tracking work. Bot is profitable (+$163 expected) but we can't verify because tracker isn't recording.

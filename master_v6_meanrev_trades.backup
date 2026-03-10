@@ -1,0 +1,21 @@
+{
+  "trades": [
+    {
+      "type": "MEAN_REVERSION",
+      "market": "SOL-5m",
+      "side": "YES",
+      "amount": 1.0,
+      "entry_price": 0.36,
+      "shares": 2.7777777777777777,
+      "strategy": "mean_reversion",
+      "live_virtual": true,
+      "timestamp_utc": "2026-03-10T22:08:48.751879+00:00",
+      "virtual_balance": 686.93
+    }
+  ],
+  "meta": {
+    "count": 1,
+    "last_trade": "2026-03-10T22:08:48.751879+00:00",
+    "version": "v6_meanrev"
+  }
+}

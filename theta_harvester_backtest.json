@@ -1,0 +1,14 @@
+{
+  "strategy": "ThetaHarvester",
+  "simulations": 500,
+  "total_trades": 0,
+  "avg_trades_per_sim": 0.0,
+  "profitable_sims": 0,
+  "profitable_pct": 0.0,
+  "avg_win_rate": 0,
+  "avg_profit": 0.0,
+  "avg_theta_captured": 0.0,
+  "worst_case": 0.0,
+  "best_case": 0.0,
+  "initial_bankroll": 5.0
+}

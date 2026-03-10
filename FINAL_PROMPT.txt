@@ -1,0 +1,120 @@
+URGENT: Multiple Critical Issues Preventing Live Trading
+
+MODEL: Claude 3.5 Sonnet
+
+=== ISSUE 1: PnL CALCULATION SHOWING $0 ===
+
+Problem:
+- Trades are marked as "won" with exit_price=1.0
+- But pnl_usd = $0.00 for all trades
+- Expected: Win should show positive PnL
+
+Trade data from pnl_trades.json:
+```
+BTC-5m YES @ $0.505 -> $1.0 | won | PnL: $+0.00
+ETH-5m YES @ $0.51 -> $1.0 | won | PnL: $+0.00
+```
+
+Calculation in pnl_tracker.py close() method:
+```python
+def close(self, exit_price: float, exit_reason: str = ''):
+    self.exit_price = exit_price
+    self.exit_ts = datetime.now(timezone.utc).isoformat()
+    self.exit_reason = exit_reason
+    
+    # PnL calculation
+    if self.side == 'YES':
+        gross = (exit_price - self.entry_price) * self.shares
+    else:
+        gross = (self.entry_price - exit_price) * self.shares
+    
+    self.fee = abs(gross) * 0.02  # 2% fee
+    self.pnl_usd = gross - self.fee
+    
+    if self.pnl_usd > 0:
+        self.status = 'won'
+    elif self.pnl_usd < 0:
+        self.status = 'lost'
+    else:
+        self.status = 'breakeven'
+```
+
+QUESTION: Why is PnL $0 when exit_price ($1.0) > entry_price ($0.505)?
+Is the shares calculation wrong? Entry showing $0.505 but maybe shares=0?
+
+=== ISSUE 2: STATE NOT PERSISTING ===
+
+Problem:
+- Bot restarted ~20:44 (new PID)
+- Trades executed at 20:42 were lost from in-memory PnL
+- Only 2 test trades remain in pnl_trades.json (from earlier)
+- Recent trades (20:42, 20:44) not in file even though they executed
+
+What we see:
+```
+20:42:24 ARB EXECUTED BTC/5m NO - PnL ENTRY logged
+20:42:46 ARB EXECUTED ETH/5m NO - PnL ENTRY logged
+20:44:14 Bot restarted (new PID)
+20:44:14 ARB EXECUTED BTC/5m YES - PnL ENTRY logged (new bot_id)
+```
+
+But pnl_trades.json only shows 4 old trades, not the new ones.
+
+QUESTION: Does pnl_tracker.py autosave? Or only save on exit?
+Is there a manual save call needed in _execute_arb after record_entry?
+
+=== ISSUE 3: TRADE COUNT RESET ===
+
+Problem:
+- Health shows trade_count=2
+- But we've executed 4+ trades in last hour
+- Each bot restart resets counter to 0
+
+QUESTION: Should trade_count persist in state file? 
+Why is it showing 2 when we executed more?
+
+=== ISSUE 4: OPEN POSITIONS DISCREPANCY ===
+
+Problem:
+- Health file shows: open_positions=2
+- PnL tracker shows: 0 open trades
+- Which is correct?
+
+QUESTION: Are the 2 open positions in health from old crashed sessions?
+Should we clear stale positions on bot start?
+
+=== ISSUE 5: EXIT TRACKING ===
+
+Problem:
+- We see record_entry calls in logs
+- We do NOT see record_exit calls
+- But pnl_trades.json shows exits (exit_price=1.0)
+
+QUESTION: Where is record_exit being called?
+Is it in resolution_engine? auto_redeem? _execute_exit?
+When do 5-minute markets actually resolve and trigger exits?
+
+=== WHAT WE NEED ===
+
+1. Fix PnL calculation - why $0?
+2. Ensure state persists through restarts
+3. Confirm exit tracking is working
+4. Clear stale position data
+5. Make bot stable enough for live trading
+
+=== FILES ===
+- /root/.openclaw/workspace/pnl_tracker.py
+- /root/.openclaw/workspace/master_bot_v6_polyclaw_integration.py
+- /root/.openclaw/workspace/cross_market_arb.py
+
+=== QUESTIONS FOR CLAUDE ===
+
+1. Why is PnL showing $0 when trades are marked as "won"?
+2. Does pnl_tracker autosave or do we need to call save() manually?
+3. Where should we add pnl_tracker.save() calls?
+4. How do 5-minute market resolutions trigger record_exit?
+5. Should we clear stale positions on bot startup?
+6. Why is trade_count not persisting correctly?
+7. What's the minimum viable fix to make this stable for live trading?
+
+Give exact code fixes with line numbers. We're close but these bugs are blocking live deployment.

@@ -1137,12 +1137,27 @@
                                 
                                 <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
                                     <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Current Mode</div>
-                                    <div style="display: flex; gap: 12px;">
+                                    <div style="display: flex; gap: 12px; align-items: center;">
                                         <label class="toggle-switch">
                                             <input type="checkbox" id="mode-toggle" onchange="toggleMode()">
                                             <span class="toggle-slider"></span>
                                         </label>
                                         <span id="mode-label" style="font-weight: 600;">Paper Trading</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                                    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Active Strategy</div>
+                                    <div style="display: flex; gap: 12px; align-items: center;">
+                                        <select id="strategy-select" onchange="changeStrategy()" style="background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 14px; cursor: pointer; flex: 1;">
+                                            <option value="Mean Reversion">Mean Reversion (81.9% WR)</option>
+                                            <option value="Bond Buyer">Bond Buyer (84.6% WR)</option>
+                                            <option value="Dual Strategy">Dual Strategy</option>
+                                            <option value="Momentum">Momentum</option>
+                                        </select>
+                                    </div>
+                                    <div id="strategy-description" style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5;">
+                                        RSI + Bollinger Bands based signals
                                     </div>
                                 </div>
                                 
@@ -1587,6 +1602,41 @@
                 // Update stats
                 document.getElementById('stat-balance').textContent = formatCurrency(botState.balance);
                 document.getElementById('stat-positions').textContent = botState.open_positions || 0;
+                
+                // Update paper/real split if available
+                if (botState.paper_balance !== undefined) {
+                    const paperEl = document.getElementById('stat-paper-balance');
+                    if (paperEl) paperEl.textContent = formatCurrency(botState.paper_balance);
+                }
+                if (botState.real_balance !== undefined) {
+                    const realEl = document.getElementById('stat-real-balance');
+                    if (realEl) realEl.textContent = formatCurrency(botState.real_balance);
+                }
+                if (botState.paper_trades !== undefined) {
+                    const paperTradesEl = document.getElementById('stat-paper-trades');
+                    if (paperTradesEl) paperTradesEl.textContent = `${botState.paper_trades} trades`;
+                }
+                if (botState.real_trades !== undefined) {
+                    const realTradesEl = document.getElementById('stat-real-trades');
+                    if (realTradesEl) realTradesEl.textContent = `${botState.real_trades} trades`;
+                }
+                
+                // Update strategy display
+                if (botState.strategy) {
+                    const strategySelect = document.getElementById('strategy-select');
+                    if (strategySelect && strategySelect.value !== botState.strategy) {
+                        strategySelect.value = botState.strategy;
+                        // Update description
+                        const descriptions = {
+                            'Mean Reversion': 'RSI + Bollinger Bands based signals • 81.9% Win Rate',
+                            'Bond Buyer': 'High probability (90%+) position buying • 84.6% Win Rate',
+                            'Dual Strategy': 'External Arb + Momentum combined',
+                            'Momentum': 'Velocity-based trend following • 50% Win Rate'
+                        };
+                        const descDiv = document.getElementById('strategy-description');
+                        if (descDiv) descDiv.textContent = descriptions[botState.strategy] || '';
+                    }
+                }
             }
 
             if (data.pnl) {
@@ -1651,6 +1701,37 @@
             } else {
                 label.textContent = 'Paper Trading';
                 label.style.color = 'var(--text-primary)';
+            }
+        }
+
+        async function changeStrategy() {
+            const select = document.getElementById('strategy-select');
+            const strategy = select.value;
+            const descDiv = document.getElementById('strategy-description');
+            
+            const descriptions = {
+                'Mean Reversion': 'RSI + Bollinger Bands based signals • 81.9% Win Rate',
+                'Bond Buyer': 'High probability (90%+) position buying • 84.6% Win Rate',
+                'Dual Strategy': 'External Arb + Momentum combined',
+                'Momentum': 'Velocity-based trend following • 50% Win Rate'
+            };
+            
+            descDiv.textContent = descriptions[strategy] || '';
+            
+            try {
+                const response = await fetch(`/api/bot/strategy?strategy=${encodeURIComponent(strategy)}`, { 
+                    method: 'POST' 
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    logActivity(`Strategy switched to: ${strategy}`);
+                } else {
+                    alert('Failed to switch strategy: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error switching strategy:', error);
+                alert('Error switching strategy');
             }
         }
 

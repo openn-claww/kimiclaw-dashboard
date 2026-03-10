@@ -12,15 +12,28 @@ import websocket
 import json
 import time
 import statistics
-from datetime import datetime
+from datetime import datetime, timezone
 from collections import defaultdict, deque
 import sys
 sys.path.insert(0, '/root/.openclaw/workspace')
 from entry_validation import calculate_edge, REGIME_PARAMS
 from risk_manager import RiskManager
 from atomic_json import atomic_write_json, safe_load_json
-from edge_tracker import EdgeTracker, get_kelly_stake
+from edge_tracker import (
+    get_kelly_stake,
+    get_kelly_stake_with_diagnostics,
+    record_completed_trade,
+    import_trade_history,
+    print_edge_status,
+    calibrator,
+)
 from kelly_sizing import KellySizer
+from resolution_fallback_v1 import (
+    ResolutionFallbackEngine,
+    ResolutionConfig,
+    manual_resolve,
+)
+from market_finder import get_current_slug, get_market as get_market_from_events
 
 # ============ CONFIGURATION ============
 VIRTUAL_BANKROLL = 500.00  # Starting virtual balance
@@ -50,10 +63,45 @@ GAMMA_API = "https://gamma-api.polymarket.com"
 STATE_FILE = "/root/.openclaw/workspace/wallet_v4_production.json"
 LOG_FILE = "/root/.openclaw/workspace/trades_v4_production.json"
 
+# ============ RESOLUTION FALLBACK CONFIG ============
+IS_PAPER_TRADING = True  # Set to False for live trading
+resolution_cfg = ResolutionConfig()
+resolution_cfg.FALLBACK1_TRIGGER_HOURS = 2.0
+resolution_cfg.FALLBACK2_TRIGGER_HOURS = 48.0
+resolution_cfg.LIVE_FALLBACK_AUTO_FINALIZE = True
+
+resolution_engine = ResolutionFallbackEngine(
+    config=resolution_cfg,
+    is_paper=IS_PAPER_TRADING,
+)
+
 # ============ INITIALIZE ============
 rm = RiskManager.load(starting_bankroll=VIRTUAL_BANKROLL)
-edge_tracker = EdgeTracker.load()
-kelly = KellySizer(bankroll=rm.state.current_bankroll)
+
+# Bootstrap Kelly calibration from existing trade history
+def _bootstrap_kelly_calibration():
+    """One-time import of existing trades for Kelly calibration."""
+    from pathlib import Path
+    cal_file = Path("/root/.openclaw/workspace/kelly_calibration.json")
+    if cal_file.exists():
+        print("[Bootstrap] Kelly calibration already exists.")
+        return
+    
+    n = import_trade_history(
+        "/root/.openclaw/workspace/trades_v4_production.json",
+        field_map={
+            "id": "market",
+            "market_id": "market",
+            "coin": "market",
+            "entry_price": "entry_price",
+            "outcome": "outcome",
+            "pnl_pct": "pnl_pct",
+            "timestamp": "timestamp_utc",
+        }
+    )
+    print(f"[Bootstrap] Imported {n} historical trades into Kelly calibrator.")
+
+_bootstrap_kelly_calibration()
 
 prices = {}
 velocities_ema = {}
@@ -148,61 +196,102 @@ def execute_exit(position, market_id, reason, current_price):
     save_state()
 
 def check_all_exits():
-    global last_exit_check
+    """Resolution fallback-enabled exit checker — Tier 1/2/3 resolution system."""
+    global last_exit_check, virtual_free
     now = time.time()
     if now - last_exit_check < 15:
         return
     last_exit_check = now
     
-    for market_id, position in list(active_positions.items()):
-        try:
-            parts = market_id.split('-')
-            coin = parts[0]
-            tf = int(parts[1].replace('m', ''))
-            slot = int(now // (tf * 60)) * (tf * 60)
-            slug = f"{coin.lower()}-updown-{tf}m-{slot}"
+    # Build position dict for resolution engine
+    position_dict = {}
+    for market_id, pos in active_positions.items():
+        parts = market_id.split('-')
+        coin = parts[0]
+        tf = int(parts[1].replace('m', ''))
+        slot = int(pos.get('entry_time', now) // (tf * 60)) * (tf * 60)
+        slug = f"{coin.lower()}-updown-{tf}m-{slot}"
+        
+        # Calculate expiration time
+        entry_ts = pos.get('entry_time', now)
+        expiration_ts = entry_ts + (tf * 60)
+        expiration_utc = datetime.fromtimestamp(expiration_ts, tz=timezone.utc).isoformat()
+        
+        position_dict[market_id] = {
+            'slug': slug,
+            'coin': coin.upper(),
+            'timeframe': tf,
+            'entry_price': pos.get('entry_price', 0),
+            'side': pos.get('side', 'YES'),
+            'expiration_utc': expiration_utc,
+            '_original_position': pos,
+            '_market_id': market_id,
+        }
+    
+    # Use resolution fallback engine
+    resolved_items = resolution_engine.check_all_exits(position_dict)
+    
+    for market_id, outcome, source, tier in resolved_items:
+        position = active_positions.get(market_id)
+        if not position:
+            continue
             
-            import requests
-            resp = requests.get(f"{GAMMA_API}/markets/slug/{slug}", timeout=2)
-            if resp.status_code != 200:
-                continue
-            
-            data = resp.json()
-            if data.get('resolved'):
-                winner = data.get('winningOutcomeIndex')
-                outcome = 'YES' if winner == 0 else 'NO'
-                final_price = 1.0 if outcome == position['side'] else 0.0
-                
-                pnl = (final_price - position['entry_price']) / position['entry_price'] * 100
-                print(f"💰 [{datetime.now().strftime('%H:%M:%S')}] SETTLED {market_id} | {outcome} wins | PnL: {pnl:+.1f}%")
-                
-                virtual_free += position['shares'] + (position['shares'] * pnl / 100)
-                won = outcome == position['side']
-                pnl_amount = position['shares'] * (final_price - position['entry_price'])
-                rm.on_trade_closed(position_id=market_id, won=won, pnl=pnl_amount, coin=coin)
-                
-                if market_id in active_positions:
-                    del active_positions[market_id]
-                if market_id in open_positions:
-                    del open_positions[market_id]
-                
-                save_state()
-                continue
-            
-            prices_pm = json.loads(data.get('outcomePrices', '[]'))
-            if len(prices_pm) != 2:
-                continue
-            
-            if position['side'] == 'YES':
-                current_price = float(prices_pm[0])
-            else:
-                current_price = float(prices_pm[1])
-            
-            exit_reason = evaluate_exits(position, current_price)
-            if exit_reason:
-                execute_exit(position, market_id, exit_reason, current_price)
-        except Exception as e:
-            pass
+        # Calculate P&L
+        entry_price = position['entry_price']
+        final_price = 1.0 if outcome == position['side'] else 0.0
+        pnl = (final_price - entry_price) / entry_price * 100
+        pnl_amount = position['shares'] * (final_price - entry_price)
+        won = outcome == position['side']
+        
+        tier_label = {1: "OFFICIAL", 2: "FALLBACK", 3: "FORCED"}.get(tier, "UNKNOWN")
+        print(f"💰 [{datetime.now().strftime('%H:%M:%S')}] SETTLED {market_id} | {outcome} wins | {tier_label} | PnL: {pnl:+.1f}%")
+        
+        virtual_free += position['shares'] + (position['shares'] * pnl / 100)
+        rm.on_trade_closed(position_id=market_id, won=won, pnl=pnl_amount, coin=market_id.split('-')[0])
+        
+        log_trade({
+            'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'type': 'EXIT',
+            'market': market_id,
+            'side': position['side'],
+            'exit_price': final_price,
+            'entry_price': entry_price,
+            'exit_reason': f'resolved_{tier_label.lower()}',
+            'resolution_source': source,
+            'resolution_tier': tier,
+            'pnl_pct': pnl,
+            'virtual_balance': virtual_free
+        })
+        
+        # Record trade for Kelly calibration
+        pnl_pct = (1.0 - entry_price) / entry_price if outcome == "WIN" else -1.0
+        record_completed_trade(
+            trade_id=market_id,
+            market_id=market_id,
+            coin=market_id.split('-')[0],
+            entry_price=entry_price,
+            outcome="WIN" if won else "LOSS",
+            pnl_pct=pnl_pct,
+            notes=f"resolved via {source} tier {tier}",
+        )
+        
+        if market_id in active_positions:
+            del active_positions[market_id]
+        if market_id in open_positions:
+            del open_positions[market_id]
+        
+        save_state()
+    
+    # Reconcile any previously fallback-resolved positions
+    for market_id_key, data in resolution_engine.state_mgr._state.items():
+        if (
+            data.get("resolved")
+            and not data.get("polymarket_confirmed")
+            and not data.get("discrepancy_detected")
+        ):
+            resolution_engine.reconcile_with_polymarket(
+                market_id_key, data.get("slug", "")
+            )
 
 def evaluate_market(coin, tf):
     global trade_count, last_trade_time, virtual_free
@@ -222,13 +311,25 @@ def evaluate_market(coin, tf):
         slug = f"{coin.lower()}-updown-{tf}m-{slot}"
         market_key = f"{coin}-{tf}m"
         
+        # FIX: Use /events/slug/ endpoint (not /markets/slug/)
         import requests
-        resp = requests.get(f"{GAMMA_API}/markets/slug/{slug}", timeout=2)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36',
+            'Accept': 'application/json',
+        }
+        resp = requests.get(f"{GAMMA_API}/events/slug/{slug}", timeout=2, headers=headers)
         
         if resp.status_code == 200:
-            data = resp.json()
-            if data.get('resolved'):
+            event_data = resp.json()
+            if event_data.get('closed') or event_data.get('resolved'):
                 return
+            
+            # Get market from events wrapper
+            markets = event_data.get('markets', [])
+            if not markets:
+                return
+            
+            data = markets[0]  # First market in the event
             
             prices_pm = json.loads(data.get('outcomePrices', '[]'))
             if len(prices_pm) == 2:
@@ -293,7 +394,22 @@ def evaluate_market(coin, tf):
                     )
                     
                     if signal:
-                        amount = min(50.0, virtual_free * POSITION_SIZE_PCT * sentiment_mult * signal.get('confidence', 1.0))
+                        # Calibrated Kelly position sizing
+                        entry_price = signal['yes_price'] if signal['side'] == 'YES' else signal['no_price']
+                        amount, kelly_diag = get_kelly_stake_with_diagnostics(
+                            entry_price=entry_price,
+                            bankroll=virtual_free,
+                            coin=coin,
+                        )
+                        
+                        if amount == 0.0:
+                            print(f"⛔ KELLY SKIP: {kelly_diag.get('reason', 'Unknown')}")
+                            return
+                        
+                        # Apply sentiment and confidence multipliers on top of Kelly
+                        amount = amount * sentiment_mult * signal.get('confidence', 1.0)
+                        amount = max(1.0, min(virtual_free * 0.10, amount))  # floor/ceiling
+                        
                         if amount < 20:
                             return
                         
@@ -304,9 +420,8 @@ def evaluate_market(coin, tf):
                         
                         trade_count += 1
                         side = signal['side']
-                        entry_price = signal['yes_price']
                         
-                        print(f"📈 [{datetime.now().strftime('%H:%M:%S')}] #{trade_count} EDGE {coin} {tf}m | {side} @ {entry_price:.3f}")
+                        print(f"📈 [{datetime.now().strftime('%H:%M:%S')}] #{trade_count} EDGE {coin} {tf}m | {side} @ {entry_price:.3f} | Kelly: ${amount:.2f}")
                         
                         pos_id = rm.on_trade_opened(coin=coin, side=side, size_usd=amount, market_id=market_key)
                         virtual_free -= amount
@@ -319,6 +434,21 @@ def evaluate_market(coin, tf):
                             'pos_id': pos_id
                         }
                         open_positions[market_key].append(side)
+                        
+                        # Register with resolution fallback engine
+                        expiration_ts = time.time() + (tf * 60)
+                        expiration_utc = datetime.fromtimestamp(expiration_ts, tz=timezone.utc).isoformat()
+                        slot = int(time.time() // (tf * 60)) * (tf * 60)
+                        slug = f"{coin.lower()}-updown-{tf}m-{slot}"
+                        resolution_engine.register_position(
+                            market_id=market_key,
+                            slug=slug,
+                            coin=coin.upper(),
+                            timeframe_minutes=tf,
+                            entry_price=entry_price,
+                            position_side=side,
+                            expiration_utc=expiration_utc,
+                        )
                         
                         log_trade({
                             'timestamp_utc': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),

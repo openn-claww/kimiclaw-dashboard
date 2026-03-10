@@ -1,0 +1,15 @@
+# $5 BUDGET GUARDRAILS - STRICT ENFORCEMENT
+
+Starting Capital: $56.71
+Hard Floor: $50.00 (NEVER GO BELOW)
+Trading Budget: $5.00 (from $56.71)
+
+RULES:
+1. Max $0.50 per trade (10 max trades)
+2. STOP if balance < $50.00
+3. STOP after 3 consecutive losses
+4. Daily max loss: $2.00
+5. Only momentum strategy (no arbitrage)
+6. Require 0.3% price move minimum
+
+If balance reaches $50.00 - BOT STOPS COMPLETELY

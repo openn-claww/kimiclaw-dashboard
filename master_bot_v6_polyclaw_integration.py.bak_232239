@@ -1,0 +1,1592 @@
+#!/usr/bin/env python3
+"""
+master_bot_v6_polyclaw_integration.py — V6 with proxy + auto-redeem
+Fixes:
+  [FIX-1] Rotating proxy + CLOB health check + manual sell queue
+  [FIX-2] Auto-poll positions for resolution every 5 minutes
+  [FIX-3] Auto-redeem winning positions via CTF / CLOB API
+  [FIX-4] Full P&L tracking logged on every redemption
+  [FIX-5] Retry failed redemptions (3x backoff) + alert user
+"""
+
+# ── PID mutex ─────────────────────────────────────────────────────────────────
+try:
+    from bot_lock import acquire_lock
+    acquire_lock()
+except ImportError:
+    import fcntl as _fcntl, sys as _sys, os as _os, signal as _signal
+    _LOCK_FILE = '/tmp/master_bot_v6.lock'
+
+    def _is_stale_lock(path):
+        """[FIX-3] Check if lock file holds a dead PID."""
+        try:
+            pid = int(Path(path).read_text().strip())
+            _os.kill(pid, 0)   # signal 0 = check existence only
+            return False       # process exists
+        except (ValueError, FileNotFoundError):
+            return True        # no file or no PID
+        except ProcessLookupError:
+            return True        # PID doesn't exist = stale
+        except PermissionError:
+            return False       # process exists, we just can't signal it
+
+    if Path(_LOCK_FILE).exists() and _is_stale_lock(_LOCK_FILE):
+        _os.unlink(_LOCK_FILE)
+        log.warning(f"[Lock] Removed stale lock file {_LOCK_FILE}")
+
+    _lf = open(_LOCK_FILE, 'w')
+    try:
+        _fcntl.flock(_lf, _fcntl.LOCK_EX | _fcntl.LOCK_NB)
+        _lf.write(str(_os.getpid()))
+        _lf.flush()
+    except IOError:
+        pid_in_file = None
+        try:
+            pid_in_file = int(Path(_LOCK_FILE).read_text().strip())
+        except Exception:
+            pass
+        print(f"FATAL: Another instance running (PID {pid_in_file}). "
+              f"Delete {_LOCK_FILE} to override.")
+        _sys.exit(1)
+
+import os, sys, json, time, logging, threading, signal, requests
+from datetime import datetime, timezone
+from dataclasses import dataclass, field
+from typing import Optional, Dict, List, Tuple
+from enum import Enum
+from collections import deque
+from pathlib import Path
+
+# ── Third-party ───────────────────────────────────────────────────────────────
+try:
+    import websocket
+    import numpy as np
+    from scipy.stats import linregress
+except ImportError as e:
+    print(f"FATAL: missing package — {e}\nRun: pip install websocket-client numpy scipy")
+    sys.exit(1)
+
+# ── Workspace path ────────────────────────────────────────────────────────────
+WORKSPACE = os.getenv('BOT_WORKSPACE', '/root/.openclaw/workspace')
+sys.path.insert(0, WORKSPACE)
+
+# ── [FIX-1] Proxy + sell queue ────────────────────────────────────────────────
+try:
+    from proxy_manager import ProxyManager, ManualSellQueue
+    _PROXY_AVAILABLE = True
+except ImportError as e:
+    print(f"[FIX-1] WARNING: proxy_manager not found ({e}) — direct connection only")
+    _PROXY_AVAILABLE = False
+    ProxyManager    = None
+    ManualSellQueue = None
+
+# ── [FIX-2][FIX-3][FIX-4][FIX-5] Auto-redeem ────────────────────────────────
+try:
+    from auto_redeem import AutoRedeemEngine
+    _REDEEM_AVAILABLE = True
+except ImportError as e:
+    print(f"[FIX-2] WARNING: auto_redeem not found ({e}) — auto-redeem disabled")
+    _REDEEM_AVAILABLE = False
+    AutoRedeemEngine  = None
+
+# ── [ARB] Cross-market arbitrage ────────────────────────────────────────────
+try:
+    from cross_market_arb import CrossMarketArbitrage
+    _ARB_AVAILABLE = True
+except ImportError as e:
+    print(f"[ARB] WARNING: cross_market_arb not found ({e}) — arb disabled")
+    _ARB_AVAILABLE = False
+    CrossMarketArbitrage = None
+
+# ── [NEWS] News feed ─────────────────────────────────────────────────────────
+try:
+    from news_feed_compact import NewsFeed, combine_signals
+    _NEWS_AVAILABLE = True
+except ImportError as e:
+    print(f"[NEWS] WARNING: news_feed not found ({e}) — news disabled")
+    _NEWS_AVAILABLE = False
+    NewsFeed = None
+    combine_signals = None
+
+# ── [PnL] P&L Tracker ────────────────────────────────────────────────────────
+try:
+    from pnl_tracker import PnLTracker
+    _PNL_AVAILABLE = True
+except ImportError as e:
+    print(f"[PnL] WARNING: pnl_tracker not found ({e}) — P&L tracking disabled")
+    _PNL_AVAILABLE = False
+    PnLTracker = None
+
+# ── Internal modules (graceful) ───────────────────────────────────────────────
+def _try_import(name, fromlist=None):
+    try:
+        if fromlist:
+            m = __import__(name, fromlist=fromlist)
+            return m, True
+        return __import__(name), True
+    except ImportError as e:
+        print(f"[IMPORT] WARNING: {name} not available ({e})")
+        return None, False
+
+_live_mod,  _LIVE_OK   = _try_import('live_trading.live_trading_config', ['load_live_config'])
+_live_int,  _LIVE_INT  = _try_import('live_trading.v4_live_integration', ['V4BotLiveIntegration'])
+_entry_val, _ENTRY_OK  = _try_import('entry_validation', ['calculate_edge', 'REGIME_PARAMS'])
+_risk_mod,  _RISK_OK   = _try_import('risk_manager', ['RiskManager'])
+_atomic,    _ATOM_OK   = _try_import('atomic_json', ['atomic_write_json', 'safe_load_json'])
+_edge_mod,  _EDGE_OK   = _try_import('edge_tracker', ['get_kelly_stake_with_diagnostics',
+                                                        'record_completed_trade',
+                                                        'import_trade_history'])
+_res_mod,   _RES_OK    = _try_import('resolution_fallback_v1', ['ResolutionFallbackEngine',
+                                                                  'ResolutionConfig'])
+
+# resolve symbols
+load_live_config              = getattr(_live_mod, 'load_live_config', None)
+V4BotLiveIntegration          = getattr(_live_int, 'V4BotLiveIntegration', None)
+calculate_edge                = getattr(_entry_val, 'calculate_edge', None)
+REGIME_PARAMS                 = getattr(_entry_val, 'REGIME_PARAMS', {})
+RiskManager                   = getattr(_risk_mod,  'RiskManager', None)
+ResolutionFallbackEngine      = getattr(_res_mod,   'ResolutionFallbackEngine', None)
+ResolutionConfig              = getattr(_res_mod,   'ResolutionConfig', None)
+
+if _ATOM_OK:
+    atomic_write_json = _atomic.atomic_write_json
+    safe_load_json    = _atomic.safe_load_json
+else:
+    def atomic_write_json(data, path):
+        try:
+            with open(path, 'w') as f: json.dump(data, f, indent=2)
+            return True
+        except Exception: return False
+    def safe_load_json(path, default=None):
+        try:
+            with open(path) as f: return json.load(f)
+        except Exception: return default if default is not None else {}
+
+if _EDGE_OK:
+    get_kelly_stake_with_diagnostics = _edge_mod.get_kelly_stake_with_diagnostics
+    record_completed_trade           = _edge_mod.record_completed_trade
+    import_trade_history             = _edge_mod.import_trade_history
+else:
+    def get_kelly_stake_with_diagnostics(entry_price, bankroll, coin):
+        return bankroll * 0.05, {'reason': 'fallback_flat'}
+    def record_completed_trade(**kw): pass
+    def import_trade_history(*a, **kw): return 0
+
+# ══════════════════════════════════════════════════════════════════════════════
+# LOGGING
+# ══════════════════════════════════════════════════════════════════════════════
+
+Path(WORKSPACE).mkdir(parents=True, exist_ok=True)
+
+LOG_FILE      = f'{WORKSPACE}/master_v6_run.log'
+TRADE_LOG     = f'{WORKSPACE}/master_v6_trades.json'
+STATE_FILE    = f'{WORKSPACE}/master_v6_state.json'
+HEALTH_FILE   = f'{WORKSPACE}/master_v6_health.json'
+DECISION_LOG  = f'{WORKSPACE}/master_v6_decisions.json'
+ALERT_FILE    = f'{WORKSPACE}/master_v6_alerts.json'
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    handlers=[logging.FileHandler(LOG_FILE), logging.StreamHandler(sys.stdout)],
+)
+log = logging.getLogger('master_v6')
+_FILE_LOCK = threading.Lock()
+
+# ── Validate REGIME_PARAMS ────────────────────────────────────────────────────
+_FALLBACK_REGIME = {'side_bias': None, 'velocity_mult': 1.2, 'size_mult': 0.7,
+                    'timeframe': 15, 'max_price': 0.55}
+for _k in ['trend_up', 'trend_down', 'choppy', 'high_vol', 'low_vol', 'default']:
+    if _k not in REGIME_PARAMS:
+        REGIME_PARAMS[_k] = _FALLBACK_REGIME
+
+# ══════════════════════════════════════════════════════════════════════════════
+# CONFIGURATION
+# ══════════════════════════════════════════════════════════════════════════════
+
+VIRTUAL_BANKROLL        = float(os.getenv('VIRTUAL_BANKROLL', '686.93'))
+MAX_POSITIONS           = int(os.getenv('MAX_POSITIONS', '5'))
+POSITION_SIZE_PCT       = float(os.getenv('POSITION_SIZE_PCT', '0.05'))
+MIN_EDGE                = float(os.getenv('MIN_EDGE', '0.10'))
+COINS                   = ['BTC', 'ETH', 'SOL', 'XRP']
+TIMEFRAMES              = [5, 15]
+IS_PAPER_TRADING        = os.getenv('POLY_PAPER_TRADING', 'true').lower() == 'true'
+ENABLE_ZONE_FILTER      = os.getenv('ENABLE_ZONE_FILTER', 'false').lower() == 'true'
+
+VELOCITY_THRESHOLDS = {
+    'BTC': {'raw': 0.15,  'ema_factor': 0.3},
+    'ETH': {'raw': 0.015, 'ema_factor': 0.3},
+    'SOL': {'raw': 0.25,  'ema_factor': 0.3},
+    'XRP': {'raw': 0.08,  'ema_factor': 0.3},
+}
+VOLUME_MULTIPLIERS = {'BTC': 1.5, 'ETH': 1.5, 'SOL': 1.8, 'XRP': 1.6}
+
+STOP_LOSS_PCT      = 0.20
+TAKE_PROFIT_PCT    = 0.40
+TRAILING_STOP_PCT  = 0.15
+TRAILING_ACTIVATE  = 1.10
+TIME_STOP_MINUTES  = 90
+REGIME_WINDOW      = 30
+REGIME_THETA       = 0.5
+DEAD_ZONE_LOW      = 0.35
+DEAD_ZONE_HIGH     = 0.65
+
+GAMMA_API   = os.getenv('GAMMA_API', 'https://gamma-api.polymarket.com')
+CLOB_WS     = "wss://ws-subscriptions-clob.polymarket.com/ws/market"
+RTDS_WS     = "wss://ws-live-data.polymarket.com"
+BINANCE_WS  = "wss://stream.binance.com:9443/ws/btcusdt@trade/ethusdt@trade/solusdt@trade/xrpusdt@trade"
+CLOB_MAX_RPS = 60
+
+MAX_DAILY_LOSS_PCT      = float(os.getenv('MAX_DAILY_LOSS_PCT',     '0.15'))
+MAX_CONSECUTIVE_LOSSES  = int(os.getenv('MAX_CONSECUTIVE_LOSSES',   '7'))
+MAX_API_ERRORS_PER_HOUR = int(os.getenv('MAX_API_ERRORS_PER_HOUR',  '30'))
+MAX_TOTAL_EXPOSURE_PCT  = float(os.getenv('MAX_TOTAL_EXPOSURE_PCT', '0.50'))
+MAX_SINGLE_TRADE_USD    = float(os.getenv('MAX_SINGLE_TRADE_USD',   '75.0'))
+BALANCE_DRIFT_THRESHOLD = float(os.getenv('BALANCE_DRIFT_THRESHOLD','0.10'))
+WS_CONNECT_TIMEOUT      = int(os.getenv('WS_CONNECT_TIMEOUT',       '30'))
+CB_WARMUP_TRADES        = int(os.getenv('CB_WARMUP_TRADES',          '50'))
+CB_MIN_WIN_RATE         = float(os.getenv('CB_MIN_WIN_RATE',         '0.40'))
+CB_WINDOW               = int(os.getenv('CB_WINDOW',                 '50'))
+RECONNECT_DELAY         = int(os.getenv('RECONNECT_DELAY',           '5'))
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ENUMS
+# ══════════════════════════════════════════════════════════════════════════════
+
+class Regime(Enum):
+    TREND_UP   = "trend_up"
+    TREND_DOWN = "trend_down"
+    CHOPPY     = "choppy"
+    HIGH_VOL   = "high_vol"
+    LOW_VOL    = "low_vol"
+
+class ExitReason(Enum):
+    STOP_LOSS     = "stop_loss"
+    TAKE_PROFIT   = "take_profit"
+    TRAILING_STOP = "trailing_stop"
+    TIME_STOP     = "time_stop"
+    RESOLVED      = "resolved"
+
+class BotState(Enum):
+    RUNNING  = "running"
+    DEGRADED = "degraded"
+    STOPPED  = "stopped"
+
+class PriceFeed(Enum):
+    RTDS    = "rtds"
+    BINANCE = "binance"
+    NONE    = "none"
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ALERTING
+# ══════════════════════════════════════════════════════════════════════════════
+
+_ALERT_LOCK = threading.Lock()  # [FIX-1]
+
+def _send_alert(level: str, message: str):
+    if level == 'CRITICAL':
+        log.critical(f"\U0001f6a8 {message}")
+    elif level == 'WARNING':
+        log.warning(f"\u26a0\ufe0f  {message}")
+    else:
+        log.info(f"\u2139\ufe0f  {message}")
+    # [TELEGRAM] Non-blocking alert
+    tg_token = os.getenv('TELEGRAM_BOT_TOKEN', '')
+    tg_chat  = os.getenv('TELEGRAM_CHAT_ID', '')
+    if tg_token and tg_chat and level in ('CRITICAL', 'WARNING'):
+        def _tg():
+            try:
+                import requests as _r
+                emoji = {'CRITICAL': '🚨', 'WARNING': '⚠️'}.get(level, 'ℹ️')
+                _r.post(
+                    f"https://api.telegram.org/bot{tg_token}/sendMessage",
+                    json={'chat_id': tg_chat,
+                          'text': f"{emoji} *[BotV6]* {level}\n{message}",
+                          'parse_mode': 'Markdown'},
+                    timeout=5,
+                )
+            except Exception:
+                pass  # never let Telegram crash the bot
+        threading.Thread(target=_tg, daemon=True).start()
+
+    # [FIX-1] Use dedicated lock, never _FILE_LOCK, catch everything
+    try:
+        with _ALERT_LOCK:
+            try:
+                raw = Path(ALERT_FILE).read_text()
+                data = json.loads(raw)
+                if not isinstance(data, list):
+                    data = []
+            except Exception:
+                data = []
+
+            entry = {
+                'ts':      datetime.now(tz=timezone.utc).isoformat(),
+                'level':   level,
+                'message': message,
+            }
+            data.append(entry)
+            if len(data) > 500:
+                data = data[-200:]
+
+            tmp = ALERT_FILE + '.tmp'
+            Path(tmp).write_text(json.dumps(data, indent=2))
+            Path(tmp).replace(ALERT_FILE)
+    except Exception as e:
+        # [FIX-1] NEVER crash the bot over an alert write failure
+        log.error(f"[Alert] File write failed (non-fatal): {e}")
+
+    # Telegram (optional, non-blocking)
+    tg_token = os.getenv('TELEGRAM_BOT_TOKEN')
+    tg_chat  = os.getenv('TELEGRAM_CHAT_ID')
+    if tg_token and tg_chat and level in ('CRITICAL', 'WARNING'):
+        try:
+            import requests as _req
+            _req.post(
+                f"https://api.telegram.org/bot{tg_token}/sendMessage",
+                json={'chat_id': tg_chat, 'text': f"[MasterBot v6] {level}: {message}"},
+                timeout=3,
+            )
+        except Exception:
+            pass
+class EmergencyStop:
+    FLAG_FILE = '/tmp/MASTER_BOT_STOP'
+    def __init__(self):
+        self._stop = False
+        signal.signal(signal.SIGTERM, self._sig)
+        signal.signal(signal.SIGINT,  self._sig)
+    def _sig(self, n, _):
+        _send_alert('CRITICAL', f"Signal {n} — emergency stop")
+        self._stop = True
+    def is_active(self) -> bool:
+        if self._stop: return True
+        if os.getenv('MASTER_BOT_EMERGENCY_STOP','0') == '1':
+            self._stop = True; return True
+        if Path(self.FLAG_FILE).exists():
+            self._stop = True; return True
+        return False
+    def trigger(self):
+        self._stop = True
+        try: Path(self.FLAG_FILE).touch()
+        except Exception: pass
+
+class CircuitBreaker:
+    def __init__(self):
+        self._outcomes     = deque(maxlen=CB_WINDOW)
+        self._total_trades = 0
+        self._tripped      = False
+        self._lock         = threading.Lock()
+    def record(self, won: bool):
+        with self._lock:
+            self._outcomes.append(won)
+            self._total_trades += 1
+            if self._total_trades < CB_WARMUP_TRADES: return
+            if len(self._outcomes) < CB_WINDOW: return
+            wr = sum(self._outcomes) / len(self._outcomes)
+            was = self._tripped
+            self._tripped = wr < CB_MIN_WIN_RATE
+            if self._tripped and not was:
+                _send_alert('CRITICAL', f"Circuit breaker: win rate {wr:.1%} < {CB_MIN_WIN_RATE:.1%}")
+            elif not self._tripped and was:
+                log.warning(f"[CB] Reset — win rate {wr:.1%}")
+    def is_tripped(self) -> bool:
+        with self._lock: return self._tripped
+    def status(self) -> dict:
+        with self._lock:
+            n = len(self._outcomes)
+            return {'tripped': self._tripped, 'win_rate': sum(self._outcomes)/n if n else None,
+                    'sample': n, 'total': self._total_trades, 'warmup': self._total_trades < CB_WARMUP_TRADES}
+
+class KillSwitch:
+    def __init__(self, bankroll: float):
+        self._start = bankroll; self._daily_loss = 0.0
+        self._consec = 0; self._api_errors = deque()
+        self._day = datetime.now().date(); self._active = False
+        self._lock = threading.Lock()
+    def _reset(self):
+        t = datetime.now().date()
+        if t != self._day: self._daily_loss = 0.0; self._consec = 0; self._day = t
+    def record_trade(self, pnl: float, won: bool):
+        with self._lock:
+            self._reset()
+            if won: self._consec = 0
+            else: self._daily_loss += abs(pnl); self._consec += 1
+            if self._daily_loss/self._start >= MAX_DAILY_LOSS_PCT:
+                _send_alert('CRITICAL', f"Kill switch: daily loss {self._daily_loss/self._start:.1%}"); self._active = True
+            if self._consec >= MAX_CONSECUTIVE_LOSSES:
+                _send_alert('CRITICAL', f"Kill switch: {self._consec} consecutive losses"); self._active = True
+    def record_api_error(self):
+        with self._lock:
+            now = time.time(); self._api_errors.append(now)
+            while self._api_errors and now - self._api_errors[0] > 3600: self._api_errors.popleft()
+            if len(self._api_errors) >= MAX_API_ERRORS_PER_HOUR:
+                _send_alert('CRITICAL', f"Kill switch: {len(self._api_errors)} API errors/hr"); self._active = True
+                self._tripped_at = now  # [FIX-2C] track when it tripped
+
+    def reset_if_stale(self, quiet_window_secs: int = 900):
+        """[FIX-2C] Auto-reset kill switch if no errors for quiet_window_secs (default 15min)."""
+        with self._lock:
+            if not self._active:
+                return False
+            if not self._api_errors:
+                self._active = False
+                log.warning("[KillSwitch] Auto-reset: no errors in window")
+                return True
+            last_error = max(self._api_errors)
+            if time.time() - last_error > quiet_window_secs:
+                self._active = False
+                self._api_errors.clear()
+                log.warning(f"[KillSwitch] Auto-reset after {quiet_window_secs}s quiet window")
+                _send_alert('WARNING', 'Kill switch auto-reset after quiet period')
+                return True
+            return False
+    def validate_trade(self, amount: float, exposure: float, bankroll: float) -> Tuple[bool, str]:
+        with self._lock:
+            if self._active: return False, "kill_switch_active"
+            if amount > MAX_SINGLE_TRADE_USD: return False, f"size ${amount:.2f} > max"
+            if exposure + amount > bankroll * MAX_TOTAL_EXPOSURE_PCT: return False, "exposure_limit"
+            return True, "ok"
+    def is_active(self) -> bool:
+        with self._lock: return self._active
+    def status(self) -> dict:
+        with self._lock:
+            self._reset()
+            return {'active': self._active, 'daily_loss_usd': round(self._daily_loss,2),
+                    'daily_loss_pct': round(self._daily_loss/self._start,4), 'consec': self._consec}
+
+class RateLimiter:
+    def __init__(self, rps: int = CLOB_MAX_RPS):
+        self._max = rps; self._calls = deque(); self._lock = threading.Lock()
+    def acquire(self, wait: float = 2.0) -> bool:
+        deadline = time.time() + wait
+        while time.time() < deadline:
+            with self._lock:
+                now = time.time()
+                while self._calls and now - self._calls[0] > 60: self._calls.popleft()
+                if len(self._calls) < self._max: self._calls.append(now); return True
+            time.sleep(0.05)
+        return False
+
+# ══════════════════════════════════════════════════════════════════════════════
+# REGIME DETECTOR
+# ══════════════════════════════════════════════════════════════════════════════
+
+class RegimeDetector:
+    def __init__(self, window: int = REGIME_WINDOW):
+        self.window = window
+        self.price_history = deque(maxlen=window*2)
+        self.vol_history   = deque(maxlen=200)
+        self.last_regime   = Regime.CHOPPY
+    def add_price(self, price: float): self.price_history.append(price)
+    def compute_regime(self) -> Regime:
+        if len(self.price_history) < self.window: return self.last_regime
+        prices = list(self.price_history)[-self.window:]
+        returns = [np.log(prices[i]/prices[i-1]) for i in range(1,len(prices)) if prices[i-1]>0]
+        if not returns: return self.last_regime
+        vol = float(np.std(returns)) if len(returns)>1 else 0.0
+        self.vol_history.append(vol)
+        vol_z = 0.0
+        if len(self.vol_history) >= 30:
+            arr = list(self.vol_history)[-100:]
+            vstd = float(np.std(arr))
+            if vstd > 0: vol_z = (vol - float(np.mean(arr))) / vstd
+        total  = abs(prices[-1]-prices[0])
+        path   = sum(abs(prices[i]-prices[i-1]) for i in range(1,len(prices)))
+        eff    = total/path if path>0 else 0.0
+        try:
+            slope,*_ = linregress(np.arange(len(prices)), prices)
+            pstd = float(np.std(prices))
+            ts   = slope/pstd if pstd>0 else 0.0
+        except Exception: ts = 0.0
+        if vol_z > 1.5:  r = Regime.HIGH_VOL
+        elif vol_z < -1: r = Regime.LOW_VOL
+        elif eff > 0.6:
+            if ts >  REGIME_THETA: r = Regime.TREND_UP
+            elif ts < -REGIME_THETA: r = Regime.TREND_DOWN
+            else: r = Regime.CHOPPY
+        else: r = Regime.CHOPPY
+        self.last_regime = r; return r
+    def get_params(self, regime: Regime) -> dict:
+        return {
+            Regime.TREND_UP:   {'side_bias':'YES',  'velocity_mult':0.8,'size_mult':1.3,'timeframe':5, 'max_price':0.70},
+            Regime.TREND_DOWN: {'side_bias':'NO',   'velocity_mult':0.8,'size_mult':1.3,'timeframe':5, 'max_price':0.70},
+            Regime.CHOPPY:     {'side_bias':None,   'velocity_mult':1.5,'size_mult':0.5,'timeframe':15,'max_price':0.40},
+            Regime.HIGH_VOL:   {'side_bias':None,   'velocity_mult':0.9,'size_mult':0.6,'timeframe':5, 'max_price':0.65},
+            Regime.LOW_VOL:    {'side_bias':None,   'velocity_mult':0.7,'size_mult':1.2,'timeframe':15,'max_price':0.60},
+        }.get(regime, _FALLBACK_REGIME)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# POSITION
+# ══════════════════════════════════════════════════════════════════════════════
+
+@dataclass
+class Position:
+    market_id:    str
+    side:         str
+    entry_price:  float
+    shares:       float
+    yes_asset_id: str   = ''
+    no_asset_id:  str   = ''
+    slug:         str   = ''
+    coin:         str   = ''
+    timeframe:    int   = 5
+    entry_time:   float = field(default_factory=time.time)
+    pos_id:       str   = ''
+    token_id:     str   = ''      # CTF token id for redemption
+    peak_price:          float = field(init=False)
+    trailing_stop_price: float = field(init=False)
+    def __post_init__(self):
+        self.peak_price          = self.entry_price
+        self.trailing_stop_price = self.entry_price * (1 - TRAILING_STOP_PCT)
+    @property
+    def active_asset_id(self) -> str:
+        return self.yes_asset_id if self.side == 'YES' else self.no_asset_id
+    def to_dict(self) -> dict:
+        return {k: getattr(self, k) for k in
+                ['market_id','side','entry_price','shares','yes_asset_id','no_asset_id',
+                 'slug','coin','timeframe','entry_time','pos_id','token_id',
+                 'peak_price','trailing_stop_price']}
+    @classmethod
+    def from_dict(cls, d: dict) -> 'Position':
+        yes_id = d.get('yes_asset_id', d.get('asset_id', ''))
+        p = cls(market_id=d['market_id'], side=d['side'], entry_price=d['entry_price'],
+                shares=d['shares'], yes_asset_id=yes_id, no_asset_id=d.get('no_asset_id',''),
+                slug=d.get('slug',''), coin=d.get('coin',''), timeframe=d.get('timeframe',5),
+                entry_time=d.get('entry_time', time.time()), pos_id=d.get('pos_id',''),
+                token_id=d.get('token_id',''))
+        p.peak_price          = d.get('peak_price', p.entry_price)
+        p.trailing_stop_price = d.get('trailing_stop_price', p.entry_price*(1-TRAILING_STOP_PCT))
+        return p
+
+def evaluate_exits(pos: Position, price: float) -> Optional[ExitReason]:
+    if price <= pos.entry_price*(1-STOP_LOSS_PCT):     return ExitReason.STOP_LOSS
+    if (time.time()-pos.entry_time)/60 >= TIME_STOP_MINUTES: return ExitReason.TIME_STOP
+    if price >= pos.entry_price*(1+TAKE_PROFIT_PCT):   return ExitReason.TAKE_PROFIT
+    if price >= pos.entry_price*TRAILING_ACTIVATE:
+        if price > pos.peak_price:
+            pos.peak_price          = price
+            pos.trailing_stop_price = price*(1-TRAILING_STOP_PCT)
+        if price <= pos.trailing_stop_price:           return ExitReason.TRAILING_STOP
+    return None
+
+# ══════════════════════════════════════════════════════════════════════════════
+# FILTERS
+# ══════════════════════════════════════════════════════════════════════════════
+
+def passes_zone_filter(yes_p: float, side: str) -> Tuple[bool, str]:
+    if not ENABLE_ZONE_FILTER: return True, 'zone_disabled'
+    eff = yes_p if side=='YES' else (1.0-yes_p)
+    if DEAD_ZONE_LOW <= eff <= DEAD_ZONE_HIGH: return False, f'dead_zone:{eff:.3f}'
+    return True, 'zone_ok'
+
+def get_sentiment_mult(fng: int, side: str) -> Optional[float]:
+    if side=='YES':
+        if fng>80: return None
+        return 1.5 if fng<=20 else (1.0 if fng<=60 else 0.5)
+    else:
+        if fng<20: return None
+        return 1.5 if fng>=80 else (1.0 if fng>=40 else 0.5)
+
+_fng_cache = (50, 0.0)
+def _get_fng() -> int:
+    global _fng_cache
+    val, ts = _fng_cache
+    if time.time()-ts > 600:
+        try:
+            r = requests.get("https://api.alternative.me/fng/?limit=1", timeout=3)
+            val = int(r.json()['data'][0]['value'])
+        except Exception: val = 50
+        _fng_cache = (val, time.time())
+    return val
+
+def _get_usdc_balance_safe(live) -> Optional[float]:
+    if live is None: return None
+    for name in ('get_usdc_balance','get_balance','usdc_balance'):
+        fn = getattr(live, name, None)
+        if callable(fn):
+            try:
+                res = fn()
+                if isinstance(res, dict):
+                    for k in ('usdc','USDC','balance','available'):
+                        if k in res: return float(res[k])
+                elif res is not None: return float(res)
+            except Exception: pass
+    return None
+
+# ══════════════════════════════════════════════════════════════════════════════
+# CLOB WEBSOCKET
+# ══════════════════════════════════════════════════════════════════════════════
+
+class CLOBWebSocketManager:
+    def __init__(self, bot: 'MasterBotV6'):
+        self.bot = bot; self.ws = None
+        self.connected = False; self.market_data: Dict[str,dict] = {}
+        self._reconnect_delay = 1; self._data_lock = threading.Lock()
+        self._connect_event = threading.Event()
+    def get_mid_price(self, asset_id: str) -> Optional[float]:
+        with self._data_lock:
+            d = self.market_data.get(asset_id)
+            if d:
+                b,a = d.get('best_bid'), d.get('best_ask')
+                if b and a:
+                    try: return (float(b)+float(a))/2
+                    except Exception: pass
+        return None
+    def subscribe(self, asset_ids: List[str]):
+        ids = [a for a in asset_ids if a]
+        if ids and self.ws and self.connected:
+            try: self.ws.send(json.dumps({"assets_ids":ids,"type":"market","custom_feature_enabled":True}))
+            except Exception as e: log.error(f"[CLOB] subscribe error: {e}")
+    def connect(self):
+        def on_open(ws):
+            log.info("[CLOB] Connected"); self.connected=True; self._reconnect_delay=1
+            self._connect_event.set()
+            aids = self.bot._get_all_asset_ids()
+            if aids: self.subscribe(aids)
+        def on_message(ws, raw):
+            try:
+                msg=json.loads(raw); pl=msg.get('payload',{})
+                if msg.get('type')=='best_bid_ask':
+                    aid=pl.get('asset_id')
+                    if aid:
+                        with self._data_lock:
+                            self.market_data[aid]={'best_bid':pl.get('best_bid'),'best_ask':pl.get('best_ask'),'ts':time.time()}
+                elif msg.get('type')=='market_resolved':
+                    self.bot.handle_market_resolved(pl)
+            except Exception as e: log.debug(f"[CLOB] parse: {e}")
+        def on_error(ws, err):
+            err_str = str(err)
+            log.warning(f"[CLOB] WS error (not counted toward kill switch): {err_str}")
+            # [FIX-2A] Only count TRADING errors, not WS transport errors.
+            # WS drops every 2min due to NAT timeout — that's ~30/hr which
+            # trips the 30-error kill switch and freezes all trading.
+            TRADING_ERRORS = ('401', '403', '429', 'insufficient', 'rejected', 'invalid')
+            if any(e in err_str.lower() for e in TRADING_ERRORS):
+                self.bot.kill_switch.record_api_error()
+                log.error(f"[CLOB] Trading error counted: {err_str}")
+        def on_close(ws,code,msg):
+            self.connected=False; log.warning(f"[CLOB] Closed ({code}), retry {self._reconnect_delay}s")
+            time.sleep(self._reconnect_delay); self._reconnect_delay=min(self._reconnect_delay*2,60)
+            if not self.bot.emergency_stop.is_active(): self._connect_event.clear(); self.connect()
+        self.ws=websocket.WebSocketApp(CLOB_WS,on_open=on_open,on_message=on_message,on_error=on_error,on_close=on_close)
+        threading.Thread(
+            target=lambda: self.ws.run_forever(
+                ping_interval=20,   # [FIX-2B] keepalive ping every 20s
+                ping_timeout=10,    # treat as dead if no pong in 10s
+                reconnect=5,        # auto-reconnect after 5s
+            ),
+            daemon=True,
+        ).start()
+
+# ══════════════════════════════════════════════════════════════════════════════
+# RTDS WEBSOCKET
+# ══════════════════════════════════════════════════════════════════════════════
+
+class RTDSWebSocketManager:
+    def __init__(self, bot: 'MasterBotV6'):
+        self.bot=bot; self.ws=None; self.connected=False
+        self._reconnect_delay=1; self._fail_count=0; self._MAX_FAILS=3
+        self._binance_active=False; self._connect_event=threading.Event()
+    def connect(self):
+        def on_open(ws):
+            log.info("[RTDS] Connected"); self.connected=True
+            self._reconnect_delay=1; self._fail_count=0; self._connect_event.set()
+            ws.send(json.dumps({"action":"subscribe","subscriptions":[
+                {"topic":"crypto_prices","type":"update","filters":"btcusdt,ethusdt,solusdt,xrpusdt"}]}))
+            threading.Thread(target=self._pinger,daemon=True).start()
+        def on_message(ws,raw):
+            try:
+                msg=json.loads(raw); pl=msg.get('payload',{})
+                if msg.get('topic')=='crypto_prices':
+                    sym=pl.get('symbol','').lower().replace('usdt','').upper()
+                    price=pl.get('price')
+                    if sym in COINS and price: self.bot.update_crypto_price(sym,float(price),volume=None)
+            except Exception: pass
+        def on_error(ws,err): log.error(f"[RTDS] Error: {err}"); self._fail_count+=1; self.bot.kill_switch.record_api_error()
+        def on_close(ws,code,msg):
+            self.connected=False
+            if self._binance_active: log.info("[RTDS] Binance active — not reconnecting"); return
+            if self._fail_count>=self._MAX_FAILS:
+                self._binance_active=True; _send_alert('WARNING','RTDS failed — switching to Binance')
+                self.bot._start_binance_ws(); return
+            log.warning(f"[RTDS] Closed, retry {self._reconnect_delay}s")
+            time.sleep(self._reconnect_delay); self._reconnect_delay=min(self._reconnect_delay*2,60)
+            if not self.bot.emergency_stop.is_active(): self._connect_event.clear(); self.connect()
+        self.ws=websocket.WebSocketApp(RTDS_WS,on_open=on_open,on_message=on_message,on_error=on_error,on_close=on_close)
+        threading.Thread(target=self.ws.run_forever,daemon=True).start()
+    def _pinger(self):
+        while self.connected and self.ws:
+            try: self.ws.send("PING")
+            except Exception: break
+            time.sleep(5)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MASTER BOT V6
+# ══════════════════════════════════════════════════════════════════════════════
+
+
+def pre_flight_check(live_client) -> bool:
+    """Verify wallet, approvals, and balance before live trading."""
+    import subprocess as _sp
+    if os.getenv('POLY_PAPER_TRADING', 'true').lower() == 'true':
+        log.info("[PreFlight] Paper trading mode — skipping live checks")
+        return True
+
+    log.info("[PreFlight] Running live trading pre-flight checks...")
+    ok = True
+
+    # 1. Verify wallet status via PolyClaw
+    try:
+        r = _sp.run(
+            ['uv', 'run', 'python', 'scripts/polyclaw.py', 'wallet', 'status'],
+            capture_output=True, text=True, timeout=15,
+            cwd=os.path.dirname(os.path.abspath(__file__))
+        )
+        w = json.loads(r.stdout)
+        usdc = float(w.get('balances', {}).get('USDC.e', 0))
+        if not w.get('approvals_set'):
+            log.critical("[PreFlight] ❌ Contract approvals NOT set. Run: uv run python scripts/polyclaw.py wallet approve")
+            ok = False
+        else:
+            log.info(f"[PreFlight] ✅ Approvals set. Balance: ${usdc:.2f} USDC")
+        if usdc < 5.0:
+            log.critical(f"[PreFlight] ❌ Balance ${usdc:.2f} too low for live trading (min $5)")
+            ok = False
+    except Exception as e:
+        log.critical(f"[PreFlight] ❌ Wallet check failed: {e}")
+        ok = False
+
+    # 2. Verify required env vars
+    for var in ('POLY_PRIVATE_KEY', 'POLY_ADDRESS', 'CHAINSTACK_NODE'):
+        if not os.getenv(var):
+            log.critical(f"[PreFlight] ❌ {var} not set")
+            ok = False
+
+    # 3. Verify risk limits are conservative
+    max_trade = float(os.getenv('MAX_SINGLE_TRADE_USD', '75.0'))
+    if max_trade > 10.0:
+        log.warning(f"[PreFlight] ⚠️  MAX_SINGLE_TRADE_USD=${max_trade:.2f} — recommend ≤$5 for first week")
+
+    if ok:
+        log.info("[PreFlight] ✅ All checks passed — proceeding to live trading")
+        _send_alert('WARNING', f'Bot V6 going LIVE — balance checked OK')
+    else:
+        log.critical("[PreFlight] ❌ Pre-flight FAILED — staying in paper mode")
+    return ok
+
+class MasterBotV6:
+
+    def __init__(self):
+        self._price_feed_active = PriceFeed.NONE
+        self._state_lock        = threading.Lock()
+        self._prices:           Dict[str,float] = {}
+        self._velocities_ema:   Dict[str,float] = {}
+        self._volume_emas:      Dict[str,float] = {c:0.0 for c in COINS}
+        self._active_positions: Dict[str,Position] = {}
+        self._virtual_free      = VIRTUAL_BANKROLL
+        self._trade_count       = 0
+        self._bot_state         = BotState.RUNNING
+        self._last_trade_ts     = 0.0
+        self._last_exit_ts      = 0.0
+        self._last_health_ts    = 0.0
+
+        self._regime_detectors  = {c: RegimeDetector() for c in COINS}
+        self._current_regimes   = {c: Regime.CHOPPY    for c in COINS}
+
+        # Safety
+        self.emergency_stop  = EmergencyStop()
+        self.circuit_breaker = CircuitBreaker()
+        self.kill_switch     = KillSwitch(VIRTUAL_BANKROLL)
+        self.rate_limiter    = RateLimiter(CLOB_MAX_RPS)
+
+        # [FIX-1] Proxy manager + manual sell queue
+        if _PROXY_AVAILABLE:
+            self.proxy_mgr    = ProxyManager()
+            self.sell_queue   = ManualSellQueue()
+            log.info(f"[FIX-1] ProxyManager loaded: {self.proxy_mgr.status()['proxy_count']} proxies")
+        else:
+            self.proxy_mgr  = None
+            self.sell_queue = None
+
+        # Live trading
+        self.live = None
+        if _LIVE_OK and _LIVE_INT and load_live_config and V4BotLiveIntegration:
+            try:
+                cfg, pk, addr = load_live_config()
+                self.live = V4BotLiveIntegration(config=cfg, private_key=pk, address=addr)
+                log.info(f"Live integration: {self.live.get_status()}")
+            except Exception as e:
+                log.warning(f"Live init failed ({e}) — paper mode")
+
+        # Risk manager
+        self.rm = None
+        if _RISK_OK and RiskManager:
+            try: self.rm = RiskManager.load(starting_bankroll=VIRTUAL_BANKROLL)
+            except Exception as e: log.warning(f"RiskManager failed: {e}")
+
+        # Resolution engine
+        self.resolution_engine = None
+        if _RES_OK and ResolutionFallbackEngine and ResolutionConfig:
+            try:
+                cfg = ResolutionConfig()
+                cfg.FALLBACK1_TRIGGER_HOURS    = 2.0
+                cfg.FALLBACK2_TRIGGER_HOURS    = 48.0
+                cfg.LIVE_FALLBACK_AUTO_FINALIZE = True
+                self.resolution_engine = ResolutionFallbackEngine(config=cfg, is_paper=IS_PAPER_TRADING)
+            except Exception as e: log.warning(f"ResolutionEngine failed: {e}")
+
+        # [FIX-2][FIX-3][FIX-4][FIX-5] Auto-redeem engine
+        self.auto_redeem = None
+        if _REDEEM_AVAILABLE and AutoRedeemEngine:
+            try:
+                wallet_mgr    = getattr(self.live, 'wallet_manager', None) if self.live else None
+                contract_mgr  = getattr(self.live, 'contract_manager', None) if self.live else None
+                self.auto_redeem = AutoRedeemEngine(
+                    wallet_manager=wallet_mgr,
+                    contract_manager=contract_mgr,
+                    alert_fn=_send_alert,
+                    emergency_stop_fn=self.emergency_stop.is_active,
+                )
+                log.info("[FIX-2] AutoRedeemEngine loaded")
+            except Exception as e:
+                log.warning(f"[FIX-2] AutoRedeemEngine failed: {e}")
+
+        # [ARB] Cross-market arbitrage engine
+        self.arb_engine = None
+        if _ARB_AVAILABLE and CrossMarketArbitrage:
+            try:
+                self.arb_engine = CrossMarketArbitrage(bot=self)
+                log.info("[ARB] Cross-market arbitrage engine initialized")
+            except Exception as e:
+                log.warning(f"[ARB] Arb engine init failed: {e}")
+
+        # [NEWS] News feed engine
+        self.news_feed = None
+        if _NEWS_AVAILABLE and NewsFeed:
+            try:
+                self.news_feed = NewsFeed()
+                log.info("[NEWS] News feed initialized")
+            except Exception as e:
+                log.warning(f"[NEWS] NewsFeed init failed: {e}")
+
+        # [PnL] P&L Tracker
+        self.pnl_tracker = None
+        if _PNL_AVAILABLE and PnLTracker:
+            try:
+                self.pnl_tracker = PnLTracker()
+                log.info("[PnL] P&L Tracker initialized")
+            except Exception as e:
+                log.warning(f"[PnL] Tracker init failed: {e}")
+
+        # WebSocket managers
+        self.clob_ws = CLOBWebSocketManager(self)
+        self.rtds_ws = RTDSWebSocketManager(self)
+
+        self._bootstrap_kelly()
+        self._load_state()
+
+    # ── START ──────────────────────────────────────────────────────────────
+
+
+    # ── [FIX] Position Monitor ─────────────────────────────────────
+    def _monitor_positions(self):
+        """Poll active positions every 15s, call _execute_exit on resolution."""
+        import time as _time
+        log.info("[Monitor] Position monitor started")
+        while not self._stop_event.is_set():
+            try:
+                with self._state_lock:
+                    open_ids = list(self._active_positions.keys())
+
+                for mid in open_ids:
+                    try:
+                        with self._state_lock:
+                            pos = self._active_positions.get(mid)
+                        if pos is None:
+                            continue
+
+                        slug = getattr(pos, 'slug', None) or mid
+                        resolved, winner = self._check_market_resolved(slug)
+
+                        if resolved:
+                            our_side   = getattr(pos, 'side', 'YES')
+                            exit_price = 1.0 if (winner or '').upper() == our_side.upper() else 0.0
+                            log.info(
+                                f"[Monitor] {mid} RESOLVED — winner={winner} "
+                                f"our={our_side} exit_price={exit_price}"
+                            )
+                            self._execute_exit(pos, ExitReason.RESOLVED, exit_price)
+                        else:
+                            # Time fallback: force-close if way past expiry
+                            age = _time.time() - getattr(pos, 'entry_time', _time.time())
+                            tf  = int(getattr(pos, 'tf', 5))
+                            if age > (tf * 60) + 120:  # tf + 2 min buffer
+                                log.warning(
+                                    f"[Monitor] {mid} age={age/60:.1f}min > {tf+2}min "
+                                    f"— forcing TIMEOUT exit at 0.5"
+                                )
+                                # [FIX] Use 0.5 — we don't know the outcome,
+                                # so break-even preserves capital accounting.
+                                # Polymarket will have already resolved; the
+                                # auto_redeemer will pay out the correct amount.
+                                with self._state_lock:
+                                    live_pos = self._active_positions.get(mid)
+                                if live_pos is not None:
+                                    self._execute_exit(live_pos, ExitReason.TIMEOUT, 0.5)
+                    except Exception as e:
+                        log.warning(f"[Monitor] Error checking {mid}: {e}")
+
+                _time.sleep(15)
+
+            except Exception as e:
+                log.error(f"[Monitor] Loop error: {e}", exc_info=True)
+                _time.sleep(15)
+        log.info("[Monitor] Position monitor stopped")
+
+    def _check_market_resolved(self, slug: str):
+        """Query Gamma API. Returns (resolved: bool, winner: str | None)."""
+        try:
+            import requests as _req
+            # Try slug first, then market_id directly
+            for url in [
+                f"https://gamma-api.polymarket.com/events/slug/{slug}",
+                f"https://gamma-api.polymarket.com/markets/{slug}",
+            ]:
+                try:
+                    r = _req.get(url, timeout=5)
+                    if r.status_code != 200:
+                        continue
+                    data = r.json()
+                    event = data[0] if isinstance(data, list) and data else data
+                    if not event:
+                        continue
+
+                    # Check event-level resolution
+                    markets = event.get('markets', [event])  # single market or list
+                    for m in markets:
+                        if not (m.get('closed') or m.get('resolved') or
+                                m.get('resolutionTime')):
+                            continue
+                        outcomes = m.get('outcomes', [])
+                        prices   = m.get('outcomePrices', [])
+                        if isinstance(prices, str):
+                            import json as _json
+                            try:
+                                prices = _json.loads(prices)
+                            except Exception:
+                                prices = []
+                        for o, p in zip(outcomes, prices):
+                            try:
+                                if float(p) >= 0.99:
+                                    return True, str(o).upper()
+                            except (ValueError, TypeError):
+                                pass
+                        # Closed but no clear winner price
+                        result = m.get('result') or m.get('winner')
+                        if result:
+                            return True, str(result).upper()
+                    return False, None
+                except Exception:
+                    continue
+            return False, None
+        except Exception as e:
+            log.debug(f"[Monitor] _check_market_resolved({slug}): {e}")
+            return False, None
+    # ── end Position Monitor ───────────────────────────────────────
+
+    def start(self):
+        log.info("="*70)
+        log.info("MASTER BOT V6 — Proxy + Auto-Redeem Production Build")
+        log.info(f"  Paper mode : {IS_PAPER_TRADING}")
+        log.info(f"  Balance    : ${self._virtual_free:.2f}")
+        log.info(f"  Positions  : {len(self._active_positions)}")
+        log.info(f"  Proxies    : {self.proxy_mgr.status()['proxy_count'] if self.proxy_mgr else 0}")
+        log.info(f"  AutoRedeem : {'enabled' if self.auto_redeem else 'disabled'}")
+        log.info("="*70)
+
+        # [FIX-1] CLOB health check before trading
+        if self.proxy_mgr:
+            clob_ok, clob_msg = self.proxy_mgr.clob_health_check()
+            if not clob_ok:
+                _send_alert('WARNING', f"CLOB health: {clob_msg} — sells will queue to manual_sell_queue.json")
+        else:
+            log.info("[FIX-1] No proxy manager — direct CLOB connection assumed")
+
+        # Start WebSockets
+        self.clob_ws.connect()
+        self.rtds_ws.connect()
+
+        log.info(f"Waiting up to {WS_CONNECT_TIMEOUT}s for RTDS...")
+        if not self.rtds_ws._connect_event.wait(timeout=WS_CONNECT_TIMEOUT):
+            _send_alert('WARNING', "RTDS timeout — starting Binance fallback")
+            self._start_binance_ws()
+        else:
+            self._price_feed_active = PriceFeed.RTDS
+
+        if not self.clob_ws._connect_event.wait(timeout=10):
+            log.warning("CLOB WS not connected — price-based exits may lag")
+
+        self._verify_balance()
+
+        # [FIX-2] Start auto-redeem poller
+        if self.auto_redeem:
+            self.auto_redeem.start()
+
+        # [FIX-3] Start position monitor thread
+        if not hasattr(self, '_stop_event'):
+            self._stop_event = threading.Event()
+        if not hasattr(self, '_monitor_thread') or not self._monitor_thread.is_alive():
+            self._monitor_thread = threading.Thread(
+                target=self._monitor_positions, daemon=True, name='pos-monitor'
+            )
+            self._monitor_thread.start()
+            log.info("[Monitor] Position monitor thread launched (15s poll)")
+
+        if self.rm:
+            self.rm.print_status()
+        log.info("Bot ready")
+
+        while not self.emergency_stop.is_active():
+            try:
+                # [NEWS+ARB] Check arb opportunities with news filter
+                if self.arb_engine:
+                    try:
+                        arb_opps = self.arb_engine.check_all()
+                        # News filtering integrated in arb execution
+                    except Exception as e:
+                        log.error(f"[ARB] arb_engine.check_all: {e}")
+
+                self._check_exits()
+                self._retry_sell_queue()   # [FIX-1] retry failed sells
+                self._write_health()
+                time.sleep(1)
+            except Exception as e:
+                log.error(f"Main loop: {e}", exc_info=True)
+                self.kill_switch.record_api_error()
+                time.sleep(5)
+
+        log.critical("BOT HALTED")
+        if self.auto_redeem: self.auto_redeem.stop()
+        self._write_health(force=True)
+
+    # ── BALANCE VERIFY ─────────────────────────────────────────────────────
+
+    def _verify_balance(self):
+        if IS_PAPER_TRADING or not self.live: return
+        real = _get_usdc_balance_safe(self.live)
+        if real is None: log.warning("[FIX-1] Cannot fetch on-chain balance"); return
+        with self._state_lock: virt = self._virtual_free
+        drift = abs(real-virt)/max(virt,1.0)
+        if drift > BALANCE_DRIFT_THRESHOLD:
+            _send_alert('CRITICAL', f"Balance drift {drift:.1%}: on-chain=${real:.2f} virtual=${virt:.2f}")
+            with self._state_lock: self._virtual_free = real
+        else:
+            log.info(f"Balance OK: on-chain=${real:.2f} drift={drift:.1%}")
+
+    # ── PRICE UPDATE ───────────────────────────────────────────────────────
+
+    def update_crypto_price(self, coin: str, price: float, volume: Optional[float]):
+        if self.emergency_stop.is_active(): return
+        with self._state_lock:
+            if volume is not None:
+                alpha = 2/21; prev = self._volume_emas.get(coin,0.0)
+                self._volume_emas[coin] = volume if prev==0.0 else alpha*volume+(1-alpha)*prev
+            if coin in self._prices:
+                raw=price-self._prices[coin]; ef=VELOCITY_THRESHOLDS[coin]['ema_factor']
+                prev_v=self._velocities_ema.get(coin,0.0)
+                self._velocities_ema[coin] = raw if prev_v==0.0 else ef*raw+(1-ef)*prev_v
+            self._prices[coin] = price
+        self._regime_detectors[coin].add_price(price)
+        with self._state_lock:
+            self._current_regimes[coin] = self._regime_detectors[coin].compute_regime()
+        for tf in TIMEFRAMES: self._evaluate_market(coin, tf)
+
+    # ── EVALUATE ───────────────────────────────────────────────────────────
+
+    def _evaluate_market(self, coin: str, tf: int):
+        with self._state_lock:
+            vf=self._virtual_free; n=len(self._active_positions)
+            regime=self._current_regimes.get(coin,Regime.CHOPPY); lt=self._last_trade_ts
+        if vf<20 or n>=MAX_POSITIONS: return
+        # [FIX-2C] Auto-reset kill switch if it's been quiet for 15min
+        self.kill_switch.reset_if_stale(quiet_window_secs=900)
+        if self.kill_switch.is_active() or self.circuit_breaker.is_tripped(): return
+        min_i = 10 if tf==5 else 20
+        if time.time()-lt < min_i: return
+        rp = self._regime_detectors[coin].get_params(regime)
+        if rp.get('timeframe')!=tf and regime in [Regime.TREND_UP,Regime.TREND_DOWN,Regime.LOW_VOL]: return
+        if not self.rate_limiter.acquire(wait=2.0): return
+        try: self._evaluate_http(coin, tf, rp, regime)
+        except Exception as e:
+            log.error(f"evaluate {coin}/{tf}: {e}", exc_info=True)
+            self.kill_switch.record_api_error()
+
+    def _evaluate_http(self, coin: str, tf: int, rp: dict, regime: Regime):
+        slot = int(time.time()//(tf*60))*(tf*60)
+        slug = f"{coin.lower()}-updown-{tf}m-{slot}"
+
+        # [FIX-1] Use proxy for HTTP call
+        if self.proxy_mgr:
+            resp, ok = self.proxy_mgr.request_with_retry(
+                'GET', f"{GAMMA_API}/events/slug/{slug}", call_name=f"Gamma/{coin}/{tf}m",
+                headers={'User-Agent':'MasterBotV6/1.0','Accept':'application/json'})
+        else:
+            try:
+                resp = requests.get(f"{GAMMA_API}/events/slug/{slug}",
+                                    headers={'User-Agent':'MasterBotV6/1.0'}, timeout=2)
+                ok = resp.status_code == 200
+            except Exception as e:
+                self.kill_switch.record_api_error(); log.debug(f"HTTP {coin}/{tf}: {e}"); return
+
+        if not ok or resp is None or resp.status_code != 200: return
+
+        event = resp.json()
+        if event.get('closed') or event.get('resolved'): return
+        markets = event.get('markets',[])
+        if not markets: return
+
+        mkt      = markets[0]
+        prices_p = json.loads(mkt.get('outcomePrices','[]'))
+        if len(prices_p)!=2: return
+        yes_p, no_p = float(prices_p[0]), float(prices_p[1])
+
+        # Extract CLOB token IDs
+        tokens       = mkt.get('clobTokenIds') or mkt.get('tokens',[])
+        yes_asset_id = str(tokens[0]) if len(tokens)>0 and tokens[0] else ''
+        no_asset_id  = str(tokens[1]) if len(tokens)>1 and tokens[1] else ''
+        token_id     = yes_asset_id if yes_p >= no_p else no_asset_id
+
+        # Arb
+        if yes_p+no_p < 0.985:
+            self._enter_arb(coin,tf,yes_p,no_p,rp,slug,yes_asset_id,no_asset_id); return
+
+        # Edge
+        with self._state_lock:
+            velocity=self._velocities_ema.get(coin,0.0); vol_ema=self._volume_emas.get(coin,0.0)
+            vf=self._virtual_free; existing=self._active_positions.get(f"{coin.upper()}-{tf}m")
+        if velocity==0.0 or existing: return
+
+        threshold = VELOCITY_THRESHOLDS[coin]['raw']*rp.get('velocity_mult',1.0)
+        side = None
+        if velocity>threshold and yes_p<rp.get('max_price',0.75): side='YES'
+        elif velocity<-threshold and no_p<rp.get('max_price',0.75): side='NO'
+        if not side: return
+
+        ctx={'coin':coin,'tf':tf,'yes_p':yes_p,'no_p':no_p,'velocity':round(velocity,6),'side':side}
+
+        ok_z,rz=passes_zone_filter(yes_p,side)
+        if not ok_z: self._log_decision('SKIP_ZONE',ctx,rz); return
+
+        if abs(velocity)<threshold*1.2: self._log_decision('SKIP_MTF',ctx,'weak'); return
+
+        fng=_get_fng(); smul=get_sentiment_mult(fng,side)
+        if smul is None: self._log_decision('SKIP_SENTIMENT',ctx,f'fng={fng}'); return
+
+        entry_price = yes_p if side=='YES' else no_p
+        signal=None
+        if calculate_edge:
+            try: signal=calculate_edge(coin=coin,yes_price=yes_p,no_price=no_p,velocity=velocity,
+                                       regime_params=REGIME_PARAMS.get(regime.value,REGIME_PARAMS['default']),market=mkt)
+            except Exception as e: log.warning(f"calculate_edge: {e}")
+        if not signal:
+            edge=abs(velocity)*(0.75-entry_price)
+            if edge>=MIN_EDGE: signal={'side':side,'edge':edge,'confidence':1.0}
+        if not signal: self._log_decision('SKIP_EDGE',ctx,'no_signal'); return
+
+        try: amount, kdiag = get_kelly_stake_with_diagnostics(entry_price=entry_price,bankroll=vf,coin=coin)
+        except Exception: amount=vf*POSITION_SIZE_PCT; kdiag={'reason':'kelly_error'}
+        if amount==0.0: self._log_decision('SKIP_KELLY',ctx,kdiag.get('reason','?')); return
+        amount=max(1.0,min(vf*0.10,amount*smul*signal.get('confidence',1.0)))
+        if amount<20: self._log_decision('SKIP_SIZE',ctx,f'${amount:.2f}<$20'); return
+
+        with self._state_lock:
+            exposure=sum(p.shares*p.entry_price for p in self._active_positions.values())
+        ok_k,rk=self.kill_switch.validate_trade(amount,exposure,vf)
+        if not ok_k: self._log_decision('SKIP_KS',ctx,rk); return
+        if self.rm:
+            ok_r,rr=self.rm.pre_trade_check(coin=coin,side=side,size_usd=amount)
+            if not ok_r: self._log_decision('SKIP_RISK',ctx,rr); return
+
+        self._enter_edge(coin,tf,signal,yes_p,no_p,rp,amount,slug,mkt,entry_price,
+                         yes_asset_id,no_asset_id,token_id,regime)
+        with self._state_lock: self._last_trade_ts=time.time()
+
+    # ── ENTRY ──────────────────────────────────────────────────────────────
+
+    def _enter_arb(self,coin,tf,yes_p,no_p,rp,slug,yes_id,no_id):
+        mk=f"{coin.upper()}-{tf}m"
+        with self._state_lock:
+            if mk in self._active_positions: return
+            vf=self._virtual_free; exp=sum(p.shares*p.entry_price for p in self._active_positions.values())
+        # [FIX-4] Kelly criterion sizing for live trading with $59 USDC
+        LIVE_MAX_BET   = float(os.getenv('MAX_SINGLE_TRADE_USD', '5.0'))   # $5 max
+        LIVE_MIN_BET   = float(os.getenv('MIN_SINGLE_TRADE_USD', '1.0'))   # $1 min
+        LIVE_MAX_PCT   = float(os.getenv('MAX_POSITION_PCT',     '0.08'))  # 8% of balance
+
+        # Kelly fraction: f = (edge) / (1 - entry_price)
+        # edge = our implied probability - market price
+        # For near-50/50 markets this gives conservative sizing
+        edge      = rp.get('edge', 0.0)                # e.g. 0.25 = 25% edge
+        entry_p   = yes_p if rp.get('side','YES')=='YES' else no_p
+        kelly_f   = edge / (1.0 - entry_p) if entry_p < 1.0 else 0.0
+        kelly_f   = max(0.0, min(kelly_f, 0.25))       # cap at 25% Kelly (quarter-Kelly)
+
+        kelly_amt = vf * kelly_f * rp.get('size_mult', 1.0)
+        cap_amt   = vf * LIVE_MAX_PCT                  # hard balance % cap
+        amount    = min(kelly_amt, cap_amt, LIVE_MAX_BET)
+        amount    = round(amount, 2)
+
+        if amount < LIVE_MIN_BET:
+            log.debug(f"[Sizing] {amount:.2f} < min {LIVE_MIN_BET} — skipping")
+            return
+        if not self.kill_switch.validate_trade(amount,exp,vf)[0]: return
+        if self.rm and not self.rm.pre_trade_check(coin=coin,side='ARB',size_usd=amount)[0]: return
+        profit=(1.0-(yes_p+no_p))*100
+        with self._state_lock: self._trade_count+=1; tc=self._trade_count
+        log.info(f"🎯 #{tc} ARB {coin} {tf}m | +{profit:.2f}%")
+        if self.rm: self.rm.on_trade_opened(coin=coin,side='ARB',size_usd=amount,market_id=mk)
+        with self._state_lock: self._virtual_free-=amount; self._last_trade_ts=time.time()
+        self._log_trade({'type':'ARBITRAGE','market':mk,'amount':amount,'profit_pct':profit})
+        self._save_state()
+
+    def _enter_edge(self,coin,tf,signal,yes_p,no_p,rp,amount,slug,mkt,entry_price,
+                    yes_id,no_id,token_id,regime):
+        mk   = f"{coin.upper()}-{tf}m"
+        side = signal['side']
+        with self._state_lock: self._trade_count+=1; tc=self._trade_count
+        log.info(f"📈 #{tc} EDGE {coin} {tf}m | {side} @ {entry_price:.3f} | ${amount:.2f} | {regime.value}")
+
+        live_result={'success':False,'fill_price':entry_price,'filled_size':amount/max(entry_price,0.001),'order_id':None,'virtual':True}
+        if self.live and not IS_PAPER_TRADING:
+            try:
+                live_result=self.live.execute_buy(market_id=mk,side=side,amount=amount,price=entry_price,
+                    signal_data={"market_id":mk,"side":side,"v4_estimated_price":entry_price,
+                                 "edge":signal.get('edge',0),"regime":regime.value})
+            except Exception as e:
+                log.error(f"execute_buy: {e}"); live_result['success']=False
+
+        if not live_result.get('success') and not IS_PAPER_TRADING:
+            _send_alert('CRITICAL',f"LIVE ORDER FAILED {mk} {side} — tracking virtual only")
+            with self._state_lock:
+                if self._bot_state==BotState.RUNNING: self._bot_state=BotState.DEGRADED
+
+        fill_price  = live_result.get('fill_price', entry_price)
+        filled_size = live_result.get('filled_size', amount/max(entry_price,0.001))
+        pos_id = ''
+        if self.rm: pos_id = self.rm.on_trade_opened(coin=coin,side=side,size_usd=amount,market_id=mk) or ''
+
+        pos = Position(market_id=mk,side=side,entry_price=fill_price,shares=filled_size,
+                       yes_asset_id=yes_id,no_asset_id=no_id,slug=slug,coin=coin.upper(),
+                       timeframe=tf,pos_id=str(pos_id),token_id=token_id)
+        with self._state_lock:
+            self._virtual_free-=amount; self._active_positions[mk]=pos
+
+        # Subscribe correct CLOB token
+        aid=pos.active_asset_id
+        if aid: self.clob_ws.subscribe([aid])
+
+        # Resolution engine
+        if self.resolution_engine:
+            try:
+                exp_utc=datetime.fromtimestamp(time.time()+(tf*60),tz=timezone.utc).isoformat()
+                self.resolution_engine.register_position(market_id=mk,slug=slug,coin=coin.upper(),
+                    timeframe_minutes=tf,entry_price=fill_price,position_side=side,expiration_utc=exp_utc)
+            except Exception as e: log.error(f"resolution reg: {e}")
+
+        # [FIX-2][FIX-3] Register with auto-redeem engine
+        if self.auto_redeem and token_id:
+            try:
+                exp_utc=datetime.fromtimestamp(time.time()+(tf*60),tz=timezone.utc).isoformat()
+                self.auto_redeem.register_position(market_id=mk,slug=slug,side=side,
+                    entry_price=fill_price,shares=filled_size,token_id=token_id,expiration_utc=exp_utc)
+            except Exception as e: log.error(f"[FIX-2] auto_redeem reg: {e}")
+
+        self._log_trade({'type':'EDGE','market':mk,'side':side,'amount':amount,'entry_price':fill_price,
+                         'edge':signal.get('edge',0),'regime':regime.value,'token_id':token_id,
+                         'yes_asset_id':yes_id,'no_asset_id':no_id,'active_asset_id':aid,
+                         'live_order_id':live_result.get('order_id'),'live_virtual':live_result.get('virtual',True)})
+        self._save_state()
+
+    # ── EXIT ───────────────────────────────────────────────────────────────
+
+    def _check_exits(self):
+        now=time.time()
+        if now-self._last_exit_ts < 15: return
+        self._last_exit_ts=now
+        with self._state_lock: snap=dict(self._active_positions)
+
+        # Resolution engine
+        if self.resolution_engine and snap:
+            pos_dict={}
+            for mid,pos in snap.items():
+                exp_utc=datetime.fromtimestamp(pos.entry_time+(pos.timeframe*60),tz=timezone.utc).isoformat()
+                pos_dict[mid]={'slug':pos.slug,'coin':pos.coin,'timeframe':pos.timeframe,
+                               'entry_price':pos.entry_price,'side':pos.side,'expiration_utc':exp_utc}
+            try:
+                for mid,outcome,source,tier in self.resolution_engine.check_all_exits(pos_dict):
+                    pos=snap.get(mid)
+                    if pos:
+                        fp=1.0 if outcome==pos.side else 0.0
+                        self._execute_exit(pos,ExitReason.RESOLVED,fp,extra={'tier':tier,'source':source})
+            except Exception as e: log.error(f"resolution exits: {e}")
+
+        # Price-based exits
+        with self._state_lock: snap=dict(self._active_positions)
+        for mid,pos in snap.items():
+            cp=self._get_current_price(pos)
+            if cp:
+                reason=evaluate_exits(pos,cp)
+                if reason: self._execute_exit(pos,reason,cp)
+
+    def _get_current_price(self, pos: Position) -> Optional[float]:
+        aid=pos.active_asset_id
+        if aid: return self.clob_ws.get_mid_price(aid)
+        return None
+
+    def _execute_exit(self, pos: Position, reason: ExitReason, cur_price: float, extra: dict=None):
+        pnl     = (cur_price-pos.entry_price)/pos.entry_price*100
+        pnl_amt = pos.shares*(cur_price-pos.entry_price)
+        log.info(f"🚪 EXIT {pos.market_id} | {reason.value} | PnL: {pnl:+.1f}%")
+
+        shares_to_sell = pos.shares
+        if shares_to_sell<=0:
+            log.error(f"Invalid shares={shares_to_sell} for {pos.market_id}")
+        elif self.live and not IS_PAPER_TRADING:
+            # [FIX-1] Use proxy for CLOB sell
+            ok = self._execute_live_sell(pos, cur_price, shares_to_sell)
+            if not ok and self.sell_queue:
+                # Queue for manual retry
+                self.sell_queue.enqueue(
+                    token_id=pos.token_id or pos.active_asset_id,
+                    amount=shares_to_sell, market_id=pos.market_id,
+                    side=pos.side, entry_price=pos.entry_price,
+                    reason=f"clob_sell_failed_{reason.value}")
+
+        won=pnl>0
+        self.circuit_breaker.record(won)
+        self.kill_switch.record_trade(pnl_amt,won)
+        if self.rm:
+            try: self.rm.on_trade_closed(position_id=pos.market_id,won=won,pnl=pnl_amt,coin=pos.coin or pos.market_id.split('-')[0])
+            except Exception as e: log.error(f"rm.on_trade_closed: {e}")
+        try: record_completed_trade(trade_id=pos.market_id,market_id=pos.market_id,coin=pos.coin or 'UNKNOWN',
+                                    entry_price=pos.entry_price,outcome='WIN' if won else 'LOSS',pnl_pct=pnl/100,notes=reason.value)
+        except Exception: pass
+
+        # [FIX-2] Deregister from auto-redeem (position now closed)
+        if self.auto_redeem and reason!=ExitReason.RESOLVED:
+            try: self.auto_redeem.deregister_position(pos.market_id)
+            except Exception: pass
+
+        # [PnL] Record trade exit
+        log.info(f"[PnL] record_exit called for {pos.market_id} — tracker={self.pnl_tracker is not None}")
+        if self.pnl_tracker:
+            try:
+                self.pnl_tracker.record_exit(
+                    trade_id    = pos.market_id,
+                    exit_price  = cur_price,
+                    exit_reason = reason.value,
+                )
+            except Exception as e:
+                log.warning(f"[PnL] record_exit error: {e}")
+
+        with self._state_lock:
+            self._virtual_free+=pos.shares*cur_price
+            self._active_positions.pop(pos.market_id,None)
+
+        self._log_trade({'type':'EXIT','market':pos.market_id,'side':pos.side,
+                         'exit_reason':reason.value,'exit_price':cur_price,'entry_price':pos.entry_price,
+                         'shares':pos.shares,'pnl_pct':round(pnl,4),**(extra or{})})
+        self._save_state()
+
+    def _execute_live_sell(self, pos: Position, cur_price: float, shares: float) -> bool:
+        """
+        [FIX-1] Attempt live sell with proxy retry.
+        Returns True on success, False on failure.
+        """
+        try:
+            result = self.live.execute_sell(
+                market_id=pos.market_id,
+                exit_price=cur_price,
+                signal_data={"market_id":pos.market_id,"v4_exit_price":cur_price,"shares":shares},
+            )
+            if result.get('success'):
+                return True
+            _send_alert('CRITICAL', f"LIVE SELL FAILED {pos.market_id} — queuing for manual retry")
+            return False
+        except Exception as e:
+            log.error(f"execute_sell exception: {e}")
+            _send_alert('CRITICAL', f"execute_sell exception for {pos.market_id}: {e}")
+            return False
+
+    # ── [FIX-1] RETRY SELL QUEUE ───────────────────────────────────────────
+
+    def _retry_sell_queue(self):
+        """[FIX-1] Periodically retry queued sells."""
+        if not self.sell_queue or not self.live or IS_PAPER_TRADING: return
+        pending = self.sell_queue.get_pending()
+        if not pending: return
+        log.info(f"[FIX-1] Retrying {len(pending)} queued sells")
+        for entry in pending:
+            if self.emergency_stop.is_active(): break
+            try:
+                result = self.live.execute_sell(
+                    market_id=entry['market_id'],
+                    exit_price=None,   # market order
+                    shares=entry['amount'],
+                    signal_data={'market_id':entry['market_id'],'reason':'queue_retry'},
+                )
+                if result.get('success'):
+                    self.sell_queue.mark_completed(entry['id'], result.get('fill_price', 0.0))
+                else:
+                    self.sell_queue.increment_attempt(entry['id'], result.get('error','unknown'))
+                    if entry['attempts']+1 >= 5:
+                        self.sell_queue.mark_failed(entry['id'], 'max_retries_exceeded')
+                        _send_alert('CRITICAL', f"Sell queue entry {entry['id']} permanently failed — MANUAL ACTION REQUIRED")
+            except Exception as e:
+                self.sell_queue.increment_attempt(entry['id'], str(e))
+
+    # ── BINANCE FALLBACK ───────────────────────────────────────────────────
+
+    def _start_binance_ws(self):
+        log.info("Starting Binance fallback WS")
+        self._price_feed_active = PriceFeed.BINANCE
+        _d=[5]
+        def on_open(ws): log.info("[Binance] Connected"); _d[0]=5
+        def on_message(ws,raw):
+            try:
+                d=json.loads(raw); sym=d.get('s','').replace('USDT','')
+                price=float(d.get('p',0)); vol=float(d.get('q',0))
+                if sym in COINS and price>0: self.update_crypto_price(sym,price,volume=vol)
+            except Exception: pass
+        def on_error(ws,err): self.kill_switch.record_api_error(); log.error(f"[Binance] {err}")
+        def on_close(ws,c,m):
+            log.warning(f"[Binance] Closed, retry {_d[0]}s"); time.sleep(_d[0])
+            _d[0]=min(_d[0]*2,60)
+            if not self.emergency_stop.is_active(): self._start_binance_ws()
+        ws=websocket.WebSocketApp(BINANCE_WS,on_open=on_open,on_message=on_message,on_error=on_error,on_close=on_close)
+        threading.Thread(target=ws.run_forever,daemon=True).start()
+
+    # ── HELPERS ────────────────────────────────────────────────────────────
+
+    def handle_market_resolved(self, payload: dict):
+        log.info(f"[CLOB resolved] {payload.get('slug')} winner={payload.get('winning_outcome')}")
+
+    def _get_all_asset_ids(self) -> List[str]:
+        with self._state_lock:
+            ids=[]
+            for p in self._active_positions.values():
+                if p.yes_asset_id: ids.append(p.yes_asset_id)
+                if p.no_asset_id:  ids.append(p.no_asset_id)
+            return ids
+
+    def _log_trade(self, trade: dict):
+        trade['timestamp_utc'] = datetime.now(tz=timezone.utc).isoformat()
+        with self._state_lock:
+            trade['virtual_balance'] = round(self._virtual_free, 4)
+        with _FILE_LOCK:
+            # [FIX-1] atomic_write_json requires dict — wrap trades in {"trades": [...]}
+            raw = safe_load_json(TRADE_LOG, default={})
+            if isinstance(raw, list):
+                # Migrate legacy list format automatically
+                raw = {"trades": raw, "meta": {"migrated": True}}
+            if not isinstance(raw, dict):
+                raw = {}
+            trades_list = raw.get("trades", [])
+            if not isinstance(trades_list, list):
+                trades_list = []
+            trades_list.append(trade)
+            if len(trades_list) > 2000:
+                trades_list = trades_list[-1000:]  # keep last 1000
+            raw["trades"] = trades_list
+            raw["meta"] = {
+                "count":      len(trades_list),
+                "last_trade": trade['timestamp_utc'],
+                "version":    "v6",
+            }
+            if not atomic_write_json(raw, TRADE_LOG):
+                log.critical(f"TRADE LOG FAILED: {trade}")
+
+    def _log_decision(self, action: str, ctx: dict, reason: str):
+        entry={'ts':datetime.now(tz=timezone.utc).isoformat(),'action':action,'reason':reason,**ctx}
+        with _FILE_LOCK:
+            data=safe_load_json(DECISION_LOG,default=[])
+            if not isinstance(data, list):
+                data = []
+            data.append(entry)
+            if len(data)>10000: data=data[-5000:]
+            atomic_write_json(data,DECISION_LOG)
+
+    def _save_state(self):
+        with self._state_lock:
+            state={'balance':self._virtual_free,'trade_count':self._trade_count,
+                   'bot_state':self._bot_state.value,
+                   'active_positions':{k:v.to_dict() for k,v in self._active_positions.items()},
+                   'kill_switch':self.kill_switch.status(),'circuit_breaker':self.circuit_breaker.status(),
+                   'last_update':datetime.now(tz=timezone.utc).isoformat()}
+        with _FILE_LOCK:
+            if not atomic_write_json(state,STATE_FILE): log.critical("STATE SAVE FAILED")
+
+    def _load_state(self):
+        with _FILE_LOCK: state=safe_load_json(STATE_FILE,default={})
+        if not state: log.info("No saved state — fresh start"); return
+        with self._state_lock:
+            self._virtual_free=state.get('balance',VIRTUAL_BANKROLL)
+            self._trade_count=state.get('trade_count',0)
+            for mid,pd in state.get('active_positions',{}).items():
+                try:
+                    pos=Position.from_dict(pd); self._active_positions[mid]=pos
+                    log.info(f"Resumed: {mid} @ {pos.entry_price:.3f}")
+                except Exception as e: log.error(f"Resume {mid}: {e}")
+        with self._state_lock: to_reg=dict(self._active_positions)
+        for mid,pos in to_reg.items():
+            try:
+                exp_utc=datetime.fromtimestamp(pos.entry_time+(pos.timeframe*60),tz=timezone.utc).isoformat()
+                if self.resolution_engine:
+                    self.resolution_engine.register_position(market_id=mid,slug=pos.slug,coin=pos.coin,
+                        timeframe_minutes=pos.timeframe,entry_price=pos.entry_price,
+                        position_side=pos.side,expiration_utc=exp_utc)
+                if self.auto_redeem and pos.token_id:
+                    self.auto_redeem.register_position(market_id=mid,slug=pos.slug,side=pos.side,
+                        entry_price=pos.entry_price,shares=pos.shares,token_id=pos.token_id,expiration_utc=exp_utc)
+                ids=[x for x in [pos.yes_asset_id,pos.no_asset_id] if x]
+                if ids: self.clob_ws.subscribe(ids)
+            except Exception as e: log.error(f"Re-register {mid}: {e}")
+        log.info(f"State loaded: ${self._virtual_free:.2f}, {len(self._active_positions)} positions, {self._trade_count} trades")
+
+    def _write_health(self, force: bool=False):
+        now=time.time()
+        if not force and now-self._last_health_ts<30: return
+        self._last_health_ts=now
+        with self._state_lock:
+            health={'timestamp_utc':datetime.now(tz=timezone.utc).isoformat(),
+                    'bot_state':self._bot_state.value,'balance':round(self._virtual_free,2),
+                    'trade_count':self._trade_count,'open_positions':len(self._active_positions),
+                    'clob_connected':self.clob_ws.connected,'rtds_connected':self.rtds_ws.connected,
+                    'price_feed':self._price_feed_active.value,'emergency_stop':self.emergency_stop.is_active(),
+                    'kill_switch':self.kill_switch.status(),'circuit_breaker':self.circuit_breaker.status(),
+                    'paper_mode':IS_PAPER_TRADING,'zone_filter':ENABLE_ZONE_FILTER,
+                    'proxy':self.proxy_mgr.status() if self.proxy_mgr else None,
+                    'sell_queue':self.sell_queue.summary() if self.sell_queue else None,
+                    'auto_redeem':self.auto_redeem.status() if self.auto_redeem else None,
+                    'arb_engine':self.arb_engine.status() if self.arb_engine else None,
+                    'news_feed':self.news_feed.get_signal() if self.news_feed else None,
+                    'pnl_tracker':self.pnl_tracker.summary() if self.pnl_tracker else None}
+        with _FILE_LOCK: atomic_write_json(health,HEALTH_FILE)
+
+    def _bootstrap_kelly(self):
+        cal=Path(f"{WORKSPACE}/kelly_calibration.json")
+        if cal.exists(): return
+        try:
+            n=import_trade_history(TRADE_LOG,field_map={"id":"market","market_id":"market","coin":"market",
+                "entry_price":"entry_price","outcome":"outcome","pnl_pct":"pnl_pct","timestamp":"timestamp_utc"})
+            log.info(f"[Kelly] Imported {n} trades")
+        except Exception as e: log.debug(f"[Kelly] Bootstrap: {e}")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ENTRY POINT
+# ══════════════════════════════════════════════════════════════════════════════
+
+if __name__=='__main__':
+    bot=MasterBotV6()
+    bot.start()

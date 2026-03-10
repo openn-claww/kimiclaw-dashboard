@@ -1,0 +1,838 @@
+#!/usr/bin/env python3
+"""
+cross_market_arb.py — Cross-Market Arbitrage Detection
+Uses Binance spot price as signal to detect Polymarket mispricing.
+
+IMPORTANT: This is signal-enhanced edge trading, not true risk-free arbitrage.
+See module docstring for risk details.
+
+Configuration (add to your set_env.sh or hardcode below):
+    ARB_ENABLED          = True
+    ARB_MIN_SPREAD       = 0.035   # 3.5% — covers 2% PM fee + buffers
+    ARB_MAX_POSITION     = 5.0     # $5 max per arb trade
+    ARB_CHECK_INTERVAL   = 10      # seconds between checks
+    ARB_WINDOW_START_MIN = 2.0     # minutes into candle before arbing
+    ARB_WINDOW_END_MIN   = 4.5     # minutes into candle to stop arbing
+    ARB_PRICE_STALE_SECS = 30      # max age of spot price
+"""
+
+import os
+import json
+import time
+import logging
+import threading
+import requests
+from datetime import datetime, timezone
+from typing import Optional, Dict, Tuple, List
+from pathlib import Path
+
+try:
+    from scipy.stats import norm as _norm
+    _SCIPY_OK = True
+except ImportError:
+    _SCIPY_OK = False
+    import math
+
+log = logging.getLogger('cross_market_arb')
+
+# ── HARDCODED CONFIG (edit here — no .env needed) ─────────────────────────────
+ARB_ENABLED          = True
+ARB_MIN_SPREAD       = float(os.getenv('ARB_MIN_SPREAD',       '0.15'))   # 15% (was 5%)
+ARB_MAX_POSITION     = float(os.getenv('ARB_MAX_POSITION',     '5.0'))
+ARB_MIN_POSITION     = float(os.getenv('ARB_MIN_POSITION',     '1.0'))   # $1 minimum
+ARB_CHECK_INTERVAL   = int(os.getenv('ARB_CHECK_INTERVAL',     '10'))
+ARB_WINDOW_START_MIN = float(os.getenv('ARB_WINDOW_START_MIN', '2.0'))
+ARB_WINDOW_END_MIN   = float(os.getenv('ARB_WINDOW_END_MIN',   '4.5'))
+ARB_PRICE_STALE_SECS = int(os.getenv('ARB_PRICE_STALE_SECS',  '30'))
+ARB_MAX_PER_CANDLE   = 1
+
+# Price sanity check - avoid near-resolved markets [BUG FIX 1]
+ARB_MIN_YES_PRICE    = float(os.getenv('ARB_MIN_YES_PRICE',    '0.20'))  # Don't buy YES below 20c
+ARB_MAX_YES_PRICE    = float(os.getenv('ARB_MAX_YES_PRICE',    '0.80'))  # Don't buy YES above 80c
+
+# Kelly Criterion settings
+KELLY_FRACTION = float(os.getenv('KELLY_FRACTION', '0.25'))  # Quarter Kelly for safety
+
+GAMMA_API   = "https://gamma-api.polymarket.com"
+BINANCE_URL = "https://api.binance.com/api/v3/ticker/price"
+COINBASE_URL = "https://api.coinbase.com/v2/prices/{}/spot"   # fallback
+
+WORKSPACE   = '/root/.openclaw/workspace'
+ARB_LOG     = f'{WORKSPACE}/arb_opportunities.json'
+
+# BTC 5m annualised vol ≈ 60%. Per-minute stddev of log returns:
+# daily vol ≈ 1.5%, 5m vol ≈ 0.21%, per-minute ≈ 0.094%
+_BTC_VOL_PER_MIN = 0.00094   # ~0.094% per minute (calibrate from live data)
+_ETH_VOL_PER_MIN = 0.00130   # ETH is more volatile intraday
+
+VOL_PER_MIN = {'BTC': _BTC_VOL_PER_MIN, 'ETH': _ETH_VOL_PER_MIN}
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# NORMAL CDF APPROXIMATION (used if scipy not available)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _norm_cdf(z: float) -> float:
+    """Fast approximation of normal CDF. Max error < 0.0003."""
+    if _SCIPY_OK:
+        return float(_norm.cdf(z))
+    # Hart & Cheney rational approximation
+    z = max(-6.0, min(6.0, z))
+    t = 1.0 / (1.0 + 0.2316419 * abs(z))
+    poly = t * (0.319381530 + t * (-0.356563782 + t * (1.781477937
+           + t * (-1.821255978 + t * 1.330274429))))
+    p = 1.0 - (1.0 / math.sqrt(2 * math.pi)) * math.exp(-0.5 * z * z) * poly
+    return p if z >= 0 else 1.0 - p
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SPOT PRICE FETCHER
+# ══════════════════════════════════════════════════════════════════════════════
+
+class SpotPriceFetcher:
+    """
+    Fetches BTC/ETH spot prices.
+    Primary:  Binance REST (free, no key)
+    Fallback: Coinbase REST (free, no key)
+    Fastest:  Use bot's existing WebSocket price when available (preferred)
+    """
+
+    def __init__(self):
+        self._cache: Dict[str, Tuple[float, float]] = {}  # coin → (price, ts)
+        self._lock  = threading.Lock()
+        self._session = requests.Session()
+        self._session.headers['User-Agent'] = 'MasterBotV6/1.0'
+
+    def get_price(self, coin: str, ws_prices: Optional[Dict[str, float]] = None
+                  ) -> Tuple[Optional[float], float, str]:
+        """
+        Returns (price, timestamp, source).
+        source is 'websocket', 'binance', 'coinbase', or 'cache'.
+        """
+        symbol = coin.upper()
+
+        # 1. Use bot's live WebSocket price (already streaming, zero latency)
+        if ws_prices and symbol in ws_prices:
+            price = ws_prices[symbol]
+            if price and price > 0:
+                with self._lock:
+                    self._cache[symbol] = (price, time.time())
+                return price, time.time(), 'websocket'
+
+        # 2. Binance REST
+        try:
+            r = self._session.get(
+                BINANCE_URL,
+                params={'symbol': f'{symbol}USDT'},
+                timeout=3,
+            )
+            if r.status_code == 200:
+                price = float(r.json()['price'])
+                ts    = time.time()
+                with self._lock:
+                    self._cache[symbol] = (price, ts)
+                log.debug(f"[Spot] {symbol} = ${price:,.2f} (Binance)")
+                return price, ts, 'binance'
+        except Exception as e:
+            log.debug(f"[Spot] Binance failed for {symbol}: {e}")
+
+        # 3. Coinbase fallback
+        try:
+            r = self._session.get(
+                COINBASE_URL.format(f'{symbol}-USD'),
+                timeout=3,
+            )
+            if r.status_code == 200:
+                price = float(r.json()['data']['amount'])
+                ts    = time.time()
+                with self._lock:
+                    self._cache[symbol] = (price, ts)
+                log.debug(f"[Spot] {symbol} = ${price:,.2f} (Coinbase)")
+                return price, ts, 'coinbase'
+        except Exception as e:
+            log.debug(f"[Spot] Coinbase failed for {symbol}: {e}")
+
+        # 4. Stale cache
+        with self._lock:
+            cached = self._cache.get(symbol)
+        if cached:
+            price, ts = cached
+            age = time.time() - ts
+            log.warning(f"[Spot] Using stale {symbol} price (age={age:.0f}s)")
+            return price, ts, 'cache'
+
+        return None, 0.0, 'none'
+
+    def is_fresh(self, ts: float) -> bool:
+        return (time.time() - ts) <= ARB_PRICE_STALE_SECS
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SLOT PRICE TRACKER
+# ══════════════════════════════════════════════════════════════════════════════
+
+class SlotPriceTracker:
+    """
+    Records the spot price at the start of each 5m slot.
+    This approximates the oracle reference price.
+    Also tracks whether we've already taken an arb for a given slot.
+    """
+
+    def __init__(self):
+        self._slot_opens: Dict[str, float]   = {}   # slot_key → price
+        self._slot_arbed: Dict[str, int]      = {}   # slot_key → count
+        self._lock = threading.Lock()
+
+    def _slot_key(self, coin: str, tf: int, slot_ts: int) -> str:
+        return f"{coin}-{tf}m-{slot_ts}"
+
+    def record_open(self, coin: str, tf: int, slot_ts: int, price: float):
+        key = self._slot_key(coin, tf, slot_ts)
+        with self._lock:
+            if key not in self._slot_opens:
+                self._slot_opens[key] = price
+                log.debug(f"[SlotTracker] Recorded open {key} @ ${price:,.2f}")
+
+    def get_open(self, coin: str, tf: int, slot_ts: int) -> Optional[float]:
+        key = self._slot_key(coin, tf, slot_ts)
+        with self._lock:
+            return self._slot_opens.get(key)
+
+    def record_arb(self, coin: str, tf: int, slot_ts: int):
+        key = self._slot_key(coin, tf, slot_ts)
+        with self._lock:
+            self._slot_arbed[key] = self._slot_arbed.get(key, 0) + 1
+
+    def arb_count(self, coin: str, tf: int, slot_ts: int) -> int:
+        key = self._slot_key(coin, tf, slot_ts)
+        with self._lock:
+            return self._slot_arbed.get(key, 0)
+
+    def cleanup_old(self, max_age_secs: int = 3600):
+        """Remove slots older than max_age_secs to prevent memory growth."""
+        cutoff = time.time() - max_age_secs
+        with self._lock:
+            to_del = []
+            for key in self._slot_opens:
+                parts = key.split('-')
+                try:
+                    slot_ts = int(parts[-1])
+                    if slot_ts < cutoff:
+                        to_del.append(key)
+                except (ValueError, IndexError):
+                    pass
+            for k in to_del:
+                self._slot_opens.pop(k, None)
+                self._slot_arbed.pop(k, None)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ARBITRAGE ENGINE
+# ══════════════════════════════════════════════════════════════════════════════
+
+class CrossMarketArbitrage:
+    """
+    Detects and executes cross-market arbitrage between Binance spot
+    and Polymarket binary prediction markets.
+
+    Strategy:
+    - For each active 5m BTC/ETH market, compare the current
+      Polymarket YES price against the probability implied by
+      the current spot price movement.
+    - If the spread exceeds ARB_MIN_SPREAD, trade the cheap side.
+    - Only trade during the 2:00–4:30 window of each candle.
+    """
+
+    def __init__(self, bot):
+        """
+        Args:
+            bot: MasterBot instance. Needs:
+                 bot._prices          (dict: coin → spot price, from WS)
+                 bot._virtual_free    (float: available balance)
+                 bot._active_positions (dict)
+                 bot.clob_session     (CLOBSession)
+                 bot.kill_switch      (KillSwitch)
+                 bot.emergency_stop   (EmergencyStop)
+                 bot.live             (V4BotLiveIntegration or None)
+        """
+        self.bot          = bot
+        self.fetcher      = SpotPriceFetcher()
+        self.slot_tracker = SlotPriceTracker()
+        self._lock        = threading.Lock()
+        self._file_lock   = threading.Lock()
+
+        # P&L tracking (separate from edge trades)
+        self._arb_pnl_total = 0.0
+        self._arb_trades    = 0
+        self._arb_wins      = 0
+
+        # Last check time per coin/tf
+        self._last_check: Dict[str, float] = {}
+
+        log.info(
+            f"[CrossArb] Initialized — "
+            f"min_spread={ARB_MIN_SPREAD:.1%} max_pos=${ARB_MAX_POSITION} "
+            f"window={ARB_WINDOW_START_MIN}–{ARB_WINDOW_END_MIN}min"
+        )
+
+    # ── Public entry point ────────────────────────────────────────────────────
+
+    def check_all(self) -> List[dict]:
+        """
+        Run arb check for all coins × timeframes.
+        Returns list of executed arb dicts.
+        Called from MasterBot main loop.
+        """
+        if not ARB_ENABLED:
+            return []
+        if self.bot.emergency_stop.is_active():
+            return []
+        if self.bot.kill_switch.is_active():
+            return []
+
+        executed = []
+        for coin in ['BTC', 'ETH']:
+            for tf in [5]:   # 5m only — arb logic requires short resolution
+                key = f"{coin}-{tf}m"
+                last = self._last_check.get(key, 0)
+                if time.time() - last < ARB_CHECK_INTERVAL:
+                    continue
+                self._last_check[key] = time.time()
+
+                try:
+                    result = self._check_market(coin, tf)
+                    if result:
+                        executed.append(result)
+                except Exception as e:
+                    log.error(f"[CrossArb] check_market {coin}/{tf}: {e}", exc_info=True)
+
+        # Periodic cleanup
+        self.slot_tracker.cleanup_old()
+        return executed
+
+    # ── Core logic ────────────────────────────────────────────────────────────
+
+    def _check_market(self, coin: str, tf: int) -> Optional[dict]:
+        """Check a single coin/timeframe for arb opportunity."""
+        now      = time.time()
+        slot_ts  = int(now // (tf * 60)) * (tf * 60)
+        elapsed  = now - slot_ts          # seconds into current candle
+        remaining = (tf * 60) - elapsed   # seconds until expiry
+
+        # ── [TIMING GATE] Only arb in window ─────────────────────────────────
+        elapsed_min = elapsed / 60.0
+        if elapsed_min < ARB_WINDOW_START_MIN:
+            log.debug(f"[CrossArb] {coin}/{tf}m: too early ({elapsed_min:.1f}min < {ARB_WINDOW_START_MIN}min)")
+            return None
+        if elapsed_min > ARB_WINDOW_END_MIN:
+            log.debug(f"[CrossArb] {coin}/{tf}m: too late ({elapsed_min:.1f}min > {ARB_WINDOW_END_MIN}min)")
+            return None
+
+        # ── [LIMIT] Max 1 arb per market per candle ───────────────────────────
+        if self.slot_tracker.arb_count(coin, tf, slot_ts) >= ARB_MAX_PER_CANDLE:
+            return None
+
+        # ── [BALANCE] Skip if insufficient funds ─────────────────────────────
+        with self.bot._state_lock:
+            vf = self.bot._virtual_free
+        if vf < ARB_MAX_POSITION:
+            return None
+
+        # ── [SPOT PRICE] Get current price using WS feed first ───────────────
+        with self.bot._state_lock:
+            ws_prices = dict(self.bot._prices)
+
+        spot_price, spot_ts, spot_src = self.fetcher.get_price(coin, ws_prices)
+
+        if spot_price is None:
+            log.warning(f"[CrossArb] No spot price for {coin}")
+            return None
+        if not self.fetcher.is_fresh(spot_ts):
+            log.warning(f"[CrossArb] Spot price for {coin} is stale — skipping")
+            return None
+
+        # ── [SLOT OPEN] Record or retrieve open price ─────────────────────────
+        self.slot_tracker.record_open(coin, tf, slot_ts, spot_price)
+        slot_open = self.slot_tracker.get_open(coin, tf, slot_ts)
+
+        if slot_open is None or slot_open <= 0:
+            log.debug(f"[CrossArb] No slot open price for {coin}/{tf}m — collecting")
+            return None
+
+        # ── [POLYMARKET] Fetch current market prices ──────────────────────────
+        slug = f"{coin.lower()}-updown-{tf}m-{slot_ts}"
+        pm_data = self._fetch_pm_market(slug)
+        if not pm_data:
+            return None
+
+        yes_p = pm_data['yes_price']
+        no_p  = pm_data['no_price']
+
+        if yes_p <= 0.01 or yes_p >= 0.99:
+            log.debug(f"[CrossArb] {coin} YES price {yes_p:.3f} at extreme — skipping")
+            return None
+
+        # ── [IMPLIED PROBABILITY] ─────────────────────────────────────────────
+        implied_yes = self.calculate_implied_probability(
+            coin=coin,
+            current_price=spot_price,
+            slot_open_price=slot_open,
+            elapsed_seconds=elapsed,
+            remaining_seconds=remaining,
+            tf_seconds=tf * 60,
+        )
+
+        if implied_yes is None:
+            return None
+
+        # ── [SPREAD] ──────────────────────────────────────────────────────────
+        spread = yes_p - implied_yes   # positive = YES overpriced, buy NO
+                                       # negative = YES underpriced, buy YES
+
+        abs_spread = abs(spread)
+
+        opportunity = {
+            'timestamp_utc':  datetime.now(tz=timezone.utc).isoformat(),
+            'market':         f"{coin}-{tf}m",
+            'slug':           slug,
+            'coin':           coin,
+            'tf':             tf,
+            'slot_ts':        slot_ts,
+            'slot_open_price': slot_open,
+            'spot_price':     spot_price,
+            'spot_source':    spot_src,
+            'elapsed_min':    round(elapsed_min, 2),
+            'yes_price':      yes_p,
+            'no_price':       no_p,
+            'implied_yes':    round(implied_yes, 4),
+            'spread':         round(spread, 4),
+            'abs_spread':     round(abs_spread, 4),
+            'threshold':      ARB_MIN_SPREAD,
+            'action':         'passed',
+            'pnl':            None,
+        }
+
+        log.info(
+            f"[CrossArb] {coin}/{tf}m | "
+            f"PM_yes={yes_p:.3f} implied={implied_yes:.3f} "
+            f"spread={spread:+.3f} ({abs_spread:.1%}) "
+            f"elapsed={elapsed_min:.1f}min"
+        )
+
+        # ── [THRESHOLD CHECK] ─────────────────────────────────────────────────
+        if abs_spread < ARB_MIN_SPREAD:
+            self._log_opportunity({**opportunity, 'action': 'below_threshold'})
+            return None
+
+        # ── [SIDE SELECTION] ──────────────────────────────────────────────────
+        if spread < 0:
+            # YES is underpriced vs implied — buy YES
+            side        = 'YES'
+            entry_price = yes_p
+            edge        = abs_spread
+        else:
+            # YES is overpriced vs implied — buy NO
+            side        = 'NO'
+            entry_price = no_p
+            edge        = abs_spread
+
+        opportunity['side']        = side
+        opportunity['entry_price'] = entry_price
+        opportunity['edge']        = round(edge, 4)
+
+        # ── [PRICE SANITY CHECK] ──────────────────────────────────────────────
+        # [BUG FIX 1] Avoid near-resolved markets (extreme prices)
+        if side == 'YES' and (entry_price < ARB_MIN_YES_PRICE or entry_price > ARB_MAX_YES_PRICE):
+            log.info(f"[CrossArb] SKIP {coin}/{tf}m YES @ {entry_price:.3f} — price outside sane range [{ARB_MIN_YES_PRICE}-{ARB_MAX_YES_PRICE}]")
+            self._log_opportunity({**opportunity, 'action': 'extreme_price'})
+            return None
+        if side == 'NO' and entry_price < (1.0 - ARB_MAX_YES_PRICE):
+            # If NO is trading below $0.20, that means YES is above $0.80 — near resolved
+            log.info(f"[CrossArb] SKIP {coin}/{tf}m NO @ {entry_price:.3f} — implies YES near resolution")
+            self._log_opportunity({**opportunity, 'action': 'extreme_price'})
+            return None
+
+        # ── [NEWS] Get sentiment signal and combine ───────────────────────────
+        size_mult = 1.0
+        skip_reason = None
+        news_signal = None
+        
+        news_feed = getattr(self.bot, 'news_feed', None)
+        if news_feed:
+            try:
+                from news_feed_compact import combine_signals
+                news_signal = news_feed.get_signal(coin)
+                decision = combine_signals(side, news_signal)
+                
+                if not decision['execute']:
+                    skip_reason = f"news_skip:{decision['reason']}"
+                    log.info(f"[CrossArb+News] {coin} skipped: {decision['reason']}")
+                else:
+                    size_mult = decision['size_mult']
+                    log.info(
+                        f"[CrossArb+News] {coin} news={news_signal['sentiment']} "
+                        f"conf={news_signal['confidence']:.2f} size_mult={size_mult:.2f}"
+                    )
+            except Exception as e:
+                log.debug(f"[CrossArb+News] Error: {e}")
+                size_mult = 0.5  # News error, reduce size
+        
+        if skip_reason:
+            opportunity['action'] = skip_reason
+            self._log_opportunity(opportunity)
+            return None
+
+        # ── [KELLY SIZING] Position size based on edge ───────────────────────
+        def kelly_size(edge: float, confidence: float = 1.0) -> float:
+            """Kelly Criterion with quarter-Kelly safety."""
+            base_size = ARB_MIN_POSITION
+            edge_bonus = (edge - ARB_MIN_SPREAD) * 100
+            size = base_size + (edge_bonus * KELLY_FRACTION)
+            return max(ARB_MIN_POSITION, min(ARB_MAX_POSITION, size * size_mult))
+        
+        position_size = kelly_size(edge, 1.0)
+        opportunity['position_size'] = round(position_size, 2)
+
+        # ── [DUPLICATE CHECK] ────────────────────────────────────────────────
+        # [BUG FIX 2] Record arb BEFORE executing to prevent rapid-fire duplicates
+        market_key = f"{coin.upper()}-{tf}m"
+        if self.slot_tracker.arb_count(coin, tf, slot_ts) >= ARB_MAX_PER_CANDLE:
+            log.debug(f"[CrossArb] Already arbed {market_key} this slot — skipping")
+            return None
+        
+        # Pre-check: don't enter if already in position
+        with self.bot._state_lock:
+            if market_key in self.bot._active_positions:
+                log.debug(f"[CrossArb] Already holding {market_key} — skipping")
+                return None
+        
+        # Record arb intent BEFORE execution to block concurrent attempts
+        self.slot_tracker.record_arb(coin, tf, slot_ts)
+
+        # ── [EXECUTE] ─────────────────────────────────────────────────────────
+        log.info(
+            f"[CrossArb] ✅ ARB SIGNAL: {coin}/{tf}m {side} @ {entry_price:.3f} | "
+            f"spread={spread:+.3f} edge={edge:.1%} size=${position_size:.2f}"
+        )
+
+        executed = self._execute_arb(
+            coin=coin, tf=tf, side=side,
+            entry_price=entry_price, amount=position_size,
+            slug=slug, pm_data=pm_data, opportunity=opportunity,
+        )
+
+        if executed:
+            opportunity['action'] = 'executed'
+        else:
+            # Don't roll back slot count - we attempted the arb
+            opportunity['action'] = 'execute_failed'
+
+        self._log_opportunity(opportunity)
+        return opportunity if executed else None
+
+    # ── Probability Calculation ────────────────────────────────────────────────
+
+    def calculate_implied_probability(
+        self,
+        coin: str,
+        current_price: float,
+        slot_open_price: float,
+        elapsed_seconds: float,
+        remaining_seconds: float,
+        tf_seconds: float,
+    ) -> Optional[float]:
+        """
+        Calculate implied probability that market resolves YES (price UP).
+
+        Uses: P(S_T > S_0) where S follows geometric Brownian motion.
+        Accounts for current position (drift already realised)
+        and remaining uncertainty.
+
+        Formula:
+            current_log_return = ln(S_current / S_open)
+            remaining_vol = vol_per_second * sqrt(remaining_seconds)
+            z = current_log_return / remaining_vol
+            implied_yes = N(z)
+
+        Where N is the standard normal CDF.
+        A positive z means we're already above open → high P(YES wins).
+        """
+        if slot_open_price <= 0 or current_price <= 0:
+            return None
+        if remaining_seconds <= 0:
+            # At expiry — determine from current position
+            return 1.0 if current_price > slot_open_price else 0.0
+        if remaining_seconds > tf_seconds:
+            remaining_seconds = tf_seconds
+
+        import math
+        log_return = math.log(current_price / slot_open_price)
+
+        # Per-second volatility (annualised vol / sqrt(seconds in year))
+        # BTC annual vol ≈ 60%, ETH ≈ 80%
+        vol_per_min = VOL_PER_MIN.get(coin.upper(), _BTC_VOL_PER_MIN)
+        vol_per_sec = vol_per_min / 60.0
+        remaining_vol = vol_per_sec * math.sqrt(remaining_seconds)
+
+        if remaining_vol <= 0:
+            return 1.0 if log_return > 0 else 0.0
+
+        z = log_return / remaining_vol
+        prob = _norm_cdf(z)
+
+        # Clamp to avoid extreme values that indicate stale data
+        prob = max(0.02, min(0.98, prob))
+
+        log.debug(
+            f"[ImpliedProb] {coin}: log_ret={log_return:.4f} "
+            f"remaining_vol={remaining_vol:.4f} z={z:.2f} P={prob:.3f}"
+        )
+        return prob
+
+    # ── Execution ─────────────────────────────────────────────────────────────
+
+    def _execute_arb(
+        self,
+        coin: str, tf: int, side: str,
+        entry_price: float, amount: float,
+        slug: str, pm_data: dict, opportunity: dict,
+    ) -> bool:
+        """
+        Execute the arb trade through the bot's existing infrastructure.
+        Returns True on success.
+        """
+        market_key = f"{coin.upper()}-{tf}m"
+
+        # Don't double-enter a market
+        with self.bot._state_lock:
+            if market_key in self.bot._active_positions:
+                log.debug(f"[CrossArb] Already in {market_key} — skipping")
+                return False
+            vf = self.bot._virtual_free
+
+        if vf < amount:
+            log.warning(f"[CrossArb] Insufficient balance ${vf:.2f} for ${amount:.2f} arb")
+            return False
+
+        # Kill switch / circuit breaker
+        if self.bot.kill_switch.is_active() or self.bot.circuit_breaker.is_tripped():
+            return False
+
+        with self.bot._state_lock:
+            exp = sum(p.shares * p.entry_price for p in self.bot._active_positions.values())
+        ok, reason = self.bot.kill_switch.validate_trade(amount, exp, vf)
+        if not ok:
+            log.warning(f"[CrossArb] Kill switch blocked arb: {reason}")
+            return False
+
+        # Extract asset IDs
+        ct     = pm_data.get('clobTokenIds') or pm_data.get('tokens', [])
+        yes_id = str(ct[0]) if isinstance(ct, list) and len(ct) >= 1 and ct[0] else ''
+        no_id  = str(ct[1]) if isinstance(ct, list) and len(ct) >= 2 and ct[1] else ''
+
+        # Live order (same path as edge trades)
+        live_result = {
+            'success': False, 'fill_price': entry_price,
+            'filled_size': amount / max(entry_price, 0.001),
+            'order_id': None, 'virtual': True,
+        }
+
+        live = getattr(self.bot, 'live', None)
+        paper = getattr(self.bot, 'IS_PAPER_TRADING', True)
+        if live and not paper:
+            try:
+                live_result = live.execute_buy(
+                    market_id=market_key, side=side,
+                    amount=amount, price=entry_price,
+                    signal_data={
+                        "market_id":   market_key,
+                        "side":        side,
+                        "arb":         True,
+                        "spread":      opportunity.get('spread'),
+                        "implied_yes": opportunity.get('implied_yes'),
+                    },
+                )
+            except Exception as e:
+                log.error(f"[CrossArb] execute_buy failed: {e}")
+        else:
+            live_result['success'] = True   # paper mode — simulate fill
+
+        fill_price  = live_result.get('fill_price',  entry_price)
+        filled_size = live_result.get('filled_size', amount / max(entry_price, 0.001))
+
+        if not live_result.get('success') and not paper:
+            log.warning(f"[CrossArb] Live order failed for {market_key} — not tracking position")
+            return False
+
+        # Build position using bot's Position class
+        try:
+            from master_bot_v6_polyclaw_integration import Position
+        except ImportError:
+            # Fallback: create a simple namespace-like object
+            class _Pos:
+                pass
+            Position = _Pos
+
+        import time as _time
+        pos = Position(
+            market_id=market_key, side=side,
+            entry_price=fill_price, shares=filled_size,
+            yes_asset_id=yes_id, no_asset_id=no_id,
+            slug=slug, coin=coin.upper(), timeframe=tf,
+        )
+
+        with self.bot._state_lock:
+            self.bot._virtual_free          -= amount
+            self.bot._active_positions[market_key] = pos
+            self.bot._trade_count           += 1
+            tc = self.bot._trade_count
+
+        # [PnL] Record trade entry
+        pnl_tracker = getattr(self.bot, 'pnl_tracker', None)
+        if pnl_tracker:
+            try:
+                pnl_tracker.record_entry(
+                    trade_id    = market_key,
+                    market_id   = market_key,
+                    side        = side,
+                    entry_price = fill_price,
+                    shares      = filled_size,
+                    amount_usd  = amount,
+                    coin        = coin,
+                    strategy    = 'ARB',
+                    spread      = opportunity.get('spread', 0),
+                    edge        = opportunity.get('edge', 0),
+                )
+            except Exception as e:
+                log.debug(f"[PnL] record_entry error: {e}")
+
+        # Subscribe CLOB asset
+        active_id = pos.active_asset_id if hasattr(pos, 'active_asset_id') else (
+            yes_id if side == 'YES' else no_id
+        )
+        if active_id and hasattr(self.bot, 'clob_ws'):
+            self.bot.clob_ws.subscribe([active_id])
+
+        # Resolution engine registration
+        if hasattr(self.bot, 'resolution_engine') and self.bot.resolution_engine:
+            try:
+                import datetime as _dt
+                exp_utc = _dt.datetime.fromtimestamp(
+                    _time.time() + (tf * 60), tz=_dt.timezone.utc
+                ).isoformat()
+                self.bot.resolution_engine.register_position(
+                    market_id=market_key, slug=slug, coin=coin.upper(),
+                    timeframe_minutes=tf, entry_price=fill_price,
+                    position_side=side, expiration_utc=exp_utc,
+                )
+            except Exception as e:
+                log.debug(f"[CrossArb] resolution register: {e}")
+
+        self._arb_trades += 1
+        log.info(
+            f"[CrossArb] 📈 #{tc} ARB EXECUTED {coin}/{tf}m {side} @ {fill_price:.3f} "
+            f"| ${amount:.2f} | spread={opportunity.get('spread', 0):+.3f} "
+            f"| virtual={live_result.get('virtual', True)}"
+        )
+
+        # Log to trade history
+        if hasattr(self.bot, '_log_trade'):
+            self.bot._log_trade({
+                'type':          'ARB_CROSS_MARKET',
+                'market':        market_key,
+                'side':          side,
+                'amount':        amount,
+                'entry_price':   fill_price,
+                'spread':        opportunity.get('spread'),
+                'implied_yes':   opportunity.get('implied_yes'),
+                'spot_price':    opportunity.get('spot_price'),
+                'slot_open':     opportunity.get('slot_open_price'),
+                'edge':          opportunity.get('edge'),
+                'live_order_id': live_result.get('order_id'),
+                'live_virtual':  live_result.get('virtual', True),
+            })
+
+        if hasattr(self.bot, '_save_state'):
+            self.bot._save_state()
+
+        return True
+
+    # ── Polymarket Market Fetch ────────────────────────────────────────────────
+
+    def _fetch_pm_market(self, slug: str) -> Optional[dict]:
+        """Fetch market data from Gamma API. Returns simplified dict or None."""
+        try:
+            session = getattr(self.bot, 'clob_session', None)
+            if session:
+                resp = session.get(
+                    f"{GAMMA_API}/events/slug/{slug}",
+                    headers={'Accept': 'application/json'},
+                )
+            else:
+                resp = requests.get(f"{GAMMA_API}/events/slug/{slug}", timeout=3)
+
+            if not resp or resp.status_code != 200:
+                return None
+
+            event = resp.json()
+            if event.get('closed') or event.get('resolved'):
+                return None
+
+            markets = event.get('markets', [])
+            if not markets:
+                return None
+
+            mkt = markets[0]
+            prices = json.loads(mkt.get('outcomePrices', '[]'))
+            if len(prices) != 2:
+                return None
+
+            yes_p, no_p = float(prices[0]), float(prices[1])
+            if yes_p + no_p < 0.90:   # sanity check
+                return None
+
+            return {
+                'yes_price':    yes_p,
+                'no_price':     no_p,
+                'clobTokenIds': mkt.get('clobTokenIds') or mkt.get('tokens', []),
+                'market_id':    mkt.get('id', ''),
+                'slug':         slug,
+            }
+        except Exception as e:
+            log.debug(f"[CrossArb] _fetch_pm_market {slug}: {e}")
+            return None
+
+    # ── Logging ───────────────────────────────────────────────────────────────
+
+    def _log_opportunity(self, opp: dict):
+        """Append arb opportunity to arb_opportunities.json."""
+        with self._file_lock:
+            try:
+                path = Path(ARB_LOG)
+                data = []
+                if path.exists():
+                    with open(path) as f:
+                        data = json.load(f)
+                data.append(opp)
+                if len(data) > 5000:
+                    data = data[-3000:]
+                tmp = str(path) + '.tmp'
+                with open(tmp, 'w') as f:
+                    json.dump(data, f, indent=2)
+                Path(tmp).replace(path)
+            except Exception as e:
+                log.error(f"[CrossArb] log_opportunity failed: {e}")
+
+    def status(self) -> dict:
+        return {
+            'enabled':      ARB_ENABLED,
+            'trades':       self._arb_trades,
+            'wins':         self._arb_wins,
+            'pnl_usd':      round(self._arb_pnl_total, 4),
+            'min_spread':   ARB_MIN_SPREAD,
+            'max_position': ARB_MAX_POSITION,
+            'min_position': ARB_MIN_POSITION,
+            'kelly_frac':   KELLY_FRACTION,
+            'window_min':   f"{ARB_WINDOW_START_MIN}–{ARB_WINDOW_END_MIN}",
+            'news_enabled': True,
+        }

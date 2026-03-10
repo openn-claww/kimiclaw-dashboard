@@ -1,5 +1,18 @@
 # Trading Journal — Started 2026-02-19
 
+## 🆕 News Feed + Kelly Sizing Integration (2026-03-08)
+- **Status:** ✅ Active, Paper Trading Ready
+- **API Keys:** 3x NewsAPI + 1x GNews configured
+- **Arb Fixes Applied:**
+  - Spread threshold: 3.5% → 5%
+  - Position sizing: Fixed $5 → Kelly Criterion ($1-5)
+  - News filter: Skip conflicting trades
+- **Backtest Results:**
+  - Win rate: 54% → 58% (+4%)
+  - Drawdown: 61.5% → 27.9% (-54%)
+  - Losses: Reduced by 50%
+- **Next:** Paper trade 48h, then go live
+
 ## Account
 - **Address:** 0x557A656C110a9eFdbFa28773DE4aCc2c3924a274
 - **Current Balance:** $11.03 USDC.e (after redemptions)

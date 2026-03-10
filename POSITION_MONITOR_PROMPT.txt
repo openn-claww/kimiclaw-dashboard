@@ -1,0 +1,133 @@
+URGENT: Position Monitor Missing - Bot Never Detects 5m Market Resolutions
+
+MODEL: Claude 3.5 Sonnet
+
+=== WHO I AM ===
+I'm an AI assistant helping debug a Polymarket trading bot. The bot executes trades successfully but never records exits because there's no position monitor polling for market resolutions.
+
+=== WHAT'S HAPPENING ===
+1. Bot executes trades successfully (ARB EXECUTED logs appear)
+2. PnL entries are recorded (record_entry works)
+3. But _execute_exit is NEVER called for 5-minute markets
+4. Trades stay "open" forever - no PnL calculated
+5. pnl_trades.json shows only entries, no exits
+
+=== THE PATCH THAT COULDN'T BE APPLIED ===
+
+From pnl_deep_fix.py, this position monitor code needs to be added to master_bot_v6_polyclaw_integration.py:
+
+```python
+def _monitor_positions(self):
+    """[FIX-3] Poll active positions every 15s and call _execute_exit on resolution."""
+    import time as _time
+    while not self._stop_event.is_set():
+        try:
+            with self._state_lock:
+                open_ids = list(self._active_positions.keys())
+
+            for mid in open_ids:
+                try:
+                    with self._state_lock:
+                        pos = self._active_positions.get(mid)
+                    if pos is None:
+                        continue
+
+                    # Check if market has resolved via Gamma API
+                    slug = getattr(pos, 'slug', None) or mid
+                    resolved, winner = self._check_market_resolved(slug)
+                    if resolved:
+                        # Determine outcome for our side
+                        our_side  = getattr(pos, 'side', 'YES')
+                        exit_price = 1.0 if winner == our_side else 0.0
+                        log.info(
+                            f"[Monitor] {mid} RESOLVED — winner={winner} "
+                            f"our_side={our_side} exit_price={exit_price}"
+                        )
+                        self._execute_exit(pos, exit_price, ExitReason.RESOLVED)
+
+                    else:
+                        # Time-based fallback: if position age > tf + 2min, force check
+                        age_min = (_time.time() - getattr(pos, 'entry_time', _time.time())) / 60
+                        tf_min  = int(getattr(pos, 'tf', 5))
+                        if age_min > tf_min + 2:
+                            log.warning(
+                                f"[Monitor] {mid} age={age_min:.1f}min > {tf_min+2}min "
+                                f"— forcing resolution check"
+                            )
+
+                except Exception as e:
+                    log.warning(f"[Monitor] Position check error for {mid}: {e}")
+
+            _time.sleep(15)  # poll every 15s — fast enough for 5m markets
+
+        except Exception as e:
+            log.error(f"[Monitor] Loop error: {e}", exc_info=True)
+            _time.sleep(15)
+
+def _check_market_resolved(self, slug: str):
+    """Returns (resolved: bool, winner: str | None)"""
+    import requests as _req
+    try:
+        r = _req.get(
+            f"https://gamma-api.polymarket.com/events/slug/{slug}",
+            timeout=5
+        )
+        if r.status_code != 200:
+            return False, None
+        data = r.json()
+        # Handle both list and dict responses
+        event = data[0] if isinstance(data, list) else data
+        markets = event.get('markets', [])
+        for m in markets:
+            if m.get('closed') or m.get('resolved'):
+                # Find winning outcome
+                outcomes = m.get('outcomes', [])
+                prices   = m.get('outcomePrices', [])
+                for i, (o, p) in enumerate(zip(outcomes, prices)):
+                    if float(p) >= 0.99:
+                        return True, o.upper()
+                return True, None  # resolved but winner unclear
+        return False, None
+    except Exception as e:
+        log.debug(f"[Monitor] _check_market_resolved({slug}) error: {e}")
+        return False, None
+```
+
+And this needs to be added to start the monitor thread:
+
+```python
+# [FIX-3] Start position monitor thread
+self._monitor_thread = threading.Thread(
+    target=self._monitor_positions, daemon=True, name='pos-monitor'
+)
+self._monitor_thread.start()
+log.info("[Monitor] Position monitor started (15s poll)")
+```
+
+=== QUESTIONS ===
+
+1. WHERE should _monitor_positions() be inserted in master_bot_v6_polyclaw_integration.py?
+   - Before run() method? After __init__? Somewhere else?
+
+2. WHERE should the monitor thread be started?
+   - In __init__()? In run()? After arb_engine.start()?
+
+3. Does ExitReason.RESOLVED exist or do we need to import/create it?
+
+4. Is self._stop_event already defined or do we need to create it?
+
+5. The bot has resolution_engine and auto_redeem - do these already handle exits?
+   If so, why aren't they triggering record_exit?
+
+6. Should we use a simpler approach - just poll every 15s in the main loop instead of a separate thread?
+
+7. Can you provide the EXACT line numbers and complete fixed code sections?
+
+=== CONTEXT ===
+- File: /root/.openclaw/workspace/master_bot_v6_polyclaw_integration.py
+- Bot trades 5-minute BTC/ETH markets on Polymarket
+- Trades execute but never close
+- Need to detect when markets resolve (5 minutes after entry)
+- Then call _execute_exit to record PnL
+
+Give exact code with line numbers. The bot is running but trades are stuck open!

@@ -1,0 +1,22 @@
+{
+  "external": {
+    "trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0,
+    "total_pnl": 0,
+    "total_fees": 0,
+    "avg_trade": 0,
+    "final_bankroll": 602.3202366188855
+  },
+  "momentum": {
+    "trades": 1548,
+    "wins": 912,
+    "losses": 636,
+    "win_rate": 0.5891472868217055,
+    "total_pnl": 9667.643968929462,
+    "total_fees": 36.480000000000004,
+    "avg_trade": 6.245248041944097,
+    "final_bankroll": 9724.353968929458
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "external_arb": {
+    "total_trades": 6,
+    "wins": 4,
+    "losses": 2,
+    "win_rate": 0.6666666666666666,
+    "total_pnl": -7.885048974400046,
+    "final_bankroll": 48.82495102559996,
+    "avg_trade_pnl": -1.3141748290666744,
+    "max_drawdown_pct": 24.217477229513598,
+    "sharpe": -0.3938748703815269,
+    "profit_factor": 0.666218804488718,
+    "avg_hold_time": 2.624599117563877
+  },
+  "momentum": {
+    "total_trades": 2695,
+    "wins": 1750,
+    "losses": 945,
+    "win_rate": 0.6493506493506493,
+    "total_pnl": 83194.35356940693,
+    "final_bankroll": 83251.0635694068,
+    "avg_trade_pnl": 30.869890007201086,
+    "max_drawdown_pct": 8.816787162757892,
+    "sharpe": 50.00880273984747,
+    "profit_factor": 18.60727059669988,
+    "avg_hold_time": 8.687770763376564
+  },
+  "initial_bankroll": 56.71,
+  "samples": 100000
+}

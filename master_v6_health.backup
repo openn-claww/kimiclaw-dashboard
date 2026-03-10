@@ -1,0 +1,108 @@
+{
+  "timestamp_utc": "2026-03-10T22:09:56.435449+00:00",
+  "bot_state": "running",
+  "balance": 56.71,
+  "trade_count": 213,
+  "open_positions": 0,
+  "clob_connected": true,
+  "rtds_connected": true,
+  "price_feed": "rtds",
+  "emergency_stop": false,
+  "kill_switch": {
+    "active": false,
+    "daily_loss_usd": 0.0,
+    "daily_loss_pct": 0.0,
+    "consec": 0
+  },
+  "circuit_breaker": {
+    "tripped": false,
+    "win_rate": null,
+    "sample": 0,
+    "total": 0,
+    "warmup": true
+  },
+  "paper_mode": true,
+  "zone_filter": false,
+  "proxy": null,
+  "sell_queue": null,
+  "auto_redeem": {
+    "total": 0,
+    "by_status": {},
+    "poll_interval": 300,
+    "running": true
+  },
+  "arb_engine": {
+    "open_positions": 0,
+    "closed_trades": 0,
+    "circuit_breaker": {
+      "tripped": false,
+      "reason": "",
+      "total_trades": 0,
+      "win_rate": 0.0,
+      "daily_loss": 0.0
+    }
+  },
+  "news_feed": {
+    "sentiment": "BULLISH",
+    "confidence": 0.67,
+    "source": "newsapi",
+    "keywords": [
+      "+surge",
+      "+rally"
+    ],
+    "headlines": [
+      "What\u2019s Fueling Hyperliquid\u2019s Surge? HYPE Outperforms Top 100 Cryptos In Latest Rally",
+      "Vislio Launches Exciting New Online Casino Games and Welcomes New Users with Limited-Time 10 VCoin Bonus",
+      "Bitcoin Die-Hard Jack Dorsey Doesn't Like Stablecoins, But Block Will Use Them Anyway"
+    ]
+  },
+  "pnl_tracker": {
+    "total_trades": 216,
+    "open_trades": 0,
+    "open_exposure": 0,
+    "wins": 75,
+    "losses": 141,
+    "win_rate": 0.3472,
+    "win_rate_last50": 0.04,
+    "net_pnl": -32.6383,
+    "gross_pnl": -25.8053,
+    "fees_paid": 6.833,
+    "avg_hold_secs": 279.0,
+    "best_trade": {
+      "id": "BTC-5m",
+      "net_pnl": 14.3157
+    },
+    "worst_trade": {
+      "id": "BTC-5m",
+      "net_pnl": -5.0
+    },
+    "by_coin": {
+      "BTC": {
+        "trades": 94,
+        "wins": 39,
+        "net_pnl": -21.054043,
+        "win_rate": 0.4149
+      },
+      "ETH": {
+        "trades": 95,
+        "wins": 36,
+        "net_pnl": -11.584248999999977,
+        "win_rate": 0.3789
+      },
+      "": {
+        "trades": 27,
+        "wins": 0,
+        "net_pnl": 0.0,
+        "win_rate": 0.0
+      }
+    },
+    "by_strategy": {
+      "ARB": {
+        "trades": 216,
+        "wins": 75,
+        "net_pnl": -32.638291999999936
+      }
+    },
+    "last_updated": "2026-03-10T22:09:57.446189+00:00"
+  }
+}
