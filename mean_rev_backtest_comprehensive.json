@@ -1,0 +1,16 @@
+{
+  "simulations": 500,
+  "total_trades": 12693,
+  "avg_trades_per_sim": 25.386,
+  "profitable_sims": 498,
+  "profitable_pct": 0.996,
+  "avg_win_rate": 0.8187972,
+  "avg_profit": 0.42315620000000004,
+  "avg_roi_pct": 4.62934,
+  "avg_sharpe": 3.7884226,
+  "median_profit": 0.426,
+  "worst_case": -0.0794,
+  "best_case": 0.9409,
+  "std_profit": 0.15046303220911109,
+  "initial_bankroll": 5.0
+}
