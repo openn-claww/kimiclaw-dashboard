@@ -1,13 +1,13 @@
 {
-  "timestamp_utc": "2026-03-10T22:10:16.213555+00:00",
+  "timestamp_utc": "2026-03-11T00:04:41.246963+00:00",
   "bot_state": "running",
   "balance": 686.93,
   "trade_count": 0,
-  "open_positions": 1,
+  "open_positions": 8,
   "clob_connected": true,
-  "rtds_connected": true,
+  "rtds_connected": false,
   "price_feed": "rtds",
-  "emergency_stop": false,
+  "emergency_stop": true,
   "kill_switch": {
     "active": false,
     "daily_loss_usd": 0.0,

@@ -1,2602 +1,2602 @@
 [
   {
-    "timestamp": "2026-03-10T19:19:59.464489+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T06:27:42.327734+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95468878746033
+      "running_time": 0.8946859836578369
     }
   },
   {
-    "timestamp": "2026-03-10T19:20:02.471451+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:28:42.332407+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95468878746033
+      "running_time": 0.8920865058898926
     }
   },
   {
-    "timestamp": "2026-03-10T19:21:02.475687+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T06:29:42.336577+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.952598571777344
+      "running_time": 0.8549892902374268
     }
   },
   {
-    "timestamp": "2026-03-10T19:21:05.484172+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:30:42.341086+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.952598571777344
+      "running_time": 0.8542277812957764
     }
   },
   {
-    "timestamp": "2026-03-10T19:21:05.488153+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T06:31:42.345217+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.952598571777344
+      "running_time": 0.8210885524749756
     }
   },
   {
-    "timestamp": "2026-03-10T19:27:05.492345+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T06:32:42.349507+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9519684314728
+      "running_time": 0.7231073379516602
     }
   },
   {
-    "timestamp": "2026-03-10T19:27:08.500007+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:33:42.353671+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9519684314728
+      "running_time": 0.6730031967163086
     }
   },
   {
-    "timestamp": "2026-03-10T19:28:08.504889+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T06:34:42.357999+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.950855016708374
+      "running_time": 0.6200604438781738
     }
   },
   {
-    "timestamp": "2026-03-10T19:28:11.512752+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:35:42.362542+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.950855016708374
+      "running_time": 0.6053240299224854
     }
   },
   {
-    "timestamp": "2026-03-10T19:29:11.516795+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T06:36:42.367040+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.9534752368927
+      "running_time": 0.5765619277954102
     }
   },
   {
-    "timestamp": "2026-03-10T19:29:14.524099+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:37:42.371404+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.9534752368927
+      "running_time": 0.5196492671966553
     }
   },
   {
-    "timestamp": "2026-03-10T19:30:14.528138+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T06:38:42.376011+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953529596328735
+      "running_time": 0.49999332427978516
     }
   },
   {
-    "timestamp": "2026-03-10T19:30:17.535716+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:39:42.380717+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953529596328735
+      "running_time": 0.4834294319152832
     }
   },
   {
-    "timestamp": "2026-03-10T19:31:17.540511+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T06:40:42.385502+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.9546115398407
+      "running_time": 0.48194360733032227
     }
   },
   {
-    "timestamp": "2026-03-10T19:31:20.548110+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:41:42.390071+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.9546115398407
+      "running_time": 0.4562416076660156
     }
   },
   {
-    "timestamp": "2026-03-10T19:32:20.552671+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T06:42:42.394649+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95248603820801
+      "running_time": 0.20854973793029785
     }
   },
   {
-    "timestamp": "2026-03-10T19:32:23.559475+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:43:42.399153+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95248603820801
+      "running_time": 0.18878173828125
     }
   },
   {
-    "timestamp": "2026-03-10T19:32:23.563684+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T06:44:42.403367+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95248603820801
+      "running_time": 0.1727278232574463
     }
   },
   {
-    "timestamp": "2026-03-10T19:38:23.568173+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T06:45:42.408257+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9576985836029
+      "running_time": 0.16635394096374512
     }
   },
   {
-    "timestamp": "2026-03-10T19:38:26.577042+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:46:42.412767+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9576985836029
+      "running_time": 0.09959697723388672
     }
   },
   {
-    "timestamp": "2026-03-10T19:39:26.581278+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T06:47:42.417299+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95114064216614
+      "running_time": 0.07686519622802734
     }
   },
   {
-    "timestamp": "2026-03-10T19:39:29.588987+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:48:42.422483+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95114064216614
+      "running_time": 0.03778433799743652
     }
   },
   {
-    "timestamp": "2026-03-10T19:40:29.592785+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T06:49:42.427104+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95136022567749
+      "running_time": 0.010138273239135742
     }
   },
   {
-    "timestamp": "2026-03-10T19:40:32.600714+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:50:42.431745+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95136022567749
+      "running_time": 0.03751730918884277
     }
   },
   {
-    "timestamp": "2026-03-10T19:41:32.604807+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T06:51:42.437945+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953092098236084
+      "running_time": 0.05844998359680176
     }
   },
   {
-    "timestamp": "2026-03-10T19:41:35.612391+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:52:42.442413+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953092098236084
+      "running_time": 0.05365324020385742
     }
   },
   {
-    "timestamp": "2026-03-10T19:42:35.616851+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T06:53:42.447472+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953848123550415
+      "running_time": 0.03344440460205078
     }
   },
   {
-    "timestamp": "2026-03-10T19:42:38.624556+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:54:42.453559+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953848123550415
+      "running_time": 0.05327033996582031
     }
   },
   {
-    "timestamp": "2026-03-10T19:43:38.628605+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T06:55:42.458157+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.943310499191284
+      "running_time": 0.019600629806518555
     }
   },
   {
-    "timestamp": "2026-03-10T19:43:41.636323+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:56:42.467503+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.943310499191284
+      "running_time": 0.006680488586425781
     }
   },
   {
-    "timestamp": "2026-03-10T19:43:41.639810+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T06:57:42.476135+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.943310499191284
+      "running_time": 0.0460515022277832
     }
   },
   {
-    "timestamp": "2026-03-10T19:49:41.643866+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T06:58:42.480624+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.95528531074524
+      "running_time": 0.0062732696533203125
     }
   },
   {
-    "timestamp": "2026-03-10T19:49:44.652870+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T06:59:42.485130+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.95528531074524
+      "running_time": 0.006516933441162109
     }
   },
   {
-    "timestamp": "2026-03-10T19:50:44.657366+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T07:00:42.489917+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95612072944641
+      "running_time": 0.011035919189453125
     }
   },
   {
-    "timestamp": "2026-03-10T19:50:47.664175+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:01:42.494647+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95612072944641
+      "running_time": 0.046501874923706055
     }
   },
   {
-    "timestamp": "2026-03-10T19:51:47.668264+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T07:02:42.499167+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95169973373413
+      "running_time": 0.02375316619873047
     }
   },
   {
-    "timestamp": "2026-03-10T19:51:50.677025+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:03:42.511764+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95169973373413
+      "running_time": 0.024083614349365234
     }
   },
   {
-    "timestamp": "2026-03-10T19:52:50.681348+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T07:04:42.519376+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 11.28528642654419
+      "running_time": 0.0024280548095703125
     }
   },
   {
-    "timestamp": "2026-03-10T19:52:53.689475+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:05:42.524338+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 11.28528642654419
+      "running_time": 0.09312558174133301
     }
   },
   {
-    "timestamp": "2026-03-10T19:53:53.693981+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T07:06:42.528425+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.949867963790894
+      "running_time": 0.0739436149597168
     }
   },
   {
-    "timestamp": "2026-03-10T19:53:56.701928+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:07:42.532595+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.949867963790894
+      "running_time": 0.23784732818603516
     }
   },
   {
-    "timestamp": "2026-03-10T19:54:56.706037+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T07:08:42.536798+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95363473892212
+      "running_time": 0.1507861614227295
     }
   },
   {
-    "timestamp": "2026-03-10T19:54:59.714020+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:09:42.541364+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95363473892212
+      "running_time": 0.11008358001708984
     }
   },
   {
-    "timestamp": "2026-03-10T19:54:59.717727+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T07:10:42.545651+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95363473892212
+      "running_time": 0.06410336494445801
     }
   },
   {
-    "timestamp": "2026-03-10T20:00:59.722247+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T07:11:42.550478+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9535562992096
+      "running_time": 0.023661375045776367
     }
   },
   {
-    "timestamp": "2026-03-10T20:01:02.729981+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:12:42.557765+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9535562992096
+      "running_time": 0.021676063537597656
     }
   },
   {
-    "timestamp": "2026-03-10T20:02:02.734076+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T07:13:42.566505+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95171904563904
+      "running_time": 0.01415252685546875
     }
   },
   {
-    "timestamp": "2026-03-10T20:02:05.741165+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:14:42.576508+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95171904563904
+      "running_time": 0.018887996673583984
     }
   },
   {
-    "timestamp": "2026-03-10T20:03:05.745131+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T07:15:42.585103+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95348620414734
+      "running_time": 0.016216278076171875
     }
   },
   {
-    "timestamp": "2026-03-10T20:03:08.752152+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:16:42.592716+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95348620414734
+      "running_time": 4.044581174850464
     }
   },
   {
-    "timestamp": "2026-03-10T20:04:08.756281+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T07:17:42.597220+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 18.793143272399902
+      "running_time": 4.040818452835083
     }
   },
   {
-    "timestamp": "2026-03-10T20:04:11.764707+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:18:42.601765+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 18.793143272399902
+      "running_time": 0.9280796051025391
     }
   },
   {
-    "timestamp": "2026-03-10T20:05:11.769033+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T07:19:42.606150+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95480942726135
+      "running_time": 4.01320743560791
     }
   },
   {
-    "timestamp": "2026-03-10T20:05:14.776925+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:20:42.610353+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95480942726135
+      "running_time": 3.594143867492676
     }
   },
   {
-    "timestamp": "2026-03-10T20:06:14.781037+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T07:21:42.614531+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95052409172058
+      "running_time": 0.8430395126342773
     }
   },
   {
-    "timestamp": "2026-03-10T20:06:17.790935+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:22:42.618672+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95052409172058
+      "running_time": 3.504931688308716
     }
   },
   {
-    "timestamp": "2026-03-10T20:06:17.795101+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T07:23:42.623735+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95052409172058
+      "running_time": 3.4787280559539795
     }
   },
   {
-    "timestamp": "2026-03-10T20:12:17.800286+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T07:24:42.627785+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.95348358154297
+      "running_time": 3.3995141983032227
     }
   },
   {
-    "timestamp": "2026-03-10T20:12:20.808984+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:25:42.631896+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.95348358154297
+      "running_time": 3.376357316970825
     }
   },
   {
-    "timestamp": "2026-03-10T20:13:20.813422+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T07:26:42.636814+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.94491982460022
+      "running_time": 3.3580081462860107
     }
   },
   {
-    "timestamp": "2026-03-10T20:13:23.822061+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:27:42.641813+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.94491982460022
+      "running_time": 0.6607284545898438
     }
   },
   {
-    "timestamp": "2026-03-10T20:14:23.826072+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T07:28:42.645940+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.947274923324585
+      "running_time": 3.2875945568084717
     }
   },
   {
-    "timestamp": "2026-03-10T20:14:26.834878+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:29:42.650370+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.947274923324585
+      "running_time": 3.228766918182373
     }
   },
   {
-    "timestamp": "2026-03-10T20:15:26.839318+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T07:30:42.654701+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95422554016113
+      "running_time": 0.5248184204101562
     }
   },
   {
-    "timestamp": "2026-03-10T20:15:29.847977+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:31:42.659641+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95422554016113
+      "running_time": 3.152501106262207
     }
   },
   {
-    "timestamp": "2026-03-10T20:16:29.852790+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T07:32:42.663770+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953402042388916
+      "running_time": 2.98636531829834
     }
   },
   {
-    "timestamp": "2026-03-10T20:16:32.861007+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:33:42.667960+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.953402042388916
+      "running_time": 0.42627763748168945
     }
   },
   {
-    "timestamp": "2026-03-10T20:17:32.865132+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T07:34:42.672795+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.9544472694397
+      "running_time": 1.908846139907837
     }
   },
   {
-    "timestamp": "2026-03-10T20:17:35.873996+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:35:42.677435+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.9544472694397
+      "running_time": 1.939220905303955
     }
   },
   {
-    "timestamp": "2026-03-10T20:17:35.877916+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T07:36:42.681764+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.9544472694397
+      "running_time": 2.014291286468506
     }
   },
   {
-    "timestamp": "2026-03-10T20:23:35.882325+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T07:37:42.685834+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9573450088501
+      "running_time": 2.0660955905914307
     }
   },
   {
-    "timestamp": "2026-03-10T20:23:38.890070+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:38:42.690027+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 362.9573450088501
+      "running_time": 2.06302809715271
     }
   },
   {
-    "timestamp": "2026-03-10T20:24:38.895095+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T07:39:42.695021+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 18.228203535079956
+      "running_time": 2.046762228012085
     }
   },
   {
-    "timestamp": "2026-03-10T20:24:41.902553+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:40:42.699117+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 18.228203535079956
+      "running_time": 2.0085978507995605
     }
   },
   {
-    "timestamp": "2026-03-10T20:25:41.906827+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T07:41:42.703546+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.955851793289185
+      "running_time": 2.464756965637207
     }
   },
   {
-    "timestamp": "2026-03-10T20:25:44.915943+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:42:42.707815+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.955851793289185
+      "running_time": 1.6057713031768799
     }
   },
   {
-    "timestamp": "2026-03-10T20:26:44.920748+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T07:43:42.711939+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 9.732245922088623
+      "running_time": 0.5926287174224854
     }
   },
   {
-    "timestamp": "2026-03-10T20:26:47.928155+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:44:42.717615+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 9.732245922088623
+      "running_time": 0.020039796829223633
     }
   },
   {
-    "timestamp": "2026-03-10T20:27:47.932307+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T07:45:42.726793+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 47.11568903923035
+      "running_time": 0.0589594841003418
     }
   },
   {
-    "timestamp": "2026-03-10T20:27:50.940418+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:46:42.731245+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 47.11568903923035
+      "running_time": 0.004147529602050781
     }
   },
   {
-    "timestamp": "2026-03-10T20:28:50.944820+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T07:47:42.747783+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.94698762893677
+      "running_time": 1.406425952911377
     }
   },
   {
-    "timestamp": "2026-03-10T20:28:53.952986+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:48:42.752058+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.94698762893677
+      "running_time": 1.4164390563964844
     }
   },
   {
-    "timestamp": "2026-03-10T20:28:53.957158+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T07:49:42.756497+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.94698762893677
+      "running_time": 1.2916159629821777
     }
   },
   {
-    "timestamp": "2026-03-10T20:34:53.961896+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T07:50:42.761283+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 34.349289655685425
+      "running_time": 1.297145128250122
     }
   },
   {
-    "timestamp": "2026-03-10T20:34:56.971061+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:51:42.764403+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 34.349289655685425
+      "running_time": 4.154017448425293
     }
   },
   {
-    "timestamp": "2026-03-10T20:35:56.975183+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T07:52:42.769113+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.7231485843658447
+      "running_time": 4.118461608886719
     }
   },
   {
-    "timestamp": "2026-03-10T20:35:59.983919+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:53:42.773590+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.7231485843658447
+      "running_time": 4.112679719924927
     }
   },
   {
-    "timestamp": "2026-03-10T20:36:59.988087+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T07:54:42.778130+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.3927476406097412
+      "running_time": 4.092960357666016
     }
   },
   {
-    "timestamp": "2026-03-10T20:37:02.995889+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:55:42.782247+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.3927476406097412
+      "running_time": 4.039806604385376
     }
   },
   {
-    "timestamp": "2026-03-10T20:38:03.000287+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T07:56:42.786331+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.4736857414245605
+      "running_time": 4.026638746261597
     }
   },
   {
-    "timestamp": "2026-03-10T20:38:06.007895+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:57:42.791243+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.4736857414245605
+      "running_time": 4.001288414001465
     }
   },
   {
-    "timestamp": "2026-03-10T20:39:06.012386+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T07:58:42.795364+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.08348369598388672
+      "running_time": 3.9331514835357666
     }
   },
   {
-    "timestamp": "2026-03-10T20:39:09.020073+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T07:59:42.800515+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.08348369598388672
+      "running_time": 3.934037923812866
     }
   },
   {
-    "timestamp": "2026-03-10T20:40:09.024271+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T08:00:42.804776+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.1600959300994873
+      "running_time": 3.8930397033691406
     }
   },
   {
-    "timestamp": "2026-03-10T20:40:12.032932+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:01:42.808843+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.1600959300994873
+      "running_time": 3.8838441371917725
     }
   },
   {
-    "timestamp": "2026-03-10T20:40:12.036727+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T08:02:42.813168+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.1600959300994873
+      "running_time": 3.0109050273895264
     }
   },
   {
-    "timestamp": "2026-03-10T20:46:12.041059+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T08:03:42.818244+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 16.026306629180908
+      "running_time": 3.000720977783203
     }
   },
   {
-    "timestamp": "2026-03-10T20:46:15.048915+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:04:42.822485+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 16.026306629180908
+      "running_time": 2.8336992263793945
     }
   },
   {
-    "timestamp": "2026-03-10T20:47:15.052912+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T08:05:42.827275+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 10.72085189819336
+      "running_time": 2.9612278938293457
     }
   },
   {
-    "timestamp": "2026-03-10T20:47:18.059827+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:06:42.831404+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 10.72085189819336
+      "running_time": 2.9110984802246094
     }
   },
   {
-    "timestamp": "2026-03-10T20:48:18.064432+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T08:07:42.835855+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 13.645102262496948
+      "running_time": 2.7092885971069336
     }
   },
   {
-    "timestamp": "2026-03-10T20:48:21.071807+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:08:42.839944+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 13.645102262496948
+      "running_time": 1.930112361907959
     }
   },
   {
-    "timestamp": "2026-03-10T20:49:21.075852+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T08:09:42.845500+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 15.667242288589478
+      "running_time": 1.9054076671600342
     }
   },
   {
-    "timestamp": "2026-03-10T20:49:24.083011+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:10:42.849741+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 15.667242288589478
+      "running_time": 1.8613886833190918
     }
   },
   {
-    "timestamp": "2026-03-10T20:50:24.087636+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T08:11:42.853829+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.002681016921997
+      "running_time": 1.6742041110992432
     }
   },
   {
-    "timestamp": "2026-03-10T20:50:27.096934+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:12:42.858091+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.002681016921997
+      "running_time": 1.1602094173431396
     }
   },
   {
-    "timestamp": "2026-03-10T20:51:27.101059+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T08:13:42.862261+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.2148354053497314
+      "running_time": 1.1121149063110352
     }
   },
   {
-    "timestamp": "2026-03-10T20:51:30.108996+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:14:42.866704+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.2148354053497314
+      "running_time": 1.0892841815948486
     }
   },
   {
-    "timestamp": "2026-03-10T20:51:30.113234+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T08:15:42.871397+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.2148354053497314
+      "running_time": 1.0147206783294678
     }
   },
   {
-    "timestamp": "2026-03-10T20:57:30.117616+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T08:16:42.875811+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 24.000845432281494
+      "running_time": 0.9258682727813721
     }
   },
   {
-    "timestamp": "2026-03-10T20:57:33.124487+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:17:42.880695+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 24.000845432281494
+      "running_time": 0.833488941192627
     }
   },
   {
-    "timestamp": "2026-03-10T20:58:33.128520+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T08:18:42.885068+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 19.596446990966797
+      "running_time": 0.7605953216552734
     }
   },
   {
-    "timestamp": "2026-03-10T20:58:36.137830+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:19:42.889398+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 19.596446990966797
+      "running_time": 0.011656999588012695
     }
   },
   {
-    "timestamp": "2026-03-10T20:59:36.142205+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T08:20:42.899683+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 14.21482515335083
+      "running_time": 1.8216824531555176
     }
   },
   {
-    "timestamp": "2026-03-10T20:59:39.149924+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:21:42.904316+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 14.21482515335083
+      "running_time": 1.8140547275543213
     }
   },
   {
-    "timestamp": "2026-03-10T21:00:39.154218+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T08:22:42.908794+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 6.250516891479492
+      "running_time": 1.7782669067382812
     }
   },
   {
-    "timestamp": "2026-03-10T21:00:42.168978+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:23:42.913617+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 6.250516891479492
+      "running_time": 1.7178239822387695
     }
   },
   {
-    "timestamp": "2026-03-10T21:01:42.172984+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T08:24:42.917729+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95525622367859
+      "running_time": 1.729675531387329
     }
   },
   {
-    "timestamp": "2026-03-10T21:01:45.180724+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:25:42.922138+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 62.95525622367859
+      "running_time": 1.6938190460205078
     }
   },
   {
-    "timestamp": "2026-03-10T21:02:45.185190+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T08:26:42.926502+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 56.846152782440186
+      "running_time": 1.681917428970337
     }
   },
   {
-    "timestamp": "2026-03-10T21:02:48.193029+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:27:42.930633+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 56.846152782440186
+      "running_time": 1.6547861099243164
     }
   },
   {
-    "timestamp": "2026-03-10T21:02:48.196767+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T08:28:42.934800+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 56.846152782440186
+      "running_time": 1.6296851634979248
     }
   },
   {
-    "timestamp": "2026-03-10T21:08:48.201145+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T08:29:42.938926+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 5.014246463775635
+      "running_time": 2.742550849914551
     }
   },
   {
-    "timestamp": "2026-03-10T21:08:51.210011+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:30:42.943890+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 5.014246463775635
+      "running_time": 1.3992409706115723
     }
   },
   {
-    "timestamp": "2026-03-10T21:09:51.214150+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T08:31:42.948662+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.7969577312469482
+      "running_time": 1.3657453060150146
     }
   },
   {
-    "timestamp": "2026-03-10T21:09:54.222106+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:32:42.953188+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.7969577312469482
+      "running_time": 0.7330024242401123
     }
   },
   {
-    "timestamp": "2026-03-10T21:10:54.226631+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T08:33:42.957490+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.838166236877441
+      "running_time": 0.7590398788452148
     }
   },
   {
-    "timestamp": "2026-03-10T21:10:57.234847+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:34:42.963197+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.838166236877441
+      "running_time": 0.7304773330688477
     }
   },
   {
-    "timestamp": "2026-03-10T21:11:57.238962+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T08:35:42.967590+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.4351980686187744
+      "running_time": 0.723602294921875
     }
   },
   {
-    "timestamp": "2026-03-10T21:12:00.249065+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:36:42.971809+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.4351980686187744
+      "running_time": 0.31655287742614746
     }
   },
   {
-    "timestamp": "2026-03-10T21:13:00.253110+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T08:37:42.976311+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.4630727767944336
+      "running_time": 0.280789852142334
     }
   },
   {
-    "timestamp": "2026-03-10T21:13:03.260056+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:38:42.980507+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.4630727767944336
+      "running_time": 0.24371910095214844
     }
   },
   {
-    "timestamp": "2026-03-10T21:14:03.264406+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T08:39:42.984584+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.011069059371948242
+      "running_time": 0.19452953338623047
     }
   },
   {
-    "timestamp": "2026-03-10T21:14:06.272641+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:40:42.989624+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.011069059371948242
+      "running_time": 0.18630170822143555
     }
   },
   {
-    "timestamp": "2026-03-10T21:14:06.276404+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T08:41:42.993714+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.011069059371948242
+      "running_time": 0.13712263107299805
     }
   },
   {
-    "timestamp": "2026-03-10T21:20:06.280776+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T08:42:42.999491+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.8397955894470215
+      "running_time": 0.10263538360595703
     }
   },
   {
-    "timestamp": "2026-03-10T21:20:09.288339+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:43:43.004120+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.8397955894470215
+      "running_time": 0.049991607666015625
     }
   },
   {
-    "timestamp": "2026-03-10T21:21:09.292315+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T08:44:43.008804+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.821058034896851
+      "running_time": 0.018410921096801758
     }
   },
   {
-    "timestamp": "2026-03-10T21:21:12.301987+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:45:43.018242+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.821058034896851
+      "running_time": 0.05058455467224121
     }
   },
   {
-    "timestamp": "2026-03-10T21:22:12.306056+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T08:46:43.022624+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.3744943141937256
+      "running_time": 0.03169846534729004
     }
   },
   {
-    "timestamp": "2026-03-10T21:22:15.315033+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:47:43.031864+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.3744943141937256
+      "running_time": 0.05467677116394043
     }
   },
   {
-    "timestamp": "2026-03-10T21:23:15.319535+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T08:48:43.036465+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.314687490463257
+      "running_time": 0.030007123947143555
     }
   },
   {
-    "timestamp": "2026-03-10T21:23:18.326439+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:49:43.045007+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.314687490463257
+      "running_time": 0.04828691482543945
     }
   },
   {
-    "timestamp": "2026-03-10T21:24:18.330549+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T08:50:43.051537+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.302433967590332
+      "running_time": 0.04054141044616699
     }
   },
   {
-    "timestamp": "2026-03-10T21:24:21.345826+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:51:43.055799+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.302433967590332
+      "running_time": 0.05751967430114746
     }
   },
   {
-    "timestamp": "2026-03-10T21:25:21.350254+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T08:52:43.060601+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 10.261864423751831
+      "running_time": 0.031081676483154297
     }
   },
   {
-    "timestamp": "2026-03-10T21:25:24.357791+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:53:43.067650+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 10.261864423751831
+      "running_time": 0.020865440368652344
     }
   },
   {
-    "timestamp": "2026-03-10T21:25:24.361589+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T08:54:43.080363+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 10.261864423751831
+      "running_time": 0.025313138961791992
     }
   },
   {
-    "timestamp": "2026-03-10T21:31:24.365934+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T08:55:43.092219+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.18083477020263672
+      "running_time": 0.007903099060058594
     }
   },
   {
-    "timestamp": "2026-03-10T21:31:27.374915+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:56:43.101554+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.18083477020263672
+      "running_time": 0.06597471237182617
     }
   },
   {
-    "timestamp": "2026-03-10T21:32:27.379498+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T08:57:43.107600+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.7321174144744873
+      "running_time": 0.05474424362182617
     }
   },
   {
-    "timestamp": "2026-03-10T21:32:30.387980+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T08:58:43.113622+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.7321174144744873
+      "running_time": 0.011509418487548828
     }
   },
   {
-    "timestamp": "2026-03-10T21:33:30.392009+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T08:59:43.124991+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.716352224349976
+      "running_time": 0.01861429214477539
     }
   },
   {
-    "timestamp": "2026-03-10T21:33:33.399807+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:00:43.135338+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.716352224349976
+      "running_time": 0.009694337844848633
     }
   },
   {
-    "timestamp": "2026-03-10T21:34:33.408182+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T09:01:43.145586+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.668247938156128
+      "running_time": 0.0016779899597167969
     }
   },
   {
-    "timestamp": "2026-03-10T21:34:36.417022+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:02:43.152262+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.668247938156128
+      "running_time": 0.053090810775756836
     }
   },
   {
-    "timestamp": "2026-03-10T21:35:36.421066+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T09:03:43.156456+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.2208147048950195
+      "running_time": 0.039011240005493164
     }
   },
   {
-    "timestamp": "2026-03-10T21:35:39.429956+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:04:43.162049+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.2208147048950195
+      "running_time": 0.025335311889648438
     }
   },
   {
-    "timestamp": "2026-03-10T21:36:39.434438+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T09:05:43.170815+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.226909637451172
+      "running_time": 1.5198397636413574
     }
   },
   {
-    "timestamp": "2026-03-10T21:36:42.442925+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:06:43.175489+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.226909637451172
+      "running_time": 1.4862444400787354
     }
   },
   {
-    "timestamp": "2026-03-10T21:36:42.446816+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T09:07:43.180678+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.226909637451172
+      "running_time": 1.4661633968353271
     }
   },
   {
-    "timestamp": "2026-03-10T21:42:42.451147+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T09:08:43.185007+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.07196569442749
+      "running_time": 1.4082167148590088
     }
   },
   {
-    "timestamp": "2026-03-10T21:42:45.466767+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:09:43.189140+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.07196569442749
+      "running_time": 1.3730831146240234
     }
   },
   {
-    "timestamp": "2026-03-10T21:43:45.471293+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T09:10:43.193824+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.514796495437622
+      "running_time": 1.3684980869293213
     }
   },
   {
-    "timestamp": "2026-03-10T21:43:48.478728+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:11:43.197893+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.514796495437622
+      "running_time": 1.3002946376800537
     }
   },
   {
-    "timestamp": "2026-03-10T21:44:48.482821+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T09:12:43.202383+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.49904727935791
+      "running_time": 1.201514482498169
     }
   },
   {
-    "timestamp": "2026-03-10T21:44:51.492073+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:13:43.207595+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.49904727935791
+      "running_time": 1.1594603061676025
     }
   },
   {
-    "timestamp": "2026-03-10T21:45:51.496349+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T09:14:43.211710+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.514301061630249
+      "running_time": 1.1343052387237549
     }
   },
   {
-    "timestamp": "2026-03-10T21:45:54.504847+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:15:43.215935+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 7.514301061630249
+      "running_time": 1.0852556228637695
     }
   },
   {
-    "timestamp": "2026-03-10T21:46:54.509065+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T09:16:43.220652+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.037696361541748
+      "running_time": 1.107706069946289
     }
   },
   {
-    "timestamp": "2026-03-10T21:46:57.515923+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:17:43.225161+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.037696361541748
+      "running_time": 1.0769469738006592
     }
   },
   {
-    "timestamp": "2026-03-10T21:47:57.519981+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T09:18:43.229604+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 5.037344217300415
+      "running_time": 1.0371184349060059
     }
   },
   {
-    "timestamp": "2026-03-10T21:48:00.527935+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:19:43.234246+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 5.037344217300415
+      "running_time": 0.4914891719818115
     }
   },
   {
-    "timestamp": "2026-03-10T21:48:00.531859+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T09:20:43.238362+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 5.037344217300415
+      "running_time": 0.05833697319030762
     }
   },
   {
-    "timestamp": "2026-03-10T21:54:00.536661+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T09:21:43.242773+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 5.4803361892700195
+      "running_time": 5.787501573562622
     }
   },
   {
-    "timestamp": "2026-03-10T21:54:03.544031+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:22:43.247187+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 5.4803361892700195
+      "running_time": 5.789642810821533
     }
   },
   {
-    "timestamp": "2026-03-10T21:55:03.548547+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T09:23:43.251627+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.119908094406128
+      "running_time": 5.7978127002716064
     }
   },
   {
-    "timestamp": "2026-03-10T21:55:06.557563+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:24:43.256795+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.119908094406128
+      "running_time": 5.7697131633758545
     }
   },
   {
-    "timestamp": "2026-03-10T21:56:06.562216+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T09:25:43.261338+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.05127429962158203
+      "running_time": 5.768985271453857
     }
   },
   {
-    "timestamp": "2026-03-10T21:56:09.573031+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:26:43.265427+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.05127429962158203
+      "running_time": 5.725807189941406
     }
   },
   {
-    "timestamp": "2026-03-10T21:57:09.577024+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T09:27:43.270311+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.638796329498291
+      "running_time": 5.581423997879028
     }
   },
   {
-    "timestamp": "2026-03-10T21:57:12.585832+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:28:43.274516+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 2.638796329498291
+      "running_time": 2.0683393478393555
     }
   },
   {
-    "timestamp": "2026-03-10T21:58:12.589952+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T09:29:43.278803+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.639439105987549
+      "running_time": 0.9523565769195557
     }
   },
   {
-    "timestamp": "2026-03-10T21:58:15.597987+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:30:43.283456+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 4.639439105987549
+      "running_time": 0.015735149383544922
     }
   },
   {
-    "timestamp": "2026-03-10T21:59:15.602687+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T09:31:43.293541+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.1898579597473145
+      "running_time": 0.015542030334472656
     }
   },
   {
-    "timestamp": "2026-03-10T21:59:18.612624+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:32:43.302979+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.1898579597473145
+      "running_time": 0.007720947265625
     }
   },
   {
-    "timestamp": "2026-03-10T21:59:18.616252+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T09:33:43.312121+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 1.1898579597473145
+      "running_time": 0.024593114852905273
     }
   },
   {
-    "timestamp": "2026-03-10T22:05:18.620613+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #1)",
+    "timestamp": "2026-03-11T09:34:43.323357+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.989091634750366
+      "running_time": 4.981577634811401
     }
   },
   {
-    "timestamp": "2026-03-10T22:05:21.628530+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:35:43.327433+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.989091634750366
+      "running_time": 4.974389553070068
     }
   },
   {
-    "timestamp": "2026-03-10T22:06:21.632516+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #2)",
+    "timestamp": "2026-03-11T09:36:43.331553+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.45068359375
+      "running_time": 4.914238691329956
     }
   },
   {
-    "timestamp": "2026-03-10T22:06:24.641296+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:37:43.336228+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.45068359375
+      "running_time": 4.897651672363281
     }
   },
   {
-    "timestamp": "2026-03-10T22:07:24.645442+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #3)",
+    "timestamp": "2026-03-11T09:38:43.340827+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.422325849533081
+      "running_time": 4.885995864868164
     }
   },
   {
-    "timestamp": "2026-03-10T22:07:27.652491+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:39:43.345496+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.422325849533081
+      "running_time": 4.599407196044922
     }
   },
   {
-    "timestamp": "2026-03-10T22:08:27.656697+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #4)",
+    "timestamp": "2026-03-11T09:40:43.349789+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.16327261924743652
+      "running_time": 4.579443454742432
     }
   },
   {
-    "timestamp": "2026-03-10T22:08:30.664022+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:41:43.354034+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 0.16327261924743652
+      "running_time": 4.3484320640563965
     }
   },
   {
-    "timestamp": "2026-03-10T22:09:30.668185+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #5)",
+    "timestamp": "2026-03-11T09:42:43.358409+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.0694851875305176
+      "running_time": 4.2975523471832275
     }
   },
   {
-    "timestamp": "2026-03-10T22:09:33.675462+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:43:43.362655+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 3.0694851875305176
+      "running_time": 4.15553879737854
     }
   },
   {
-    "timestamp": "2026-03-10T22:10:33.680057+00:00",
-    "status": "RESTARTING",
-    "pid": null,
-    "detail": "Bot not running (restart #6)",
+    "timestamp": "2026-03-11T09:44:43.367416+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 6.039081811904907
+      "running_time": 4.123046159744263
     }
   },
   {
-    "timestamp": "2026-03-10T22:10:36.687901+00:00",
-    "status": "RESTART_FAILED",
-    "pid": null,
-    "detail": "V6 Bot died immediately (check /root/.openclaw/workspace/v6_bot_output.log)",
+    "timestamp": "2026-03-11T09:45:43.371599+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 6.039081811904907
+      "running_time": 4.08997106552124
     }
   },
   {
-    "timestamp": "2026-03-10T22:10:36.692013+00:00",
-    "status": "ERROR",
-    "pid": null,
-    "detail": "Too many restarts, waiting 5 min...",
+    "timestamp": "2026-03-11T09:46:43.375637+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
     "stats": {
       "virtual_balance": 250.0,
       "trades": 0,
       "wins": 0,
       "pnl": 0,
-      "running_time": 6.039081811904907
+      "running_time": 4.049755811691284
     }
   }
 ]

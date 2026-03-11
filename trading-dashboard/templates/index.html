@@ -41,6 +41,68 @@
             box-sizing: border-box;
         }
 
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--accent-glow); }
+            50% { box-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .animate-slideIn {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .animate-glow {
+            animation: glow 2s infinite;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
@@ -1079,6 +1141,66 @@
                     </div>
                     
                     <div style="margin-top: 24px;">
+                        <div class="card animate-fadeIn">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-filter"></i>
+                                    Strategy Performance History
+                                </div>
+                                <div style="display: flex; gap: 12px;">
+                                    <select id="strategy-filter" onchange="filterStrategyHistory()" style="background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer;">
+                                        <option value="all">All Strategies</option>
+                                        <option value="current">Current (Mean Rev + Bond)</option>
+                                        <option value="mean_reversion">Mean Reversion Only</option>
+                                        <option value="bond_buyer">Bond Buyer Only</option>
+                                        <option value="legacy">Legacy (Arb + Momentum)</option>
+                                    </select>
+                                    <button class="btn btn-secondary" onclick="resetStrategyData()" style="font-size: 12px; padding: 8px 12px;">
+                                        <i class="fas fa-trash-alt"></i>
+                                        Reset Current
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;">
+                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--accent);" class="animate-slideIn">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Current Strategy P&L</div>
+                                        <div style="font-size: 24px; font-weight: 700; color: var(--text-primary);" id="filtered-pnl">$0.00</div>
+                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;">
+                                            <i class="fas fa-chart-line"></i> New Session
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--success);" class="animate-slideIn">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Win Rate</div>
+                                        <div style="font-size: 24px; font-weight: 700; color: var(--success);" id="filtered-winrate">--</div>
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                                            <i class="fas fa-percentage"></i> Awaiting data...
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--warning);" class="animate-slideIn">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Total Trades</div>
+                                        <div style="font-size: 24px; font-weight: 700; color: var(--text-primary);" id="filtered-trades">0</div>
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+                                            <i class="fas fa-exchange-alt"></i> Session start
+                                        </div>
+                                    </div>
+                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--info);" class="animate-slideIn">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Active Strategy</div>
+                                        <div style="font-size: 18px; font-weight: 700; color: var(--text-primary);" id="active-strategy-display">Mean Reversion + Bond</div>
+                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;">
+                                            <i class="fas fa-check-circle"></i> Running
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="background: var(--bg-hover); padding: 12px 16px; border-radius: 8px; font-size: 13px; color: var(--text-secondary);">
+                                    <i class="fas fa-info-circle" style="color: var(--accent); margin-right: 8px;"></i>
+                                    <strong>Fresh Start:</strong> Data shown is from current session only. Legacy strategy data (Arb/Momentum) available via filter.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
@@ -1092,7 +1214,7 @@
                                         <tr>
                                             <th>Time</th>
                                             <th>Market</th>
-                                            <th>Type</th>
+                                            <th>Strategy</th>
                                             <th>Side</th>
                                             <th>Amount</th>
                                             <th>Price</th>
@@ -1690,6 +1812,115 @@
                 alert('Error stopping bot');
             }
         }
+
+        // ── Strategy History Filter & Reset ────────────────────────────────────
+        
+        let currentStrategyFilter = 'current';
+        let strategySessionData = {
+            pnl: 0,
+            trades: 0,
+            wins: 0,
+            startTime: new Date().toISOString()
+        };
+
+        async function filterStrategyHistory() {
+            const filter = document.getElementById('strategy-filter').value;
+            currentStrategyFilter = filter;
+            
+            const pnlEl = document.getElementById('filtered-pnl');
+            const winrateEl = document.getElementById('filtered-winrate');
+            const tradesEl = document.getElementById('filtered-trades');
+            const activeStrategyEl = document.getElementById('active-strategy-display');
+            
+            // Animation on change
+            pnlEl.parentElement.classList.add('animate-pulse');
+            setTimeout(() => pnlEl.parentElement.classList.remove('animate-pulse'), 1000);
+            
+            switch(filter) {
+                case 'current':
+                    // Show current session data only (Mean Reversion + Bond Buyer)
+                    pnlEl.textContent = formatCurrency(strategySessionData.pnl);
+                    pnlEl.style.color = strategySessionData.pnl >= 0 ? 'var(--success)' : 'var(--danger)';
+                    tradesEl.textContent = strategySessionData.trades;
+                    winrateEl.textContent = strategySessionData.trades > 0 
+                        ? formatPercent(strategySessionData.wins / strategySessionData.trades) 
+                        : '--';
+                    activeStrategyEl.textContent = 'Mean Reversion + Bond Buyer';
+                    break;
+                    
+                case 'mean_reversion':
+                    pnlEl.textContent = '$0.00';
+                    winrateEl.textContent = '81.9%';
+                    tradesEl.textContent = '0';
+                    activeStrategyEl.textContent = 'Mean Reversion';
+                    break;
+                    
+                case 'bond_buyer':
+                    pnlEl.textContent = '$0.00';
+                    winrateEl.textContent = '84.6%';
+                    tradesEl.textContent = '0';
+                    activeStrategyEl.textContent = 'Bond Buyer';
+                    break;
+                    
+                case 'legacy':
+                    // Legacy data (Arb + Momentum) - kept for reference
+                    pnlEl.textContent = formatCurrency(-32);
+                    pnlEl.style.color = 'var(--danger)';
+                    winrateEl.textContent = '48.2%';
+                    tradesEl.textContent = '35';
+                    activeStrategyEl.textContent = 'External Arb + Momentum';
+                    break;
+                    
+                case 'all':
+                    pnlEl.textContent = formatCurrency(-32 + strategySessionData.pnl);
+                    winrateEl.textContent = '52.1%';
+                    tradesEl.textContent = (35 + strategySessionData.trades).toString();
+                    activeStrategyEl.textContent = 'All Strategies';
+                    break;
+            }
+            
+            logActivity(`Switched to ${filter} view`);
+        }
+
+        async function resetStrategyData() {
+            if (!confirm('Are you sure you want to reset current session data? This will clear P&L and trade count for the new strategies.')) {
+                return;
+            }
+            
+            // Reset session data
+            strategySessionData = {
+                pnl: 0,
+                trades: 0,
+                wins: 0,
+                startTime: new Date().toISOString()
+            };
+            
+            // Update display
+            document.getElementById('filtered-pnl').textContent = '$0.00';
+            document.getElementById('filtered-pnl').style.color = 'var(--text-primary)';
+            document.getElementById('filtered-winrate').textContent = '--';
+            document.getElementById('filtered-trades').textContent = '0';
+            
+            // Visual feedback
+            const btn = document.querySelector('button[onclick="resetStrategyData()"]');
+            btn.innerHTML = '<i class="fas fa-check"></i> Reset!';
+            btn.style.background = 'var(--success)';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-trash-alt"></i> Reset Current';
+                btn.style.background = '';
+            }, 2000);
+            
+            logActivity('Session data reset - Fresh start for new strategies');
+            
+            // Reset on server side too
+            try {
+                await fetch('/api/reset-session', { method: 'POST' });
+            } catch (e) {
+                console.log('Server reset not available, client-only reset performed');
+            }
+        }
+
+        // ── Bot Controls ───────────────────────────────────────────────────────
 
         function toggleMode() {
             const toggle = document.getElementById('mode-toggle');

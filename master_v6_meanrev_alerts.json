@@ -13,5 +13,10 @@
     "ts": "2026-03-10T22:04:38.802854+00:00",
     "level": "INFO",
     "message": "\ud83d\ude80 Bot V6 + Mean Reversion started | Paper: True | MeanRev: True"
+  },
+  {
+    "ts": "2026-03-11T00:04:37.546164+00:00",
+    "level": "CRITICAL",
+    "message": "Signal 15 \u2014 emergency stop"
   }
 ]

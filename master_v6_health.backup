@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-03-10T22:09:56.435449+00:00",
+  "timestamp_utc": "2026-03-11T09:46:26.830921+00:00",
   "bot_state": "running",
   "balance": 56.71,
   "trade_count": 213,
@@ -44,16 +44,15 @@
   },
   "news_feed": {
     "sentiment": "BULLISH",
-    "confidence": 0.67,
+    "confidence": 0.33,
     "source": "newsapi",
     "keywords": [
-      "+surge",
-      "+rally"
+      "+buy"
     ],
     "headlines": [
-      "What\u2019s Fueling Hyperliquid\u2019s Surge? HYPE Outperforms Top 100 Cryptos In Latest Rally",
-      "Vislio Launches Exciting New Online Casino Games and Welcomes New Users with Limited-Time 10 VCoin Bonus",
-      "Bitcoin Die-Hard Jack Dorsey Doesn't Like Stablecoins, But Block Will Use Them Anyway"
+      "US Bitcoin ETFs add $167M as altcoin funds extend outflows",
+      "Bithumb Faces 6-Month Suspension In South Korea Over AML, KYC Violations",
+      "Analyst Who Called 2022 Crypto Collapse Says Bitcoin Flashing \u2018Undeniable Strength\u2019 \u2013 Here\u2019s His Outlook"
     ]
   },
   "pnl_tracker": {
@@ -103,6 +102,6 @@
         "net_pnl": -32.638291999999936
       }
     },
-    "last_updated": "2026-03-10T22:09:57.446189+00:00"
+    "last_updated": "2026-03-11T09:46:27.843234+00:00"
   }
 }
