@@ -938,14 +938,15 @@ class MasterBotV6:
             except Exception as e:
                 log.warning(f"[ARB] Arb engine init failed: {e}")
 
-        # [DUAL] Dual strategy engine (External Arb + Momentum side by side)
-        self.dual_engine = None
-        if _DUAL_AVAILABLE and DualStrategyEngine:
-            try:
-                self.dual_engine = DualStrategyEngine(self)
-                log.info("[DUAL] Dual strategy engine initialized (External Arb + Momentum)")
-            except Exception as e:
-                log.warning(f"[DUAL] Dual engine init failed: {e}")
+        # [DUAL] Dual strategy engine - DISABLED (External Arb + Momentum not profitable)
+        # self.dual_engine = None
+        # if _DUAL_AVAILABLE and DualStrategyEngine:
+        #     try:
+        #         self.dual_engine = DualStrategyEngine(self)
+        #         log.info("[DUAL] Dual strategy engine initialized (External Arb + Momentum)")
+        #     except Exception as e:
+        #         log.warning(f"[DUAL] Dual engine init failed: {e}")
+        log.info("[DUAL] External Arb + Momentum DISABLED - switching to profitable strategies")
 
         # [MEANREV] Mean Reversion Strategy Engine
         self.mean_rev_engine = None
@@ -955,6 +956,15 @@ class MasterBotV6:
             log.info("[MEANREV] Mean reversion strategy engine initialized")
         except Exception as e:
             log.warning(f"[MEANREV] Mean reversion engine init failed: {e}")
+
+        # [BOND] Bond Buyer Strategy Engine
+        self.bond_buyer_engine = None
+        try:
+            from bond_buyer_strategy import BondBuyerStrategy
+            self.bond_buyer_engine = BondBuyerStrategy(bankroll=5.0)
+            log.info("[BOND] Bond buyer strategy engine initialized")
+        except Exception as e:
+            log.warning(f"[BOND] Bond buyer engine init failed: {e}")
 
         # [NEWS] News feed engine
         self.news_feed = None
@@ -1376,29 +1386,29 @@ class MasterBotV6:
                 }
             }
 
-        # [DUAL STRATEGY] Run External Arb + Momentum side by side
-        if self.dual_engine and spot_price > 0:
-            try:
-                velocity = self._velocities_ema.get(coin, 0.0)
-                bankroll = self._virtual_free if IS_PAPER_TRADING else (self.live.get_balance() if self.live else self._virtual_free)
-                
-                signals = self.dual_engine.evaluate_all(coin, self._last_market_data[mk]['pm_data'], 
-                                                       self._last_market_data[mk]['spot_data'], 
-                                                       velocity, bankroll)
-                for signal in signals:
-                    if self.dual_engine.execute_trade(signal, bankroll):
-                        log.info(f"[DUAL] Executing {signal.strategy}: {coin} {signal.side} @ {signal.entry_price:.3f}")
-                        # Execute the trade through live or paper
-                        if IS_PAPER_TRADING:
-                            self._execute_paper_trade(coin, tf, signal.side, signal.amount, 
-                                                     yes_p if signal.side=='YES' else no_p, 
-                                                     slug, yes_asset_id, no_asset_id)
-                        elif self.live:
-                            self._execute_live_trade(coin, tf, signal.side, signal.amount,
-                                                    yes_p if signal.side=='YES' else no_p,
-                                                    slug, yes_asset_id, no_asset_id)
-            except Exception as e:
-                log.debug(f"[DUAL] Strategy evaluation failed: {e}")
+        # [DUAL STRATEGY] DISABLED - Not profitable
+        # if self.dual_engine and spot_price > 0:
+        #     try:
+        #         velocity = self._velocities_ema.get(coin, 0.0)
+        #         bankroll = self._virtual_free if IS_PAPER_TRADING else (self.live.get_balance() if self.live else self._virtual_free)
+        #         
+        #         signals = self.dual_engine.evaluate_all(coin, self._last_market_data[mk]['pm_data'], 
+        #                                                self._last_market_data[mk]['spot_data'], 
+        #                                                velocity, bankroll)
+        #         for signal in signals:
+        #             if self.dual_engine.execute_trade(signal, bankroll):
+        #                 log.info(f"[DUAL] Executing {signal.strategy}: {coin} {signal.side} @ {signal.entry_price:.3f}")
+        #                 # Execute the trade through live or paper
+        #                 if IS_PAPER_TRADING:
+        #                     self._execute_paper_trade(coin, tf, signal.side, signal.amount, 
+        #                                              yes_p if signal.side=='YES' else no_p, 
+        #                                              slug, yes_asset_id, no_asset_id)
+        #                 elif self.live:
+        #                     self._execute_live_trade(coin, tf, signal.side, signal.amount,
+        #                                             yes_p if signal.side=='YES' else no_p,
+        #                                             slug, yes_asset_id, no_asset_id)
+        #     except Exception as e:
+        #         log.debug(f"[DUAL] Strategy evaluation failed: {e}")
 
         # [MEAN REVERSION] Evaluate mean reversion strategy
         if self.mean_rev_engine and spot_price > 0:
@@ -1425,6 +1435,33 @@ class MasterBotV6:
                                                 slug, yes_asset_id, no_asset_id)
             except Exception as e:
                 log.debug(f"[MEANREV] Strategy evaluation failed: {e}")
+
+        # [BOND BUYER] Evaluate bond buyer strategy
+        if self.bond_buyer_engine and spot_price > 0:
+            try:
+                bankroll = self._virtual_free if IS_PAPER_TRADING else (self.live.get_balance() if self.live else self._virtual_free)
+                
+                signal = self.bond_buyer_engine.evaluate(
+                    coin=coin,
+                    yes_price=yes_p,
+                    no_price=no_p,
+                    time_remaining=(slot + tf*60) - time.time(),
+                    bankroll=bankroll
+                )
+                
+                if signal:
+                    log.info(f"[BOND] Signal: {coin} {signal.side} @ {signal.entry_price:.3f} (prob: {signal.probability:.1%})")
+                    # Execute the trade
+                    if IS_PAPER_TRADING:
+                        self._execute_paper_trade(coin, tf, signal.side, signal.amount,
+                                                 yes_p if signal.side=='YES' else no_p,
+                                                 slug, yes_asset_id, no_asset_id)
+                    elif self.live:
+                        self._execute_live_trade(coin, tf, signal.side, signal.amount,
+                                                yes_p if signal.side=='YES' else no_p,
+                                                slug, yes_asset_id, no_asset_id)
+            except Exception as e:
+                log.debug(f"[BOND] Strategy evaluation failed: {e}")
 
         # Arb - MAXIMUM AGGRESSIVE: trade if ANY spread < 1.0
         if yes_p+no_p < 1.001:  # Trade if any spread exists
