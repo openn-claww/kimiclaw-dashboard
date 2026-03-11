@@ -100,6 +100,10 @@ class PnLMetrics:
     worst_trade: Dict
     by_coin: Dict
     by_strategy: Dict
+    session_pnl: float = 0.0
+    session_trades: int = 0
+    session_wins: int = 0
+    fresh_start: bool = False
 
 # ── State Management ─────────────────────────────────────────────────────────
 class DashboardState:
@@ -179,13 +183,40 @@ class DashboardState:
         )
 
     def get_pnl_metrics(self) -> Optional[PnLMetrics]:
-        """Get P&L metrics from health file"""
+        """Get P&L metrics from health file with session reset support"""
         health = self.safe_load_json(HEALTH_FILE, {})
         pnl = health.get('pnl_tracker', {})
         
+        # Check for fresh start session
+        session_pnl = health.get('session_pnl', 0.0)
+        session_trades = health.get('session_trades', 0)
+        fresh_start = health.get('fresh_start', False)
+        
         if not pnl:
-            return None
-            
+            # Return fresh start data if no PNL history
+            return PnLMetrics(
+                total_trades=0,
+                wins=0,
+                losses=0,
+                win_rate=0.0,
+                net_pnl=0.0,
+                gross_pnl=0.0,
+                fees_paid=0.0,
+                best_trade={},
+                worst_trade={},
+                by_coin={},
+                by_strategy={},
+                session_pnl=0.0,
+                session_trades=0,
+                session_wins=0,
+                fresh_start=True
+            )
+        
+        # Calculate session wins from strategy breakdown
+        by_strategy = pnl.get('by_strategy', {})
+        session_wins = 0
+        
+        # For fresh start, use session data; otherwise show legacy but track separately
         return PnLMetrics(
             total_trades=pnl.get('total_trades', 0),
             wins=pnl.get('wins', 0),
@@ -197,7 +228,12 @@ class DashboardState:
             best_trade=pnl.get('best_trade', {}),
             worst_trade=pnl.get('worst_trade', {}),
             by_coin=pnl.get('by_coin', {}),
-            by_strategy=pnl.get('by_strategy', {})
+            by_strategy=by_strategy,
+            # Session data for fresh start
+            session_pnl=session_pnl,
+            session_trades=session_trades,
+            session_wins=session_wins,
+            fresh_start=fresh_start
         )
 
     def get_recent_trades(self, limit: int = 50) -> List[Trade]:
@@ -502,6 +538,47 @@ async def bot_strategy_switch(strategy: str):
         }
     except Exception as e:
         logger.error(f"Error switching strategy: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/reset-session")
+async def reset_session():
+    """Reset current session data for new strategies"""
+    try:
+        # Update health file to reset session-specific data
+        health = dashboard_state.safe_load_json(HEALTH_FILE, {})
+        
+        # Store legacy data for reference
+        if 'pnl_tracker' in health:
+            legacy_pnl = health['pnl_tracker'].copy()
+            health['legacy_pnl_tracker'] = legacy_pnl
+        
+        # Reset current session P&L to 0 for new strategies
+        health['session_start'] = datetime.now(timezone.utc).isoformat()
+        health['session_pnl'] = 0.0
+        health['session_trades'] = 0
+        health['fresh_start'] = True
+        
+        with open(HEALTH_FILE, 'w') as f:
+            json.dump(health, f, indent=2)
+        
+        # Broadcast reset to all clients
+        await manager.broadcast({
+            'type': 'session_reset',
+            'data': {
+                'message': 'Session data reset - Fresh start for new strategies',
+                'timestamp': health['session_start'],
+                'session_pnl': 0.0,
+                'session_trades': 0
+            }
+        })
+        
+        return {
+            'success': True,
+            'message': 'Session data reset - Fresh start for new strategies',
+            'timestamp': health['session_start']
+        }
+    except Exception as e:
+        logger.error(f"Error resetting session: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/strategies")

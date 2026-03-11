@@ -78,11 +78,15 @@
         }
 
         .animate-fadeIn {
-            animation: fadeIn 0.6s ease-out;
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
         .animate-slideIn {
-            animation: slideIn 0.5s ease-out;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 0.5s ease-out forwards;
         }
 
         .animate-pulse {
@@ -101,6 +105,155 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
             background-size: 200% 100%;
             animation: shimmer 2s infinite;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--text-secondary) 25%, var(--text-primary) 50%, var(--text-secondary) 75%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 2s linear infinite;
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-effect:hover {
+            box-shadow: 0 0 30px var(--accent-glow), 0 0 50px var(--accent-glow);
+        }
+
+        .pulse-on-hover:hover {
+            animation: pulse 1s infinite;
+        }
+
+        .slide-in-stagger > * {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .slide-in-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+        .slide-in-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+        .slide-in-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+        .slide-in-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+
+        .animate-rotateIn {
+            animation: rotateIn 0.5s ease-out forwards;
+        }
+
+        /* Fresh Start Badge */
+        .fresh-start-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--success-dim), rgba(0, 255, 136, 0.2));
+            border: 1px solid var(--success);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--success);
+            animation: glow 2s infinite, fadeIn 0.5s ease-out;
+        }
+
+        .fresh-start-badge i {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Strategy Filter Dropdown Enhancement */
+        .strategy-filter-container {
+            position: relative;
+        }
+
+        .strategy-filter-select {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 40px 10px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            min-width: 220px;
+            transition: all 0.2s ease;
+        }
+
+        .strategy-filter-select:hover, .strategy-filter-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+            outline: none;
+        }
+
+        .strategy-filter-container::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* Filter Stats Cards */
+        .filter-stat-card {
+            background: var(--bg-hover);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .filter-stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-stat-card.success { border-left-color: var(--success); }
+        .filter-stat-card.warning { border-left-color: var(--warning); }
+        .filter-stat-card.info { border-left-color: var(--info); }
+        .filter-stat-card.danger { border-left-color: var(--danger); }
+
+        /* Reset Button Animation */
+        .reset-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .reset-btn:hover::before {
+            left: 100%;
+        }
+
+        .reset-btn.success {
+            background: var(--success) !important;
+            color: var(--bg-primary) !important;
         }
 
         body {
@@ -1140,61 +1293,60 @@
                         </div>
                     </div>
                     
-                    <div style="margin-top: 24px;">
-                        <div class="card animate-fadeIn">
+                    <div style="margin-top: 24px;" class="animate-fadeIn">
+                        <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
                                     <i class="fas fa-filter"></i>
                                     Strategy Performance History
                                 </div>
-                                <div style="display: flex; gap: 12px;">
-                                    <select id="strategy-filter" onchange="filterStrategyHistory()" style="background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer;">
-                                        <option value="all">All Strategies</option>
-                                        <option value="current">Current (Mean Rev + Bond)</option>
-                                        <option value="mean_reversion">Mean Reversion Only</option>
-                                        <option value="bond_buyer">Bond Buyer Only</option>
-                                        <option value="legacy">Legacy (Arb + Momentum)</option>
-                                    </select>
-                                    <button class="btn btn-secondary" onclick="resetStrategyData()" style="font-size: 12px; padding: 8px 12px;">
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <div class="fresh-start-badge" id="fresh-start-badge" style="display: none;">
+                                        <i class="fas fa-sparkles"></i>
+                                        Fresh Start
+                                    </div>
+                                    <div class="strategy-filter-container">
+                                        <select id="strategy-filter" onchange="filterStrategyHistory()" class="strategy-filter-select">
+                                            <option value="all">📊 All Strategies</option>
+                                            <option value="current" selected>⚡ Current (Mean Rev + Bond)</option>
+                                            <option value="mean_reversion">📈 Mean Reversion Only</option>
+                                            <option value="bond_buyer">💰 Bond Buyer Only</option>
+                                            <option value="legacy">📜 Legacy (Arb + Momentum)</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-secondary reset-btn" onclick="resetStrategyData()" style="font-size: 12px; padding: 10px 16px;">
                                         <i class="fas fa-trash-alt"></i>
                                         Reset Current
                                     </button>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;">
-                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--accent);" class="animate-slideIn">
-                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Current Strategy P&L</div>
-                                        <div style="font-size: 24px; font-weight: 700; color: var(--text-primary);" id="filtered-pnl">$0.00</div>
-                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;">
-                                            <i class="fas fa-chart-line"></i> New Session
-                                        </div>
+                                <div class="slide-in-stagger" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;" id="filter-stats-container">
+                                    <div class="filter-stat-card" style="border-left-color: var(--accent);">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-dollar-sign"></i> Current Strategy P&L</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: var(--text-primary);" id="filtered-pnl" class="shimmer-text">$0.00</div>
+                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;" id="pnl-trend"><i class="fas fa-chart-line"></i> New Session - Starting Fresh</div>
                                     </div>
-                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--success);" class="animate-slideIn">
-                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Win Rate</div>
-                                        <div style="font-size: 24px; font-weight: 700; color: var(--success);" id="filtered-winrate">--</div>
-                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
-                                            <i class="fas fa-percentage"></i> Awaiting data...
-                                        </div>
+                                    <div class="filter-stat-card success" style="animation-delay: 0.1s;">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-trophy"></i> Win Rate</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: var(--success);" id="filtered-winrate">--</div>
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;" id="winrate-status"><i class="fas fa-percentage"></i> Awaiting first trades...</div>
                                     </div>
-                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--warning);" class="animate-slideIn">
-                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Total Trades</div>
-                                        <div style="font-size: 24px; font-weight: 700; color: var(--text-primary);" id="filtered-trades">0</div>
-                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
-                                            <i class="fas fa-exchange-alt"></i> Session start
-                                        </div>
+                                    <div class="filter-stat-card warning" style="animation-delay: 0.2s;">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-exchange-alt"></i> Total Trades</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: var(--text-primary);" id="filtered-trades">0</div>
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;" id="trades-status"><i class="fas fa-clock"></i> Session started just now</div>
                                     </div>
-                                    <div style="background: var(--bg-hover); padding: 16px; border-radius: 12px; border-left: 4px solid var(--info);" class="animate-slideIn">
-                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Active Strategy</div>
-                                        <div style="font-size: 18px; font-weight: 700; color: var(--text-primary);" id="active-strategy-display">Mean Reversion + Bond</div>
-                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;">
-                                            <i class="fas fa-check-circle"></i> Running
-                                        </div>
+                                    <div class="filter-stat-card info" style="animation-delay: 0.3s;">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-chess-knight"></i> Active Strategy</div>
+                                        <div style="font-size: 18px; font-weight: 700; color: var(--text-primary);" id="active-strategy-display">Mean Reversion + Bond Buyer</div>
+                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;" id="strategy-status"><i class="fas fa-check-circle"></i> Ready to trade</div>
                                     </div>
                                 </div>
-                                <div style="background: var(--bg-hover); padding: 12px 16px; border-radius: 8px; font-size: 13px; color: var(--text-secondary);">
-                                    <i class="fas fa-info-circle" style="color: var(--accent); margin-right: 8px;"></i>
-                                    <strong>Fresh Start:</strong> Data shown is from current session only. Legacy strategy data (Arb/Momentum) available via filter.
+                                <div style="background: var(--bg-hover); padding: 16px 20px; border-radius: 12px; font-size: 14px; color: var(--text-secondary); animation: slideInRight 0.5s ease-out 0.4s forwards; opacity: 0;" id="filter-info-box">
+                                    <i class="fas fa-info-circle" style="color: var(--accent); margin-right: 10px;"></i>
+                                    <strong>Fresh Start Mode:</strong> You're viewing current session data only ($0 start). 
+                                    <span id="legacy-hint">Legacy strategy data (Arb/Momentum with -$32.64) is available via the Legacy filter.</span>
                                 </div>
                             </div>
                         </div>
@@ -1762,18 +1914,52 @@
             }
 
             if (data.pnl) {
-                const pnl = data.pnl;
-                document.getElementById('stat-pnl').textContent = formatCurrency(pnl.net_pnl);
-                document.getElementById('stat-winrate').textContent = formatPercent(pnl.win_rate);
-                document.getElementById('stat-trades').textContent = `${pnl.total_trades} trades`;
+                // For fresh start, only show session P&L, not legacy
+                const sessionPnl = data.pnl.session_pnl !== undefined ? data.pnl.session_pnl : 0;
+                const sessionTrades = data.pnl.session_trades !== undefined ? data.pnl.session_trades : 0;
+                const sessionWins = data.pnl.session_wins !== undefined ? data.pnl.session_wins : 0;
+                
+                // Update main P&L display with session data (starts at $0)
+                document.getElementById('stat-pnl').textContent = formatCurrency(sessionPnl);
+                document.getElementById('stat-winrate').textContent = sessionTrades > 0 ? formatPercent(sessionWins / sessionTrades) : '0%';
+                document.getElementById('stat-trades').textContent = `${sessionTrades} trades`;
                 
                 // Update P&L color
                 const pnlEl = document.getElementById('stat-pnl');
-                if (pnl.net_pnl >= 0) {
+                if (sessionPnl >= 0) {
                     pnlEl.style.color = 'var(--success)';
                 } else {
                     pnlEl.style.color = 'var(--danger)';
                 }
+                
+                // Update change indicator
+                const pnlChange = document.getElementById('pnl-change');
+                if (pnlChange) {
+                    if (sessionPnl > 0) {
+                        pnlChange.className = 'stat-change positive';
+                        pnlChange.innerHTML = '<i class="fas fa-arrow-up"></i> Session profit';
+                    } else if (sessionPnl < 0) {
+                        pnlChange.className = 'stat-change negative';
+                        pnlChange.innerHTML = '<i class="fas fa-arrow-down"></i> Session loss';
+                    } else {
+                        pnlChange.className = 'stat-change neutral';
+                        pnlChange.innerHTML = '<i class="fas fa-minus"></i> Fresh start';
+                    }
+                }
+                
+                // Also update strategy filter data if in current mode
+                if (currentStrategyFilter === 'current') {
+                    strategySessionData.pnl = sessionPnl;
+                    strategySessionData.trades = sessionTrades;
+                    strategySessionData.wins = sessionWins;
+                    filterStrategyHistory();
+                }
+            } else {
+                // No P&L data yet - show fresh start
+                document.getElementById('stat-pnl').textContent = '$0.00';
+                document.getElementById('stat-pnl').style.color = 'var(--text-primary)';
+                document.getElementById('stat-winrate').textContent = '0%';
+                document.getElementById('stat-trades').textContent = '0 trades';
             }
         }
 
@@ -1823,6 +2009,34 @@
             startTime: new Date().toISOString()
         };
 
+        // Legacy data storage (Arb + Momentum)
+        const legacyData = {
+            pnl: -32.64,
+            winRate: 0.482,
+            trades: 216,
+            wins: 75,
+            description: 'External Arb + Momentum'
+        };
+
+        // Strategy-specific expected win rates
+        const strategyWinRates = {
+            'mean_reversion': 0.819,
+            'bond_buyer': 0.846,
+            'current': null, // Calculated from session
+            'legacy': 0.482,
+            'all': null
+        };
+
+        function showFreshStartBadge(show = true) {
+            const badge = document.getElementById('fresh-start-badge');
+            if (badge) {
+                badge.style.display = show ? 'inline-flex' : 'none';
+                if (show) {
+                    badge.classList.add('animate-glow');
+                }
+            }
+        }
+
         async function filterStrategyHistory() {
             const filter = document.getElementById('strategy-filter').value;
             currentStrategyFilter = filter;
@@ -1831,10 +2045,22 @@
             const winrateEl = document.getElementById('filtered-winrate');
             const tradesEl = document.getElementById('filtered-trades');
             const activeStrategyEl = document.getElementById('active-strategy-display');
+            const pnlTrendEl = document.getElementById('pnl-trend');
+            const winrateStatusEl = document.getElementById('winrate-status');
+            const tradesStatusEl = document.getElementById('trades-status');
+            const strategyStatusEl = document.getElementById('strategy-status');
+            const infoBox = document.getElementById('filter-info-box');
+            const legacyHint = document.getElementById('legacy-hint');
             
-            // Animation on change
-            pnlEl.parentElement.classList.add('animate-pulse');
-            setTimeout(() => pnlEl.parentElement.classList.remove('animate-pulse'), 1000);
+            // Add pulse animation on change
+            const statsContainer = document.getElementById('filter-stats-container');
+            if (statsContainer) {
+                statsContainer.querySelectorAll('.filter-stat-card').forEach((card, index) => {
+                    card.style.animation = 'none';
+                    card.offsetHeight; // Trigger reflow
+                    card.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s forwards`;
+                });
+            }
             
             switch(filter) {
                 case 'current':
@@ -1842,44 +2068,107 @@
                     pnlEl.textContent = formatCurrency(strategySessionData.pnl);
                     pnlEl.style.color = strategySessionData.pnl >= 0 ? 'var(--success)' : 'var(--danger)';
                     tradesEl.textContent = strategySessionData.trades;
-                    winrateEl.textContent = strategySessionData.trades > 0 
-                        ? formatPercent(strategySessionData.wins / strategySessionData.trades) 
-                        : '--';
+                    
+                    if (strategySessionData.trades > 0) {
+                        const wr = (strategySessionData.wins / strategySessionData.trades * 100).toFixed(1);
+                        winrateEl.textContent = wr + '%';
+                        winrateStatusEl.innerHTML = '<i class="fas fa-chart-pie"></i> Live calculation';
+                    } else {
+                        winrateEl.textContent = '--';
+                        winrateStatusEl.innerHTML = '<i class="fas fa-hourglass-half"></i> Awaiting first trades...';
+                    }
+                    
                     activeStrategyEl.textContent = 'Mean Reversion + Bond Buyer';
+                    pnlTrendEl.innerHTML = '<i class="fas fa-seedling"></i> New Session - Starting Fresh';
+                    tradesStatusEl.innerHTML = '<i class="fas fa-clock"></i> Session started just now';
+                    strategyStatusEl.innerHTML = '<i class="fas fa-check-circle"></i> Ready to trade';
+                    
+                    // Update info box for fresh start
+                    infoBox.innerHTML = '<i class="fas fa-info-circle" style="color: var(--accent); margin-right: 10px;"></i><strong>Fresh Start Mode:</strong> You\'re viewing current session data only ($0 start). <span id="legacy-hint">Legacy strategy data (Arb/Momentum with -$32.64) is available via the Legacy filter.</span>';
+                    
+                    showFreshStartBadge(true);
                     break;
                     
                 case 'mean_reversion':
                     pnlEl.textContent = '$0.00';
+                    pnlEl.style.color = 'var(--text-primary)';
                     winrateEl.textContent = '81.9%';
+                    winrateEl.style.color = 'var(--success)';
                     tradesEl.textContent = '0';
                     activeStrategyEl.textContent = 'Mean Reversion';
+                    
+                    pnlTrendEl.innerHTML = '<i class="fas fa-balance-scale"></i> RSI + Bollinger Bands';
+                    winrateStatusEl.innerHTML = '<i class="fas fa-chart-line"></i> Historical: 81.9%';
+                    tradesStatusEl.innerHTML = '<i class="fas fa-play"></i> Ready to start';
+                    strategyStatusEl.innerHTML = '<i class="fas fa-pause-circle"></i> Standby mode';
+                    
+                    infoBox.innerHTML = '<i class="fas fa-info-circle" style="color: var(--accent); margin-right: 10px;"></i><strong>Mean Reversion:</strong> Uses RSI and Bollinger Bands for high-probability entry signals. Historical win rate: 81.9%.';
+                    
+                    showFreshStartBadge(false);
                     break;
                     
                 case 'bond_buyer':
                     pnlEl.textContent = '$0.00';
+                    pnlEl.style.color = 'var(--text-primary)';
                     winrateEl.textContent = '84.6%';
+                    winrateEl.style.color = 'var(--success)';
                     tradesEl.textContent = '0';
                     activeStrategyEl.textContent = 'Bond Buyer';
+                    
+                    pnlTrendEl.innerHTML = '<i class="fas fa-shield-alt"></i> High probability positions';
+                    winrateStatusEl.innerHTML = '<i class="fas fa-percentage"></i> Historical: 84.6%';
+                    tradesStatusEl.innerHTML = '<i class="fas fa-play"></i> Ready to start';
+                    strategyStatusEl.innerHTML = '<i class="fas fa-pause-circle"></i> Standby mode';
+                    
+                    infoBox.innerHTML = '<i class="fas fa-info-circle" style="color: var(--accent); margin-right: 10px;"></i><strong>Bond Buyer:</strong> Targets 90%+ probability positions. Historical win rate: 84.6%.';
+                    
+                    showFreshStartBadge(false);
                     break;
                     
                 case 'legacy':
                     // Legacy data (Arb + Momentum) - kept for reference
-                    pnlEl.textContent = formatCurrency(-32);
+                    pnlEl.textContent = formatCurrency(legacyData.pnl);
                     pnlEl.style.color = 'var(--danger)';
-                    winrateEl.textContent = '48.2%';
-                    tradesEl.textContent = '35';
-                    activeStrategyEl.textContent = 'External Arb + Momentum';
+                    winrateEl.textContent = (legacyData.winRate * 100).toFixed(1) + '%';
+                    winrateEl.style.color = 'var(--warning)';
+                    tradesEl.textContent = legacyData.trades;
+                    activeStrategyEl.textContent = legacyData.description;
+                    
+                    pnlTrendEl.innerHTML = '<i class="fas fa-archive"></i> Historical data';
+                    winrateStatusEl.innerHTML = '<i class="fas fa-history"></i> Final: 48.2%';
+                    tradesStatusEl.innerHTML = '<i class="fas fa-list-ol"></i> 216 total trades';
+                    strategyStatusEl.innerHTML = '<i class="fas fa-archive"></i> Archived';
+                    
+                    infoBox.innerHTML = '<i class="fas fa-archive" style="color: var(--warning); margin-right: 10px;"></i><strong>Legacy Data:</strong> External Arb + Momentum strategies were deprecated. Final P&L: <span style="color: var(--danger);">-$32.64</span> over 216 trades (48.2% win rate).';
+                    
+                    showFreshStartBadge(false);
                     break;
                     
                 case 'all':
-                    pnlEl.textContent = formatCurrency(-32 + strategySessionData.pnl);
-                    winrateEl.textContent = '52.1%';
-                    tradesEl.textContent = (35 + strategySessionData.trades).toString();
+                    const totalPnl = legacyData.pnl + strategySessionData.pnl;
+                    const totalTrades = legacyData.trades + strategySessionData.trades;
+                    const totalWins = legacyData.wins + strategySessionData.wins;
+                    const combinedWR = totalTrades > 0 ? (totalWins / totalTrades * 100).toFixed(1) : '0.0';
+                    
+                    pnlEl.textContent = formatCurrency(totalPnl);
+                    pnlEl.style.color = totalPnl >= 0 ? 'var(--success)' : 'var(--danger)';
+                    winrateEl.textContent = combinedWR + '%';
+                    winrateEl.style.color = combinedWR >= 50 ? 'var(--success)' : 'var(--warning)';
+                    tradesEl.textContent = totalTrades;
                     activeStrategyEl.textContent = 'All Strategies';
+                    
+                    pnlTrendEl.innerHTML = '<i class="fas fa-layer-group"></i> Combined view';
+                    winrateStatusEl.innerHTML = '<i class="fas fa-calculator"></i> Weighted average';
+                    tradesStatusEl.innerHTML = '<i class="fas fa-database"></i> Legacy + Current';
+                    strategyStatusEl.innerHTML = '<i class="fas fa-globe"></i> All active';
+                    
+                    infoBox.innerHTML = '<i class="fas fa-layer-group" style="color: var(--info); margin-right: 10px;"></i><strong>All Strategies:</strong> Combined view showing legacy data (-$32.64) + current session data ($0 start). Use filters to isolate specific strategies.';
+                    
+                    showFreshStartBadge(false);
                     break;
             }
             
-            logActivity(`Switched to ${filter} view`);
+            logActivity(`Switched to ${filter} strategy view`);
         }
 
         async function resetStrategyData() {
@@ -1895,29 +2184,60 @@
                 startTime: new Date().toISOString()
             };
             
-            // Update display
-            document.getElementById('filtered-pnl').textContent = '$0.00';
-            document.getElementById('filtered-pnl').style.color = 'var(--text-primary)';
-            document.getElementById('filtered-winrate').textContent = '--';
-            document.getElementById('filtered-trades').textContent = '0';
+            // Update display if on current filter
+            if (currentStrategyFilter === 'current') {
+                document.getElementById('filtered-pnl').textContent = '$0.00';
+                document.getElementById('filtered-pnl').style.color = 'var(--text-primary)';
+                document.getElementById('filtered-winrate').textContent = '--';
+                document.getElementById('filtered-trades').textContent = '0';
+                document.getElementById('winrate-status').innerHTML = '<i class="fas fa-hourglass-half"></i> Awaiting first trades...';
+                document.getElementById('trades-status').innerHTML = '<i class="fas fa-clock"></i> Session reset just now';
+            }
             
-            // Visual feedback
+            // Visual feedback with animation
             const btn = document.querySelector('button[onclick="resetStrategyData()"]');
-            btn.innerHTML = '<i class="fas fa-check"></i> Reset!';
-            btn.style.background = 'var(--success)';
+            btn.classList.add('success');
+            btn.innerHTML = '<i class="fas fa-check"></i> Reset Complete!';
+            
+            // Re-animate the stats cards
+            const statsContainer = document.getElementById('filter-stats-container');
+            if (statsContainer) {
+                statsContainer.querySelectorAll('.filter-stat-card').forEach((card, index) => {
+                    card.style.animation = 'none';
+                    card.offsetHeight; // Trigger reflow
+                    card.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s forwards`;
+                });
+            }
+            
             setTimeout(() => {
+                btn.classList.remove('success');
                 btn.innerHTML = '<i class="fas fa-trash-alt"></i> Reset Current';
-                btn.style.background = '';
             }, 2000);
+            
+            // Show fresh start badge
+            showFreshStartBadge(true);
             
             logActivity('Session data reset - Fresh start for new strategies');
             
-            // Reset on server side too
+            // Try to reset on server side too
             try {
-                await fetch('/api/reset-session', { method: 'POST' });
+                const response = await fetch('/api/reset-session', { method: 'POST' });
+                if (response.ok) {
+                    console.log('Server session reset successful');
+                }
             } catch (e) {
                 console.log('Server reset not available, client-only reset performed');
             }
+        }
+
+        // Initialize on page load
+        function initStrategyFilter() {
+            // Set default filter to 'current'
+            document.getElementById('strategy-filter').value = 'current';
+            filterStrategyHistory();
+            
+            // Show fresh start badge for new session
+            showFreshStartBadge(true);
         }
 
         // ── Bot Controls ───────────────────────────────────────────────────────
@@ -2361,6 +2681,7 @@
             connectWebSocket();
             initCharts();
             refreshData();
+            initStrategyFilter(); // Initialize strategy filter with fresh start
             
             // Auto-refresh every 10 seconds
             setInterval(() => {

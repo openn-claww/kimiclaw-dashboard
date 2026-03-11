@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-03-11T09:46:26.830921+00:00",
+  "timestamp_utc": "2026-03-11T10:13:01.715476+00:00",
   "bot_state": "running",
   "balance": 56.71,
   "trade_count": 213,
@@ -50,9 +50,9 @@
       "+buy"
     ],
     "headlines": [
-      "US Bitcoin ETFs add $167M as altcoin funds extend outflows",
-      "Bithumb Faces 6-Month Suspension In South Korea Over AML, KYC Violations",
-      "Analyst Who Called 2022 Crypto Collapse Says Bitcoin Flashing \u2018Undeniable Strength\u2019 \u2013 Here\u2019s His Outlook"
+      "Strategy Buys Another 17,994 BTC In $1.28 Billion Bitcoin Purchase",
+      "Bitcoin price holds above $70k as exchange outflows rise and Iran conflict impact eases",
+      "Iranian crypto outflows jump 700% minutes after U.S.-Israeli airstrikes, Elliptic says"
     ]
   },
   "pnl_tracker": {
@@ -102,6 +102,6 @@
         "net_pnl": -32.638291999999936
       }
     },
-    "last_updated": "2026-03-11T09:46:27.843234+00:00"
+    "last_updated": "2026-03-11T10:13:02.751938+00:00"
   }
 }

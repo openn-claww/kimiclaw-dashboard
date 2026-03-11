@@ -1,0 +1,39 @@
+# AGENT INSTRUCTIONS - PRIORITY UPDATE
+
+## Mission: Dashboard Enhancement
+**Agent:** dashboard_enhancer_agent
+**Started:** 3:18 PM IST
+**Channel:** 1481229012889243702 (ALL updates go here)
+
+---
+
+## CHANGES REQUIRED:
+
+### 1. MOVE Strategy Performance History to TOP
+- Must be FIRST section on dashboard page
+- Above: Stats cards, charts, trades, everything
+- Position: Immediately after header/navigation
+
+### 2. CSS Animations (already in scope)
+- fadeIn, slideIn, pulse, glow, shimmer
+
+### 3. Strategy Filter (already in scope)
+- 5 options: All, Current, Mean Rev, Bond Buyer, Legacy
+
+### 4. Fresh Start Data (already in scope)
+- Reset to $0 PnL
+- Remove -$32 display
+
+---
+
+## DELIVER TO CHANNEL: 1481229012889243702
+
+All updates, progress reports, URL, completion notice → channel 1481229012889243702
+
+**Current ETA:** 20-30 minutes from start
+**Start Time:** 3:18 PM IST
+**Expected Complete:** 3:48 PM IST
+
+---
+
+**REPORT TO CHANNEL 1481229012889243702 ONLY**

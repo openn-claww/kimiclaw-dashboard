@@ -1,343 +1,5 @@
 [
   {
-    "timestamp": "2026-03-11T06:27:42.327734+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.8946859836578369
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:28:42.332407+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.8920865058898926
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:29:42.336577+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.8549892902374268
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:30:42.341086+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.8542277812957764
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:31:42.345217+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.8210885524749756
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:32:42.349507+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.7231073379516602
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:33:42.353671+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.6730031967163086
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:34:42.357999+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.6200604438781738
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:35:42.362542+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.6053240299224854
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:36:42.367040+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.5765619277954102
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:37:42.371404+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.5196492671966553
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:38:42.376011+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.49999332427978516
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:39:42.380717+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.4834294319152832
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:40:42.385502+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.48194360733032227
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:41:42.390071+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.4562416076660156
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:42:42.394649+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.20854973793029785
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:43:42.399153+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.18878173828125
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:44:42.403367+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.1727278232574463
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:45:42.408257+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.16635394096374512
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:46:42.412767+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.09959697723388672
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:47:42.417299+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.07686519622802734
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:48:42.422483+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.03778433799743652
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:49:42.427104+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.010138273239135742
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:50:42.431745+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.03751730918884277
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:51:42.437945+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.05844998359680176
-    }
-  },
-  {
-    "timestamp": "2026-03-11T06:52:42.442413+00:00",
-    "status": "OK",
-    "pid": 107654,
-    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
-    "stats": {
-      "virtual_balance": 250.0,
-      "trades": 0,
-      "wins": 0,
-      "pnl": 0,
-      "running_time": 0.05365324020385742
-    }
-  },
-  {
     "timestamp": "2026-03-11T06:53:42.447472+00:00",
     "status": "OK",
     "pid": 107654,
@@ -2597,6 +2259,344 @@
       "wins": 0,
       "pnl": 0,
       "running_time": 4.049755811691284
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:47:43.379822+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.4406793117523193
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:48:43.383919+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.4335246086120605
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:49:43.388057+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.415402412414551
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:50:43.392287+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.376375675201416
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:51:43.396448+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.333285093307495
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:52:43.401165+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.2847437858581543
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:53:43.405385+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.2307052612304688
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:54:43.409503+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.220567464828491
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:55:43.413597+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.1533913612365723
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:56:43.417826+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.138345241546631
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:57:43.422775+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.1140310764312744
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:58:43.427371+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.098360061645508
+    }
+  },
+  {
+    "timestamp": "2026-03-11T09:59:43.431925+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.0846481323242188
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:00:43.436010+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 3.0044591426849365
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:01:43.440342+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.98452091217041
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:02:43.445104+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.9740214347839355
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:03:43.449334+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.9119820594787598
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:04:43.453440+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.8658196926116943
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:05:43.457798+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.863908529281616
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:06:43.461786+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.8206326961517334
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:07:43.466006+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.7705795764923096
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:08:43.470176+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.7444851398468018
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:09:43.474340+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.687377452850342
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:10:43.478624+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.6613926887512207
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:11:43.482999+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.6345019340515137
+    }
+  },
+  {
+    "timestamp": "2026-03-11T10:12:43.487091+00:00",
+    "status": "OK",
+    "pid": 107654,
+    "detail": "Running | Trades: 0 | Wins: 0 | WinRate: 0.0% | PnL: $+0.00",
+    "stats": {
+      "virtual_balance": 250.0,
+      "trades": 0,
+      "wins": 0,
+      "pnl": 0,
+      "running_time": 2.4783213138580322
     }
   }
 ]
