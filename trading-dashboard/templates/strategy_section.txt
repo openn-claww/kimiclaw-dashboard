@@ -1,0 +1,76 @@
+                                <div class="alert-list" id="alert-list">
+                                    <div class="empty-state">
+                                        <i class="fas fa-bell-slash"></i>
+                                        <h3>No alerts</h3>
+                                        <p>Alerts will appear here when the bot is running</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px;" class="animate-fadeIn">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-filter"></i>
+                                    Strategy Performance History
+                                </div>
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <div class="fresh-start-badge" id="fresh-start-badge" style="display: none;">
+                                        <i class="fas fa-sparkles"></i>
+                                        Fresh Start
+                                    </div>
+                                    <div class="strategy-filter-container">
+                                        <select id="strategy-filter" onchange="filterStrategyHistory()" class="strategy-filter-select">
+                                            <option value="all">📊 All Strategies</option>
+                                            <option value="current" selected>⚡ Current (Mean Rev + Bond)</option>
+                                            <option value="mean_reversion">📈 Mean Reversion Only</option>
+                                            <option value="bond_buyer">💰 Bond Buyer Only</option>
+                                            <option value="legacy">📜 Legacy (Arb + Momentum)</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-secondary reset-btn" onclick="resetStrategyData()" style="font-size: 12px; padding: 10px 16px;">
+                                        <i class="fas fa-trash-alt"></i>
+                                        Reset Current
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="slide-in-stagger" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;" id="filter-stats-container">
+                                    <div class="filter-stat-card" style="border-left-color: var(--accent);">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-dollar-sign"></i> Current Strategy P&L</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: var(--text-primary);" id="filtered-pnl" class="shimmer-text">$0.00</div>
+                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;" id="pnl-trend"><i class="fas fa-chart-line"></i> New Session - Starting Fresh</div>
+                                    </div>
+                                    <div class="filter-stat-card success" style="animation-delay: 0.1s;">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-trophy"></i> Win Rate</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: var(--success);" id="filtered-winrate">--</div>
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;" id="winrate-status"><i class="fas fa-percentage"></i> Awaiting first trades...</div>
+                                    </div>
+                                    <div class="filter-stat-card warning" style="animation-delay: 0.2s;">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-exchange-alt"></i> Total Trades</div>
+                                        <div style="font-size: 28px; font-weight: 700; color: var(--text-primary);" id="filtered-trades">0</div>
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;" id="trades-status"><i class="fas fa-clock"></i> Session started just now</div>
+                                    </div>
+                                    <div class="filter-stat-card info" style="animation-delay: 0.3s;">
+                                        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-chess-knight"></i> Active Strategy</div>
+                                        <div style="font-size: 18px; font-weight: 700; color: var(--text-primary);" id="active-strategy-display">Mean Reversion + Bond Buyer</div>
+                                        <div style="font-size: 12px; color: var(--success); margin-top: 4px;" id="strategy-status"><i class="fas fa-check-circle"></i> Ready to trade</div>
+                                    </div>
+                                </div>
+                                <div style="background: var(--bg-hover); padding: 16px 20px; border-radius: 12px; font-size: 14px; color: var(--text-secondary); animation: slideInRight 0.5s ease-out 0.4s forwards; opacity: 0;" id="filter-info-box">
+                                    <i class="fas fa-info-circle" style="color: var(--accent); margin-right: 10px;"></i>
+                                    <strong>Fresh Start Mode:</strong> You're viewing current session data only ($0 start). 
+                                    <span id="legacy-hint">Legacy strategy data (Arb/Momentum with -$32.64) is available via the Legacy filter.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i class="fas fa-history"></i>
+                                    Recent Trades

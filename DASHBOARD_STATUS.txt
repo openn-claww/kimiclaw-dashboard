@@ -1,0 +1,8 @@
+DASHBOARD STATUS:
+- Stuck agent killed after 52 minutes
+- Doing work directly now
+- Strategy Performance History will be moved to TOP
+- Animations already present in CSS
+- Will complete in next 10 minutes
+
+ETA: 7:10 PM IST

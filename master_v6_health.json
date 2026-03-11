@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-03-11T10:13:15.156890+00:00",
+  "timestamp_utc": "2026-03-11T11:57:13.614349+00:00",
   "bot_state": "running",
   "balance": 56.71,
   "trade_count": 213,
@@ -43,16 +43,14 @@
     }
   },
   "news_feed": {
-    "sentiment": "BULLISH",
-    "confidence": 0.33,
+    "sentiment": "NEUTRAL",
+    "confidence": 0.0,
     "source": "newsapi",
-    "keywords": [
-      "+buy"
-    ],
+    "keywords": [],
     "headlines": [
-      "Strategy Buys Another 17,994 BTC In $1.28 Billion Bitcoin Purchase",
-      "Bitcoin price holds above $70k as exchange outflows rise and Iran conflict impact eases",
-      "Iranian crypto outflows jump 700% minutes after U.S.-Israeli airstrikes, Elliptic says"
+      "A single crypto trader is sitting on a $194 million bet that bitcoin and ether will keep climbing",
+      "GIGA expands Bitcoin treasury to 1,252 BTC with latest purchase",
+      "Stablecoin market expands, bitcoin rallies as Iran war panic cools"
     ]
   },
   "pnl_tracker": {
@@ -102,6 +100,6 @@
         "net_pnl": -32.638291999999936
       }
     },
-    "last_updated": "2026-03-11T10:13:16.174359+00:00"
+    "last_updated": "2026-03-11T11:57:14.636034+00:00"
   }
 }
